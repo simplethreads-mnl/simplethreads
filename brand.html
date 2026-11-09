@@ -365,19 +365,21 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .vw{min-height:2rem;padding:0 0.9rem;border:1px dashed var(--line);font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink)}
 .vw[aria-pressed="true"]{background:var(--ink);color:#fff;border-style:solid;border-color:var(--ink)}
 /* ===== DOORS & PAGE HEROES ===== */
-.doors{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem}
-.door{display:flex;flex-direction:column;color:inherit}
+.doors{margin-top:3.5rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.5rem}
+.door{display:flex;flex-direction:column;color:inherit;background:#fff;border:1px solid var(--line);padding:1rem 1rem 1.25rem;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .3s}
 .door .media{aspect-ratio:4/5;background:#e6e7ea}
 .door .media img{object-position:center}
-.door .media.fit img{object-fit:contain;background:#f4f4f2}
-.door-t{border-top:1px dashed var(--line);margin-top:1.25rem;padding-top:1.25rem}
+.door-t{padding:1.25rem 0.25rem 0;flex:1}
 .door-k{font-family:var(--serif);font-size:0.875rem;color:var(--ink-muted)}
-.door h3{margin-top:0.5rem;font-size:1.75rem}
+.door h3{margin-top:0.375rem;font-size:1.875rem}
 .door p.door-d{margin-top:0.5rem;font-size:0.9375rem;line-height:1.55;color:var(--ink-muted)}
-.door-go{display:inline-flex;gap:0.5rem;margin-top:1rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em}
-.door-go .arr{transition:transform .4s var(--ease)}
-@media (hover:hover) and (min-width:769px){.door:hover .scaler{transform:scale(1.05)}.door:hover .door-go .arr{transform:translateX(0.4rem)}}
-@media (min-width:768px){.doors{grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem}}
+.door-btn{margin-top:1.5rem;justify-content:space-between;width:100%;padding:1rem 1.25rem;font-size:0.75rem;letter-spacing:0.12em;white-space:nowrap}
+@media (hover:hover) and (min-width:769px){
+  .door:hover{transform:translateY(-0.4rem);box-shadow:0 1.25rem 2.5rem -1.5rem rgba(25,25,23,0.35);border-color:var(--ink)}
+  .door:hover .scaler{transform:scale(1.05)}
+  .door:hover .door-btn .arr{transform:translateX(0.4rem)}
+}
+@media (min-width:768px){.doors{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .ph{padding:9rem 1.5rem 5rem;border-bottom:1px dashed var(--line)}
 .ph .back{display:inline-flex;gap:0.5rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted);margin-bottom:2.5rem}
 .ph h1{margin-top:1.5rem;max-width:16ch;font-size:3rem;line-height:1.06}
@@ -390,6 +392,9 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 @media (min-width:640px){.offer{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:1024px){.offer.four{grid-template-columns:repeat(4,minmax(0,1fr))}.offer.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .page-cta{margin-top:3.5rem;display:flex;flex-wrap:wrap;gap:1rem}
+.seam-wrap{position:relative}
+.seam{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:2}
+.seam-wrap .ph,.seam-wrap .sec{position:relative}
 /* ===== TESTIMONIALS ===== */
 
 .quotes{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem}
@@ -481,7 +486,9 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </header>
 
 <main>
-<section class="ph">
+<div class="seam-wrap" id="seamWrap">
+<svg class="seam" id="seam" aria-hidden="true"></svg>
+<section class="ph" id="seamHero">
   <div class="container">
     <a class="back" href="index.html">← Simple Threads</a>
     <div data-anim="fade"><span class="eyebrow">Build your brand</span></div>
@@ -505,6 +512,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
     <div class="page-cta" data-anim="fadeUp"><a class="cta ghost" href="teams.html#catalogue">Browse blanks &amp; prices <span class="arr">→</span></a></div>
   </div>
 </section>
+</div>
 <!-- ===== PORTFOLIO ===== -->
 <section class="sec" id="work">
   <div class="container">
@@ -886,6 +894,62 @@ if(grid){
     const f=t.dataset.f; grid.querySelectorAll(".pc").forEach(c=>{c.hidden=!(f==="all"||c.dataset.cat===f)});
   }));
 }
+
+/* ===== STITCH SEAM (brand page) ===== */
+(function(){
+  const wrap=document.getElementById("seamWrap"), svg=document.getElementById("seam"), hero=document.getElementById("seamHero");
+  if(!wrap||!svg||!hero) return;
+  const NS="http://www.w3.org/2000/svg", INK="#191917";
+  let path,len=0,W=0,H=0,cur=0,target=0;
+  const el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e};
+  function build(){
+    W=wrap.clientWidth; H=wrap.clientHeight; const hh=hero.offsetHeight, mob=W<700;
+    const m=mob?13:Math.max(16,parseFloat(getComputedStyle(document.documentElement).fontSize)*1.4);
+    const X=W-m;
+    const d=mob
+      ? `M ${W*0.62} 118 C ${W*0.8} 108, ${X} ${hh*0.2}, ${X} ${hh*0.36} L ${X} ${H-26}`
+      : `M ${W*0.6} 70 C ${W*0.74} 40, ${W*0.9} ${hh*0.14}, ${W*0.84} ${hh*0.36} S ${W*0.7} ${hh*0.62}, ${W*0.8} ${hh*0.72} S ${X} ${hh*0.82}, ${X} ${hh*1.02} L ${X} ${H-26}`;
+    svg.setAttribute("viewBox",`0 0 ${W} ${H}`); svg.innerHTML="";
+    const defs=el("defs",{}), mask=el("mask",{id:"seamMask",maskUnits:"userSpaceOnUse",x:0,y:0,width:W,height:H});
+    path=el("path",{d,fill:"none",stroke:"#fff","stroke-width":18,"stroke-linecap":"round"});
+    mask.appendChild(path); defs.appendChild(mask); svg.appendChild(defs);
+    const g=el("g",{mask:"url(#seamMask)"});
+    // twin-needle machine stitch: two parallel rows of short stitches
+    g.appendChild(el("path",{d,fill:"none",stroke:INK,"stroke-width":1.6,"stroke-dasharray":"7 4.5","stroke-linecap":"round"}));
+    g.appendChild(el("path",{d,fill:"none",stroke:INK,"stroke-width":1.6,"stroke-dasharray":"7 4.5","stroke-linecap":"round",transform:"translate(-6 0)",opacity:0.55}));
+    svg.appendChild(g);
+    // thread tail where the seam starts
+    const p0=path.getPointAtLength(0);
+    svg.appendChild(el("path",{d:`M ${p0.x} ${p0.y} q -18 -14 -34 -4 t -26 10`,fill:"none",stroke:INK,"stroke-width":1.1,opacity:0.6}));
+    // needle that rides at the end of the stitching
+    needle=el("g",{});
+    needle.appendChild(el("line",{x1:0,y1:-34,x2:0,y2:10,stroke:INK,"stroke-width":2.2,"stroke-linecap":"round"}));
+    needle.appendChild(el("ellipse",{cx:0,cy:-27,rx:1.3,ry:3.4,fill:"#fff",stroke:INK,"stroke-width":0.9}));
+    needle.appendChild(el("circle",{cx:0,cy:0,r:3.2,fill:"none",stroke:INK,"stroke-width":1,opacity:0.5}));
+    svg.appendChild(needle);
+    len=path.getTotalLength(); path.setAttribute("stroke-dasharray",len); draw(cur);
+  }
+  let needle;
+  function draw(p){
+    if(!path) return;
+    path.setAttribute("stroke-dashoffset",len*(1-p));
+    const L=Math.max(0.5,len*p), a=path.getPointAtLength(L), b=path.getPointAtLength(Math.max(0,L-4));
+    const ang=Math.atan2(a.y-b.y,a.x-b.x)*180/Math.PI-90;
+    needle.setAttribute("transform",`translate(${a.x} ${a.y}) rotate(${ang})`);
+    needle.style.opacity=p>=0.999?0:1;
+  }
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function measure(){
+    const r=wrap.getBoundingClientRect(), vh=innerHeight;
+    target=Math.min(1,Math.max(0.14,(vh*0.75-r.top)/ (r.height)));
+    if(reduce) target=1;
+  }
+  function tick(){ cur+= (target-cur)*0.12; if(Math.abs(target-cur)<0.0005) cur=target; draw(cur); requestAnimationFrame(tick); }
+  build(); measure(); cur=reduce?1:0; requestAnimationFrame(tick);
+  addEventListener("scroll",measure,{passive:true});
+  let rt; addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>{build();measure()},200)});
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(()=>{build();measure()});
+})();
 
 })();
 </script>
