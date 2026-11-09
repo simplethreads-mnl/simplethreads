@@ -369,14 +369,27 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .door{display:flex;flex-direction:column;color:inherit;background:#fff;border:1px solid var(--line);padding:1rem 1rem 1.25rem;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .3s}
 .door .media{aspect-ratio:4/5;background:#e6e7ea}
 .door .media img{object-position:center}
-.door-t{padding:1.25rem 0.25rem 0;flex:1}
-.door-k{font-family:var(--serif);font-size:0.875rem;color:var(--ink-muted)}
-.door h3{margin-top:0.375rem;font-size:1.875rem}
-.door p.door-d{margin-top:0.5rem;font-size:0.9375rem;line-height:1.55;color:var(--ink-muted)}
-.door-btn{margin-top:1.5rem;justify-content:space-between;width:100%;padding:1rem 1.25rem;font-size:0.75rem;letter-spacing:0.12em;white-space:nowrap}
+.door .media::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(25,25,23,0.62) 0%,rgba(25,25,23,0.18) 28%,rgba(25,25,23,0) 48%)}
+.door .media::after{content:"";position:absolute;inset:0.625rem;z-index:2;pointer-events:none;border:1px dashed rgba(255,255,255,0.55);transition:inset .6s var(--ease),border-color .4s}
+.door-tag{position:absolute;top:1.25rem;left:1.25rem;z-index:3;background:#fff;color:#191917;font-size:0.625rem;text-transform:uppercase;letter-spacing:0.2em;padding:0.4rem 0.7rem 0.35rem}
+.door-cap{position:absolute;left:1.375rem;right:1.375rem;bottom:1.25rem;z-index:3;display:flex;justify-content:space-between;align-items:baseline;gap:1rem;color:#fff}
+.door-cap span{font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.18em;opacity:0.85}
+.door-cap b{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1.125rem;white-space:nowrap}
+.door-t{padding:1.5rem 0.25rem 0;flex:1}
+.door-k{display:flex;align-items:center;gap:0.875rem;font-family:var(--serif);font-size:0.875rem;color:var(--ink-muted)}
+.door-k::after{content:"";flex:1;border-top:1px dashed var(--line)}
+.door h3{margin-top:0.75rem;font-size:1.875rem}
+.door p.door-d{margin-top:0.625rem;font-size:0.9375rem;line-height:1.55;color:var(--ink-muted)}
+.door-list{margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:0.5rem}
+.door-list li{font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink);border:1px dashed var(--line-strong);padding:0.45rem 0.7rem 0.4rem}
+.door-meta{margin-top:1.5rem;border-top:1px dashed var(--line);padding:1.125rem 0.25rem 0;display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.door-meta span{font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--ink-muted)}
+.door-meta b{font-family:var(--serif);font-weight:400;font-size:1.5rem;line-height:1;color:var(--ink);white-space:nowrap}
+.door-btn{margin-top:1.25rem;justify-content:space-between;width:100%;padding:1rem 1.25rem;font-size:0.75rem;letter-spacing:0.12em;white-space:nowrap}
 @media (hover:hover) and (min-width:769px){
   .door:hover{transform:translateY(-0.4rem);box-shadow:0 1.25rem 2.5rem -1.5rem rgba(25,25,23,0.35);border-color:var(--ink)}
   .door:hover .scaler{transform:scale(1.05)}
+  .door:hover .media::after{inset:0.875rem;border-color:rgba(255,255,255,0.85)}
   .door:hover .door-btn .arr{transform:translateX(0.4rem)}
 }
 @media (min-width:768px){.doors{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -533,14 +546,17 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
       <h2 class="sh-title" data-anim="lines">What are you <span class="accent">making</span>?</h2>
     </div>
     <div class="doors">
-      <a class="door" href="teams.html" data-anim="plate"><div class="photo media"><div class="scaler"><img data-img="door_teams" alt="Varsity jacket from our catalogue"></div></div>
-        <div class="door-t"><p class="door-k">01</p><h3>For Teams &amp; Events</h3><p class="door-d">Shirts, polos, jackets, and caps for companies, schools, sports teams, and events.</p></div>
+      <a class="door" href="teams.html" data-anim="plate"><div class="photo media"><div class="scaler"><img data-img="door_teams" alt="Varsity jacket from our catalogue"></div><span class="door-tag">Catalogue</span><span class="door-cap"><span>Varsity Jacket</span><b>₱450 / pc</b></span></div>
+        <div class="door-t"><p class="door-k">01</p><h3>For Teams &amp; <span class="accent">Events</span></h3><p class="door-d">Shirts, polos, jackets, and caps for companies, schools, sports teams, and events.</p><ul class="door-list"><li>Shirts</li><li>Polos</li><li>Jackets</li><li>Caps</li></ul></div>
+        <div class="door-meta"><span>Blanks from</span><b>₱150</b></div>
         <span class="cta solid door-btn">Browse catalogue <span class="arr">→</span></span></a>
-      <a class="door" href="brand.html" data-anim="plate" data-delay="100"><div class="photo media"><div class="scaler"><img data-img="achilles" alt="Stoicism back print we produced"></div></div>
-        <div class="door-t"><p class="door-k">02</p><h3>Build Your Brand</h3><p class="door-d">From your first design to a full collection, including custom cut-and-sew pieces.</p></div>
+      <a class="door" href="brand.html" data-anim="plate" data-delay="100"><div class="photo media"><div class="scaler"><img data-img="achilles" alt="Stoicism back print we produced"></div><span class="door-tag">Client work</span><span class="door-cap"><span>Made for</span><b>Stoicism</b></span></div>
+        <div class="door-t"><p class="door-k">02</p><h3>Build Your <span class="accent">Brand</span></h3><p class="door-d">From your first design to a full collection, including custom cut-and-sew pieces.</p><ul class="door-list"><li>Design</li><li>Sampling</li><li>Production</li><li>Cut &amp; sew</li></ul></div>
+        <div class="door-meta"><span>Minimum order</span><b>None</b></div>
         <span class="cta solid door-btn">Start a brand <span class="arr">→</span></span></a>
-      <a class="door" href="design.html" data-anim="plate" data-delay="200"><div class="photo media"><div class="scaler"><img data-img="d_conquer" alt="Conquer tee design mockup" style="object-position:78% 50%"></div></div>
-        <div class="door-t"><p class="door-k">03</p><h3>Design &amp; Mockups</h3><p class="door-d">Get artwork and realistic mockups so you can see it before anything is printed.</p></div>
+      <a class="door" href="design.html" data-anim="plate" data-delay="200"><div class="photo media"><div class="scaler"><img data-img="d_conquer" alt="Conquer tee design mockup" style="object-position:78% 50%"></div><span class="door-tag">Studio</span><span class="door-cap"><span>Design mockup</span><b>Conquer</b></span></div>
+        <div class="door-t"><p class="door-k">03</p><h3>Design &amp; <span class="accent">Mockups</span></h3><p class="door-d">Get artwork and realistic mockups so you can see it before anything is printed.</p><ul class="door-list"><li>Artwork</li><li>Mockups</li><li>Front &amp; back</li></ul></div>
+        <div class="door-meta"><span>Print methods</span><b>5</b></div>
         <span class="cta solid door-btn">How it works <span class="arr">→</span></span></a>
     </div>
   </div>
