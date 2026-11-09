@@ -366,20 +366,17 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .vw[aria-pressed="true"]{background:var(--ink);color:#fff;border-style:solid;border-color:var(--ink)}
 /* ===== DOORS & PAGE HEROES ===== */
 .doors{margin-top:3.5rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.5rem}
-.door{display:flex;flex-direction:column;color:inherit;background:#fff;border:1px solid var(--line);padding:0;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .3s}
+.door{display:flex;flex-direction:column;color:inherit;background:#fff;border:1px solid var(--line);padding:1rem 1rem 1.25rem;transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .3s}
 .door .media{aspect-ratio:4/5;background:#e6e7ea}
 .door .media img{object-position:center}
-.door .media::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(25,25,23,0.5) 0%,rgba(25,25,23,0) 34%)}
-.door .media::after{content:"";position:absolute;inset:0.75rem;z-index:2;pointer-events:none;border:1px dashed rgba(255,255,255,0.6);transition:inset .6s var(--ease),border-color .4s}
-.door-n{position:absolute;left:1.75rem;bottom:1.625rem;z-index:3;font-family:var(--serif);font-style:italic;font-size:3.25rem;line-height:1;color:#fff}
-.door-t{position:relative;padding:1.5rem 1.5rem 0;flex:1}
-.door h3{font-size:1.875rem}
+.door-t{padding:1.25rem 0.25rem 0;flex:1}
+.door-k{font-family:var(--serif);font-size:0.875rem;color:var(--ink-muted)}
+.door h3{margin-top:0.375rem;font-size:1.875rem}
 .door p.door-d{margin-top:0.5rem;font-size:0.9375rem;line-height:1.55;color:var(--ink-muted)}
-.door-btn{margin:1.5rem 0.75rem 0.75rem;justify-content:space-between;width:auto;padding:1rem 1.25rem;font-size:0.75rem;letter-spacing:0.12em;white-space:nowrap}
+.door-btn{margin-top:1.5rem;justify-content:space-between;width:100%;padding:1rem 1.25rem;font-size:0.75rem;letter-spacing:0.12em;white-space:nowrap}
 @media (hover:hover) and (min-width:769px){
   .door:hover{transform:translateY(-0.4rem);box-shadow:0 1.25rem 2.5rem -1.5rem rgba(25,25,23,0.35);border-color:var(--ink)}
   .door:hover .scaler{transform:scale(1.05)}
-  .door:hover .media::after{inset:0.875rem;border-color:rgba(255,255,255,0.85)}
   .door:hover .door-btn .arr{transform:translateX(0.4rem)}
 }
 @media (min-width:768px){.doors{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -536,14 +533,14 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
       <h2 class="sh-title" data-anim="lines">What are you <span class="accent">making</span>?</h2>
     </div>
     <div class="doors">
-      <a class="door" href="teams.html" data-anim="plate"><div class="photo media"><div class="scaler"><img data-img="door_teams" alt="Varsity jacket from our catalogue"></div><span class="door-n" aria-hidden="true">01</span></div>
-        <div class="door-t"><h3>For Teams &amp; <span class="accent">Events</span></h3><p class="door-d">Shirts, polos, jackets, and caps for companies, schools, sports teams, and events.</p></div>
+      <a class="door" href="teams.html" data-anim="plate"><div class="photo media"><div class="scaler"><img data-img="door_teams" alt="Varsity jacket from our catalogue"></div></div>
+        <div class="door-t"><p class="door-k">01</p><h3>For Teams &amp; Events</h3><p class="door-d">Shirts, polos, jackets, and caps for companies, schools, sports teams, and events.</p></div>
         <span class="cta solid door-btn">Browse catalogue <span class="arr">→</span></span></a>
-      <a class="door" href="brand.html" data-anim="plate" data-delay="100"><div class="photo media"><div class="scaler"><img data-img="achilles" alt="Stoicism back print we produced"></div><span class="door-n" aria-hidden="true">02</span></div>
-        <div class="door-t"><h3>Build Your <span class="accent">Brand</span></h3><p class="door-d">From your first design to a full collection, including custom cut-and-sew pieces.</p></div>
+      <a class="door" href="brand.html" data-anim="plate" data-delay="100"><div class="photo media"><div class="scaler"><img data-img="achilles" alt="Stoicism back print we produced"></div></div>
+        <div class="door-t"><p class="door-k">02</p><h3>Build Your Brand</h3><p class="door-d">From your first design to a full collection, including custom cut-and-sew pieces.</p></div>
         <span class="cta solid door-btn">Start a brand <span class="arr">→</span></span></a>
-      <a class="door" href="design.html" data-anim="plate" data-delay="200"><div class="photo media"><div class="scaler"><img data-img="d_conquer" alt="Conquer tee design mockup" style="object-position:78% 50%"></div><span class="door-n" aria-hidden="true">03</span></div>
-        <div class="door-t"><h3>Design &amp; <span class="accent">Mockups</span></h3><p class="door-d">Get artwork and realistic mockups so you can see it before anything is printed.</p></div>
+      <a class="door" href="design.html" data-anim="plate" data-delay="200"><div class="photo media"><div class="scaler"><img data-img="d_conquer" alt="Conquer tee design mockup" style="object-position:78% 50%"></div></div>
+        <div class="door-t"><p class="door-k">03</p><h3>Design &amp; Mockups</h3><p class="door-d">Get artwork and realistic mockups so you can see it before anything is printed.</p></div>
         <span class="cta solid door-btn">How it works <span class="arr">→</span></span></a>
     </div>
   </div>
