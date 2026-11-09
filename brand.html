@@ -395,9 +395,10 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .seam-wrap{position:relative}
 .seam{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:2}
 .seam-wrap .ph,.seam-wrap .sec{position:relative}
-/* ===== DESIGN SKETCH (brand page) ===== */
-.sh-sketch{display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem;align-items:end}
-.sketch{margin:0;width:min(72vw,17rem)}
+/* ===== CARD VISUALS (brand page) ===== */
+.card-vis{aspect-ratio:20/21;max-width:17rem;margin-bottom:1.75rem;display:grid;place-items:center}
+.card-vis-empty{border:1px dashed var(--line)}
+.sketch{margin:0;width:100%}
 .sketch svg{display:block;width:100%;height:auto;overflow:visible}
 .sketch path{fill:none;stroke:#2b2a27;stroke-linecap:round;stroke-linejoin:round}
 .sk-g{stroke-width:0.8;opacity:0.14;stroke-dasharray:2 4}
@@ -409,9 +410,6 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .sk-stitch-src{display:none}
 .sk-stitches line{stroke:#191917;stroke-width:1;stroke-linecap:round;opacity:0;transition:opacity .25s ease}
 .sketch.drawn .sk-stitches line{opacity:0.8}
-.sketch figcaption{margin-top:1rem;display:flex;align-items:baseline;gap:0.75rem;font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--ink-muted)}
-.sketch figcaption span{font-family:var(--serif);font-size:0.875rem;letter-spacing:0;color:var(--ink)}
-@media (min-width:1024px){.sh-sketch{grid-template-columns:minmax(0,1fr) 19rem;gap:3rem}.sketch{width:19rem;margin-right:3.5rem}}
 /* ===== TESTIMONIALS ===== */
 
 .quotes{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem}
@@ -516,73 +514,69 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 <section class="sec">
   <div class="container">
-    <div class="sh sh-sketch">
-      <div class="sh-text">
+    <div class="sh">
       <div data-anim="fade"><span class="eyebrow">What we do for brands</span></div>
       <h2 class="sh-title" data-anim="lines">Everything between the idea and the drop.</h2>
-      </div>
-    <figure class="sketch" id="sketch" aria-label="A designer's sketch of a hoodie being drawn">
-      <svg viewBox="0 0 400 420" aria-hidden="true">
-        <g class="sk-lines">
-        <path class="sk-g" d="M200 14 L200 418"/>
-        <path class="sk-g" d="M84 128 L316 128"/>
-        <path class="sk-g" d="M70 404 L330 404"/>
-        <path class="sk-o" d="M140 112 C132 70 160 30 200 28 C240 30 268 70 260 112"/>
-        <path class="sk-o" d="M162 72 C166 100 184 120 200 130 C216 120 234 100 238 72 C224 58 176 58 162 72"/>
-        <path class="sk-d" d="M172 80 C186 92 214 92 228 80"/>
-        <path class="sk-d" d="M200 30 C201 40 201 50 200 60"/>
-        <path class="sk-o" d="M140 112 C124 116 110 120 100 128"/>
-        <path class="sk-o" d="M260 112 C276 116 290 120 300 128"/>
-        <path class="sk-o" d="M100 128 C104 160 106 190 108 215 L112 375"/>
-        <path class="sk-o" d="M300 128 C296 160 294 190 292 215 L288 375"/>
-        <path class="sk-o" d="M100 128 C80 140 68 186 60 246 L48 338"/>
-        <path class="sk-o" d="M300 128 C320 140 332 186 340 246 L352 338"/>
-        <path class="sk-o" d="M86 344 L96 262 C100 240 104 226 108 215"/>
-        <path class="sk-o" d="M314 344 L304 262 C300 240 296 226 292 215"/>
-        <path class="sk-o" d="M48 338 L86 344 L82 372 L45 367 Z"/>
-        <path class="sk-o" d="M352 338 L314 344 L318 372 L355 367 Z"/>
-        <path class="sk-o" d="M112 375 L288 375 L286 404 L114 404 Z"/>
-        <path class="sk-o" d="M126 375 L128 332 L150 286 L250 286 L272 332 L274 375"/>
-        <path class="sk-d" d="M188 122 C187 140 185 158 184 180"/>
-        <path class="sk-d" d="M212 122 C213 140 215 158 216 180"/>
-        <path class="sk-d" d="M184 180 L183 192"/>
-        <path class="sk-d" d="M216 180 L217 192"/>
-        <path class="sk-d" d="M190.6 120 a2.6 2.6 0 1 0 -5.2 0 a2.6 2.6 0 1 0 5.2 0"/>
-        <path class="sk-d" d="M214.6 120 a2.6 2.6 0 1 0 -5.2 0 a2.6 2.6 0 1 0 5.2 0"/>
-        <path class="sk-f" d="M70 250 C76 254 82 255 90 252"/>
-        <path class="sk-f" d="M66 282 C72 286 80 287 88 284"/>
-        <path class="sk-f" d="M330 250 C324 254 318 255 310 252"/>
-        <path class="sk-f" d="M334 282 C328 286 320 287 312 284"/>
-        <path class="sk-f" d="M152 226 C160 246 158 262 152 278"/>
-        <path class="sk-f" d="M248 226 C240 246 242 262 248 278"/>
-        <path class="sk-f" d="M150 128 C170 138 230 138 250 128"/>
-        <path class="sk-r" d="M122 378 L122 401 M130 378 L130 401 M138 378 L138 401 M146 378 L146 401 M154 378 L154 401 M162 378 L162 401 M170 378 L170 401 M178 378 L178 401 M186 378 L186 401 M194 378 L194 401 M202 378 L202 401 M210 378 L210 401 M218 378 L218 401 M226 378 L226 401 M234 378 L234 401 M242 378 L242 401 M250 378 L250 401 M258 378 L258 401 M266 378 L266 401 M274 378 L274 401"/>
-        <path class="sk-r" d="M54.3 341.0 L51.2 365.8 M60.7 342.0 L57.3 366.7 M67.0 343.0 L63.5 367.5 M73.3 344.0 L69.7 368.3 M79.7 345.0 L75.8 369.2"/>
-        <path class="sk-r" d="M345.7 341.0 L348.8 365.8 M339.3 342.0 L342.7 366.7 M333.0 343.0 L336.5 367.5 M326.7 344.0 L330.3 368.3 M320.3 345.0 L324.2 369.2"/>
-        </g>
-        <g class="sk-ghost"></g>
-        <g class="sk-stitch-src">
-        <path d="M113 371 L287 371"/>
-        <path d="M49 334 L87 340"/>
-        <path d="M351 334 L313 340"/>
-        <path d="M131 334 L153 290"/>
-        <path d="M269 334 L247 290"/>
-        <path d="M154 290 L246 290"/>
-        <path d="M104 131 C108 160 110 190 112 213"/>
-        <path d="M296 131 C292 160 290 190 288 213"/>
-        <path d="M167 75 C171 100 187 117 200 125 C213 117 229 100 233 75"/>
-        <path d="M204 32 C205 42 205 52 204 61"/>
-        </g>
-        <g class="sk-stitches"></g>
-      </svg>
-      <figcaption><span>01</span>Design assistance</figcaption>
-    </figure>
     </div>
     <div class="offer four">
-      <article class="card" data-anim="fadeUp"><span class="idx">01</span><h3>Design assistance</h3><p>We refine your artwork or create it with you, ready for print or embroidery.</p></article>
-      <article class="card" data-anim="fadeUp" data-delay="90"><span class="idx">02</span><h3>Custom cut &amp; sew</h3><p>Garments made to your fit, fabric, and details, not just blanks off the shelf.</p></article>
-      <article class="card" data-anim="fadeUp" data-delay="180"><span class="idx">03</span><h3>Sampling</h3><p>Check the fit, print, and colour on a real sample before your full run.</p></article>
-      <article class="card" data-anim="fadeUp" data-delay="270"><span class="idx">04</span><h3>Production &amp; finishing</h3><p>Printing, embroidery, labels, and packing, so your pieces arrive ready to sell.</p></article>
+      <article class="card" data-anim="fadeUp"><div class="card-vis"><figure class="sketch" id="sketch" aria-label="A designer's sketch of a hoodie being drawn">
+<svg viewBox="0 0 400 420" aria-hidden="true">
+  <g class="sk-lines">
+  <path class="sk-g" d="M200 14 L200 418"/>
+  <path class="sk-g" d="M84 128 L316 128"/>
+  <path class="sk-g" d="M70 404 L330 404"/>
+  <path class="sk-o" d="M140 112 C132 70 160 30 200 28 C240 30 268 70 260 112"/>
+  <path class="sk-o" d="M162 72 C166 100 184 120 200 130 C216 120 234 100 238 72 C224 58 176 58 162 72"/>
+  <path class="sk-d" d="M172 80 C186 92 214 92 228 80"/>
+  <path class="sk-d" d="M200 30 C201 40 201 50 200 60"/>
+  <path class="sk-o" d="M140 112 C124 116 110 120 100 128"/>
+  <path class="sk-o" d="M260 112 C276 116 290 120 300 128"/>
+  <path class="sk-o" d="M100 128 C104 160 106 190 108 215 L112 375"/>
+  <path class="sk-o" d="M300 128 C296 160 294 190 292 215 L288 375"/>
+  <path class="sk-o" d="M100 128 C80 140 68 186 60 246 L48 338"/>
+  <path class="sk-o" d="M300 128 C320 140 332 186 340 246 L352 338"/>
+  <path class="sk-o" d="M86 344 L96 262 C100 240 104 226 108 215"/>
+  <path class="sk-o" d="M314 344 L304 262 C300 240 296 226 292 215"/>
+  <path class="sk-o" d="M48 338 L86 344 L82 372 L45 367 Z"/>
+  <path class="sk-o" d="M352 338 L314 344 L318 372 L355 367 Z"/>
+  <path class="sk-o" d="M112 375 L288 375 L286 404 L114 404 Z"/>
+  <path class="sk-o" d="M126 375 L128 332 L150 286 L250 286 L272 332 L274 375"/>
+  <path class="sk-d" d="M188 122 C187 140 185 158 184 180"/>
+  <path class="sk-d" d="M212 122 C213 140 215 158 216 180"/>
+  <path class="sk-d" d="M184 180 L183 192"/>
+  <path class="sk-d" d="M216 180 L217 192"/>
+  <path class="sk-d" d="M190.6 120 a2.6 2.6 0 1 0 -5.2 0 a2.6 2.6 0 1 0 5.2 0"/>
+  <path class="sk-d" d="M214.6 120 a2.6 2.6 0 1 0 -5.2 0 a2.6 2.6 0 1 0 5.2 0"/>
+  <path class="sk-f" d="M70 250 C76 254 82 255 90 252"/>
+  <path class="sk-f" d="M66 282 C72 286 80 287 88 284"/>
+  <path class="sk-f" d="M330 250 C324 254 318 255 310 252"/>
+  <path class="sk-f" d="M334 282 C328 286 320 287 312 284"/>
+  <path class="sk-f" d="M152 226 C160 246 158 262 152 278"/>
+  <path class="sk-f" d="M248 226 C240 246 242 262 248 278"/>
+  <path class="sk-f" d="M150 128 C170 138 230 138 250 128"/>
+  <path class="sk-r" d="M122 378 L122 401 M130 378 L130 401 M138 378 L138 401 M146 378 L146 401 M154 378 L154 401 M162 378 L162 401 M170 378 L170 401 M178 378 L178 401 M186 378 L186 401 M194 378 L194 401 M202 378 L202 401 M210 378 L210 401 M218 378 L218 401 M226 378 L226 401 M234 378 L234 401 M242 378 L242 401 M250 378 L250 401 M258 378 L258 401 M266 378 L266 401 M274 378 L274 401"/>
+  <path class="sk-r" d="M54.3 341.0 L51.2 365.8 M60.7 342.0 L57.3 366.7 M67.0 343.0 L63.5 367.5 M73.3 344.0 L69.7 368.3 M79.7 345.0 L75.8 369.2"/>
+  <path class="sk-r" d="M345.7 341.0 L348.8 365.8 M339.3 342.0 L342.7 366.7 M333.0 343.0 L336.5 367.5 M326.7 344.0 L330.3 368.3 M320.3 345.0 L324.2 369.2"/>
+  </g>
+  <g class="sk-ghost"></g>
+  <g class="sk-stitch-src">
+  <path d="M113 371 L287 371"/>
+  <path d="M49 334 L87 340"/>
+  <path d="M351 334 L313 340"/>
+  <path d="M131 334 L153 290"/>
+  <path d="M269 334 L247 290"/>
+  <path d="M154 290 L246 290"/>
+  <path d="M104 131 C108 160 110 190 112 213"/>
+  <path d="M296 131 C292 160 290 190 288 213"/>
+  <path d="M167 75 C171 100 187 117 200 125 C213 117 229 100 233 75"/>
+  <path d="M204 32 C205 42 205 52 204 61"/>
+  </g>
+  <g class="sk-stitches"></g>
+</svg>
+    </figure></div><span class="idx">01</span><h3>Design assistance</h3><p>We refine your artwork or create it with you, ready for print or embroidery.</p></article>
+      <article class="card" data-anim="fadeUp" data-delay="90"><div class="card-vis card-vis-empty" aria-hidden="true"></div><span class="idx">02</span><h3>Custom cut &amp; sew</h3><p>Garments made to your fit, fabric, and details, not just blanks off the shelf.</p></article>
+      <article class="card" data-anim="fadeUp" data-delay="180"><div class="card-vis card-vis-empty" aria-hidden="true"></div><span class="idx">03</span><h3>Sampling</h3><p>Check the fit, print, and colour on a real sample before your full run.</p></article>
+      <article class="card" data-anim="fadeUp" data-delay="270"><div class="card-vis card-vis-empty" aria-hidden="true"></div><span class="idx">04</span><h3>Production &amp; finishing</h3><p>Printing, embroidery, labels, and packing, so your pieces arrive ready to sell.</p></article>
     </div>
     <div class="page-cta" data-anim="fadeUp"><a class="cta ghost" href="teams.html#catalogue">Browse blanks &amp; prices <span class="arr">→</span></a></div>
   </div>
