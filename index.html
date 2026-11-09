@@ -99,6 +99,54 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 .words.in .wi{transform:none;opacity:1}
 @media (prefers-reduced-motion:reduce){[data-anim],.lines .wi,.words .wi{opacity:1!important;transform:none!important;transition:none!important}}
 
+/* ===== HERO: logo tee + stitched steps ===== */
+.h3{position:relative;padding:8.5rem 1.5rem 3rem;overflow:hidden;background:var(--canvas)}
+.h3-top{display:flex;flex-direction:column;align-items:center;text-align:center}
+.h3 h1{font-size:3.5rem;line-height:1.04;margin-top:1.25rem}
+.h3-say{margin-top:1.25rem;max-width:34ch;font-size:1.25rem;line-height:1.45;color:var(--ink)}
+.h3 .cta-row{justify-content:center;margin-top:2rem}
+@media (max-width:639px){.h3 .eyebrow::before{display:none}}
+.h3-stage{position:relative;max-width:80rem;margin:2.5rem auto 0}
+.h3-seam{display:none}
+.h3-tee{position:relative;width:min(78vw,24rem);margin:0 auto;perspective:1400px}
+.h3-float{animation:h3float 6s ease-in-out infinite}
+.h3-tilt{transform-style:preserve-3d;will-change:transform}
+.h3-tilt img{display:block;width:100%;height:auto;filter:drop-shadow(0 1.75rem 1.5rem rgba(25,25,23,0.18))}
+.h3-shadow{display:block;width:62%;height:1.1rem;margin:0.5rem auto 0;border-radius:50%;background:radial-gradient(closest-side,rgba(25,25,23,0.22),rgba(25,25,23,0));animation:h3shadow 6s ease-in-out infinite}
+@keyframes h3float{0%,100%{transform:translateY(0)}50%{transform:translateY(-0.9rem)}}
+@keyframes h3shadow{0%,100%{transform:scaleX(1);opacity:1}50%{transform:scaleX(0.86);opacity:0.7}}
+.h3-steps{position:relative;margin:2.5rem auto 0;max-width:26rem;padding-left:2.25rem;display:flex;flex-direction:column;gap:1.75rem;text-align:left}
+.h3-steps::before{content:"";position:absolute;left:0.6875rem;top:0.5rem;bottom:0.5rem;border-left:1px dashed var(--line-strong)}
+.h3-step{position:relative}
+.h3-dot{position:absolute;left:-2.25rem;top:0;width:1.375rem;height:1.375rem;display:grid;place-items:center;background:var(--canvas);color:var(--ink-faint);transition:color .5s,transform .5s var(--ease)}
+.h3-dot svg{width:100%;height:100%}
+.h3-n{font-family:var(--serif);font-size:0.875rem;color:var(--ink-muted)}
+.h3-h{font-size:1.0625rem;font-weight:500;margin-top:0.125rem}
+.h3-p{margin-top:0.25rem;font-size:0.9375rem;line-height:1.5;color:var(--ink-muted)}
+.h3-txt{opacity:0.45;transition:opacity .6s var(--ease)}
+.h3-step.on .h3-txt{opacity:1}
+.h3-step.on .h3-dot{color:var(--ink);transform:scale(1.15)}
+.h3-foot{margin-top:2.5rem;text-align:center;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--ink-muted)}
+@media (min-width:900px){
+  .h3{padding:10rem 3rem 5rem}
+  .h3 h1{font-size:5rem}
+  .h3-say{font-size:1.5rem}
+  .h3-stage{height:calc(clamp(19rem,28vw,26rem)*1.082*1.06 + 13.5rem);margin-top:3rem}
+  .h3-seam{display:block;position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+  .h3-tee{position:absolute;left:50%;top:0;width:clamp(19rem,28vw,26rem);transform:translateX(-50%)}
+  .h3-steps{position:absolute;inset:0;margin:0;max-width:none;padding:0;display:block}
+  .h3-steps::before{display:none}
+  .h3-step{position:absolute;width:0;height:0}
+  .h3-dot{left:0;top:0;width:1.75rem;height:1.75rem;transform:translate(-50%,-50%)}
+  .h3-step.on .h3-dot{transform:translate(-50%,-50%) scale(1.15)}
+  .h3-step .h3-txt{position:absolute;width:clamp(11rem,17vw,15rem)}
+  .h3-step.pos-l .h3-txt{right:1.75rem;top:-0.9rem;text-align:right}
+  .h3-step.pos-r .h3-txt{left:1.75rem;top:-0.9rem;text-align:left}
+  .h3-step.pos-b .h3-txt{left:0;transform:translateX(-50%);top:1.5rem;text-align:center}
+  .h3-foot{position:absolute;left:0;right:0;bottom:0;margin:0}
+}
+@media (prefers-reduced-motion:reduce){.h3-float,.h3-shadow{animation:none}}
+
 /* ===== HEADER ===== */
 .hdr{position:fixed;inset-inline:0;top:0;z-index:50;color:#fff;mix-blend-mode:difference;padding-top:env(safe-area-inset-top,0px)}
 .hdr-in{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:1.25rem 1.5rem}
@@ -484,35 +532,25 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 
 <main>
 <!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="container g12">
-    <div class="s6">
-      <div data-anim="fade"><span class="eyebrow">Apparel design &amp; manufacturing</span></div>
-      <h1 data-anim="lines" data-stagger="140">Your idea, <span class="accent">simply</span> made.</h1>
-      <p class="lead" data-anim="words" data-stagger="18" data-delay="500">From one shirt to a full collection — design help, sampling, and production of shirts, hoodies, caps, lanyards, and more for brands, teams, schools, events, and anyone with an idea. Printed or embroidered.</p>
-      <div class="cta-row" data-anim="fadeUp" data-delay="800">
+<section class="h3" aria-label="Simple Threads">
+  <div class="container h3-top">
+    <div data-anim="fade"><span class="eyebrow">Apparel design &amp; manufacturing</span></div>
+    <h1 data-anim="lines" data-stagger="140">Your idea, <span class="accent">simply</span> made.</h1>
+    <p class="h3-say" data-anim="fadeUp" data-delay="400">Custom shirts, hoodies, jackets, caps and lanyards, designed and made in Quezon City.</p>
+    <div class="cta-row" data-anim="fadeUp" data-delay="600">
         <a class="cta solid" href="#work">See our work <span class="arr">→</span></a>
         <a class="cta ghost" href="#contact">Get a quote <span class="arr">→</span></a>
       </div>
-      <div class="hero-facts" data-anim="fade" data-delay="1000"><dl>
-        <div><dt>Based</dt><dd>Manila, Philippines</dd></div>
-        <div><dt>Minimum order</dt><dd>None</dd></div>
-        <div><dt>Decoration</dt><dd>Print &amp; embroidery</dd></div>
-      </dl></div>
-    </div>
-    <aside class="s5 c8 hero-card" data-anim="fadeUp" data-delay="200" aria-label="How ordering works">
-      <div class="hc-top">
-        <svg class="hc-mark" viewBox="0 0 72 72" aria-hidden="true"><rect x="16" y="16" width="40" height="40" transform="rotate(45 36 36)" fill="none" stroke="currentColor" stroke-width="2"></rect><rect x="24.5" y="24.5" width="23" height="23" transform="rotate(45 36 36)" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2.6"></rect></svg>
-        <p class="hc-title">Three steps. That’s it.</p>
-      </div>
-      <ol class="hc-steps">
-        <li><span class="hc-n">01</span><div><p class="hc-h">Send your idea</p><p class="hc-p">A sketch, a photo, or just a description.</p></div></li>
-        <li><span class="hc-n">02</span><div><p class="hc-h">Approve your sample</p><p class="hc-p">Check the fit, print, and color before we run the order.</p></div></li>
-        <li><span class="hc-n">03</span><div><p class="hc-h">Wear it</p><p class="hc-p">Ready 2–3 days after sample approval for 1–5 pieces, or 2–3 weeks for bigger orders.</p></div></li>
-      </ol>
-      <p class="hc-foot">No minimum order · Design help included</p>
-    </aside>
-    <div class="cue" data-anim="fade" data-delay="1400"><span>Scroll to enter</span><i></i></div>
+  </div>
+  <div class="h3-stage" id="h3Stage">
+    <svg class="h3-seam" id="h3Seam" aria-hidden="true"></svg>
+    <div class="h3-tee"><div class="h3-float"><div class="h3-tilt" id="h3Tilt"><img src="images/hero-tee.webp" alt="Black tee printed with the Simple Threads logo" width="1294" height="1400" fetchpriority="high" decoding="async"></div></div><i class="h3-shadow" aria-hidden="true"></i></div>
+    <ol class="h3-steps" id="h3Steps" aria-label="How ordering works">
+      <li class="h3-step pos-l" data-at="0.16"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">01</span><p class="h3-h">Send your idea</p><p class="h3-p">A sketch, a photo, or just a description.</p></div></li>
+      <li class="h3-step pos-b" data-at="0.5"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">02</span><p class="h3-h">Approve your sample</p><p class="h3-p">Check the fit, print, and color before we run the order.</p></div></li>
+      <li class="h3-step pos-r" data-at="0.84"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">03</span><p class="h3-h">Wear it</p><p class="h3-p">Ready 2–3 days after sample approval for 1–5 pieces, or 2–3 weeks for bigger orders.</p></div></li>
+    </ol>
+    <p class="h3-foot">No minimum order · Design help included</p>
   </div>
 </section>
 
@@ -995,6 +1033,60 @@ if(qf){
     }finally{qb.disabled=false}
   });
 }
+/* ===== HERO: stitched arc around the logo tee =====
+   Stitches are short lines laid along a curve; scrolling reveals them one by one
+   and lights each step as the needle passes it. Only redraws while something moves. */
+(function(){
+  const stage=document.getElementById("h3Stage"),svg=document.getElementById("h3Seam"),tilt=document.getElementById("h3Tilt"),steps=[...document.querySelectorAll("#h3Steps .h3-step")];
+  if(!stage) return;
+  const NS="http://www.w3.org/2000/svg",INK="#191917",reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,wide=matchMedia("(min-width:900px)");
+  const el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e};
+  let stitches=[],pts=[],needle=null,shown=0,cur=0,target=0,intro=0,running=false;
+  function build(){
+    svg.innerHTML="";stitches=[];pts=[];shown=0;needle=null;
+    if(!wide.matches){steps.forEach(s=>{s.style.left=s.style.top=""});draw(true);return}
+    const W=stage.clientWidth,H=stage.clientHeight,tee=stage.querySelector(".h3-tee"),tw=tee.offsetWidth,th=tee.offsetHeight;
+    const lab=(steps[0]&&steps[0].querySelector(".h3-txt").offsetWidth)||240,cx=W/2,y0=th*0.36,rx=Math.max(tw*0.6,Math.min(W*0.4,tw*0.98,W/2-lab-48)),y1=th*1.06;
+    svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
+    const d=`M ${cx-rx} ${y0} C ${cx-rx} ${y0+(y1-y0)*1.2}, ${cx-rx*0.55} ${y1}, ${cx} ${y1} S ${cx+rx} ${y0+(y1-y0)*1.2}, ${cx+rx} ${y0}`;
+    const guide=el("path",{d,fill:"none",stroke:INK,"stroke-width":1,opacity:0.13});svg.appendChild(guide);
+    const len=guide.getTotalLength(),g=el("g",{stroke:INK,"stroke-width":1.6,"stroke-linecap":"round"});
+    for(let L=0;L+7<=len;L+=11.5){const a=guide.getPointAtLength(L),b=guide.getPointAtLength(L+7);const ln=el("line",{x1:a.x.toFixed(1),y1:a.y.toFixed(1),x2:b.x.toFixed(1),y2:b.y.toFixed(1),opacity:0});g.appendChild(ln);stitches.push(ln);pts.push(a)}
+    svg.appendChild(g);
+    needle=el("g",{});needle.style.transition="opacity .5s";needle.style.opacity=0;
+    needle.appendChild(el("line",{x1:0,y1:-30,x2:0,y2:8,stroke:INK,"stroke-width":2,"stroke-linecap":"round"}));
+    needle.appendChild(el("ellipse",{cx:0,cy:-24,rx:1.2,ry:3,fill:"#fff",stroke:INK,"stroke-width":0.8}));
+    svg.appendChild(needle);
+    steps.forEach(s=>{const p=guide.getPointAtLength(len*parseFloat(s.dataset.at));s.style.left=p.x+"px";s.style.top=p.y+"px"});
+    draw(true);
+  }
+  function draw(force){
+    const p=Math.max(cur,intro*0.17),n=Math.round(p*stitches.length);
+    if(stitches.length&&(n!==shown||force)){
+      for(let i=Math.min(n,shown);i<Math.max(n,shown);i++)stitches[i].setAttribute("opacity",i<n?1:0);
+      if(force)stitches.forEach((s,i)=>s.setAttribute("opacity",i<n?1:0));
+      shown=n;
+      if(needle){const i=Math.max(0,Math.min(pts.length-2,n-1)),a=pts[i],b=pts[i+1];
+        const ang=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI+90;
+        needle.setAttribute("transform",`translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(${ang.toFixed(1)})`);
+        needle.style.opacity=(reduce||n>=stitches.length||intro===0)?0:1}
+    }
+    steps.forEach(s=>s.classList.toggle("on",p>=parseFloat(s.dataset.at)-0.01));
+    if(tilt&&!reduce)tilt.style.transform=`rotateY(${((cur-0.35)*30).toFixed(2)}deg) rotateX(${(cur*5).toFixed(2)}deg)`;
+  }
+  function measure(){target=Math.min(1,Math.max(0,scrollY/(innerHeight*0.8)));if(reduce)target=1;kick()}
+  function tick(){cur+=(target-cur)*0.14;if(Math.abs(target-cur)<0.001)cur=target;if(intro>0&&intro<1)intro=Math.min(1,intro+0.02);draw();
+    if(cur!==target||(intro>0&&intro<1))requestAnimationFrame(tick);else running=false}
+  function kick(){if(!running){running=true;requestAnimationFrame(tick)}}
+  build();measure();cur=target;
+  if(reduce){intro=1;draw(true)}else setTimeout(()=>{intro=0.001;draw(true);kick()},900);
+  addEventListener("scroll",measure,{passive:true});
+  let rt,lw=stage.clientWidth;
+  addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>{if(stage.clientWidth===lw)return;lw=stage.clientWidth;build()},200)});
+  if(wide.addEventListener)wide.addEventListener("change",build);
+  const img=stage.querySelector("img");if(img&&!img.complete)img.addEventListener("load",build,{once:true});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(build);
+})();
 /* ===== CATALOGUE ===== */
 const HOOD="Black, Navy Blue, White, Ash Grey";
 const CAPC="Black, Grey, Navy Blue, Red, Army Green, Green";
