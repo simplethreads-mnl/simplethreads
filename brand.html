@@ -397,7 +397,16 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .seam-wrap .ph,.seam-wrap .sec{position:relative}
 /* ===== CARD VISUALS (brand page) ===== */
 .card-vis{aspect-ratio:20/21;max-width:17rem;margin-bottom:1.75rem;display:grid;place-items:center}
-.card-vis-empty{border:1px dashed var(--line)}
+.sk-text text,.sk-tag text{font-family:var(--sans);font-size:9px;letter-spacing:0.16em;fill:var(--ink-muted);opacity:0;transition:opacity .6s ease}
+.sk-tag text{fill:#2b2a27;font-size:9.5px}
+.sketch.drawn .sk-text text,.sketch.drawn .sk-tag text{opacity:1;transition-delay:var(--after,0ms)}
+.sk-scissors circle,.sk-scissors path{fill:none;stroke:#191917;stroke-width:1.3}
+.sk-scissors{opacity:0;transition:opacity .3s}
+.sk-tag{opacity:0;transform-box:view-box;transform-origin:206px 70px}
+.sk-tag path,.sk-tag circle{fill:none;stroke:#2b2a27;stroke-width:1.1}
+.sketch.drawn .sk-tag{opacity:1;transition:opacity .4s var(--after,0ms);animation:sktag 2.2s cubic-bezier(.3,.6,.3,1) var(--after,0ms) both}
+@keyframes sktag{0%{transform:rotate(14deg)}30%{transform:rotate(-8deg)}55%{transform:rotate(4deg)}78%{transform:rotate(-1.5deg)}100%{transform:rotate(0)}}
+@media (prefers-reduced-motion:reduce){.sketch.drawn .sk-tag{animation:none}}
 .sketch{margin:0;width:100%}
 .sketch svg{display:block;width:100%;height:auto;overflow:visible}
 .sketch path{fill:none;stroke:#2b2a27;stroke-linecap:round;stroke-linejoin:round}
@@ -519,7 +528,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
       <h2 class="sh-title" data-anim="lines">Everything between the idea and the drop.</h2>
     </div>
     <div class="offer four">
-      <article class="card" data-anim="fadeUp"><div class="card-vis"><figure class="sketch" id="sketch" aria-label="A designer's sketch of a hoodie being drawn">
+      <article class="card" data-anim="fadeUp"><div class="card-vis"><figure class="sketch" aria-label="A designer's sketch of a hoodie being drawn">
 <svg viewBox="0 0 400 420" aria-hidden="true">
   <g class="sk-lines">
   <path class="sk-g" d="M200 14 L200 418"/>
@@ -574,9 +583,72 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
   <g class="sk-stitches"></g>
 </svg>
     </figure></div><span class="idx">01</span><h3>Design assistance</h3><p>We refine your artwork or create it with you, ready for print or embroidery.</p></article>
-      <article class="card" data-anim="fadeUp" data-delay="90"><div class="card-vis card-vis-empty" aria-hidden="true"></div><span class="idx">02</span><h3>Custom cut &amp; sew</h3><p>Garments made to your fit, fabric, and details, not just blanks off the shelf.</p></article>
-      <article class="card" data-anim="fadeUp" data-delay="180"><div class="card-vis card-vis-empty" aria-hidden="true"></div><span class="idx">03</span><h3>Sampling</h3><p>Check the fit, print, and colour on a real sample before your full run.</p></article>
-      <article class="card" data-anim="fadeUp" data-delay="270"><div class="card-vis card-vis-empty" aria-hidden="true"></div><span class="idx">04</span><h3>Production &amp; finishing</h3><p>Printing, embroidery, labels, and packing, so your pieces arrive ready to sell.</p></article>
+      <article class="card" data-anim="fadeUp" data-delay="90"><div class="card-vis"><figure class="sketch" data-scissors="0" aria-label="Hoodie pattern pieces being cut"><svg viewBox="0 0 400 420" aria-hidden="true"><g class="sk-lines">
+  <path class="sk-g" d="M20 400 L380 400"/>
+  <path class="sk-g" d="M20 20 L20 400"/>
+  <path class="sk-o" d="M40 92 C60 92 78 80 85 60 L142 78 C140 110 150 140 170 150 L172 300 L40 300 Z"/>
+  <path class="sk-o" d="M215 110 C235 60 305 60 325 110 L310 260 L230 260 Z"/>
+  <path class="sk-o" d="M215 392 L215 302 C215 287 240 282 270 284 C320 288 340 322 335 362 L322 392 Z"/>
+  <path class="sk-o" d="M50 386 L50 342 L72 322 L148 322 L170 342 L170 386 Z"/>
+  <path class="sk-d" d="M105 140 L105 250"/>
+  <path class="sk-d" d="M100 148 L105 140 L110 148"/>
+  <path class="sk-d" d="M100 242 L105 250 L110 242"/>
+  <path class="sk-d" d="M270 120 L270 232"/>
+  <path class="sk-d" d="M265 128 L270 120 L275 128"/>
+  <path class="sk-d" d="M265 224 L270 232 L275 224"/>
+  <path class="sk-d" d="M275 308 L275 372"/>
+  <path class="sk-d" d="M270 316 L275 308 L280 316"/>
+  <path class="sk-d" d="M270 364 L275 372 L280 364"/>
+  <path class="sk-f" d="M40 100 L40 292"/>
+  <path class="sk-f" d="M138 112 L146 108"/>
+  <path class="sk-f" d="M246 258 L246 266"/>
+  <path class="sk-f" d="M294 258 L294 266"/>
+</g><g class="sk-ghost"></g><g class="sk-stitch-src">
+  <path d="M207 112 C228 50 312 50 333 112 L317 267 L223 267 Z"/>
+</g><g class="sk-stitches"></g><g class="sk-text"><text x="34" y="200" transform="rotate(-90 34 200)">FOLD</text><text x="56" y="290">FRONT</text><text x="236" y="250">SLEEVE ×2</text><text x="226" y="384">HOOD ×2</text><text x="60" y="378">POCKET</text></g><g class="sk-scissors" transform="translate(-100 -100)"><circle cx="-6" cy="11" r="5.5"/><circle cx="6" cy="11" r="5.5"/><path d="M-3 6 L4 -17"/><path d="M3 6 L-4 -17"/><circle cx="0" cy="-2" r="1.2"/></g></svg></figure></div><span class="idx">02</span><h3>Custom cut &amp; sew</h3><p>Garments made to your fit, fabric, and details, not just blanks off the shelf.</p></article>
+      <article class="card" data-anim="fadeUp" data-delay="180"><div class="card-vis"><figure class="sketch" data-tag="1" aria-label="Sample hoodie on a hanger with a tape measure"><svg viewBox="0 0 400 420" aria-hidden="true"><g class="sk-lines">
+  <path class="sk-o" d="M200 112 L200 74 C200 60 213 58 215 66 C217 74 207 77 203 72"/>
+  <path class="sk-o" d="M 153.2 175.4 C 147.0 142.6 168.8 111.4 200.0 109.8 C 231.2 111.4 253.0 142.6 246.8 175.4"/>
+  <path class="sk-o" d="M 170.4 144.2 C 173.5 166.0 187.5 181.6 200.0 189.4 C 212.5 181.6 226.5 166.0 229.6 144.2 C 218.7 133.2 181.3 133.2 170.4 144.2"/>
+  <path class="sk-o" d="M 153.2 175.4 C 140.7 178.5 129.8 181.6 122.0 187.8"/>
+  <path class="sk-o" d="M 246.8 175.4 C 259.3 178.5 270.2 181.6 278.0 187.8"/>
+  <path class="sk-o" d="M 122.0 187.8 C 125.1 212.8 126.7 236.2 128.2 255.7 L 131.4 380.5"/>
+  <path class="sk-o" d="M 278.0 187.8 C 274.9 212.8 273.3 236.2 271.8 255.7 L 268.6 380.5"/>
+  <path class="sk-o" d="M 122.0 187.8 C 106.4 197.2 97.0 233.1 90.8 279.9 L 81.4 351.6"/>
+  <path class="sk-o" d="M 278.0 187.8 C 293.6 197.2 303.0 233.1 309.2 279.9 L 318.6 351.6"/>
+  <path class="sk-o" d="M 111.1 356.3 L 118.9 292.4 C 122.0 275.2 125.1 264.3 128.2 255.7"/>
+  <path class="sk-o" d="M 288.9 356.3 L 281.1 292.4 C 278.0 275.2 274.9 264.3 271.8 255.7"/>
+  <path class="sk-o" d="M 81.4 351.6 L 111.1 356.3 L 108.0 378.2 L 79.1 374.3 Z"/>
+  <path class="sk-o" d="M 318.6 351.6 L 288.9 356.3 L 292.0 378.2 L 320.9 374.3 Z"/>
+  <path class="sk-o" d="M 131.4 380.5 L 268.6 380.5 L 267.1 403.1 L 132.9 403.1 Z"/>
+  <path class="sk-o" d="M 142.3 380.5 L 143.8 347.0 L 161.0 311.1 L 239.0 311.1 L 256.2 347.0 L 257.7 380.5"/>
+  <path class="sk-d" d="M 190.6 183.2 C 189.9 197.2 188.3 211.2 187.5 228.4"/>
+  <path class="sk-d" d="M 209.4 183.2 C 210.1 197.2 211.7 211.2 212.5 228.4"/>
+  <path class="sk-o" d="M110 262 L292 262 L292 276 L110 276 Z"/>
+  <path class="sk-o" d="M292 260 L301 260 L301 278 L292 278 Z"/>
+  <path class="sk-r" d="M116 262 L116 269 M122 262 L122 266 M128 262 L128 266 M134 262 L134 266 M140 262 L140 266 M146 262 L146 269 M152 262 L152 266 M158 262 L158 266 M164 262 L164 266 M170 262 L170 266 M176 262 L176 269 M182 262 L182 266 M188 262 L188 266 M194 262 L194 266 M200 262 L200 266 M206 262 L206 269 M212 262 L212 266 M218 262 L218 266 M224 262 L224 266 M230 262 L230 266 M236 262 L236 269 M242 262 L242 266 M248 262 L248 266 M254 262 L254 266 M260 262 L260 266 M266 262 L266 269 M272 262 L272 266 M278 262 L278 266 M284 262 L284 266 M290 262 L290 266"/>
+</g><g class="sk-ghost"></g><g class="sk-stitch-src">
+
+</g><g class="sk-stitches"></g><g class="sk-tag"><path class="sk-tagline" d="M206 70 C226 74 240 80 252 88"/><path class="sk-tagbody" d="M250 84 L304 84 L314 98 L304 112 L250 112 Z"/><circle class="sk-tagbody" cx="307.5" cy="98" r="1.8"/><text x="253" y="101.5">SAMPLE</text></g></svg></figure></div><span class="idx">03</span><h3>Sampling</h3><p>Check the fit, print, and colour on a real sample before your full run.</p></article>
+      <article class="card" data-anim="fadeUp" data-delay="270"><div class="card-vis"><figure class="sketch" aria-label="Finished hoodies folded and labelled"><svg viewBox="0 0 400 420" aria-hidden="true"><g class="sk-lines">
+  <path class="sk-g" d="M30 386 L370 386"/>
+  <path class="sk-o" d="M71 312 L329 312 Q336 312 336 319 L336 373 Q336 380 329 380 L71 380 Q64 380 64 373 L64 319 Q64 312 71 312 Z"/>
+  <path class="sk-d" d="M140 319 C162 348 238 348 260 319"/>
+  <path class="sk-f" d="M76 364 L300 364"/>
+  <path class="sk-r" d="M310 319 L310 373 M314 319 L314 373 M318 319 L318 373 M322 319 L322 373 M326 319 L326 373 M330 319 L330 373"/>
+  <path class="sk-o" d="M71 236 L329 236 Q336 236 336 243 L336 297 Q336 304 329 304 L71 304 Q64 304 64 297 L64 243 Q64 236 71 236 Z"/>
+  <path class="sk-d" d="M140 243 C162 272 238 272 260 243"/>
+  <path class="sk-f" d="M76 288 L300 288"/>
+  <path class="sk-r" d="M310 243 L310 297 M314 243 L314 297 M318 243 L318 297 M322 243 L322 297 M326 243 L326 297 M330 243 L330 297"/>
+  <path class="sk-o" d="M71 160 L329 160 Q336 160 336 167 L336 221 Q336 228 329 228 L71 228 Q64 228 64 221 L64 167 Q64 160 71 160 Z"/>
+  <path class="sk-d" d="M140 167 C162 196 238 196 260 167"/>
+  <path class="sk-f" d="M76 212 L300 212"/>
+  <path class="sk-r" d="M310 167 L310 221 M314 167 L314 221 M318 167 L318 221 M322 167 L322 221 M326 167 L326 221 M330 167 L330 221"/>
+  <path class="sk-o" d="M84 174 L126 174 L126 198 L84 198 Z"/>
+  <path class="sk-d" d="M105 179 L112 186 L105 193 L98 186 Z"/>
+</g><g class="sk-ghost"></g><g class="sk-stitch-src">
+  <path d="M80 170 L130 170 L130 202 L80 202 Z"/>
+</g><g class="sk-stitches"></g></svg></figure></div><span class="idx">04</span><h3>Production &amp; finishing</h3><p>Printing, embroidery, labels, and packing, so your pieces arrive ready to sell.</p></article>
     </div>
     <div class="page-cta" data-anim="fadeUp"><a class="cta ghost" href="teams.html#catalogue">Browse blanks &amp; prices <span class="arr">→</span></a></div>
   </div>
@@ -966,35 +1038,44 @@ if(grid){
   }));
 }
 
-/* ===== DESIGN SKETCH: a hoodie flat draws itself, then the topstitching sews in ===== */
+/* ===== SERVICE SKETCHES: each drawing draws itself, then stitches/cuts/tags finish it ===== */
 (function(){
-  const fig=document.getElementById("sketch"); if(!fig) return;
-  const NS="http://www.w3.org/2000/svg",svg=fig.querySelector("svg"),reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const lines=[...fig.querySelectorAll(".sk-lines path")],ghost=fig.querySelector(".sk-ghost"),out=fig.querySelector(".sk-stitches");
-  // a lighter second pass, slightly offset, like a pencil going over the line again
-  lines.filter(p=>p.classList.contains("sk-o")).forEach(p=>{const c=p.cloneNode();c.removeAttribute("class");c.setAttribute("transform","translate(0.8 0.6)");ghost.appendChild(c)});
-  const ghosts=[...ghost.querySelectorAll("path")];
-  // lay stitches along each topstitch path
-  const stitches=[];
-  fig.querySelectorAll(".sk-stitch-src path").forEach(src=>{const L=src.getTotalLength();for(let d=0;d+3<=L;d+=6.5){const a=src.getPointAtLength(d),b=src.getPointAtLength(d+3.2);const l=document.createElementNS(NS,"line");l.setAttribute("x1",a.x.toFixed(1));l.setAttribute("y1",a.y.toFixed(1));l.setAttribute("x2",b.x.toFixed(1));l.setAttribute("y2",b.y.toFixed(1));out.appendChild(l);stitches.push(l)}});
-  if(reduce){fig.classList.add("drawn");return}
-  // hide every pencil line, then draw them one after another
-  const all=[...lines,...ghosts];
-  all.forEach(p=>{const L=p.getTotalLength();p.style.strokeDasharray=p.classList.contains("sk-g")?"":L+" "+L;if(!p.classList.contains("sk-g"))p.style.strokeDashoffset=L;else p.style.opacity=0});
-  function play(){
-    let t=0;
-    lines.forEach(p=>{const L=p.getTotalLength(),g=p.classList.contains("sk-g"),dur=g?500:Math.min(900,Math.max(160,L*2.2));
-      if(g){p.style.transition=`opacity .6s ease ${t}ms`;p.style.opacity="";t+=120;return}
-      p.style.transition=`stroke-dashoffset ${dur}ms cubic-bezier(.45,.05,.35,1) ${t}ms`;p.style.strokeDashoffset=0;
-      t+=p.classList.contains("sk-o")?dur*0.75:dur*0.45});
-    ghosts.forEach((p,i)=>{const L=p.getTotalLength();p.style.transition=`stroke-dashoffset ${Math.min(900,L*2)}ms ease ${t*0.55+i*90}ms`;p.style.strokeDashoffset=0});
-    // then the topstitching sews in, stitch by stitch
-    stitches.forEach((l,i)=>{l.style.transitionDelay=(t+250+i*14)+"ms"});
-    requestAnimationFrame(()=>fig.classList.add("drawn"));
+  const figs=[...document.querySelectorAll(".sketch")]; if(!figs.length) return;
+  const NS="http://www.w3.org/2000/svg",reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function prep(fig){
+    const lines=[...fig.querySelectorAll(".sk-lines path")],ghost=fig.querySelector(".sk-ghost"),out=fig.querySelector(".sk-stitches");
+    lines.filter(p=>p.classList.contains("sk-o")).forEach(p=>{const c=p.cloneNode();c.removeAttribute("class");c.setAttribute("transform","translate(0.8 0.6)");ghost.appendChild(c)});
+    const ghosts=[...ghost.querySelectorAll("path")],stitches=[];
+    fig.querySelectorAll(".sk-stitch-src path").forEach(src=>{const L=src.getTotalLength();for(let d=0;d+3<=L;d+=6.5){const a=src.getPointAtLength(d),b=src.getPointAtLength(d+3.2);const l=document.createElementNS(NS,"line");l.setAttribute("x1",a.x.toFixed(1));l.setAttribute("y1",a.y.toFixed(1));l.setAttribute("x2",b.x.toFixed(1));l.setAttribute("y2",b.y.toFixed(1));out.appendChild(l);stitches.push(l)}});
+    if(reduce){fig.classList.add("drawn");return null}
+    [...lines,...ghosts].forEach(p=>{if(p.classList.contains("sk-g")){p.style.opacity=0;return}const L=p.getTotalLength();p.style.strokeDasharray=L+" "+L;p.style.strokeDashoffset=L});
+    return {lines,ghosts,stitches};
   }
-  if(!("IntersectionObserver" in window)){play();return}
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){io.disconnect();play()}}),{threshold:0.35});
-  io.observe(fig);
+  function play(fig,st,start){
+    let t=start;
+    st.lines.forEach(p=>{const L=p.getTotalLength(),g=p.classList.contains("sk-g"),dur=g?500:Math.min(850,Math.max(160,L*2.1));
+      if(g){p.style.transition=`opacity .6s ease ${t}ms`;p.style.opacity="";t+=110;return}
+      p.style.transition=`stroke-dashoffset ${dur}ms cubic-bezier(.45,.05,.35,1) ${t}ms`;p.style.strokeDashoffset=0;
+      t+=p.classList.contains("sk-o")?dur*0.7:dur*0.4});
+    st.ghosts.forEach((p,i)=>{const L=p.getTotalLength();p.style.transition=`stroke-dashoffset ${Math.min(850,L*2)}ms ease ${start+(t-start)*0.55+i*80}ms`;p.style.strokeDashoffset=0});
+    const after=t+250;fig.style.setProperty("--after",after+"ms");
+    st.stitches.forEach((l,i)=>{l.style.transitionDelay=(after+i*14)+"ms"});
+    requestAnimationFrame(()=>fig.classList.add("drawn"));
+    // scissors ride the cutting line while its stitches appear
+    const sc=fig.querySelector(".sk-scissors"),path=fig.querySelector(".sk-stitch-src path");
+    if(sc&&path){const L=path.getTotalLength(),dur=st.stitches.length*14+200;
+      setTimeout(()=>{sc.style.opacity=1;const t0=performance.now();
+        (function step(now){const k=Math.min(1,(now-t0)/dur),a=path.getPointAtLength(L*k),b=path.getPointAtLength(Math.min(L,L*k+2));
+          const ang=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI+90;sc.setAttribute("transform",`translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(${ang.toFixed(1)})`);
+          if(k<1)requestAnimationFrame(step);else setTimeout(()=>{sc.style.opacity=0},400)})(t0)},after)}
+  }
+  const states=new Map(figs.map(f=>[f,prep(f)]));
+  if(reduce) return;
+  const wide=matchMedia("(min-width:640px)");
+  const io=("IntersectionObserver" in window)?new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);
+      // on wide screens the four drawings start one after another, left to right
+      const i=figs.indexOf(e.target);play(e.target,states.get(e.target),wide.matches?i*700:0)}),{threshold:0.35}):null;
+  figs.forEach((f,i)=>io?io.observe(f):play(f,states.get(f),i*700));
 })();
 
 /* ===== STITCH SEAM (brand page) =====
