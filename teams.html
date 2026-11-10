@@ -361,6 +361,34 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 @media (min-width:1024px){.cat-head{flex-direction:row;align-items:flex-end;justify-content:space-between}.cat-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.pm-name{font-size:3rem}}
 .pm-shown{margin-top:0.75rem;font-size:0.8125rem;color:var(--ink-muted)}
 .pm-cols{margin-top:0.5rem;font-size:1rem;line-height:1.6;color:var(--ink)}
+/* quick quote window (cream) */
+.qm-panel{background:#f2eee6;width:min(46rem,100%)}
+.qm-title{margin-top:1.25rem;font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1.12;letter-spacing:-0.01em}
+.qm-item{margin-top:1.75rem;display:flex;gap:1.25rem;align-items:center;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:1.25rem 0}
+.qm-thumb{flex:none;width:4.5rem;aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;position:relative}
+.qm-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.qm-info{min-width:0}
+.qm-name{margin-top:0.375rem;font-family:var(--serif);font-size:1.5rem;line-height:1.15}
+.qm-price{margin-top:0.25rem;font-family:var(--serif);font-size:1.125rem}
+.qm-price small{font-family:var(--sans);font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted);margin-left:0.35rem;white-space:nowrap}
+.qmf-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:1.25rem;margin-top:1.75rem}
+.qmf-field{display:flex;flex-direction:column;gap:0.5rem;min-width:0}
+.qmf-field [hidden]{display:none}
+.qmf-wide{margin-top:1.25rem}
+.qmf-l{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted)}
+.qmf input:not([type=checkbox]):not([type=hidden]),.qmf select,.qmf textarea{box-sizing:border-box;font:inherit;font-size:max(16px,1rem);color:var(--ink);background:#fff;border:1px solid rgba(25,25,23,0.22);border-radius:0;padding:0.8rem 1rem;width:100%;min-height:2.9rem;-webkit-appearance:none;appearance:none}
+.qmf select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 1.2rem) 50%,calc(100% - 0.85rem) 50%;background-size:0.35rem 0.35rem;background-repeat:no-repeat;padding-right:2.5rem}
+.qmf textarea{resize:vertical;line-height:1.5}
+.qmf input[type=date]{display:block;height:2.9rem;line-height:1.2;text-align:left}
+.qmf input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0}
+.qmf input::placeholder,.qmf textarea::placeholder{color:var(--ink-faint)}
+.qmf input:focus,.qmf select:focus,.qmf textarea:focus{outline:1px solid var(--ink);outline-offset:1px}
+.qmf [aria-invalid="true"]{border-color:var(--ink);border-style:dashed}
+.qmf .qf-status{color:var(--ink-muted)}
+.qmf .qf-status a{color:var(--ink)}
+.qm-alt{margin-top:1.75rem;border-top:1px dashed var(--line);padding-top:1.25rem;font-size:0.9375rem;color:var(--ink-muted)}
+.qm-alt a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+@media (min-width:640px){.qmf-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.qm-title{font-size:2.5rem}}
 .pc-media img{image-rendering:auto}
 .vw{min-height:2rem;padding:0 0.9rem;border:1px dashed var(--line);font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink)}
 .vw[aria-pressed="true"]{background:var(--ink);color:#fff;border-style:solid;border-color:var(--ink)}
@@ -542,6 +570,48 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
         <div class="pm-actions"><button class="cta solid" id="pmQuote">Get a quote for this <span class="arr">→</span></button></div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ===== QUICK QUOTE WINDOW (opens from the catalogue's Get a quote buttons) ===== -->
+<div class="pm qm" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="qmTitle" aria-hidden="true">
+  <div class="pm-back" data-close></div>
+  <div class="pm-panel qm-panel" data-lenis-prevent>
+    <button class="pm-x" data-close aria-label="Close">Close ✕</button>
+    <span class="eyebrow">Request a quote</span>
+    <h3 class="qm-title" id="qmTitle">Get a quote for this <span class="accent">piece</span>.</h3>
+    <div class="qm-item">
+      <div class="qm-thumb"><img id="qmImg" alt=""></div>
+      <div class="qm-info">
+        <p class="pm-cat" id="qmCat"></p>
+        <p class="qm-name" id="qmName"></p>
+        <p class="qm-price" id="qmPrice"></p>
+      </div>
+    </div>
+    <form class="qmf" id="quickQuote" novalidate>
+      <input type="hidden" name="product" id="qmProduct">
+      <input type="hidden" name="products" id="qmChip">
+      <div class="qmf-grid">
+        <label class="qmf-field"><span class="qmf-l">Name *</span><input name="name" type="text" autocomplete="name" required></label>
+        <label class="qmf-field"><span class="qmf-l">Email *</span><input name="email" type="email" autocomplete="email" required></label>
+        <label class="qmf-field"><span class="qmf-l">Mobile number</span><input name="mobile" type="tel" autocomplete="tel" placeholder="09XX-XXX-XXXX"></label>
+        <label class="qmf-field"><span class="qmf-l">Quantity (rough is fine)</span><input name="quantity" type="number" min="1" inputmode="numeric" placeholder="e.g. 50"></label>
+        <label class="qmf-field"><span class="qmf-l">Colour</span>
+          <select name="colour" id="qmColSel"></select>
+          <input name="colour" id="qmColTxt" type="text" placeholder="e.g. Navy blue" hidden disabled></label>
+        <label class="qmf-field"><span class="qmf-l">Print or embroidery</span>
+          <select name="method"><option>Not sure — recommend one</option><option>DTF</option><option>DTG</option><option>Silk screen</option><option>Sublimation</option><option>Embroidery</option></select></label>
+        <label class="qmf-field"><span class="qmf-l">Needed by</span><input name="deadline" type="date"></label>
+        <label class="qmf-field"><span class="qmf-l">Design link (optional)</span><input name="design_link" type="url" placeholder="Google Drive or any link"></label>
+      </div>
+      <label class="qmf-field qmf-wide"><span class="qmf-l">Anything else?</span><textarea name="message" rows="3" placeholder="Sizes, where the print goes, anything you have in mind."></textarea></label>
+      <input type="checkbox" name="botcheck" class="qf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="qf-actions">
+        <button class="cta solid" type="submit">Send quote request <span class="arr">→</span></button>
+        <p class="qf-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+    <p class="qm-alt">Prefer to chat? <a href="viber://chat?number=%2B639613826973">Viber 0961-382-6973</a> · <a href="mailto:simplethreads.mnl@gmail.com">Email us</a></p>
   </div>
 </div>
 
@@ -764,8 +834,10 @@ ob.addEventListener("click",openMenu);cb.addEventListener("click",closeMenu);add
 /* quote form — paste your Web3Forms access key between the quotes to send straight to Gmail */
 const WEB3FORMS_KEY="e6b201c3-d5af-41c5-aa9f-355f06ccb31a";
 const STUDIO_EMAIL="simplethreads.mnl@gmail.com";
-const qf=document.getElementById("quoteForm"),qs=document.getElementById("qfStatus"),qb=document.getElementById("qfSubmit");
-if(qf){
+/* both quote forms (the big one at the bottom and the quick window) send the same way */
+function wireQuote(qf){
+  if(!qf)return;
+  const qs=qf.querySelector(".qf-status"),qb=qf.querySelector('[type="submit"]');
   qf.addEventListener("submit",async e=>{
     e.preventDefault();
     let ok=true;
@@ -774,12 +846,15 @@ if(qf){
     const fd=new FormData(qf);
     if(fd.get("botcheck")){qs.textContent="Thanks! We’ll be in touch soon.";return}
     const d={name:fd.get("name").trim(),email:fd.get("email").trim(),mobile:fd.get("mobile")||"",organization:fd.get("organization")||"",products:fd.getAll("products").join(", ")||"Not specified",quantity:fd.get("quantity")||"Not specified",method:fd.get("method"),deadline:fd.get("deadline")||"Not specified",design_link:fd.get("design_link")||"",message:fd.get("message")||""};
-    const body=`Name: ${d.name}\nEmail: ${d.email}\nMobile: ${d.mobile}\nBrand / team / event: ${d.organization}\nProducts: ${d.products}\nQuantity: ${d.quantity}\nPrint or embroidery: ${d.method}\nNeeded by: ${d.deadline}\nDesign link: ${d.design_link}\n\n${d.message}`;
-    const mailto=`mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent("Quote request — "+d.name)}&body=${encodeURIComponent(body)}`;
+    if(fd.get("product"))d.product=fd.get("product");
+    if(fd.has("colour"))d.colour=(fd.get("colour")||"").trim()||"Not specified";
+    const body=`Name: ${d.name}\nEmail: ${d.email}\nMobile: ${d.mobile}\nBrand / team / event: ${d.organization}\n`+(d.product?`Product: ${d.product}\nColour: ${d.colour}\n`:"")+`Products: ${d.products}\nQuantity: ${d.quantity}\nPrint or embroidery: ${d.method}\nNeeded by: ${d.deadline}\nDesign link: ${d.design_link}\n\n${d.message}`;
+    const subject="Quote request — "+d.name+(d.product?" ("+d.product+")":"");
+    const mailto=`mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     if(!WEB3FORMS_KEY){location.href=mailto;qs.innerHTML="Your email app should open with your request filled in — just press send.";return}
     qb.disabled=true;qs.textContent="Sending…";
     try{
-      const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:"Quote request — "+d.name,from_name:"Simple Threads website",replyto:d.email,...d})});
+      const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:WEB3FORMS_KEY,subject,from_name:"Simple Threads website",replyto:d.email,...d})});
       const j=await r.json().catch(()=>({}));
       if(!r.ok||!j.success)throw new Error("send failed");
       qf.reset();qf.querySelectorAll("[aria-invalid]").forEach(el=>el.removeAttribute("aria-invalid"));
@@ -789,6 +864,8 @@ if(qf){
     }finally{qb.disabled=false}
   });
 }
+wireQuote(document.getElementById("quoteForm"));
+wireQuote(document.getElementById("quickQuote"));
 /* ===== CATALOGUE ===== */
 const CATIMG={"pullover": "images/pullover.webp", "varsity": "images/varsity.webp", "corporate": "images/corporate.webp", "windbreaker": "images/windbreaker.webp", "cap": "images/cap.webp", "washed": "images/washed.webp", "beanie": "images/beanie.webp", "tshirt": "images/tshirt.webp", "drifit": "images/drifit.webp", "honeycomb": "images/honeycomb.webp", "netcap": "images/netcap.webp", "hoodie-navy": "images/hoodie-navy.webp", "hoodie-grey": "images/hoodie-grey.webp", "hoodie-white": "images/hoodie-white.webp", "cap-side": "images/cap-side.webp", "washed-side": "images/washed-side.webp", "netcap-side": "images/netcap-side.webp"};
 const HOOD="Black, Navy Blue, White, Ash Grey";
@@ -828,15 +905,37 @@ if(grid){
     </article>`).join("");
   const pm=document.getElementById("catModal"); let cur=-1, lastFocus=null;
   const $id=id=>document.getElementById(id);
+  const qm=document.getElementById("quoteModal"), qmf=document.getElementById("quickQuote"); let qmLast=null;
   function quote(pi){
-    const p=CATALOGUE[pi], f=document.getElementById("quoteForm");
-    if(f){
-      const chip=f.querySelector(`input[name="products"][value="${p.chip}"]`); if(chip) chip.checked=true;
-      const msg=f.querySelector('[name="message"]'); const line=`Interested in: ${p.name}${p.photos?" — "+shownName(p,sel[pi]):""}`;
-      if(msg && !msg.value.includes(line)) msg.value=(msg.value?msg.value.trim()+"\n":"")+line+(p.photos?"":" (colour: )");
+    const p=CATALOGUE[pi], i=sel[pi];
+    closeModal();
+    $id("qmImg").src=src(p,i); $id("qmImg").alt=p.name;
+    $id("qmCat").textContent=p.label; $id("qmName").textContent=p.name;
+    $id("qmPrice").innerHTML=`${peso(p.price)}<small>per piece, blank</small>`;
+    $id("qmProduct").value=p.name; $id("qmChip").value=p.chip;
+    const cs=$id("qmColSel"), ct=$id("qmColTxt"), list=p.cols&&p.cols!=="Any colour"?p.cols.split(",").map(c=>c.trim()):[];
+    const pick=p.photos?shownName(p,i):"";
+    if(list.length){
+      cs.innerHTML=""; cs.add(new Option("Not sure yet","",!pick,!pick));
+      list.forEach(c=>cs.add(new Option(c,c,c===pick,c===pick)));
+      cs.hidden=cs.disabled=false; ct.hidden=ct.disabled=true;
+    }else{
+      ct.placeholder=p.cols==="Any colour"?"Any colour, e.g. Navy blue":"Your preferred colour";
+      ct.hidden=ct.disabled=false; cs.hidden=cs.disabled=true;
     }
-    const was=pm.classList.contains("open"); closeModal(); setTimeout(()=>go("#contact"),was?120:0);
+    qmf.querySelector(".qf-status").textContent="";
+    qmLast=document.activeElement;
+    qm.classList.add("open"); qm.setAttribute("aria-hidden","false");
+    lenis&&lenis.stop(); document.documentElement.style.overflow="hidden";
+    qm.querySelector(".pm-panel").scrollTop=0;
+    setTimeout(()=>qm.querySelector(".pm-x").focus(),50);
   }
+  function closeQuote(){
+    if(!qm.classList.contains("open"))return;
+    qm.classList.remove("open"); qm.setAttribute("aria-hidden","true");
+    document.documentElement.style.overflow=""; lenis&&lenis.start(); qmLast&&qmLast.focus({preventScroll:true});
+  }
+  qm.addEventListener("click",e=>{if(e.target.closest("[data-close]"))closeQuote()});
   function openModal(pi){
     cur=pi; const p=CATALOGUE[pi]; lastFocus=document.activeElement;
     $id("pmCat").textContent=p.label; $id("pmName").textContent=p.name; $id("pmDesc").textContent=p.desc;
@@ -876,7 +975,7 @@ if(grid){
     const sw=e.target.closest(".sw,.vw"); if(sw){setModal(+sw.dataset.i);return}
     if(e.target.closest("#pmQuote")) quote(cur);
   });
-  addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+  addEventListener("keydown",e=>{if(e.key==="Escape"){closeModal();closeQuote()}});
   document.querySelectorAll(".cat-tab").forEach(t=>t.addEventListener("click",()=>{
     document.querySelectorAll(".cat-tab").forEach(x=>x.setAttribute("aria-selected",x===t));
     const f=t.dataset.f; grid.querySelectorAll(".pc").forEach(c=>{c.hidden=!(f==="all"||c.dataset.cat===f)});
