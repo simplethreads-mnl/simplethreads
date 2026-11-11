@@ -1107,13 +1107,13 @@ const root=document.getElementById("ms"); if(!root) return;
 const FABRIC_URL="https://cdn.jsdelivr.net/npm/fabric@5.3.0/dist/fabric.min.js";
 const FONTS_URL="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600&display=swap";
 const W=1152,H=1536;
-/* print zones, as [x, y, width, height] in fractions of the photo; tuned to the studio photos */
+/* print zones, as [x, y, width, height, angle°] in fractions of the photo (x, y = top-left before rotating); sleeves tilt with the sleeve. Tuned to the studio photos and checked against the garment masks */
 const ZONES={
- tee:{front:{full:[.30,.20,.40,.40],chest:[.57,.20,.14,.10],lsleeve:[.85,.27,.10,.10],rsleeve:[.05,.27,.10,.10]},back:{full:[.28,.22,.44,.42],upper:[.40,.16,.20,.06]}},
- hoodie:{front:{full:[.31,.25,.38,.27],chest:[.57,.26,.13,.08],lsleeve:[.83,.38,.11,.24],rsleeve:[.06,.38,.11,.24]},back:{full:[.29,.34,.42,.38],upper:[.38,.34,.24,.09]}},
- jacket:{front:{full:[.30,.24,.40,.36],chest:[.58,.25,.14,.09],lsleeve:[.85,.36,.10,.24],rsleeve:[.05,.36,.10,.24]},back:{full:[.28,.30,.44,.40],upper:[.38,.30,.24,.09]}},
- varsity:{front:{full:[.30,.22,.40,.36],chest:[.58,.21,.15,.10],lsleeve:[.84,.32,.11,.26],rsleeve:[.05,.32,.11,.26]},back:{full:[.25,.19,.50,.48],upper:[.36,.17,.28,.08]}},
- polo:{front:{full:[.30,.40,.40,.28],chest:[.58,.24,.14,.10],lsleeve:[.85,.25,.10,.10],rsleeve:[.05,.25,.10,.10]},back:{full:[.28,.26,.44,.40],upper:[.40,.20,.20,.06]}}
+ tee:{front:{full:[.30,.20,.40,.40],chest:[.57,.20,.14,.10],lsleeve:[.83,.325,.11,.07,-24],rsleeve:[.06,.325,.11,.07,24]},back:{full:[.28,.22,.44,.42],upper:[.40,.16,.20,.06]}},
+ hoodie:{front:{full:[.31,.25,.38,.27],chest:[.57,.26,.13,.08],lsleeve:[.835,.42,.07,.20,-6],rsleeve:[.095,.42,.07,.20,6]},back:{full:[.29,.34,.42,.38],upper:[.38,.34,.24,.09]}},
+ jacket:{front:{full:[.30,.24,.40,.36],chest:[.58,.25,.14,.09],lsleeve:[.83,.41,.07,.20,-7],rsleeve:[.10,.41,.07,.20,7]},back:{full:[.28,.30,.44,.40],upper:[.38,.30,.24,.09]}},
+ varsity:{front:{full:[.30,.22,.40,.36],chest:[.58,.21,.15,.10],lsleeve:[.8275,.40,.095,.24,-6],rsleeve:[.0775,.40,.095,.24,6]},back:{full:[.25,.19,.50,.48],upper:[.36,.17,.28,.08]}},
+ polo:{front:{full:[.30,.40,.40,.28],chest:[.58,.24,.14,.10],lsleeve:[.825,.3325,.10,.065,-15],rsleeve:[.075,.3325,.10,.065,15]},back:{full:[.28,.26,.44,.40],upper:[.40,.20,.20,.06]}}
 };
 const ZNAME={front:{full:"Full front",chest:"Left chest",lsleeve:"Left sleeve",rsleeve:"Right sleeve"},back:{full:"Full back",upper:"Upper back"}};
 const SP=[
@@ -1134,7 +1134,7 @@ const $i=id=>document.getElementById(id);
 const st={p:0,c:0,view:"front",zone:"full",colour:"#191917",font:"Satoshi",brush:14,fx:true,objs:{front:[],back:[]},hist:[],hi:-1,busy:false};
 let cv=null,guide=null,ready=false;
 const P=()=>SP[st.p], C=()=>P().cols[st.c], file=()=>C()[2];
-const zr=(z,v,t)=>{const a=ZONES[t||P().type][v][z]||ZONES[t||P().type][v].full;return{left:a[0]*W,top:a[1]*H,width:a[2]*W,height:a[3]*H}};
+const zr=(z,v,t)=>{const a=ZONES[t||P().type][v][z]||ZONES[t||P().type][v].full;return{left:(a[0]+a[2]/2)*W,top:(a[1]+a[3]/2)*H,width:a[2]*W,height:a[3]*H,angle:a[4]||0,originX:"center",originY:"center"}};
 const msg=t=>{$i("msMsg").textContent=t||""};
 
 /* ---------- static UI (works before the engine loads) ---------- */
@@ -1204,12 +1204,14 @@ function setBg(){
   fabric.Image.fromURL(want,img=>{if(src(file(),st.view)!==want)return;img.set({scaleX:W/img.width,scaleY:H/img.height});cv.setBackgroundImage(img,()=>{cv.requestRenderAll();schedule()})});
   shade(want);
 }
-function setGuide(){if(!guide)return;guide.set(zr(st.zone,st.view));guide.visible=true;cv.bringToFront(guide);cv.requestRenderAll()}
+const HINT="Tap outside your design to see it printed. Mockups are for reference; the final print may vary slightly.";
+function hint(){const h=$i("msHint");if(h)h.textContent=/sleeve/.test(st.zone)?"Sleeve prints are small. Keep logos simple for the best result. Tap outside your design to see it printed.":HINT}
+function setGuide(){hint();if(!guide)return;guide.set(zr(st.zone,st.view));guide.visible=true;cv.bringToFront(guide);cv.requestRenderAll()}
 function fit(o,z){
   const r=zr(z,st.view);const bw=o.width*o.scaleX,bh=o.height*o.scaleY;
   const s=Math.min(r.width*0.8/(o.width||1),r.height*0.8/(o.height||1));
   if(o.type!=="i-text"||bw>r.width||bh>r.height) o.set({scaleX:s,scaleY:s});
-  o.set({originX:"center",originY:"center",left:r.left+r.width/2,top:r.top+r.height/2,angle:o.angle||0});
+  o.set({originX:"center",originY:"center",left:r.left,top:r.top,angle:r.angle});
   o.zone=z;o.view=st.view;o.clipPath=clip(o);o.setCoords();
 }
 function add(o){fx(false);fit(o,st.zone);cv.add(o);cv.bringToFront(guide);cv.setActiveObject(o);cv.requestRenderAll();changed()}
@@ -1259,7 +1261,7 @@ function shade(url){
       }
       const D=document.createElement("canvas");D.width=w;D.height=h;D.getContext("2d").putImageData(dk,0,0);
       const T=document.createElement("canvas");T.width=w;T.height=h;T.getContext("2d").putImageData(lt,0,0);
-      res({img,dark:D,light:T});
+      const mi=new Image();mi.onload=()=>res({img,dark:D,light:T,mask:mi});mi.onerror=()=>res({img,dark:D,light:T,mask:null});mi.src=url.replace("images/studio/","images/studio/masks/").replace(".webp",".png");
     };img.onerror=()=>res(null);img.src=url;
   });
 }
@@ -1283,6 +1285,7 @@ async function composite(v,pw,mark){
   if(v===st.view)st.objs[v]=design(v);
   if(design(v).length){
     const d=layer(v,pw);
+    if(sh&&sh.mask){const mx=d.getContext("2d");mx.globalCompositeOperation="destination-in";mx.drawImage(sh.mask,0,0,pw,ph);mx.globalCompositeOperation="source-over"}
     const t=mk(pw,ph),tx=t.getContext("2d");
     if(sh){tx.drawImage(sh.dark,0,0,pw,ph);tx.globalCompositeOperation="destination-in";tx.drawImage(d,0,0);
       const dx=d.getContext("2d");dx.globalCompositeOperation="multiply";dx.drawImage(t,0,0);
@@ -1316,7 +1319,7 @@ function switchBlank(p,c){
   if(oldT!==newT)["front","back"].forEach(v=>design(v).forEach(o=>{
     const a=zr(o.zone,v,oldT),b=zr(o.zone,v,newT),k=b.width/a.width;
     const cx=b.left+(o.left-a.left)*k,cy=b.top+(o.top-a.top)*(b.height/a.height);
-    o.set({left:cx,top:cy,scaleX:o.scaleX*k,scaleY:o.scaleY*k});o.clipPath=clip(o);o.setCoords();
+    o.set({left:cx,top:cy,scaleX:o.scaleX*k,scaleY:o.scaleY*k,angle:(o.angle||0)+b.angle-a.angle});o.clipPath=clip(o);o.setCoords();
   }));
   setBg();setGuide();cv.requestRenderAll();changed();
 }
@@ -1326,9 +1329,9 @@ $i("msViews").addEventListener("click",e=>{const b=e.target.closest("[data-view]
   if(ready){st.objs[st.view].forEach(o=>cv.add(o));setBg();setGuide()}else boot();
 });
 $i("msZones").addEventListener("click",e=>{const b=e.target.closest("[data-zone]");if(!b)return;st.zone=b.dataset.zone;
-  document.querySelectorAll("#msZones .ms-btn").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  document.querySelectorAll("#msZones .ms-btn").forEach(x=>x.setAttribute("aria-pressed",x===b));hint();
   if(!ready){boot();return}
-  setGuide();const o=cv.getActiveObject();if(o&&!o.isGuide){fit(o,st.zone);cv.requestRenderAll();changed()}
+  cv.discardActiveObject();setGuide();schedule();
 });
 $i("msFile").addEventListener("change",async e=>{
   const f=e.target.files&&e.target.files[0];e.target.value="";if(!f)return;
