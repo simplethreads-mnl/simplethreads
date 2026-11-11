@@ -36,7 +36,8 @@ language with short, numbered steps.
   175, Net Cap 185, Knitted Beanie 150. Printing, embroidery, and design are
   quoted separately. If the owner gives new prices, use those.
 - Supplier colours:
-  - Pullover & Plain Hoodie: Black, Navy Blue, White, Ash Grey
+  - Pullover Hoodie: Black, Navy Blue, White, Ash Grey
+  - Plain Hoodie: Black, Navy Blue, White, Ash Grey, Brown
   - Varsity Jacket: Blue, Black, Red, Brown, Pink, Green
   - Baseball & Washed Cap: Black, Grey, Navy Blue, Red, Army Green, Green
   - Knitted Beanie: Blue, White, Purple, Teal, Red, Black, Pink, Orange,
@@ -78,8 +79,21 @@ language with short, numbered steps.
   where real mockups exist).
 - brand.html: Build Your Brand, with the stitched seam, services for brands,
   portfolio, process, reviews, and quote form.
-- design.html: Design & Mockups, with a how-it-works section, design-studio
-  mockups, and quote form.
+- design.html: Design & Mockups, with a how-it-works section, the Mockup
+  studio, design-studio mockups, and quote form.
+- Mockup studio (design.html, section #studio): shoppers pick a blank, add an
+  image, text, or drawing, place it (Full front, Left chest, Left/Right sleeve,
+  Full back, Upper back), see it blended into the fabric, download it, and
+  request a quote. Uses Fabric.js 5.3.0 from jsDelivr, loaded only when the
+  section comes near. Blanks are in the SP array; print zones in ZONES (per
+  garment type, as fractions of the photo). Photos: images/studio/<name>.webp
+  and <name>-back.webp (1152×1536). The quote window can't carry the image
+  (free Web3Forms), so the image is downloaded and the shopper sends it by
+  Viber or email.
+- Studio photos still needed: originals of the back views for the white, grey,
+  and navy Plain Hoodie, Dri-fit Polo, and Honeycomb Polo (current ones are
+  640px and look soft). Known limit: on Plain Hoodies, a full-front design
+  shows the drawstrings through it instead of on top.
 - Catalogue data is in the CATALOGUE array in teams.html (fields: photos for
   colour switching, views for Front/Side).
 - Quote form: sends through Web3Forms (access key

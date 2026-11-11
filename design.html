@@ -464,6 +464,107 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .m-bot ul a:hover{color:var(--on-dark)}
 @media (min-width:640px){.m-nav .l{font-size:3.75rem}.m-bot{flex-direction:row;align-items:flex-end}}
 @media (min-width:1024px){.modal .content{padding-inline:3rem}.m-nav .l{font-size:4.5rem}}
+/* quick quote window (cream) */
+.qm-panel{background:#f2eee6;width:min(46rem,100%)}
+.qm-title{margin-top:1.25rem;font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1.12;letter-spacing:-0.01em}
+.qm-item{margin-top:1.75rem;display:flex;gap:1.25rem;align-items:center;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:1.25rem 0}
+.qm-thumb{flex:none;width:4.5rem;aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;position:relative}
+.qm-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.qm-info{min-width:0}
+.qm-name{margin-top:0.375rem;font-family:var(--serif);font-size:1.5rem;line-height:1.15}
+.qm-price{margin-top:0.25rem;font-family:var(--serif);font-size:1.125rem}
+.qm-price small{font-family:var(--sans);font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted);margin-left:0.35rem;white-space:nowrap}
+.qmf-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:1.25rem;margin-top:1.75rem}
+.qmf-field{display:flex;flex-direction:column;gap:0.5rem;min-width:0}
+.qmf-field [hidden]{display:none}
+.qmf-wide{margin-top:1.25rem}
+.qmf-l{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted)}
+.qmf input:not([type=checkbox]):not([type=hidden]),.qmf select,.qmf textarea{box-sizing:border-box;font:inherit;font-size:max(16px,1rem);color:var(--ink);background:#fff;border:1px solid rgba(25,25,23,0.22);border-radius:0;padding:0.8rem 1rem;width:100%;min-height:2.9rem;-webkit-appearance:none;appearance:none}
+.qmf select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 1.2rem) 50%,calc(100% - 0.85rem) 50%;background-size:0.35rem 0.35rem;background-repeat:no-repeat;padding-right:2.5rem}
+.qmf textarea{resize:vertical;line-height:1.5}
+.qmf input[type=date]{display:block;height:2.9rem;line-height:1.2;text-align:left}
+.qmf input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0}
+.qmf input::placeholder,.qmf textarea::placeholder{color:var(--ink-faint)}
+.qmf input:focus,.qmf select:focus,.qmf textarea:focus{outline:1px solid var(--ink);outline-offset:1px}
+.qmf [aria-invalid="true"]{border-color:var(--ink);border-style:dashed}
+.qmf .qf-status{color:var(--ink-muted)}
+.qmf .qf-status a{color:var(--ink)}
+.qm-alt{margin-top:1.75rem;border-top:1px dashed var(--line);padding-top:1.25rem;font-size:0.9375rem;color:var(--ink-muted)}
+.qm-alt a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+@media (min-width:640px){.qmf-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.qm-title{font-size:2.5rem}}
+/* ===== MOCKUP STUDIO ===== */
+.ms{margin-top:3.5rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2rem;align-items:start}
+.ms-pick{display:flex;gap:0.75rem;overflow-x:auto;padding-bottom:0.5rem;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.ms-p{flex:none;width:5rem;text-align:left;display:flex;flex-direction:column;gap:0.5rem;padding:0;border:0;background:none;cursor:pointer}
+.ms-p .th{display:block;aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;position:relative;border:1px solid transparent;transition:border-color .2s}
+.ms-p .th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ms-p .nm{font-size:0.75rem;line-height:1.3;color:var(--ink-muted)}
+.ms-p[aria-pressed="true"] .th{border-color:var(--ink)}
+.ms-p[aria-pressed="true"] .nm{color:var(--ink)}
+.ms-mid{min-width:0}
+.ms-stage{position:relative;width:86%;max-width:40rem;margin-inline:auto;aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;touch-action:none}
+.ms-stage .canvas-container,.ms-stage canvas{position:absolute!important;inset:0}
+.ms-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ms-print{width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .25s}
+.ms-print.on{opacity:1}
+.ms-load{position:absolute;left:50%;bottom:1.25rem;transform:translateX(-50%);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted);background:rgba(255,255,255,0.85);padding:0.5rem 0.875rem;white-space:nowrap}
+.ms-load[hidden]{display:none}
+.ms-hint{max-width:40rem;width:86%;margin:0.875rem auto 0;font-size:0.8125rem;line-height:1.5;color:var(--ink-muted)}
+.ms-panel{display:flex;flex-direction:column;gap:1.5rem;min-width:0}
+.ms-grp{border-top:1px dashed var(--line);padding-top:1.25rem}
+.ms-grp[hidden]{display:none}
+.ms-l{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--ink-muted);margin-bottom:0.75rem}
+.ms-name{font-family:var(--serif);font-size:1.5rem;line-height:1.15}
+.ms-price{margin-top:0.25rem;font-family:var(--serif);font-size:1.125rem}
+.ms-price small{font-family:var(--sans);font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted);margin-left:0.35rem}
+.ms-cols{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.875rem}
+.ms-cols:empty{display:none}
+.ms-small{font-size:0.8125rem;line-height:1.5;color:var(--ink-muted);margin-top:0.625rem}
+.ms-small:empty{display:none}
+.ms-row{display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center}
+.ms-row[hidden]{display:none}
+.ms-brush{margin-top:0.75rem}
+.ms-brush .ms-small{margin:0 0.25rem 0 0}
+.ms-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:2.75rem;padding:0 1rem;border:1px dashed var(--line);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink);background:#fff;cursor:pointer;transition:background-color .2s,color .2s}
+.ms-btn[aria-pressed="true"]{background:var(--ink);color:#fff;border-style:solid;border-color:var(--ink)}
+.ms-btn:disabled{opacity:.35;cursor:default}
+.ms-btn:focus-visible,.ms-p:focus-visible,.ms-sw:focus-visible{outline:1px dashed var(--ink);outline-offset:3px}
+@media (hover:hover) and (min-width:769px){.ms-btn:not(:disabled):not([aria-pressed="true"]):hover{background:var(--surface-grey)}}
+.ms-sq{width:2.75rem;padding:0}
+.ms-file input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.ms-sw{width:2.25rem;height:2.25rem;border-radius:50%;border:1px solid rgba(25,25,23,0.25);flex:none;cursor:pointer;position:relative;padding:0}
+.ms-sw[aria-pressed="true"]{box-shadow:0 0 0 2px #fff,0 0 0 3px var(--ink)}
+.ms-sw.pick{background:conic-gradient(#e33,#ec3,#3c5,#3ae,#83e,#e33)}
+.ms-sw.pick input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.ms-tx{display:grid;grid-template-columns:minmax(0,1fr);gap:0.5rem;margin-bottom:0.75rem}
+.ms-tx[hidden]{display:none}
+.ms-tx input,.ms-tx select{box-sizing:border-box;font:inherit;font-size:max(16px,1rem);color:var(--ink);background:#fff;border:1px solid rgba(25,25,23,0.22);border-radius:0;padding:0.7rem 0.875rem;width:100%;min-height:2.75rem}
+.ms-tx input:focus,.ms-tx select:focus{outline:1px solid var(--ink);outline-offset:1px}
+.ms-fin{border-top:1px dashed var(--line);padding-top:1.5rem;display:flex;flex-direction:column;align-items:stretch;gap:0.75rem}
+.ms-fin .cta{justify-content:center}
+.ms-fin .cta[disabled]{opacity:.6;cursor:wait}
+@media (min-width:640px){.ms-tx{grid-template-columns:minmax(0,1fr) 12rem}}
+@media (min-width:768px){
+  .ms-stage,.ms-hint{width:100%}
+  .ms{grid-template-columns:minmax(0,1fr) minmax(0,20rem);column-gap:2.5rem}
+  .ms-pick{grid-column:1 / -1}
+  .ms-mid{grid-column:1}
+  .ms-panel{grid-column:2;grid-row:2}
+  .ms-p{width:6rem}
+}
+@media (min-width:1200px){
+  .ms{grid-template-columns:13rem minmax(0,1fr) 22rem}
+  .ms-pick{grid-column:1;grid-row:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 0.75rem;overflow:visible;padding:0}
+  .ms-p{width:auto}
+  .ms-mid{grid-column:2;grid-row:1}
+  .ms-panel{grid-column:3;grid-row:1}
+}
+@media (prefers-reduced-motion:reduce){.ms-print{transition:none}}
+.qm-note{margin-top:1.25rem;font-size:0.9375rem;line-height:1.55;color:var(--ink)}
+.qm-send{margin-top:1.75rem;border-top:1px dashed var(--line);padding-top:1.25rem}
+.qm-send .qmf-l{display:block;margin-bottom:0.75rem}
+.qm-send-row{display:flex;flex-wrap:wrap;gap:0.5rem}
+.qm-again{margin-top:1rem;font-size:0.875rem;color:var(--ink);text-decoration:underline;text-underline-offset:3px;min-height:2.75rem;padding:0;background:none;border:0;cursor:pointer}
 </style>
 </head>
 <body id="top">
@@ -487,7 +588,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
     <div data-anim="fade"><span class="eyebrow">Design &amp; mockups</span></div>
     <h1 data-anim="lines" data-stagger="120">See it <span class="accent">before</span> it’s made.</h1>
     <p class="lead" data-anim="words" data-stagger="16" data-delay="300">Not sure how your idea will look? Our designers turn it into print-ready artwork and realistic front-and-back mockups, so you can approve every detail before anything is printed.</p>
-    <div class="page-cta" data-anim="fadeUp" data-delay="500"><a class="cta solid" href="#contact">Start a design <span class="arr">→</span></a><a class="cta ghost" href="#design">See our mockups <span class="arr">→</span></a></div>
+    <div class="page-cta" data-anim="fadeUp" data-delay="500"><a class="cta solid" href="#contact">Start a design <span class="arr">→</span></a><a class="cta ghost" href="#studio">Try the mockup studio <span class="arr">→</span></a><a class="cta ghost" href="#design">See our mockups <span class="arr">→</span></a></div>
   </div>
 </section>
 <section class="sec">
@@ -503,6 +604,96 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
     </div>
   </div>
 </section>
+<!-- ===== MOCKUP STUDIO ===== -->
+<section class="sec" id="studio">
+  <div class="container">
+    <div class="dz-head">
+      <div class="sh">
+        <div data-anim="fade"><span class="eyebrow">Mockup studio</span></div>
+        <h2 class="sh-title" data-anim="lines">Make it <span class="accent">yours</span>.</h2>
+      </div>
+      <p class="dz-lead" data-anim="fade">Pick a blank, add your artwork or type your own, and see it printed on the fabric. When it looks right, save it and send it to us for a quote.</p>
+    </div>
+    <div class="ms" id="ms">
+      <div class="ms-pick" id="msPick" role="list" aria-label="Choose a blank"></div>
+      <div class="ms-mid">
+        <div class="ms-stage" id="msStage">
+          <img class="ms-still" id="msStill" alt="" decoding="async">
+          <canvas id="msCanvas"></canvas>
+          <canvas class="ms-print" id="msPrint" aria-hidden="true"></canvas>
+          <p class="ms-load" id="msLoad">Loading the studio…</p>
+        </div>
+        <p class="ms-hint" id="msHint">Tap outside your design to see it printed. Mockups are for reference; the final print may vary slightly.</p>
+      </div>
+      <div class="ms-panel">
+        <div class="ms-grp">
+          <p class="ms-l">Blank</p>
+          <p class="ms-name" id="msName"></p>
+          <p class="ms-price" id="msPrice"></p>
+          <div class="ms-cols" id="msCols"></div>
+          <p class="ms-small" id="msColNote"></p>
+        </div>
+        <div class="ms-grp">
+          <p class="ms-l">View</p>
+          <div class="ms-row" id="msViews">
+            <button class="ms-btn" data-view="front" aria-pressed="true">Front</button>
+            <button class="ms-btn" data-view="back" aria-pressed="false">Back</button>
+          </div>
+        </div>
+        <div class="ms-grp">
+          <p class="ms-l">Placement</p>
+          <div class="ms-row" id="msZones"></div>
+        </div>
+        <div class="ms-grp">
+          <p class="ms-l">Add</p>
+          <div class="ms-row">
+            <label class="ms-btn ms-file">Upload image<input type="file" id="msFile" accept="image/png,image/jpeg,image/webp"></label>
+            <button class="ms-btn" id="msText">Add text</button>
+            <button class="ms-btn" id="msDraw" aria-pressed="false">Draw</button>
+          </div>
+          <div class="ms-row ms-brush" id="msBrush" hidden>
+            <span class="ms-small">Brush</span>
+            <button class="ms-btn ms-sq" data-brush="6" aria-pressed="false">S</button>
+            <button class="ms-btn ms-sq" data-brush="14" aria-pressed="true">M</button>
+            <button class="ms-btn ms-sq" data-brush="30" aria-pressed="false">L</button>
+          </div>
+        </div>
+        <div class="ms-grp">
+          <p class="ms-l">Colour</p>
+          <div class="ms-row ms-sws" id="msSws"></div>
+        </div>
+        <div class="ms-grp ms-sel" id="msSel" hidden>
+          <p class="ms-l">Selected</p>
+          <div class="ms-tx" id="msTx" hidden>
+            <input type="text" id="msTxIn" aria-label="Edit text" maxlength="80">
+            <select id="msFont" aria-label="Font"></select>
+          </div>
+          <div class="ms-row">
+            <button class="ms-btn" id="msFwd">Forward</button>
+            <button class="ms-btn" id="msBwd">Backward</button>
+            <button class="ms-btn" id="msDup">Duplicate</button>
+            <button class="ms-btn" id="msDel">Delete</button>
+          </div>
+        </div>
+        <div class="ms-grp">
+          <div class="ms-row">
+            <button class="ms-btn" id="msUndo" disabled>Undo</button>
+            <button class="ms-btn" id="msRedo" disabled>Redo</button>
+            <button class="ms-btn" id="msClear">Clear</button>
+            <button class="ms-btn" id="msFx" aria-pressed="true">Print effect</button>
+          </div>
+        </div>
+        <div class="ms-fin">
+          <button class="cta solid" id="msSave">Download mockup <span class="arr">→</span></button>
+          <button class="cta ghost" id="msQuote">Request a quote <span class="arr">→</span></button>
+          <p class="ms-small" id="msMsg" role="status" aria-live="polite"></p>
+          <p class="ms-small">Your images stay on your device. Nothing is uploaded until you send them to us.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== DESIGN STUDIO ===== -->
 <section class="sec grey" id="design">
   <div class="container">
@@ -522,6 +713,55 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
     <div class="dz-cta" data-anim="fadeUp"><a class="cta solid" href="#contact">Start a design <span class="arr">→</span></a></div>
   </div>
 </section>
+
+<!-- ===== QUICK QUOTE WINDOW (opens from the mockup studio) ===== -->
+<div class="pm qm" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="qmTitle" aria-hidden="true">
+  <div class="pm-back" data-close></div>
+  <div class="pm-panel qm-panel" data-lenis-prevent>
+    <button class="pm-x" data-close aria-label="Close">Close ✕</button>
+    <span class="eyebrow">Request a quote</span>
+    <h3 class="qm-title" id="qmTitle">Get a quote for this <span class="accent">piece</span>.</h3>
+    <div class="qm-item">
+      <div class="qm-thumb"><img id="qmImg" alt=""></div>
+      <div class="qm-info">
+        <p class="pm-cat" id="qmCat">Made in the mockup studio</p>
+        <p class="qm-name" id="qmName"></p>
+        <p class="qm-price" id="qmPrice"></p>
+      </div>
+    </div>
+    <p class="qm-note" id="qmNote">We saved your mockup to your device. After you send this form, attach that image in a Viber message or email so we can see your design.</p>
+    <form class="qmf" id="quickQuote" novalidate>
+      <input type="hidden" name="product" id="qmProduct">
+      <input type="hidden" name="products" id="qmChip">
+      <input type="hidden" name="placement" id="qmPlace">
+      <div class="qmf-grid">
+        <label class="qmf-field"><span class="qmf-l">Name *</span><input name="name" type="text" autocomplete="name" required></label>
+        <label class="qmf-field"><span class="qmf-l">Email *</span><input name="email" type="email" autocomplete="email" required></label>
+        <label class="qmf-field"><span class="qmf-l">Mobile number</span><input name="mobile" type="tel" autocomplete="tel" placeholder="09XX-XXX-XXXX"></label>
+        <label class="qmf-field"><span class="qmf-l">Quantity (rough is fine)</span><input name="quantity" type="number" min="1" inputmode="numeric" placeholder="e.g. 50"></label>
+        <label class="qmf-field"><span class="qmf-l">Colour</span><input name="colour" id="qmColour" type="text"></label>
+        <label class="qmf-field"><span class="qmf-l">Print or embroidery</span>
+          <select name="method"><option>Not sure — recommend one</option><option>DTF</option><option>DTG</option><option>Silk screen</option><option>Sublimation</option><option>Embroidery</option></select></label>
+        <label class="qmf-field"><span class="qmf-l">Needed by</span><input name="deadline" type="date"></label>
+        <label class="qmf-field"><span class="qmf-l">Design link (optional)</span><input name="design_link" type="url" placeholder="Google Drive or any link"></label>
+      </div>
+      <label class="qmf-field qmf-wide"><span class="qmf-l">Anything else?</span><textarea name="message" rows="3" placeholder="Sizes, quantities per size, anything you have in mind."></textarea></label>
+      <input type="checkbox" name="botcheck" class="qf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="qf-actions">
+        <button class="cta solid" type="submit">Send quote request <span class="arr">→</span></button>
+        <p class="qf-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+    <div class="qm-send">
+      <p class="qmf-l">Send us your mockup</p>
+      <div class="qm-send-row">
+        <a class="cta ghost" href="viber://chat?number=%2B639613826973">Message on Viber <span class="arr">→</span></a>
+        <a class="cta ghost" id="qmMail" href="mailto:simplethreads.mnl@gmail.com?subject=My%20mockup">Email us <span class="arr">→</span></a>
+      </div>
+      <button class="qm-again" id="qmAgain" type="button">Download the mockup again</button>
+    </div>
+  </div>
+</div>
 
 <!-- ===== PINNED CTA #2 ===== -->
 <section class="pinned center" id="contact">
@@ -705,6 +945,7 @@ document.addEventListener("transitionend",e=>{const t=e.target;if(t.matches&&t.m
 /* lenis */
 let lenis=null;
 if(window.Lenis&&!reduce){lenis=new Lenis({smoothWheel:true});const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};requestAnimationFrame(raf)}
+window.__lenis=lenis;
 function go(h){
   if(h==="#top"){lenis?lenis.scrollTo(0):scrollTo({top:0,behavior:reduce?"auto":"smooth"});return}
   const el=document.querySelector(h);if(!el)return;
@@ -736,8 +977,10 @@ ob.addEventListener("click",openMenu);cb.addEventListener("click",closeMenu);add
 /* quote form — paste your Web3Forms access key between the quotes to send straight to Gmail */
 const WEB3FORMS_KEY="e6b201c3-d5af-41c5-aa9f-355f06ccb31a";
 const STUDIO_EMAIL="simplethreads.mnl@gmail.com";
-const qf=document.getElementById("quoteForm"),qs=document.getElementById("qfStatus"),qb=document.getElementById("qfSubmit");
-if(qf){
+/* both quote forms (the big one at the bottom and the studio window) send the same way */
+function wireQuote(qf){
+  if(!qf)return;
+  const qs=qf.querySelector(".qf-status"),qb=qf.querySelector('[type="submit"]');
   qf.addEventListener("submit",async e=>{
     e.preventDefault();
     let ok=true;
@@ -746,12 +989,16 @@ if(qf){
     const fd=new FormData(qf);
     if(fd.get("botcheck")){qs.textContent="Thanks! We’ll be in touch soon.";return}
     const d={name:fd.get("name").trim(),email:fd.get("email").trim(),mobile:fd.get("mobile")||"",organization:fd.get("organization")||"",products:fd.getAll("products").join(", ")||"Not specified",quantity:fd.get("quantity")||"Not specified",method:fd.get("method"),deadline:fd.get("deadline")||"Not specified",design_link:fd.get("design_link")||"",message:fd.get("message")||""};
-    const body=`Name: ${d.name}\nEmail: ${d.email}\nMobile: ${d.mobile}\nBrand / team / event: ${d.organization}\nProducts: ${d.products}\nQuantity: ${d.quantity}\nPrint or embroidery: ${d.method}\nNeeded by: ${d.deadline}\nDesign link: ${d.design_link}\n\n${d.message}`;
-    const mailto=`mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent("Quote request — "+d.name)}&body=${encodeURIComponent(body)}`;
+    if(fd.get("product"))d.product=fd.get("product");
+    if(fd.has("colour"))d.colour=(fd.get("colour")||"").trim()||"Not specified";
+    if(fd.get("placement"))d.placement=fd.get("placement");
+    const body=`Name: ${d.name}\nEmail: ${d.email}\nMobile: ${d.mobile}\nBrand / team / event: ${d.organization}\n`+(d.product?`Product: ${d.product}\nColour: ${d.colour}\n`:"")+(d.placement?`Placement: ${d.placement}\n`:"")+`Products: ${d.products}\nQuantity: ${d.quantity}\nPrint or embroidery: ${d.method}\nNeeded by: ${d.deadline}\nDesign link: ${d.design_link}\n\n${d.message}`;
+    const subject="Quote request — "+d.name+(d.product?" ("+d.product+")":"");
+    const mailto=`mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     if(!WEB3FORMS_KEY){location.href=mailto;qs.innerHTML="Your email app should open with your request filled in — just press send.";return}
     qb.disabled=true;qs.textContent="Sending…";
     try{
-      const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:WEB3FORMS_KEY,subject:"Quote request — "+d.name,from_name:"Simple Threads website",replyto:d.email,...d})});
+      const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:WEB3FORMS_KEY,subject,from_name:"Simple Threads website",replyto:d.email,...d})});
       const j=await r.json().catch(()=>({}));
       if(!r.ok||!j.success)throw new Error("send failed");
       qf.reset();qf.querySelectorAll("[aria-invalid]").forEach(el=>el.removeAttribute("aria-invalid"));
@@ -761,6 +1008,8 @@ if(qf){
     }finally{qb.disabled=false}
   });
 }
+wireQuote(document.getElementById("quoteForm"));
+wireQuote(document.getElementById("quickQuote"));
 /* ===== CATALOGUE ===== */
 const HOOD="Black, Navy Blue, White, Ash Grey";
 const CAPC="Black, Grey, Navy Blue, Red, Army Green, Green";
@@ -851,6 +1100,314 @@ if(grid){
     const f=t.dataset.f; grid.querySelectorAll(".pc").forEach(c=>{c.hidden=!(f==="all"||c.dataset.cat===f)});
   }));
 }
+
+/* ===== MOCKUP STUDIO ===== */
+(function(){
+const root=document.getElementById("ms"); if(!root) return;
+const FABRIC_URL="https://cdn.jsdelivr.net/npm/fabric@5.3.0/dist/fabric.min.js";
+const FONTS_URL="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600&display=swap";
+const W=1152,H=1536;
+/* print zones, as [x, y, width, height] in fractions of the photo; tuned to the studio photos */
+const ZONES={
+ tee:{front:{full:[.30,.20,.40,.40],chest:[.57,.20,.14,.10],lsleeve:[.85,.27,.10,.10],rsleeve:[.05,.27,.10,.10]},back:{full:[.28,.22,.44,.42],upper:[.40,.16,.20,.06]}},
+ hoodie:{front:{full:[.31,.25,.38,.27],chest:[.57,.26,.13,.08],lsleeve:[.83,.38,.11,.24],rsleeve:[.06,.38,.11,.24]},back:{full:[.29,.34,.42,.38],upper:[.38,.34,.24,.09]}},
+ jacket:{front:{full:[.30,.24,.40,.36],chest:[.58,.25,.14,.09],lsleeve:[.85,.36,.10,.24],rsleeve:[.05,.36,.10,.24]},back:{full:[.28,.30,.44,.40],upper:[.38,.30,.24,.09]}},
+ varsity:{front:{full:[.30,.22,.40,.36],chest:[.58,.21,.15,.10],lsleeve:[.84,.32,.11,.26],rsleeve:[.05,.32,.11,.26]},back:{full:[.25,.19,.50,.48],upper:[.36,.17,.28,.08]}},
+ polo:{front:{full:[.30,.40,.40,.28],chest:[.58,.24,.14,.10],lsleeve:[.85,.25,.10,.10],rsleeve:[.05,.25,.10,.10]},back:{full:[.28,.26,.44,.40],upper:[.40,.20,.20,.06]}}
+};
+const ZNAME={front:{full:"Full front",chest:"Left chest",lsleeve:"Left sleeve",rsleeve:"Right sleeve"},back:{full:"Full back",upper:"Upper back"}};
+const SP=[
+ {name:"Plain T-shirt",chip:"T-shirts",price:200,type:"tee",cols:[["Black","#161616","tshirt-black"]],note:"More colours to follow from our supplier. Tell us your colour in your quote."},
+ {name:"Plain Hoodie",chip:"Hoodies",price:650,type:"hoodie",cols:[["Navy Blue","#1b2238","hoodie-navy"],["Ash Grey","#c4c4c1","hoodie-grey"],["White","#f2f1ec","hoodie-white"],["Brown","#5a3e2b","hoodie-brown"]],note:"Also in Black."},
+ {name:"Pullover Hoodie",chip:"Hoodies",price:650,type:"hoodie",cols:[["Black","#161616","pullover-black"]],note:"Also in Navy Blue, White, and Ash Grey."},
+ {name:"Dri-fit Polo",chip:"Polos",price:300,type:"polo",cols:[["White","#f4f4f2","drifit-white"]],note:"More colours to follow from our supplier."},
+ {name:"Honeycomb Polo",chip:"Polos",price:340,type:"polo",cols:[["Purple","#5b1fa8","honeycomb-purple"]],note:"More colours to follow from our supplier."},
+ {name:"Varsity Jacket",chip:"Jackets",price:450,type:"varsity",cols:[["Black","#161616","varsity-black"]],note:"Also in Blue, Red, Brown, Pink, and Green."},
+ {name:"Corporate Jacket",chip:"Jackets",price:850,type:"jacket",cols:[["Grey","#bdbdbd","corporate-grey"]],note:"More colours to follow from our supplier."},
+ {name:"Windbreaker",chip:"Jackets",price:800,type:"jacket",cols:[["White","#f4f4f2","windbreaker-white"]],note:"More colours to follow from our supplier."}
+];
+const FONTLIST=[["Satoshi","Satoshi"],["Playfair Display","Playfair"],["Anton","Anton"],["Caveat","Caveat (script)"]];
+const SWATCHES=[["#191917","Ink"],["#ffffff","White"],["#f2eee6","Cream"],["#c8102e","Red"],["#1b2238","Navy"],["#d9a520","Gold"]];
+const src=(f,v)=>`images/studio/${f}${v==="back"?"-back":""}.webp`;
+const peso=n=>"PHP "+n.toLocaleString("en-PH");
+const $i=id=>document.getElementById(id);
+const st={p:0,c:0,view:"front",zone:"full",colour:"#191917",font:"Satoshi",brush:14,fx:true,objs:{front:[],back:[]},hist:[],hi:-1,busy:false};
+let cv=null,guide=null,ready=false;
+const P=()=>SP[st.p], C=()=>P().cols[st.c], file=()=>C()[2];
+const zr=(z,v,t)=>{const a=ZONES[t||P().type][v][z]||ZONES[t||P().type][v].full;return{left:a[0]*W,top:a[1]*H,width:a[2]*W,height:a[3]*H}};
+const msg=t=>{$i("msMsg").textContent=t||""};
+
+/* ---------- static UI (works before the engine loads) ---------- */
+$i("msPick").innerHTML=SP.map((p,i)=>`<button class="ms-p" role="listitem" data-p="${i}" aria-pressed="${i===0}"><span class="th"><img src="${src(p.cols[0][2],"front")}" alt="" loading="lazy" decoding="async"></span><span class="nm">${p.name}</span></button>`).join("");
+$i("msSws").innerHTML=SWATCHES.map(([c,n])=>`<button class="ms-sw" style="background:${c}" data-c="${c}" aria-label="${n}" aria-pressed="${c===st.colour}"></button>`).join("")+`<label class="ms-sw pick" aria-label="Any colour"><input type="color" id="msPickC" value="#191917"></label>`;
+$i("msFont").innerHTML=FONTLIST.map(([f,l])=>`<option value="${f}">${l}</option>`).join("");
+const darkHex=h=>{const n=parseInt(h.slice(1),16);return (.299*(n>>16)+.587*(n>>8&255)+.114*(n&255))<110};
+function autoColour(){if(st.userColour)return;st.colour=darkHex(C()[1])?"#ffffff":"#191917";document.querySelectorAll("#msSws [data-c]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.c===st.colour));if(cv)cv.freeDrawingBrush.color=st.colour}
+function paintInfo(){
+  const p=P();
+  $i("msName").textContent=p.name;
+  $i("msPrice").innerHTML=`${peso(p.price)}<small>per piece, blank</small>`;
+  $i("msCols").innerHTML=p.cols.length>1?p.cols.map((c,i)=>`<button class="ms-sw" style="background:${c[1]}" data-col="${i}" aria-label="${c[0]}" aria-pressed="${i===st.c}"></button>`).join(""):"";
+  $i("msColNote").textContent=(p.cols.length>1?"Shown in "+C()[0]+". ":"Shown in "+C()[0]+". ")+(p.note||"");
+  document.querySelectorAll(".ms-p").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.p===st.p));
+  document.querySelectorAll("#msViews .ms-btn").forEach(b=>b.setAttribute("aria-pressed",b.dataset.view===st.view));
+  $i("msZones").innerHTML=Object.entries(ZNAME[st.view]).map(([z,n])=>`<button class="ms-btn" data-zone="${z}" aria-pressed="${z===st.zone}">${n}</button>`).join("");
+  $i("msStill").src=src(file(),st.view);
+}
+paintInfo();autoColour();
+
+/* ---------- load the engine when the studio comes near ---------- */
+let loading=null;
+function boot(){
+  if(loading) return loading;
+  if(!document.querySelector('link[data-ms-fonts]')){const l=document.createElement("link");l.rel="stylesheet";l.href=FONTS_URL;l.dataset.msFonts="1";document.head.appendChild(l)}
+  loading=new Promise((res,rej)=>{if(window.fabric)return res();const s=document.createElement("script");s.src=FABRIC_URL;s.async=true;s.onload=res;s.onerror=rej;document.head.appendChild(s)})
+    .then(init).catch(()=>{$i("msLoad").textContent="The studio couldn’t load. Refresh the page, or message us on Viber.";loading=null});
+  return loading;
+}
+if("IntersectionObserver" in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();boot()}},{rootMargin:"800px 0px"});io.observe(root)}else boot();
+root.addEventListener("pointerdown",()=>boot(),{once:true,capture:true});
+
+/* ---------- engine ---------- */
+function init(){
+  if(ready) return;
+  const F=fabric;
+  Object.assign(F.Object.prototype,{transparentCorners:false,cornerColor:"#191917",cornerStrokeColor:"#ffffff",borderColor:"#191917",cornerStyle:"circle",cornerSize:14,touchCornerSize:30,borderDashArray:[5,4],padding:6,borderScaleFactor:1.5});
+  cv=new F.Canvas("msCanvas",{preserveObjectStacking:true,selection:false,controlsAboveOverlay:true,enableRetinaScaling:true,allowTouchScrolling:false});
+  const stage=$i("msStage");
+  function size(){const w=stage.clientWidth,h=Math.round(w*4/3);cv.setDimensions({width:w,height:h});cv.setZoom(w/W);const pc=$i("msPrint"),r=Math.min(2,window.devicePixelRatio||1);pc.width=Math.min(W,Math.round(w*r));pc.height=Math.round(pc.width*4/3);cv.requestRenderAll();schedule()}
+  new ResizeObserver(size).observe(stage);
+  guide=new F.Rect({fill:"",stroke:"#ffffff",strokeWidth:3,strokeDashArray:[14,10],selectable:false,evented:false,excludeFromExport:true,isGuide:true,shadow:new F.Shadow({color:"rgba(0,0,0,0.45)",blur:4})});
+  cv.add(guide);
+  cv.freeDrawingBrush=new F.PencilBrush(cv);
+  ready=true; size(); setBg(); setGuide();
+  $i("msLoad").hidden=true; $i("msStill").style.visibility="hidden";
+  record();
+  cv.on("object:modified",changed);
+  cv.on("text:changed",e=>{if(e.target===cv.getActiveObject())$i("msTxIn").value=e.target.text;changed()});
+  cv.on("path:created",e=>{const o=e.path;o.zone=st.zone;o.view=st.view;o.clipPath=clip(o);changed()});
+  cv.on("selection:created",sel);cv.on("selection:updated",sel);
+  cv.on("selection:cleared",()=>{$i("msSel").hidden=true;schedule()});
+  cv.on("mouse:down",()=>fx(false));
+  cv.on("mouse:up",()=>schedule());
+  stage.addEventListener("pointerdown",()=>{window.__lenis&&window.__lenis.stop()});
+  addEventListener("pointerup",()=>{window.__lenis&&window.__lenis.start()});
+  addEventListener("pointercancel",()=>{window.__lenis&&window.__lenis.start()});
+  addEventListener("keydown",e=>{if((e.key==="Delete"||e.key==="Backspace")&&cv.getActiveObject()&&!cv.getActiveObject().isEditing&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){e.preventDefault();del()}});
+  if(document.fonts)document.fonts.ready.then(()=>cv.requestRenderAll());
+}
+function design(v){return v===st.view&&cv?cv.getObjects().filter(o=>!o.isGuide):st.objs[v]}
+function clip(o){return new fabric.Rect(Object.assign(zr(o.zone,o.view),{absolutePositioned:true}))}
+function setBg(){
+  if(!ready) return;
+  const want=src(file(),st.view);
+  fabric.Image.fromURL(want,img=>{if(src(file(),st.view)!==want)return;img.set({scaleX:W/img.width,scaleY:H/img.height});cv.setBackgroundImage(img,()=>{cv.requestRenderAll();schedule()})});
+  shade(want);
+}
+function setGuide(){if(!guide)return;guide.set(zr(st.zone,st.view));guide.visible=true;cv.bringToFront(guide);cv.requestRenderAll()}
+function fit(o,z){
+  const r=zr(z,st.view);const bw=o.width*o.scaleX,bh=o.height*o.scaleY;
+  const s=Math.min(r.width*0.8/(o.width||1),r.height*0.8/(o.height||1));
+  if(o.type!=="i-text"||bw>r.width||bh>r.height) o.set({scaleX:s,scaleY:s});
+  o.set({originX:"center",originY:"center",left:r.left+r.width/2,top:r.top+r.height/2,angle:o.angle||0});
+  o.zone=z;o.view=st.view;o.clipPath=clip(o);o.setCoords();
+}
+function add(o){fx(false);fit(o,st.zone);cv.add(o);cv.bringToFront(guide);cv.setActiveObject(o);cv.requestRenderAll();changed()}
+function sel(){
+  const o=cv.getActiveObject();if(!o)return;fx(false);
+  $i("msSel").hidden=false;
+  const isT=o.type==="i-text";$i("msTx").hidden=!isT;
+  if(isT){$i("msTxIn").value=o.text;$i("msFont").value=o.fontFamily}
+  if(o.zone&&o.zone!==st.zone){st.zone=o.zone;document.querySelectorAll("#msZones .ms-btn").forEach(b=>b.setAttribute("aria-pressed",b.dataset.zone===st.zone));setGuide()}
+}
+function changed(){record();schedule()}
+
+/* ---------- history (both views) ---------- */
+function snap(){const out={};["front","back"].forEach(v=>out[v]=design(v).map(o=>{const j=o.toObject(["zone","view"]);delete j.clipPath;return j}));return JSON.stringify(out)}
+function record(){const s=snap();if(st.hist[st.hi]===s)return upd();st.hist=st.hist.slice(0,st.hi+1);st.hist.push(s);if(st.hist.length>60)st.hist.shift();st.hi=st.hist.length-1;upd()}
+function upd(){$i("msUndo").disabled=st.hi<=0;$i("msRedo").disabled=st.hi>=st.hist.length-1}
+function restore(s){
+  const d=JSON.parse(s);
+  const live=(arr)=>new Promise(r=>fabric.util.enlivenObjects(arr,objs=>{objs.forEach((o,i)=>{o.zone=arr[i].zone;o.view=arr[i].view;o.clipPath=clip(o)});r(objs)}));
+  return Promise.all([live(d.front),live(d.back)]).then(([f,b])=>{
+    cv.discardActiveObject();design(st.view).forEach(o=>cv.remove(o));
+    st.objs.front=f;st.objs.back=b;
+    st.objs[st.view].forEach(o=>cv.add(o));cv.bringToFront(guide);cv.requestRenderAll();upd();schedule();
+  });
+}
+$i("msUndo").onclick=()=>{if(st.hi>0){st.hi--;restore(st.hist[st.hi])}};
+$i("msRedo").onclick=()=>{if(st.hi<st.hist.length-1){st.hi++;restore(st.hist[st.hi])}};
+$i("msClear").onclick=()=>{if(!ready||!design(st.view).length)return;cv.discardActiveObject();design(st.view).forEach(o=>cv.remove(o));changed()};
+
+/* ---------- fabric shading (folds and highlights from the photo) ---------- */
+const shades={};
+function shade(url){
+  if(shades[url]) return shades[url];
+  return shades[url]=new Promise(res=>{
+    const img=new Image();img.onload=()=>{
+      const w=576,h=768,c=document.createElement("canvas");c.width=w;c.height=h;const x=c.getContext("2d",{willReadFrequently:true});x.drawImage(img,0,0,w,h);
+      const L=x.getImageData(0,0,w,h);
+      const s=document.createElement("canvas");s.width=36;s.height=48;const sx=s.getContext("2d");sx.imageSmoothingQuality="high";sx.drawImage(c,0,0,36,48);
+      const b=document.createElement("canvas");b.width=w;b.height=h;const bx=b.getContext("2d",{willReadFrequently:true});bx.imageSmoothingQuality="high";bx.drawImage(s,0,0,w,h);
+      const M=bx.getImageData(0,0,w,h);
+      const dk=new ImageData(w,h),lt=new ImageData(w,h);
+      for(let i=0;i<L.data.length;i+=4){
+        const l=.299*L.data[i]+.587*L.data[i+1]+.114*L.data[i+2], m=Math.max(28,.299*M.data[i]+.587*M.data[i+1]+.114*M.data[i+2]);
+        const r=(l+4)/(m+4);
+        const d=Math.round(255*Math.max(.42,Math.min(1,1-(1-r)*1.15))), g=Math.round(255*Math.max(0,Math.min(.45,(r-1)*.9)));
+        dk.data[i]=dk.data[i+1]=dk.data[i+2]=d;dk.data[i+3]=255;lt.data[i]=lt.data[i+1]=lt.data[i+2]=g;lt.data[i+3]=255;
+      }
+      const D=document.createElement("canvas");D.width=w;D.height=h;D.getContext("2d").putImageData(dk,0,0);
+      const T=document.createElement("canvas");T.width=w;T.height=h;T.getContext("2d").putImageData(lt,0,0);
+      res({img,dark:D,light:T});
+    };img.onerror=()=>res(null);img.src=url;
+  });
+}
+const mk=(w,h)=>{const c=document.createElement("canvas");c.width=w;c.height=h;return c};
+/* design layer for a view at a given pixel width */
+function layer(v,pw){
+  const was=st.view,bg=cv.backgroundImage,act=cv.getActiveObject(),cur=design(was);
+  cv.renderOnAddRemove=false;
+  if(v!==was){cur.forEach(o=>cv.remove(o));st.objs[was]=cur;st.objs[v].forEach(o=>cv.add(o))}
+  cv.backgroundImage=null;guide.visible=false;
+  const out=cv.toCanvasElement(pw/cv.getWidth());
+  cv.backgroundImage=bg;guide.visible=true;
+  if(v!==was){st.objs[v].forEach(o=>cv.remove(o));cur.forEach(o=>cv.add(o));cv.bringToFront(guide);if(act)cv.setActiveObject(act)}
+  cv.renderOnAddRemove=true;
+  return out;
+}
+async function composite(v,pw,mark){
+  const ph=Math.round(pw*4/3), sh=await shade(src(file(),v));
+  const out=mk(pw,ph),x=out.getContext("2d");x.imageSmoothingQuality="high";
+  if(sh)x.drawImage(sh.img,0,0,pw,ph);
+  if(v===st.view)st.objs[v]=design(v);
+  if(design(v).length){
+    const d=layer(v,pw);
+    const t=mk(pw,ph),tx=t.getContext("2d");
+    if(sh){tx.drawImage(sh.dark,0,0,pw,ph);tx.globalCompositeOperation="destination-in";tx.drawImage(d,0,0);
+      const dx=d.getContext("2d");dx.globalCompositeOperation="multiply";dx.drawImage(t,0,0);
+      tx.globalCompositeOperation="source-over";tx.clearRect(0,0,pw,ph);tx.drawImage(sh.light,0,0,pw,ph);tx.globalCompositeOperation="destination-in";tx.drawImage(d,0,0);
+      dx.globalCompositeOperation="screen";dx.globalAlpha=.55;dx.drawImage(t,0,0);dx.globalAlpha=1;dx.globalCompositeOperation="source-over";}
+    x.globalAlpha=.97;x.drawImage(d,0,0);x.globalAlpha=1;
+  }
+  if(mark){x.font=`italic ${Math.round(pw*.028)}px "Playfair Display", Georgia, serif`;x.fillStyle="rgba(25,25,23,0.55)";x.textAlign="right";x.fillText("simple threads",pw*.965,ph*.975)}
+  return out;
+}
+let timer=0;
+function fx(on){$i("msPrint").classList.toggle("on",!!on)}
+function schedule(){
+  clearTimeout(timer);
+  if(!ready)return;
+  timer=setTimeout(async()=>{
+    if(!st.fx||cv.getActiveObject()||cv.isDrawingMode||!design(st.view).length){fx(false);return}
+    const pc=$i("msPrint"),c=await composite(st.view,pc.width,false);
+    if(cv.getActiveObject()||cv.isDrawingMode)return;
+    pc.getContext("2d").drawImage(c,0,0,pc.width,pc.height);fx(true);
+  },160);
+}
+
+/* ---------- controls ---------- */
+$i("msPick").addEventListener("click",e=>{const b=e.target.closest(".ms-p");if(!b)return;switchBlank(+b.dataset.p,0)});
+$i("msCols").addEventListener("click",e=>{const b=e.target.closest("[data-col]");if(!b)return;switchBlank(st.p,+b.dataset.col)});
+function switchBlank(p,c){
+  const oldT=P().type;st.p=p;st.c=c;paintInfo();autoColour();
+  if(!ready){boot();return}
+  const newT=P().type;
+  if(oldT!==newT)["front","back"].forEach(v=>design(v).forEach(o=>{
+    const a=zr(o.zone,v,oldT),b=zr(o.zone,v,newT),k=b.width/a.width;
+    const cx=b.left+(o.left-a.left)*k,cy=b.top+(o.top-a.top)*(b.height/a.height);
+    o.set({left:cx,top:cy,scaleX:o.scaleX*k,scaleY:o.scaleY*k});o.clipPath=clip(o);o.setCoords();
+  }));
+  setBg();setGuide();cv.requestRenderAll();changed();
+}
+$i("msViews").addEventListener("click",e=>{const b=e.target.closest("[data-view]");if(!b||b.dataset.view===st.view)return;
+  if(ready){cv.discardActiveObject();st.objs[st.view]=design(st.view);design(st.view).forEach(o=>cv.remove(o))}
+  st.view=b.dataset.view;st.zone="full";paintInfo();
+  if(ready){st.objs[st.view].forEach(o=>cv.add(o));setBg();setGuide()}else boot();
+});
+$i("msZones").addEventListener("click",e=>{const b=e.target.closest("[data-zone]");if(!b)return;st.zone=b.dataset.zone;
+  document.querySelectorAll("#msZones .ms-btn").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  if(!ready){boot();return}
+  setGuide();const o=cv.getActiveObject();if(o&&!o.isGuide){fit(o,st.zone);cv.requestRenderAll();changed()}
+});
+$i("msFile").addEventListener("change",async e=>{
+  const f=e.target.files&&e.target.files[0];e.target.value="";if(!f)return;
+  await boot();if(!ready)return;
+  if(!/^image\//.test(f.type)){msg("Please choose a PNG or JPG image.");return}
+  msg("Adding your image…");
+  const url=URL.createObjectURL(f),im=new Image();
+  im.onload=()=>{
+    const k=Math.min(1,2000/Math.max(im.naturalWidth,im.naturalHeight)),c=mk(Math.round(im.naturalWidth*k),Math.round(im.naturalHeight*k));
+    c.getContext("2d").drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(url);
+    stopDraw();add(new fabric.Image(c));msg("");
+  };
+  im.onerror=()=>{msg("That image couldn’t be opened. Try a PNG or JPG.");URL.revokeObjectURL(url)};
+  im.src=url;
+});
+$i("msText").onclick=async()=>{await boot();if(!ready)return;stopDraw();
+  const t=new fabric.IText("Your text",{fontFamily:st.font,fill:st.colour,fontSize:140,textAlign:"center",fontWeight:st.font==="Satoshi"?700:400});
+  add(t);setTimeout(()=>{const i=$i("msTxIn");if(i&&matchMedia("(hover:hover)").matches){i.focus();i.select()}},60);
+};
+function stopDraw(){if(cv)cv.isDrawingMode=false;$i("msDraw").setAttribute("aria-pressed","false");$i("msBrush").hidden=true}
+$i("msDraw").onclick=async()=>{await boot();if(!ready)return;const on=!cv.isDrawingMode;cv.discardActiveObject();cv.isDrawingMode=on;
+  $i("msDraw").setAttribute("aria-pressed",on);$i("msBrush").hidden=!on;
+  cv.freeDrawingBrush.color=st.colour;cv.freeDrawingBrush.width=st.brush;setGuide();if(on)fx(false);else schedule();cv.requestRenderAll()};
+$i("msBrush").addEventListener("click",e=>{const b=e.target.closest("[data-brush]");if(!b)return;st.brush=+b.dataset.brush;if(cv)cv.freeDrawingBrush.width=st.brush;
+  document.querySelectorAll("#msBrush [data-brush]").forEach(x=>x.setAttribute("aria-pressed",x===b))});
+function setColour(c){st.colour=c;document.querySelectorAll("#msSws [data-c]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.c===c));
+  if(!ready)return;cv.freeDrawingBrush.color=c;const o=cv.getActiveObject();
+  if(o&&o.type==="i-text"){o.set("fill",c);cv.requestRenderAll();changed()}else if(o&&o.type==="path"){o.set("stroke",c);cv.requestRenderAll();changed()}}
+$i("msSws").addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(b){st.userColour=true;setColour(b.dataset.c)}});
+$i("msPickC").addEventListener("input",e=>{st.userColour=true;setColour(e.target.value)});
+$i("msTxIn").addEventListener("input",e=>{const o=cv&&cv.getActiveObject();if(o&&o.type==="i-text"){o.set("text",e.target.value||" ");cv.requestRenderAll()}});
+$i("msTxIn").addEventListener("change",()=>changed());
+$i("msFont").addEventListener("change",e=>{st.font=e.target.value;const o=cv&&cv.getActiveObject();if(!o||o.type!=="i-text")return;
+  const go=()=>{o.set({fontFamily:st.font,fontWeight:st.font==="Satoshi"?700:400});o.initDimensions&&o.initDimensions();o.setCoords();cv.requestRenderAll();changed()};
+  document.fonts&&document.fonts.load(`140px "${st.font}"`).then(go,go)||go()});
+$i("msFwd").onclick=()=>{const o=cv.getActiveObject();if(o){cv.bringForward(o);cv.bringToFront(guide);changed()}};
+$i("msBwd").onclick=()=>{const o=cv.getActiveObject();if(o){cv.sendBackwards(o);changed()}};
+$i("msDup").onclick=()=>{const o=cv.getActiveObject();if(!o)return;o.clone(c=>{c.set({left:o.left+30,top:o.top+30});c.zone=o.zone;c.view=o.view;c.clipPath=clip(c);cv.add(c);cv.bringToFront(guide);cv.setActiveObject(c);cv.requestRenderAll();changed()},["zone","view"])};
+function del(){const o=cv.getActiveObject();if(!o)return;cv.remove(o);cv.discardActiveObject();cv.requestRenderAll();$i("msSel").hidden=true;changed()}
+$i("msDel").onclick=del;
+$i("msFx").onclick=()=>{st.fx=!st.fx;$i("msFx").setAttribute("aria-pressed",st.fx);schedule()};
+
+/* ---------- finish: download and quote ---------- */
+function used(){return ["front","back"].filter(v=>design(v).length)}
+async function exportImage(){
+  await boot();if(!ready)return null;
+  cv.discardActiveObject();stopDraw();cv.requestRenderAll();
+  const vs=used();if(!vs.length){msg("Add an image, text, or drawing first.");return null}
+  const parts=[];for(const v of vs)parts.push(await composite(v,W,true));
+  const out=mk(W*parts.length,H),x=out.getContext("2d");parts.forEach((c,i)=>x.drawImage(c,i*W,0));
+  return out;
+}
+const fname=()=>`Simple Threads mockup - ${P().name} - ${C()[0]}.png`;
+function save(c){return new Promise(r=>c.toBlob(b=>{const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=fname();document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);r()},"image/png"))}
+let lastImg=null;
+$i("msSave").onclick=async()=>{const b=$i("msSave");b.disabled=true;msg("Preparing your mockup…");
+  try{const c=await exportImage();if(c){lastImg=c;await save(c);msg("Saved. Check your downloads or Photos.")}}catch(err){msg("Sorry, that didn’t save. Try again.")}finally{b.disabled=false}};
+function places(){return used().map(v=>{const zs=[...new Set(design(v).map(o=>o.zone))];return zs.map(z=>ZNAME[v][z]).join(", ")}).join("; ")}
+const qm=$i("quoteModal");let qmLast=null;
+$i("msQuote").onclick=async()=>{
+  const b=$i("msQuote");b.disabled=true;msg("Preparing your mockup…");
+  let c=null;try{c=await exportImage()}catch(err){}
+  b.disabled=false;if(!c)return;msg("");lastImg=c;save(c);
+  const p=P();
+  $i("qmImg").src=c.toDataURL("image/jpeg",.7);$i("qmName").textContent=p.name;
+  $i("qmPrice").innerHTML=`${peso(p.price)}<small>per piece, blank</small>`;
+  $i("qmProduct").value=p.name;$i("qmChip").value=p.chip;$i("qmColour").value=C()[0];$i("qmPlace").value=places();
+  const m=qm.querySelector('[name="message"]');if(!m.value)m.value="Made in the mockup studio. I’ll send the image by Viber or email.\nPlacement: "+places();
+  $i("qmMail").href=`mailto:simplethreads.mnl@gmail.com?subject=${encodeURIComponent("My mockup — "+p.name)}&body=${encodeURIComponent("Hi Simple Threads,\n\nHere is my mockup ("+p.name+", "+C()[0]+"). Placement: "+places()+".\n\n(Attach the saved image before sending.)")}`;
+  qm.querySelector(".qf-status").textContent="";
+  qmLast=document.activeElement;qm.classList.add("open");qm.setAttribute("aria-hidden","false");
+  window.__lenis&&window.__lenis.stop();document.documentElement.style.overflow="hidden";qm.querySelector(".pm-panel").scrollTop=0;
+  setTimeout(()=>qm.querySelector(".pm-x").focus(),50);
+};
+function closeQ(){if(!qm.classList.contains("open"))return;qm.classList.remove("open");qm.setAttribute("aria-hidden","true");document.documentElement.style.overflow="";window.__lenis&&window.__lenis.start();qmLast&&qmLast.focus({preventScroll:true})}
+qm.addEventListener("click",e=>{if(e.target.closest("[data-close]"))closeQ()});
+addEventListener("keydown",e=>{if(e.key==="Escape")closeQ()});
+$i("qmAgain").onclick=()=>{if(lastImg)save(lastImg)};
+})();
 
 })();
 </script>
