@@ -30,6 +30,11 @@ language with short, numbered steps.
   unless the owner asks to bring them back.
 - The one remaining testimonial (Stoicism) was written as a placeholder.
   Remind the owner to replace it with a real, approved quote.
+- Catalogue prices are for the plain blank only (no design). On the site
+  this is stated in the catalogue intro, on every price ("per piece,
+  blank"), in the details window and in the quote windows: design and
+  decoration are quoted separately, depending on the artwork and method
+  (DTF, DTG, silk screen, sublimation, embroidery).
 - Blank prices (per piece, PHP): Plain T-shirt 200, Dri-fit Polo 300,
   Honeycomb Polo 340, Pullover Hoodie 650, Plain Hoodie 650, Varsity Jacket
   450, Corporate Jacket 850, Windbreaker 800, Baseball Cap 190, Washed Cap
@@ -174,8 +179,11 @@ How to generate:
 Adding images to the site:
 - Blank mockups (catalogue and Mockup studio) sit on plain white #ffffff.
   Made by brightening the photo's own backdrop to white (divide by a smooth
-  backdrop model; garment pixels kept as photographed), so each photo keeps
-  its natural soft shadows and untouched edges. Do NOT hard cut-out
+  backdrop model). Garment pixels are NEVER brightened: the garment outline
+  (full-res GrabCut) is grown ~1 px, never shrunk, so garments and their
+  edges stay exactly as photographed and natural soft shadows remain.
+  Light-grey garments (Corporate Jacket, grey hoodie) are close to the
+  backdrop colour; check their edges at 100% after any change. Do NOT hard cut-out
   garments onto white: it removed the cap shadows and scuffed edges
   (owner feedback, Nov 2026). New blanks: generate on white, or brighten
   the same way. Product tiles are white with a faint hairline frame.

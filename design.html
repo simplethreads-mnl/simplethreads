@@ -567,6 +567,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .qm-again{margin-top:1rem;font-size:0.875rem;color:var(--ink);text-decoration:underline;text-underline-offset:3px;min-height:2.75rem;padding:0;background:none;border:0;cursor:pointer}
 /* white product tiles: hairline frame drawn above the photo */
 .ms-p .th::after,.ms-stage::after,.qm-thumb::after{content:"";position:absolute;inset:0;border:1px solid rgba(25,25,23,0.08);pointer-events:none;z-index:2}
+.price-note{margin-top:0.5rem;font-size:0.875rem;line-height:1.5;color:var(--ink-muted);max-width:44ch}
 </style>
 </head>
 <body id="top">
@@ -632,6 +633,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
           <p class="ms-l">Blank</p>
           <p class="ms-name" id="msName"></p>
           <p class="ms-price" id="msPrice"></p>
+          <p class="price-note">Blank only. Decoration is quoted once we see your design.</p>
           <div class="ms-cols" id="msCols"></div>
           <p class="ms-small" id="msColNote"></p>
         </div>
@@ -729,6 +731,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
         <p class="pm-cat" id="qmCat">Made in the mockup studio</p>
         <p class="qm-name" id="qmName"></p>
         <p class="qm-price" id="qmPrice"></p>
+        <p class="price-note">Blank only. Decoration is quoted once we see your design.</p>
       </div>
     </div>
     <p class="qm-note" id="qmNote">We saved your mockup to your device. After you send this form, attach that image in a Viber message or email so we can see your design.</p>
@@ -1043,7 +1046,7 @@ if(grid){
       ${(p.photos||p.views)?`<div class="pc-sw">${swHTML(p,0)}</div>`:""}
       <h3 class="pc-name">${p.name}</h3>
       <p class="pc-col">${meta(p)}</p>
-      <p class="pc-price">${peso(p.price)}<small>per piece</small></p>
+      <p class="pc-price">${peso(p.price)}<small>per piece, blank</small></p>
       <div class="pc-actions"><button class="cta solid" data-quote>Get a quote</button><button class="cta ghost" data-open>View details</button></div>
     </article>`).join("");
   const pm=document.getElementById("catModal"); let cur=-1, lastFocus=null;
