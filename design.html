@@ -641,7 +641,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
           </div>
         </div>
         <div class="ms-grp">
-          <p class="ms-l">Placement</p>
+          <p class="ms-l">Quick place</p>
           <div class="ms-row" id="msZones"></div>
         </div>
         <div class="ms-grp">
@@ -1197,16 +1197,26 @@ function init(){
   if(document.fonts)document.fonts.ready.then(()=>cv.requestRenderAll());
 }
 function design(v){return v===st.view&&cv?cv.getObjects().filter(o=>!o.isGuide):st.objs[v]}
-function clip(o){return new fabric.Rect(Object.assign(zr(o.zone,o.view),{absolutePositioned:true}))}
+/* designs can go anywhere on the garment: each one is clipped to the garment outline (mask), not to a print box */
+const maskEl={};
+const maskUrl=v=>src(file(),v).replace("images/studio/","images/studio/masks/").replace(".webp",".png");
+function loadMask(v){const u=maskUrl(v);if(maskEl[u])return;const im=new Image();maskEl[u]={ready:false,im};
+  im.onload=()=>{maskEl[u].ready=true;if(!ready)return;["front","back"].forEach(w=>{if(maskUrl(w)===u)design(w).forEach(o=>{o.clipPath=clip(o);o.dirty=true})});cv.requestRenderAll()};
+  im.src=u}
+function clip(o){const m=maskEl[maskUrl(o.view||st.view)];if(!m||!m.ready){loadMask(o.view||st.view);return undefined}
+  return new fabric.Image(m.im,{left:0,top:0,originX:"left",originY:"top",scaleX:W/m.im.naturalWidth,scaleY:H/m.im.naturalHeight,absolutePositioned:true})}
 function setBg(){
   if(!ready) return;
   const want=src(file(),st.view);
   fabric.Image.fromURL(want,img=>{if(src(file(),st.view)!==want)return;img.set({scaleX:W/img.width,scaleY:H/img.height});cv.setBackgroundImage(img,()=>{cv.requestRenderAll();schedule()})});
-  shade(want);
+  shade(want);loadMask("front");loadMask("back");
+  ["front","back"].forEach(v=>design(v).forEach(o=>{o.clipPath=clip(o);o.dirty=true}));
 }
-const HINT="Tap outside your design to see it printed. Mockups are for reference; the final print may vary slightly.";
+const HINT="Drag, resize, or rotate your design anywhere on the garment. Tap outside it to see it printed. Mockups are for reference; the final print may vary slightly.";
 function hint(){const h=$i("msHint");if(h)h.textContent=/sleeve/.test(st.zone)?"Sleeve prints are small. Keep logos simple for the best result. Tap outside your design to see it printed.":HINT}
-function setGuide(){hint();if(!guide)return;guide.set(zr(st.zone,st.view));guide.visible=true;cv.bringToFront(guide);cv.requestRenderAll()}
+let guideT=0;
+function setGuide(){hint();if(!guide)return;guide.set(zr(st.zone,st.view));guide.visible=true;cv.bringToFront(guide);cv.requestRenderAll();
+  clearTimeout(guideT);guideT=setTimeout(()=>{guide.visible=false;cv.requestRenderAll()},1500)}
 function fit(o,z){
   const r=zr(z,st.view);const bw=o.width*o.scaleX,bh=o.height*o.scaleY;
   const s=Math.min(r.width*0.8/(o.width||1),r.height*0.8/(o.height||1));
@@ -1271,9 +1281,9 @@ function layer(v,pw){
   const was=st.view,bg=cv.backgroundImage,act=cv.getActiveObject(),cur=design(was);
   cv.renderOnAddRemove=false;
   if(v!==was){cur.forEach(o=>cv.remove(o));st.objs[was]=cur;st.objs[v].forEach(o=>cv.add(o))}
-  cv.backgroundImage=null;guide.visible=false;
+  const gv=guide.visible;cv.backgroundImage=null;guide.visible=false;
   const out=cv.toCanvasElement(pw/cv.getWidth());
-  cv.backgroundImage=bg;guide.visible=true;
+  cv.backgroundImage=bg;guide.visible=gv;
   if(v!==was){st.objs[v].forEach(o=>cv.remove(o));cur.forEach(o=>cv.add(o));cv.bringToFront(guide);if(act)cv.setActiveObject(act)}
   cv.renderOnAddRemove=true;
   return out;
@@ -1389,7 +1399,11 @@ function save(c){return new Promise(r=>c.toBlob(b=>{const a=document.createEleme
 let lastImg=null;
 $i("msSave").onclick=async()=>{const b=$i("msSave");b.disabled=true;msg("Preparing your mockup…");
   try{const c=await exportImage();if(c){lastImg=c;await save(c);msg("Saved. Check your downloads or Photos.")}}catch(err){msg("Sorry, that didn’t save. Try again.")}finally{b.disabled=false}};
-function places(){return used().map(v=>{const zs=[...new Set(design(v).map(o=>o.zone))];return zs.map(z=>ZNAME[v][z]).join(", ")}).join("; ")}
+function spot(o,v){const c=o.getCenterPoint();
+  for(const z of Object.keys(ZNAME[v])){const r=zr(z,v),a=-(r.angle||0)*Math.PI/180,dx=c.x-r.left,dy=c.y-r.top;
+    const x=dx*Math.cos(a)-dy*Math.sin(a),y=dx*Math.sin(a)+dy*Math.cos(a);if(Math.abs(x)<=r.width/2&&Math.abs(y)<=r.height/2)return ZNAME[v][z]}
+  return v==="back"?"Custom spot (back)":"Custom spot (front)"}
+function places(){return used().map(v=>[...new Set(design(v).map(o=>spot(o,v)))].join(", ")).join("; ")}
 const qm=$i("quoteModal");let qmLast=null;
 $i("msQuote").onclick=async()=>{
   const b=$i("msQuote");b.disabled=true;msg("Preparing your mockup…");
