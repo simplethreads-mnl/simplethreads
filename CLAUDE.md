@@ -90,6 +90,12 @@ language with short, numbered steps.
   and <name>-back.webp (1152×1536). The quote window can't carry the image
   (free Web3Forms), so the image is downloaded and the shopper sends it by
   Viber or email.
+- Quick place spots are set per photo in SPOTS (design.html), keyed by photo
+  name (e.g. hoodie-navy, hoodie-navy-back), measured from each photo's centre
+  line, chest width, neckline/hood, pocket/placket and hem, using print-shop
+  rules (full front ~11 in wide, 3 in below neckline; left chest ~3.75 in,
+  4 in off centre; full back ~12 in; upper back ~9 in). ZONES is only a
+  fallback. A new studio photo needs its own SPOTS entry plus a mask.
 - Studio sleeve zones are angled to follow each sleeve ([x, y, w, h, angle]).
   Garment masks in images/studio/masks/<name>[-back].png (transparent PNG,
   made with GrabCut) cut any artwork that falls off the fabric in the printed

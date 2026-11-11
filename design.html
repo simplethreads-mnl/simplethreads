@@ -1134,7 +1134,9 @@ const $i=id=>document.getElementById(id);
 const st={p:0,c:0,view:"front",zone:"full",colour:"#191917",font:"Satoshi",brush:14,fx:true,objs:{front:[],back:[]},hist:[],hi:-1,busy:false};
 let cv=null,guide=null,ready=false;
 const P=()=>SP[st.p], C=()=>P().cols[st.c], file=()=>C()[2];
-const zr=(z,v,t)=>{const a=ZONES[t||P().type][v][z]||ZONES[t||P().type][v].full;return{left:(a[0]+a[2]/2)*W,top:(a[1]+a[3]/2)*H,width:a[2]*W,height:a[3]*H,angle:a[4]||0,originX:"center",originY:"center"}};
+/* Quick place spots measured on each photo (centre line, chest width, neckline or hood, pocket or placket, hem) and set with print-shop rules: full front about 11 in wide and 3 in below the neckline, left chest about 3.75 in wide and 4 in off centre, full back about 12 in wide, upper back about 9 in. Same [x, y, w, h, angle°] format as ZONES, which stays as a fallback. */
+const SPOTS={"tshirt-black":{"full":[0.3272,0.2636,0.3355,0.2974],"chest":[0.5659,0.2636,0.1144,0.0858],"lsleeve":[0.83,0.325,0.11,0.07,-24],"rsleeve":[0.06,0.325,0.11,0.07,24]},"drifit-white":{"full":[0.3389,0.3816,0.3162,0.2803],"chest":[0.5638,0.261,0.1078,0.0809],"lsleeve":[0.825,0.3325,0.1,0.065,-15],"rsleeve":[0.075,0.3325,0.1,0.065,15]},"honeycomb-purple":{"full":[0.335,0.3425,0.33,0.2925],"chest":[0.5697,0.2328,0.1125,0.0844],"lsleeve":[0.825,0.3325,0.1,0.065,-15],"rsleeve":[0.075,0.3325,0.1,0.065,15]},"varsity-black":{"full":[0.3066,0.325,0.3669,0.3252],"chest":[0.5675,0.325,0.1251,0.0938],"lsleeve":[0.8275,0.4,0.095,0.24,-6],"rsleeve":[0.0775,0.4,0.095,0.24,6]},"hoodie-navy":{"full":[0.3405,0.3179,0.319,0.2322],"chest":[0.5674,0.285,0.1087,0.0816],"lsleeve":[0.835,0.42,0.07,0.2,-6],"rsleeve":[0.095,0.42,0.07,0.2,6]},"hoodie-grey":{"full":[0.3405,0.3079,0.319,0.2422],"chest":[0.5674,0.28,0.1087,0.0816],"lsleeve":[0.835,0.42,0.07,0.2,-6],"rsleeve":[0.095,0.42,0.07,0.2,6]},"hoodie-white":{"full":[0.3405,0.3079,0.319,0.2422],"chest":[0.5674,0.28,0.1087,0.0816],"lsleeve":[0.835,0.42,0.07,0.2,-6],"rsleeve":[0.095,0.42,0.07,0.2,6]},"hoodie-brown":{"full":[0.3405,0.3179,0.319,0.2322],"chest":[0.5674,0.285,0.1087,0.0816],"lsleeve":[0.835,0.42,0.07,0.2,-6],"rsleeve":[0.095,0.42,0.07,0.2,6]},"pullover-black":{"full":[0.335,0.2995,0.33,0.2305],"chest":[0.5697,0.27,0.1125,0.0844],"lsleeve":[0.835,0.42,0.07,0.2,-6],"rsleeve":[0.095,0.42,0.07,0.2,6]},"windbreaker-white":{"full":[0.3162,0.2909,0.3575,0.2891],"chest":[0.5706,0.3031,0.1219,0.0914],"lsleeve":[0.83,0.41,0.07,0.2,-7],"rsleeve":[0.1,0.41,0.07,0.2,7]},"corporate-grey":{"full":[0.3317,0.2653,0.3245,0.2876],"chest":[0.5626,0.2764,0.1106,0.083],"lsleeve":[0.83,0.41,0.07,0.2,-7],"rsleeve":[0.1,0.41,0.07,0.2,7]},"tshirt-black-back":{"full":[0.312,0.2101,0.366,0.3202],"upper":[0.3578,0.1575,0.2745,0.0595]},"drifit-white-back":{"full":[0.3245,0.2255,0.345,0.3019],"upper":[0.3676,0.1759,0.2587,0.0561]},"honeycomb-purple-back":{"full":[0.32,0.1988,0.36,0.315],"upper":[0.365,0.147,0.27,0.0585]},"varsity-black-back":{"full":[0.2899,0.2275,0.4002,0.3502],"upper":[0.3399,0.17,0.3002,0.065]},"hoodie-navy-back":{"full":[0.326,0.3522,0.348,0.3045],"upper":[0.3695,0.3283,0.261,0.0566]},"hoodie-grey-back":{"full":[0.326,0.3522,0.348,0.3045],"upper":[0.3695,0.3283,0.261,0.0566]},"hoodie-white-back":{"full":[0.326,0.3522,0.348,0.3045],"upper":[0.3695,0.3283,0.261,0.0566]},"hoodie-brown-back":{"full":[0.326,0.3422,0.348,0.3045],"upper":[0.3695,0.3183,0.261,0.0566]},"pullover-black-back":{"full":[0.32,0.334,0.36,0.315],"upper":[0.365,0.3093,0.27,0.0585]},"windbreaker-white-back":{"full":[0.306,0.3467,0.378,0.3307],"upper":[0.3533,0.3207,0.2835,0.0614]},"corporate-grey-back":{"full":[0.324,0.3313,0.342,0.2992],"upper":[0.3668,0.3078,0.2565,0.0556]}};
+const zr=(z,v,f)=>{const s=SPOTS[(f||file())+(v==="back"?"-back":"")],T=ZONES[P().type][v];const a=(s&&(s[z]||s.full))||T[z]||T.full;return{left:(a[0]+a[2]/2)*W,top:(a[1]+a[3]/2)*H,width:a[2]*W,height:a[3]*H,angle:a[4]||0,originX:"center",originY:"center"}};
 const msg=t=>{$i("msMsg").textContent=t||""};
 
 /* ---------- static UI (works before the engine loads) ---------- */
@@ -1323,11 +1325,11 @@ function schedule(){
 $i("msPick").addEventListener("click",e=>{const b=e.target.closest(".ms-p");if(!b)return;switchBlank(+b.dataset.p,0)});
 $i("msCols").addEventListener("click",e=>{const b=e.target.closest("[data-col]");if(!b)return;switchBlank(st.p,+b.dataset.col)});
 function switchBlank(p,c){
-  const oldT=P().type;st.p=p;st.c=c;paintInfo();autoColour();
+  const oldF=file();st.p=p;st.c=c;paintInfo();autoColour();
   if(!ready){boot();return}
-  const newT=P().type;
-  if(oldT!==newT)["front","back"].forEach(v=>design(v).forEach(o=>{
-    const a=zr(o.zone,v,oldT),b=zr(o.zone,v,newT),k=b.width/a.width;
+  const newF=file();
+  if(oldF!==newF)["front","back"].forEach(v=>design(v).forEach(o=>{
+    const a=zr(o.zone,v,oldF),b=zr(o.zone,v,newF),k=b.width/a.width;
     const cx=b.left+(o.left-a.left)*k,cy=b.top+(o.top-a.top)*(b.height/a.height);
     o.set({left:cx,top:cy,scaleX:o.scaleX*k,scaleY:o.scaleY*k,angle:(o.angle||0)+b.angle-a.angle});o.clipPath=clip(o);o.setCoords();
   }));
