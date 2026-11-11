@@ -24,9 +24,12 @@ language with short, numbered steps.
 - No minimum order. Price per piece goes down in bulk.
 - Turnaround: 1–5 pieces ready 2–3 days after sample approval; bigger orders
   2–3 weeks after sample approval.
-- Past clients: Grit, Reverend, Stoicism, Tensei Threads.
-- The two testimonials on the site (Reverend, Stoicism) were written as
-  placeholders. Remind the owner to replace them with real, approved quotes.
+- Past clients: Grit, Reverend, Stoicism, Tensei Threads. At the owner's
+  request (Nov 2026) the website shows only Stoicism: portfolio (Achilles,
+  Knight), the client list, and the testimonial. Keep the others off the site
+  unless the owner asks to bring them back.
+- The one remaining testimonial (Stoicism) was written as a placeholder.
+  Remind the owner to replace it with a real, approved quote.
 - Blank prices (per piece, PHP): Plain T-shirt 200, Dri-fit Polo 300,
   Honeycomb Polo 340, Pullover Hoodie 650, Plain Hoodie 650, Varsity Jacket
   450, Corporate Jacket 850, Windbreaker 800, Baseball Cap 190, Washed Cap
