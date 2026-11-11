@@ -93,8 +93,11 @@ language with short, numbered steps.
 - Studio sleeve zones are angled to follow each sleeve ([x, y, w, h, angle]).
   Garment masks in images/studio/masks/<name>[-back].png (transparent PNG,
   made with GrabCut) cut any artwork that falls off the fabric in the printed
-  view and download. A new studio photo needs a matching mask. Placement
-  buttons only choose where the next item goes; they never move existing art.
+  view and download. A new studio photo needs a matching mask. Designs can be
+  placed anywhere on the garment: each item is clipped to the garment mask,
+  not to a print box. The "Quick place" buttons only choose where the next
+  item starts (sleeve spots pre-tilted); they never move existing art. The
+  quote lists each item's standard spot, or "Custom spot".
 - Studio photos still needed: originals of the back views for the white, grey,
   and navy Plain Hoodie, Dri-fit Polo, and Honeycomb Polo (current ones are
   640px and look soft). Known limit: on Plain Hoodies, a full-front design
