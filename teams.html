@@ -319,7 +319,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .cat-grid{margin-top:2.5rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem 1rem}
 .pc{display:flex;flex-direction:column}
 .pc[hidden]{display:none}
-.pc-media{display:block;width:100%;aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;position:relative;padding:0;cursor:pointer}
+.pc-media{display:block;width:100%;aspect-ratio:3/4;background:#fff;overflow:hidden;position:relative;padding:0;cursor:pointer}
 .pc-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),opacity .25s}
 @media (hover:hover) and (min-width:769px){.pc-media:hover img{transform:scale(1.04)}}
 .pc-sw,.pm-sw{display:flex;flex-wrap:wrap;gap:0.375rem;margin-top:0.875rem;align-items:center}
@@ -341,10 +341,10 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .pm-x{position:absolute;top:calc(1rem + env(safe-area-inset-top,0px));right:1.25rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;min-height:2.75rem}
 .pm-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:2rem}
 .pm-left,.pm-right{min-width:0}
-.pm-media{aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;position:relative}
+.pm-media{aspect-ratio:3/4;background:#fff;overflow:hidden;position:relative}
 .pm-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .pm-thumbs{margin-top:0.75rem;display:flex;gap:0.5rem;overflow-x:auto;padding-bottom:0.25rem}
-.pm-th{flex:none;width:3.75rem;aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;position:relative;border:1px solid transparent}
+.pm-th{flex:none;width:3.75rem;aspect-ratio:3/4;background:#fff;overflow:hidden;position:relative;border:1px solid transparent}
 .pm-th img{width:100%;height:100%;object-fit:cover}
 .pm-th[aria-pressed="true"]{border-color:var(--ink)}
 .pm-cat{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--ink-muted)}
@@ -365,7 +365,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .qm-panel{background:#f2eee6;width:min(46rem,100%)}
 .qm-title{margin-top:1.25rem;font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1.12;letter-spacing:-0.01em}
 .qm-item{margin-top:1.75rem;display:flex;gap:1.25rem;align-items:center;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:1.25rem 0}
-.qm-thumb{flex:none;width:4.5rem;aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;position:relative}
+.qm-thumb{flex:none;width:4.5rem;aspect-ratio:3/4;background:#fff;overflow:hidden;position:relative}
 .qm-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .qm-info{min-width:0}
 .qm-name{margin-top:0.375rem;font-family:var(--serif);font-size:1.5rem;line-height:1.15}
@@ -492,6 +492,8 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .m-bot ul a:hover{color:var(--on-dark)}
 @media (min-width:640px){.m-nav .l{font-size:3.75rem}.m-bot{flex-direction:row;align-items:flex-end}}
 @media (min-width:1024px){.modal .content{padding-inline:3rem}.m-nav .l{font-size:4.5rem}}
+/* white product tiles: hairline frame drawn above the photo */
+.pc-media::after,.pm-media::after,.pm-th::after,.qm-thumb::after{content:"";position:absolute;inset:0;border:1px solid rgba(25,25,23,0.08);pointer-events:none;z-index:2}
 </style>
 </head>
 <body id="top">
