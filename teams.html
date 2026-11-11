@@ -494,6 +494,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 @media (min-width:1024px){.modal .content{padding-inline:3rem}.m-nav .l{font-size:4.5rem}}
 /* white product tiles: hairline frame drawn above the photo */
 .pc-media::after,.pm-media::after,.pm-th::after,.qm-thumb::after{content:"";position:absolute;inset:0;border:1px solid rgba(25,25,23,0.08);pointer-events:none;z-index:2}
+.price-note{margin-top:0.5rem;font-size:0.875rem;line-height:1.5;color:var(--ink-muted);max-width:44ch}
 </style>
 </head>
 <body id="top">
@@ -533,7 +534,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
         <div data-anim="fade"><span class="eyebrow">Catalogue</span></div>
         <h2 class="sh-title" data-anim="lines">Choose your <span class="accent">blank</span>.</h2>
       </div>
-      <p class="cat-lead" data-anim="fade">Plain apparel, ready for your print or embroidery. Prices are per blank piece; printing, embroidery, and design are quoted per order.</p>
+      <p class="cat-lead" data-anim="fade">Prices are for the plain blank only. Your design is quoted separately — the cost depends on the artwork and how it’s applied: DTF, DTG, silk screen, sublimation, or embroidery.</p>
     </div>
     <div class="cat-tabs" role="tablist" aria-label="Filter catalogue">
       <button class="cat-tab" role="tab" aria-selected="true" data-f="all">All</button>
@@ -560,13 +561,13 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
         <p class="pm-cat" id="pmCat"></p>
         <h3 class="pm-name" id="pmName"></h3>
         <p class="pm-price" id="pmPrice"></p>
+        <p class="price-note">Plain blank, no design yet. Design and decoration are quoted on top, based on your artwork and the method (DTF, DTG, silk screen, sublimation, or embroidery).</p>
         <p class="pm-desc" id="pmDesc"></p>
         <p class="pm-col-l">Available colours</p>
         <p class="pm-cols" id="pmCol"></p>
         <ul class="pm-notes">
           <li>No minimum order</li>
           <li>1–5 pieces ready 2–3 days after sample approval</li>
-          <li>Printing, embroidery, and design quoted separately</li>
           <li>Ask us about bulk pricing</li>
         </ul>
         <div class="pm-actions"><button class="cta solid" id="pmQuote">Get a quote for this <span class="arr">→</span></button></div>
@@ -588,6 +589,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
         <p class="pm-cat" id="qmCat"></p>
         <p class="qm-name" id="qmName"></p>
         <p class="qm-price" id="qmPrice"></p>
+        <p class="price-note">Blank only. Decoration is quoted once we see your design.</p>
       </div>
     </div>
     <form class="qmf" id="quickQuote" novalidate>
@@ -897,7 +899,7 @@ if(grid){
       ${(p.photos||p.views)?`<div class="pc-sw">${swHTML(p,0)}</div>`:""}
       <h3 class="pc-name">${p.name}</h3>
       <p class="pc-col">${meta(p)}</p>
-      <p class="pc-price">${peso(p.price)}<small>per piece</small></p>
+      <p class="pc-price">${peso(p.price)}<small>per piece, blank</small></p>
       <div class="pc-actions"><button class="cta solid" data-quote>Get a quote</button><button class="cta ghost" data-open>View details</button></div>
     </article>`).join("");
   const pm=document.getElementById("catModal"); let cur=-1, lastFocus=null;

@@ -1111,7 +1111,7 @@ if(grid){
       ${(p.photos||p.views)?`<div class="pc-sw">${swHTML(p,0)}</div>`:""}
       <h3 class="pc-name">${p.name}</h3>
       <p class="pc-col">${meta(p)}</p>
-      <p class="pc-price">${peso(p.price)}<small>per piece</small></p>
+      <p class="pc-price">${peso(p.price)}<small>per piece, blank</small></p>
       <div class="pc-actions"><button class="cta solid" data-quote>Get a quote</button><button class="cta ghost" data-open>View details</button></div>
     </article>`).join("");
   const pm=document.getElementById("catModal"); let cur=-1, lastFocus=null;
