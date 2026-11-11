@@ -172,10 +172,13 @@ How to generate:
    "Baseball Cap - Red - Side".
 
 Adding images to the site:
-- Blank mockups (catalogue and Mockup studio) sit on plain white #ffffff
-  with a very soft contact shadow under the garment (cut out with GrabCut,
-  Nov 2026). New blanks should match: generate on white, or cut out the
-  same way. Product tiles are white with a faint hairline frame.
+- Blank mockups (catalogue and Mockup studio) sit on plain white #ffffff.
+  Made by brightening the photo's own backdrop to white (divide by a smooth
+  backdrop model; garment pixels kept as photographed), so each photo keeps
+  its natural soft shadows and untouched edges. Do NOT hard cut-out
+  garments onto white: it removed the cap shadows and scuffed edges
+  (owner feedback, Nov 2026). New blanks: generate on white, or brighten
+  the same way. Product tiles are white with a faint hairline frame.
 - Keep them sharp. Don't over-compress (WebP quality 85 or higher, about
   1200–1500px tall for product images).
 - When a product gets more than one real colour, turn on colour switching
