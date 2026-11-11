@@ -90,6 +90,11 @@ language with short, numbered steps.
   and <name>-back.webp (1152×1536). The quote window can't carry the image
   (free Web3Forms), so the image is downloaded and the shopper sends it by
   Viber or email.
+- Studio sleeve zones are angled to follow each sleeve ([x, y, w, h, angle]).
+  Garment masks in images/studio/masks/<name>[-back].png (transparent PNG,
+  made with GrabCut) cut any artwork that falls off the fabric in the printed
+  view and download. A new studio photo needs a matching mask. Placement
+  buttons only choose where the next item goes; they never move existing art.
 - Studio photos still needed: originals of the back views for the white, grey,
   and navy Plain Hoodie, Dri-fit Polo, and Honeycomb Polo (current ones are
   640px and look soft). Known limit: on Plain Hoodies, a full-front design
