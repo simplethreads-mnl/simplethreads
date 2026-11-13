@@ -84,6 +84,9 @@ language with short, numbered steps.
   where real mockups exist).
 - brand.html: Build Your Brand, with the stitched seam, services for brands,
   portfolio, process, reviews, and quote form.
+- Navigation to the studio: header bar link "Mockups" and the menu item
+  "Mockup Tool & Custom Mockups" (all pages) go to design.html#studio; home
+  card 03 button reads "Mockup Tool & Custom Mockups".
 - design.html: Design & Mockups, with a how-it-works section, the Mockup
   studio, design-studio mockups, and quote form.
 - Mockup studio (design.html, section #studio): shoppers pick a blank, add an
@@ -177,16 +180,10 @@ How to generate:
    "Baseball Cap - Red - Side".
 
 Adding images to the site:
-- Blank mockups (catalogue and Mockup studio) sit on plain white #ffffff.
-  Made by brightening the photo's own backdrop to white (divide by a smooth
-  backdrop model). Garment pixels are NEVER brightened: the garment outline
-  (full-res GrabCut) is grown ~1 px, never shrunk, so garments and their
-  edges stay exactly as photographed and natural soft shadows remain.
-  Light-grey garments (Corporate Jacket, grey hoodie) are close to the
-  backdrop colour; check their edges at 100% after any change. Do NOT hard cut-out
-  garments onto white: it removed the cap shadows and scuffed edges
-  (owner feedback, Nov 2026). New blanks: generate on white, or brighten
-  the same way. Product tiles are white with a faint hairline frame.
+- Blank mockups (catalogue and Mockup studio) keep their ORIGINAL grey
+  studio backgrounds, with grey (#e6e7ea) photo tiles. The owner tried and
+  rejected white-background versions twice (Nov 2026: shadows and edges
+  looked wrong). Don't recolour or cut out backgrounds.
 - Keep them sharp. Don't over-compress (WebP quality 85 or higher, about
   1200–1500px tall for product images).
 - When a product gets more than one real colour, turn on colour switching
