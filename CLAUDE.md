@@ -79,6 +79,11 @@ language with short, numbered steps.
   Build Your Brand, Mockup Tool; no numbers) that have solid buttons;
   portfolio; design studio; principles; about; process; services and print
   methods explained; quote form; testimonials; clients; FAQ; footer.
+- teams.html: before the catalogue, a scroll "blanks fan" showcase (#fan,
+  based on an owner's reference video): one card rises and straightens, six
+  more fan out into a curved hand, then it drifts up with the line "Every
+  piece starts as a blank." Pure CSS/JS, no library; static under reduce
+  motion. Cards use the catalogue photos.
 - teams.html: For Teams & Events, plus the full catalogue (filters, product
   cards, details window, Front/Side views for caps, colour switching only
   where real mockups exist).

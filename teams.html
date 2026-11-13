@@ -493,6 +493,16 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 @media (min-width:640px){.m-nav .l{font-size:3.75rem}.m-bot{flex-direction:row;align-items:flex-end}}
 @media (min-width:1024px){.modal .content{padding-inline:3rem}.m-nav .l{font-size:4.5rem}}
 .price-note{margin-top:0.5rem;font-size:0.875rem;line-height:1.5;color:var(--ink-muted);max-width:44ch}
+/* ===== BLANKS FAN ===== */
+.fan{position:relative;height:250vh;background:#fff;border-top:1px dashed var(--line)}
+.fan-pin{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:4rem}
+.fan-stage{position:relative;width:100%;height:clamp(14rem,48vh,30rem)}
+.fan-card{position:absolute;left:50%;top:50%;width:clamp(5.5rem,22vw,15rem);aspect-ratio:3/4;margin:0;background:#e6e7ea;border:1px solid rgba(25,25,23,0.12);box-shadow:0 1.5rem 2.5rem -1.25rem rgba(25,25,23,0.35);transform:translate(-50%,-50%);will-change:transform,opacity}
+.fan-card img{display:block;width:100%;height:100%;object-fit:cover}
+.fan-cap{text-align:center;margin-top:clamp(1.5rem,5vh,3rem);opacity:0;padding:0 1.5rem}
+.fan-line{margin-top:1rem;font-family:var(--serif);font-size:clamp(1.75rem,4.2vw,3.25rem);line-height:1.12}
+@media (min-width:768px){.fan-card{width:clamp(8rem,16vw,15rem)}}
+@media (prefers-reduced-motion:reduce){.fan{height:auto}.fan-pin{position:relative;height:auto;padding:6rem 0}}
 </style>
 </head>
 <body id="top">
@@ -524,6 +534,25 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
     </dl>
   </div>
 </section>
+<!-- ===== BLANKS FAN (scroll showcase) ===== -->
+<section class="fan" id="fan" aria-label="Our blanks">
+  <div class="fan-pin">
+    <div class="fan-stage">
+      <figure class="fan-card"><img src="images/beanie.webp" alt="Knitted Beanie" loading="lazy" decoding="async"></figure>
+      <figure class="fan-card"><img src="images/tshirt.webp" alt="Plain T-shirt" loading="lazy" decoding="async"></figure>
+      <figure class="fan-card"><img src="images/hoodie-navy.webp" alt="Plain Hoodie" loading="lazy" decoding="async"></figure>
+      <figure class="fan-card"><img src="images/varsity.webp" alt="Varsity Jacket" loading="lazy" decoding="async"></figure>
+      <figure class="fan-card"><img src="images/pullover.webp" alt="Pullover Hoodie" loading="lazy" decoding="async"></figure>
+      <figure class="fan-card"><img src="images/honeycomb.webp" alt="Honeycomb Polo" loading="lazy" decoding="async"></figure>
+      <figure class="fan-card"><img src="images/cap.webp" alt="Baseball Cap" loading="lazy" decoding="async"></figure>
+    </div>
+    <div class="fan-cap">
+      <span class="eyebrow">Our blanks</span>
+      <p class="fan-line">Every piece starts as a <span class="accent">blank</span>.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===== CATALOGUE ===== -->
 <section class="sec" id="catalogue">
   <div class="container">
@@ -978,6 +1007,37 @@ if(grid){
     const f=t.dataset.f; grid.querySelectorAll(".pc").forEach(c=>{c.hidden=!(f==="all"||c.dataset.cat===f)});
   }));
 }
+
+
+/* ===== BLANKS FAN: one card rises and straightens, the rest fan out into a hand, then the fan drifts up ===== */
+(function(){
+  const fan=document.getElementById("fan");if(!fan)return;
+  const cards=[...fan.querySelectorAll(".fan-card")],cap=fan.querySelector(".fan-cap"),n=cards.length,mid=(n-1)/2;
+  const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),ease=t=>1-Math.pow(1-t,3);
+  let ticking=false;
+  function draw(){
+    ticking=false;
+    const r=fan.getBoundingClientRect(),total=Math.max(1,fan.offsetHeight-innerHeight);
+    const p=reduce?1:cl(-r.top/total);
+    const rise=ease(cl(p/0.28)),spread=ease(cl((p-0.28)/0.37)),drift=reduce?0:cl((p-0.68)/0.32);
+    const cw=cards[0].offsetWidth,vh=innerHeight;
+    const sp=Math.min(cw*0.8,(innerWidth*0.94-cw)/(n-1));
+    cards.forEach((el,i)=>{
+      const k=i-mid,centre=Math.abs(k)<0.01;
+      let x=k*sp*spread,y=k*k*cw*0.05*spread-drift*vh*0.08,rot=k*6*spread,s=0.86+0.14*rise;
+      y+=(1-rise)*vh*0.75;rot+=(1-rise)*-14;
+      el.style.transform=`translate(-50%,-50%) translate(${x.toFixed(1)}px,${y.toFixed(1)}px) rotate(${rot.toFixed(2)}deg) scale(${s.toFixed(3)})`;
+      el.style.zIndex=String(100-Math.round(Math.abs(k)*2));
+      el.style.opacity=centre?String(cl(rise*3)):String(cl(spread*5));
+    });
+    cap.style.opacity=String(cl((p-0.55)/0.2));
+    cap.style.transform=`translateY(${((1-cl((p-0.55)/0.2))*1.5-drift*1.2).toFixed(2)}rem)`;
+  }
+  const req=()=>{if(!ticking){ticking=true;requestAnimationFrame(draw)}};
+  addEventListener("scroll",req,{passive:true});addEventListener("resize",req);
+  if(window.__lenis||lenis)(window.__lenis||lenis).on("scroll",req);
+  draw();cards.forEach(c=>{const im=c.querySelector("img");if(!im.complete)im.addEventListener("load",req,{once:true})});
+})();
 
 })();
 </script>
