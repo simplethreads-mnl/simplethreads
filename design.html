@@ -566,6 +566,8 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .qm-send-row{display:flex;flex-wrap:wrap;gap:0.5rem}
 .qm-again{margin-top:1rem;font-size:0.875rem;color:var(--ink);text-decoration:underline;text-underline-offset:3px;min-height:2.75rem;padding:0;background:none;border:0;cursor:pointer}
 .price-note{margin-top:0.5rem;font-size:0.875rem;line-height:1.5;color:var(--ink-muted);max-width:44ch}
+/* sections far off screen skip layout and paint until they come near */
+.cv{content-visibility:auto;contain-intrinsic-size:auto 60rem}
 </style>
 </head>
 <body id="top">
@@ -697,7 +699,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== DESIGN STUDIO ===== -->
-<section class="sec grey" id="design">
+<section class="cv sec grey" id="design">
   <div class="container">
     <div class="dz-head">
       <div class="sh">
@@ -829,7 +831,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 
 
 <!-- ===== FAQ ===== -->
-<section class="sec">
+<section class="cv sec">
   <div class="container g12">
     <div class="s4 sh">
       <div data-anim="fade"><span class="eyebrow">Questions</span></div>
