@@ -28,8 +28,9 @@ language with short, numbered steps.
   request (Nov 2026) the website shows only Stoicism: portfolio (Achilles,
   Knight), the client list, and the testimonial. Keep the others off the site
   unless the owner asks to bring them back.
-- The one remaining testimonial (Stoicism) was written as a placeholder.
-  Remind the owner to replace it with a real, approved quote.
+- The Stoicism testimonial was removed from the home page (Nov 2026); the
+  placeholder still appears on brand.html. Remind the owner to replace or
+  remove it.
 - Catalogue prices are for the plain blank only (no design). On the site
   this is stated in the catalogue intro, on every price ("per piece,
   blank"), in the details window and in the quote windows: design and
@@ -85,12 +86,12 @@ language with short, numbered steps.
   Custom Mockups" -> design.html#studio). The pill button is a deliberate
   exception to the square uppercase button style;
   portfolio; design studio; principles; about; process; services and print
-  methods explained; quote form; testimonials; clients; FAQ; footer.
-- teams.html: before the catalogue, a scroll "blanks fan" showcase (#fan,
-  based on an owner's reference video): one card rises and straightens, six
-  more fan out into a curved hand, then it drifts up with the line "Every
-  piece starts as a blank." Pure CSS/JS, no library; static under reduce
-  motion. Cards use the catalogue photos.
+  methods explained; quote form; FAQ; footer. Removed at the owner's request
+  (Nov 2026): the "Start a run" dark section, testimonials ("In their
+  words"), and the client list ("Brands that wear our work"). The Our Blanks
+  section is a PINNED deck (#start, .hs-deck, 240vh, sticky): a stacked deck
+  of blank cards fans out into a hand as you scroll (photos from
+  images/thumbs/, 600px). The fan is on the home page only, not Teams.
 - teams.html: For Teams & Events, plus the full catalogue (filters, product
   cards, details window, Front/Side views for caps, colour switching only
   where real mockups exist).
@@ -203,6 +204,15 @@ Adding images to the site:
 - Keep the site note that photos are for reference and actual products may
   vary slightly.
 - Keep an updated list of which colour mockups are still missing.
+
+## PERFORMANCE (owner: "very laggy" on iPad, Nov 2026)
+- Header is a plain white bar (no mix-blend-mode; that forced full-page
+  repaints on every scroll on iPad).
+- Lenis smooth scroll runs only on mouse/trackpad devices (pointer:fine);
+  iPads and phones use native scrolling. Parallax is off on touch devices.
+- Animated cards use small thumbnails, transform-only animation, rAF
+  throttled, and only update while on screen. sticky needs every ancestor to
+  have overflow visible (an overflow:hidden parent breaks pinning).
 
 ## HOW TO WORK
 1. Always edit the latest version of the files the owner uploads (or the
