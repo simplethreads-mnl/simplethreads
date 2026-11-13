@@ -148,22 +148,22 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 @media (prefers-reduced-motion:reduce){.h3-float,.h3-shadow{animation:none}}
 
 /* ===== HEADER ===== */
-.hdr{position:fixed;inset-inline:0;top:0;z-index:50;color:#fff;mix-blend-mode:difference;padding-top:env(safe-area-inset-top,0px)}
+.hdr{position:fixed;inset-inline:0;top:0;z-index:50;color:var(--ink);background:rgba(255,255,255,0.94);border-bottom:1px dashed var(--line);padding-top:env(safe-area-inset-top,0px)}
 .hdr-in{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:1.25rem 1.5rem}
 .hdr-left{display:none}
 .hdr-left p:first-child{font-size:0.875rem;letter-spacing:-0.02em}
-.hdr-left p:last-child{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:rgba(255,255,255,0.7)}
+.hdr-left p:last-child{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted)}
 .logo{display:inline-flex;align-items:center;gap:0.75rem;justify-self:start}
 .logo .mark{width:1.5rem;height:1.5rem;flex:none;display:block}
 .logo .word{font-family:var(--serif);font-style:italic;text-transform:lowercase;font-size:1.125rem;letter-spacing:0.04em}
 .hdr-right{justify-self:end;display:flex;align-items:center;gap:2rem}
 .hdr-nav{display:none;gap:2rem}
 .hdr-nav a{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.875rem;text-transform:uppercase;letter-spacing:0.14em}
-.hdr-nav a::before{content:"";width:1px;height:1px;border-radius:50%;background:#fff;opacity:0;transition:opacity .3s}
+.hdr-nav a::before{content:"";width:1px;height:1px;border-radius:50%;background:currentColor;opacity:0;transition:opacity .3s}
 .hdr-nav a:hover::before{opacity:1}
 .menu-btn{display:inline-flex;align-items:center;gap:0.75rem}
 .menu-btn .lbl{display:none;font-size:0.875rem;text-transform:uppercase;letter-spacing:0.16em}
-.burger{display:flex;flex-direction:column;gap:0.375rem}.burger i{display:block;height:1px;width:1.5rem;background:#fff}
+.burger{display:flex;flex-direction:column;gap:0.375rem}.burger i{display:block;height:1px;width:1.5rem;background:currentColor}
 @media (min-width:640px){.menu-btn .lbl{display:inline}}
 @media (min-width:1024px){.hdr-in{grid-template-columns:repeat(3,1fr);padding:1.25rem 3rem}.hdr-left{display:block}.hdr .logo{justify-self:center}.hdr-nav{display:flex}}
 
@@ -516,10 +516,18 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 @media (min-width:640px){.m-nav .l{font-size:3.75rem}.m-bot{flex-direction:row;align-items:flex-end}}
 @media (min-width:1024px){.modal .content{padding-inline:3rem}.m-nav .l{font-size:4.5rem}}
 /* ===== START HERE: three sections ===== */
+/* pinned deck: stays on screen while the cards fan out */
+.hs.hs-deck{height:240vh;padding:0;overflow:visible}
+.hs-pin{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;padding:5.5rem 1.5rem 2rem;overflow:hidden}
+.hs-deck .hs-vis{width:100%;height:clamp(14rem,44vh,26rem)}
+.hs-deck .hs-card{transform-origin:50% 135%}
+.hs-deck .hs-copy{margin-top:clamp(1.25rem,4vh,3rem)}
+@media (prefers-reduced-motion:reduce){.hs-deck{height:auto}.hs-pin{position:relative;height:auto;padding:5rem 1.5rem 6rem}}
+
 .hs{background:#fff;border-top:1px dashed var(--line);padding:5rem 1.5rem 6rem;text-align:center;overflow:hidden}
 .hs-grey{background:var(--surface-grey)}
 .hs-vis{position:relative;height:clamp(15rem,46vh,27rem);max-width:72rem;margin:0 auto}
-.hs-card{position:absolute;left:50%;top:50%;width:clamp(6rem,22vw,14rem);aspect-ratio:3/4;margin:0;background:#e6e7ea;border:1px solid rgba(25,25,23,0.12);box-shadow:0 1.5rem 2.5rem -1.25rem rgba(25,25,23,0.35);transform:translate(-50%,-50%);will-change:transform,opacity}
+.hs-card{position:absolute;left:50%;top:50%;width:clamp(6rem,22vw,14rem);aspect-ratio:3/4;margin:0;background:#e6e7ea;border:1px solid rgba(25,25,23,0.12);box-shadow:0 1rem 1.75rem -1rem rgba(25,25,23,0.3);transform:translate(-50%,-50%);will-change:transform;backface-visibility:hidden}
 .hs-card img{display:block;width:100%;height:100%;object-fit:cover}
 .hs-seam .hs-card{width:clamp(8.5rem,30vw,17rem)}
 .hs-mock .hs-card{width:clamp(8.5rem,30vw,17rem)}
@@ -588,15 +596,16 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== START HERE: three separate paths ===== -->
-<section class="hs" id="start" data-hs="fan">
-  <div class="hs-vis hs-fan" aria-hidden="false">
-    <figure class="hs-card"><img src="images/beanie.webp" alt="Knitted Beanie" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card"><img src="images/tshirt.webp" alt="Plain T-shirt" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card"><img src="images/hoodie-navy.webp" alt="Plain Hoodie" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card"><img src="images/varsity.webp" alt="Varsity Jacket" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card"><img src="images/pullover.webp" alt="Pullover Hoodie" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card"><img src="images/honeycomb.webp" alt="Honeycomb Polo" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card"><img src="images/cap.webp" alt="Baseball Cap" loading="lazy" decoding="async"></figure>
+<section class="hs hs-deck" id="start" data-hs="fan">
+ <div class="hs-pin">
+  <div class="hs-vis hs-fan">
+    <figure class="hs-card"><img src="images/thumbs/beanie.webp" width="600" height="800" alt="Knitted Beanie" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card"><img src="images/thumbs/tshirt.webp" width="600" height="800" alt="Plain T-shirt" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card"><img src="images/thumbs/hoodie-navy.webp" width="600" height="800" alt="Plain Hoodie" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card"><img src="images/thumbs/varsity.webp" width="600" height="800" alt="Varsity Jacket" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card"><img src="images/thumbs/pullover.webp" width="600" height="800" alt="Pullover Hoodie" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card"><img src="images/thumbs/honeycomb.webp" width="600" height="800" alt="Honeycomb Polo" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card"><img src="images/thumbs/cap.webp" width="600" height="800" alt="Baseball Cap" loading="lazy" decoding="async"></figure>
   </div>
   <div class="hs-copy">
     <p class="hs-kick">Our blanks</p>
@@ -604,6 +613,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
     <a class="pill" href="teams.html#catalogue">Browse catalogue <span class="arr">→</span></a>
     <p class="hs-cap">Shirts, polos, jackets, caps, and beanies. No minimum order.</p>
   </div>
+ </div>
 </section>
 
 <section class="hs hs-grey" data-hs="seam">
@@ -662,19 +672,6 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
       <figure class="dz-item" data-anim="plate" data-delay="100"><div class="media dz-media"><img data-img="d_unchained" alt="Unchained tee design, front and back mockup"></div><figcaption><div><h3>Unchained</h3><p class="med">Front graphic with weight plate, full-back spine wings</p></div><span class="dz-tag">Mockup</span></figcaption></figure>
     </div>
     <div class="dz-cta" data-anim="fadeUp"><a class="cta solid" href="#contact">Start a design <span class="arr">→</span></a></div>
-  </div>
-</section>
-
-<!-- ===== PINNED CTA #1 ===== -->
-<section class="pinned">
-  <div class="container g12">
-    <div class="s6 copy">
-      <div data-anim="fade"><span class="eyebrow dark">Start a run</span></div>
-      <h2 data-anim="lines">Every idea starts with one shirt.</h2>
-      <p class="body" data-anim="words" data-stagger="16">Bring a finished design, a rough sketch, or just a name. We’ll help shape the artwork, pick the right blank and print, and sample it before the full run.</p>
-      <div class="cta-wrap" data-anim="fadeUp" data-delay="300"><a class="cta dark solid" href="#contact">Get a quote <span class="arr">→</span></a></div>
-    </div>
-    <div class="s5 c8" data-anim="plate"><div class="media"><img data-img="excalibur" alt=""></div></div>
   </div>
 </section>
 
@@ -871,32 +868,6 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 
-<!-- ===== TESTIMONIALS ===== -->
-<section class="sec">
-  <div class="container">
-    <div class="sh">
-      <div data-anim="fade"><span class="eyebrow">From our clients</span></div>
-      <h2 class="sh-title" data-anim="lines">In their <span class="accent">words</span>.</h2>
-    </div>
-    <div class="quotes">
-      <figure data-anim="fadeUp"><blockquote>“They took our rough idea and turned it into a print we’re proud of. The quality speaks for itself.”</blockquote><figcaption><p class="who">Stoicism</p><p class="role">Clothing brand</p></figcaption></figure>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CLIENTS ===== -->
-<section class="sec grey clients">
-  <div class="container">
-    <div class="sh">
-      <div data-anim="fade"><span class="eyebrow">Who we’ve worked with</span></div>
-      <h2 class="sh-title" data-anim="lines">Brands that wear our work.</h2>
-    </div>
-    <ul class="venues">
-      <li data-anim="fadeUp"><span class="n">01</span><span class="v">Stoicism</span></li>
-    </ul>
-  </div>
-</section>
-
 <!-- ===== FAQ ===== -->
 <section class="sec">
   <div class="container g12">
@@ -1015,7 +986,7 @@ document.addEventListener("transitionend",e=>{const t=e.target;if(t.matches&&t.m
 
 /* lenis */
 let lenis=null;
-if(window.Lenis&&!reduce){lenis=new Lenis({smoothWheel:true});const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};requestAnimationFrame(raf)}
+if(window.Lenis&&!reduce&&matchMedia("(pointer:fine)").matches){lenis=new Lenis({smoothWheel:true});const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};requestAnimationFrame(raf)}
 function go(h){
   if(h==="#top"){lenis?lenis.scrollTo(0):scrollTo({top:0,behavior:reduce?"auto":"smooth"});return}
   const el=document.querySelector(h);if(!el)return;
@@ -1025,7 +996,7 @@ document.addEventListener("click",e=>{const a=e.target.closest('a[href^="#"]');i
   if(a.closest("#menu")){closeMenu();setTimeout(()=>go(h),260)}else go(h)});
 
 /* parallax */
-const plx=[...document.querySelectorAll(".parallax")],lg=matchMedia("(min-width:1024px)");
+const plx=[...document.querySelectorAll(".parallax")],lg=matchMedia("(min-width:1024px) and (pointer:fine)");
 let plxRem=parseFloat(getComputedStyle(document.documentElement).fontSize),plxOn=true;
 function parallax(e){if(reduce||!plx.length)return;if(e&&e.type==="resize")plxRem=parseFloat(getComputedStyle(document.documentElement).fontSize);
   if(!lg.matches){if(plxOn){plx.forEach(el=>el.style.transform="");plxOn=false}return}plxOn=true;const vh=innerHeight,rem=plxRem;
@@ -1225,15 +1196,22 @@ if(grid){
   const secs=[...document.querySelectorAll(".hs[data-hs]")];if(!secs.length)return;
   const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),ease=t=>1-Math.pow(1-t,3);
   const T=(el,x,y,r,s)=>{el.style.transform=`translate(-50%,-50%) translate(${x.toFixed(1)}px,${y.toFixed(1)}px) rotate(${r.toFixed(2)}deg) scale(${s.toFixed(3)})`};
-  function prog(sec){const r=sec.getBoundingClientRect(),vh=innerHeight;return reduce?1:cl((vh-r.top)/(vh*0.95))}
+  function prog(sec){const r=sec.getBoundingClientRect(),vh=innerHeight;if(reduce)return 1;
+    if(sec.classList.contains("hs-deck"))return cl(-r.top/Math.max(1,sec.offsetHeight-vh));
+    return cl((vh-r.top)/(vh*0.95))}
   const draw={
     fan(sec,p){
-      const cards=[...sec.querySelectorAll(".hs-card")],n=cards.length,mid=(n-1)/2,cw=cards[0].offsetWidth,vh=innerHeight;
-      const rise=ease(cl(p/0.45)),spread=ease(cl((p-0.4)/0.5));
-      const sp=Math.min(cw*0.8,(Math.min(innerWidth,1150)*0.94-cw)/(n-1));
-      cards.forEach((el,i)=>{const k=i-mid,c=Math.abs(k)<0.01;
-        T(el,k*sp*spread,k*k*cw*0.05*spread+(1-rise)*vh*0.45,k*6*spread+(1-rise)*-14,0.86+0.14*rise);
-        el.style.zIndex=String(100-Math.round(Math.abs(k)*2));el.style.opacity=c?String(cl(rise*3)):String(cl(spread*5))});
+      const cards=sec._c||(sec._c=[...sec.querySelectorAll(".hs-card")]),copy=sec._k||(sec._k=sec.querySelector(".hs-copy"));
+      const n=cards.length,mid=(n-1)/2,cw=sec._w||(sec._w=cards[0].offsetWidth);
+      const spread=ease(cl((p-0.08)/0.62));
+      const sp=Math.min(cw*0.5,(Math.min(innerWidth,1150)*0.8-cw)/(n-1));
+      cards.forEach((el,i)=>{const k=i-mid;
+        /* stacked deck: tiny offsets; spread: rotate around a point below the cards, like fanning a hand */
+        const sx=k*1.5*(1-spread),sy=-i*1.2*(1-spread),sr=(k*0.8)*(1-spread);
+        T(el,k*sp*spread+sx,sy+k*k*1.5*spread,k*8*spread+sr,1);
+        el.style.zIndex=String(100-Math.round(Math.abs(k)*2))});
+      copy.style.opacity=String(cl((p-0.45)/0.25));
+      copy.style.transform=`translateY(${((1-cl((p-0.45)/0.25))*1.25).toFixed(2)}rem)`;
     },
     seam(sec,p){
       const l=sec.querySelector(".hs-l"),r=sec.querySelector(".hs-r"),st=sec.querySelector(".hs-stitch"),cw=l.offsetWidth;
@@ -1253,7 +1231,7 @@ if(grid){
   let ticking=false;
   function run(){ticking=false;secs.forEach(sec=>{const r=sec.getBoundingClientRect();if(r.bottom<-200||r.top>innerHeight+200)return;draw[sec.dataset.hs](sec,prog(sec))})}
   const req=()=>{if(!ticking){ticking=true;requestAnimationFrame(run)}};
-  addEventListener("scroll",req,{passive:true});addEventListener("resize",req);if(lenis)lenis.on("scroll",req);
+  addEventListener("scroll",req,{passive:true});addEventListener("resize",()=>{secs.forEach(s=>{s._w=0});req()});if(lenis)lenis.on("scroll",req);
   secs.forEach(sec=>sec.querySelectorAll("img").forEach(im=>im.addEventListener("load",req,{once:true})));
   secs.forEach(sec=>draw[sec.dataset.hs](sec,prog(sec)));
 })();
