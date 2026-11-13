@@ -75,8 +75,15 @@ language with short, numbered steps.
 
 ## SITE STRUCTURE (static HTML on Vercel, deployed from GitHub)
 - index.html: home page. Hero with a "Three steps. That's it." card; motto
-  quote; "Start here / What are you making?" with three door cards (Our Blanks,
-  Build Your Brand, Mockup Tool; no numbers) that have solid buttons;
+  quote; three separate "start here" sections (#start; owner's references: the
+  Portrait site), each centred with its own scroll animation, a kicker, a
+  big headline with one italic word, ONE dark rounded "pill" button and a
+  small caption: Our Blanks (blank cards fan out, "Browse catalogue" ->
+  teams.html#catalogue), Build Your Brand (Stoicism photos part and a
+  twin-needle seam sews between them, "Start a brand"), Mockup Tool (blank
+  tee, dashed print area draws, finished mockup slides in, "Mockup Tool &
+  Custom Mockups" -> design.html#studio). The pill button is a deliberate
+  exception to the square uppercase button style;
   portfolio; design studio; principles; about; process; services and print
   methods explained; quote form; testimonials; clients; FAQ; footer.
 - teams.html: before the catalogue, a scroll "blanks fan" showcase (#fan,
@@ -91,7 +98,7 @@ language with short, numbered steps.
   portfolio, process, reviews, and quote form.
 - Navigation to the studio: header bar link "Mockups" and the menu item
   "Mockup Tool & Custom Mockups" (all pages) go to design.html#studio; home
-  card 03 button reads "Mockup Tool & Custom Mockups".
+  Mockup Tool section button reads "Mockup Tool & Custom Mockups".
 - design.html: Design & Mockups, with a how-it-works section, the Mockup
   studio, design-studio mockups, and quote form.
 - Mockup studio (design.html, section #studio): shoppers pick a blank, add an
