@@ -89,9 +89,9 @@ language with short, numbered steps.
   methods explained; quote form; FAQ; footer. Removed at the owner's request
   (Nov 2026): the "Start a run" dark section, testimonials ("In their
   words"), and the client list ("Brands that wear our work"). The Our Blanks
-  section is a PINNED deck (#start, .hs-deck, 240vh, sticky): a stacked deck
-  of blank cards fans out into a hand as you scroll (photos from
-  images/thumbs/, 600px). The fan is on the home page only, not Teams.
+  section (#start) is NOT pinned: a stacked deck of blank cards fans out
+  into a hand as the section scrolls up the screen (photos from
+  images/thumbs/). The fan is on the home page only, not Teams.
 - teams.html: For Teams & Events, plus the full catalogue (filters, product
   cards, details window, Front/Side views for caps, colour switching only
   where real mockups exist).
@@ -141,7 +141,7 @@ language with short, numbered steps.
 
 ### Repository notes (current state, checked Nov 2026)
 - Pages load many photos from the `images/` folder (product mockups as
-  .webp, portfolio as .jpg, logos in `images/brand/`). Not everything is
+  .webp, portfolio as .webp, logos in `images/brand/`). Not everything is
   base64 inside the pages. When a change adds or replaces a photo, tell the
   owner exactly which image files to upload together with the page, and to
   keep the folder name `images`.
@@ -205,14 +205,28 @@ Adding images to the site:
   vary slightly.
 - Keep an updated list of which colour mockups are still missing.
 
-## PERFORMANCE (owner: "very laggy" on iPad, Nov 2026)
-- Header is a plain white bar (no mix-blend-mode; that forced full-page
-  repaints on every scroll on iPad).
-- Lenis smooth scroll runs only on mouse/trackpad devices (pointer:fine);
-  iPads and phones use native scrolling. Parallax is off on touch devices.
-- Animated cards use small thumbnails, transform-only animation, rAF
-  throttled, and only update while on screen. sticky needs every ancestor to
-  have overflow visible (an overflow:hidden parent breaks pinning).
+## PERFORMANCE (owner: "very laggy" on iPad, Nov 2026; must stay smooth)
+- NO PINNING. The owner dislikes the page holding still for an animation.
+  Animations must be paced by the scroll while the page keeps moving.
+- Scroll-paced animation = CSS scroll-driven animations only
+  (`view-timeline` on the section's visual + `animation-timeline`,
+  `animation-range`), never JavaScript per scroll frame. The element's normal
+  style is its finished state; keyframes describe only the start. Fallback
+  for browsers without scroll timelines: play the same keyframes once when
+  the section enters (`.hs.in`). Use `overflow:clip`, not `overflow:hidden`,
+  on ancestors (hidden creates a scroll container and breaks the timeline).
+- Animate only transform and opacity. No layout reads (getBoundingClientRect,
+  offsetWidth) inside scroll handlers.
+- Header is a plain white bar (no mix-blend-mode).
+- Lenis smooth scroll only on mouse/trackpad devices; parallax and the hero
+  tee tilt are off on touch devices. Hero animations pause off screen.
+- index.html below-the-fold sections use `.cv` (content-visibility:auto).
+- Word-by-word text reveals are capped (max 480 ms stagger).
+- Images: all WebP (PNG only for studio masks), none over 300 KB (largest
+  about 156 KB); animated cards use images/thumbs/. Keep new images under
+  300 KB.
+- Measured on the home page (touch emulation, 4x slowed CPU): work per
+  scroll frame 13.5 ms -> 5.2 ms after these changes.
 
 ## HOW TO WORK
 1. Always edit the latest version of the files the owner uploads (or the
