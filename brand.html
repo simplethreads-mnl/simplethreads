@@ -394,6 +394,11 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .page-cta{margin-top:3.5rem;display:flex;flex-wrap:wrap;gap:1rem}
 .seam-wrap{position:relative}
 .seam{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:2}
+.seam-rev{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden;pointer-events:none;z-index:2;will-change:transform}
+.seam-rev-in{position:absolute;inset:0;will-change:transform}
+.seam-rev-in svg{display:block;overflow:visible}
+.seam-needle{position:absolute;left:-8px;top:-40px;width:16px;height:56px;pointer-events:none;z-index:3;transform-origin:8px 40px;transition:opacity .6s ease;opacity:0;will-change:transform}
+.seam-needle svg{display:block}
 .seam-wrap .ph,.seam-wrap .sec{position:relative}
 /* ===== CARD VISUALS (brand page) ===== */
 .card-vis{aspect-ratio:20/21;max-width:17rem;margin-bottom:1.75rem;display:grid;place-items:center}
@@ -407,7 +412,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .sketch.drawn .sk-tag{opacity:1;transition:opacity .4s var(--after,0ms);animation:sktag 2.2s cubic-bezier(.3,.6,.3,1) var(--after,0ms) both}
 @keyframes sktag{0%{transform:rotate(14deg)}30%{transform:rotate(-8deg)}55%{transform:rotate(4deg)}78%{transform:rotate(-1.5deg)}100%{transform:rotate(0)}}
 @media (prefers-reduced-motion:reduce){.sketch.drawn .sk-tag{animation:none}}
-.sketch{margin:0;width:100%}
+.sketch{margin:0;width:100%;contain:layout paint}
 .sketch svg{display:block;width:100%;height:auto;overflow:visible}
 .sketch path{fill:none;stroke:#2b2a27;stroke-linecap:round;stroke-linejoin:round}
 .sk-g{stroke-width:0.8;opacity:0.14;stroke-dasharray:2 4}
@@ -417,8 +422,9 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .sk-r{stroke-width:0.7;opacity:0.5}
 .sk-ghost path{stroke-width:0.7;opacity:0.22}
 .sk-stitch-src{display:none}
-.sk-stitches line{stroke:#191917;stroke-width:1;stroke-linecap:round;opacity:0;transition:opacity .25s ease}
-.sketch.drawn .sk-stitches line{opacity:0.8}
+.sk-stitches line{stroke:#191917;stroke-width:1;stroke-linecap:round}
+.sk-stitches{opacity:0;transition:opacity .6s ease}
+.sketch.drawn .sk-stitches{opacity:0.8;transition-delay:var(--after,0ms)}
 /* ===== TESTIMONIALS ===== */
 
 .quotes{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem}
@@ -493,6 +499,8 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .m-bot ul a:hover{color:var(--on-dark)}
 @media (min-width:640px){.m-nav .l{font-size:3.75rem}.m-bot{flex-direction:row;align-items:flex-end}}
 @media (min-width:1024px){.modal .content{padding-inline:3rem}.m-nav .l{font-size:4.5rem}}
+/* sections far off screen skip layout and paint until they come near */
+.cv{content-visibility:auto;contain-intrinsic-size:auto 60rem}
 </style>
 </head>
 <body id="top">
@@ -655,7 +663,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 </div>
 <!-- ===== PORTFOLIO ===== -->
-<section class="sec" id="work">
+<section class="cv sec" id="work">
   <div class="container">
     <div class="sh">
       <div data-anim="fade"><span class="eyebrow">Brands we’ve built</span></div>
@@ -667,7 +675,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== PROCESS ===== -->
-<section class="sec grey" id="process">
+<section class="cv sec grey" id="process">
   <div class="container g12">
     <div class="s5"><div class="sticky sh">
       <div data-anim="fade"><span class="eyebrow">From idea to delivery</span></div>
@@ -684,7 +692,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== TESTIMONIALS ===== -->
-<section class="sec">
+<section class="cv sec">
   <div class="container">
     <div class="sh">
       <div data-anim="fade"><span class="eyebrow">From our clients</span></div>
@@ -697,7 +705,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== CLIENTS ===== -->
-<section class="sec grey clients">
+<section class="cv sec grey clients">
   <div class="container">
     <div class="sh">
       <div data-anim="fade"><span class="eyebrow">Who we’ve worked with</span></div>
@@ -1034,7 +1042,7 @@ if(grid){
   const NS="http://www.w3.org/2000/svg",reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   function prep(fig){
     const lines=[...fig.querySelectorAll(".sk-lines path")],ghost=fig.querySelector(".sk-ghost"),out=fig.querySelector(".sk-stitches");
-    lines.filter(p=>p.classList.contains("sk-o")).forEach(p=>{const c=p.cloneNode();c.removeAttribute("class");c.setAttribute("transform","translate(0.8 0.6)");ghost.appendChild(c)});
+    /* (no duplicated "ghost" outlines: they doubled the drawing work) */
     const ghosts=[...ghost.querySelectorAll("path")],stitches=[];
     fig.querySelectorAll(".sk-stitch-src path").forEach(src=>{const L=src.getTotalLength();for(let d=0;d+3<=L;d+=6.5){const a=src.getPointAtLength(d),b=src.getPointAtLength(d+3.2);const l=document.createElementNS(NS,"line");l.setAttribute("x1",a.x.toFixed(1));l.setAttribute("y1",a.y.toFixed(1));l.setAttribute("x2",b.x.toFixed(1));l.setAttribute("y2",b.y.toFixed(1));out.appendChild(l);stitches.push(l)}});
     if(reduce){fig.classList.add("drawn");return null}
@@ -1049,7 +1057,7 @@ if(grid){
       t+=p.classList.contains("sk-o")?dur*0.7:dur*0.4});
     st.ghosts.forEach((p,i)=>{const L=p.getTotalLength();p.style.transition=`stroke-dashoffset ${Math.min(850,L*2)}ms ease ${start+(t-start)*0.55+i*80}ms`;p.style.strokeDashoffset=0});
     const after=t+250;fig.style.setProperty("--after",after+"ms");
-    st.stitches.forEach((l,i)=>{l.style.transitionDelay=(after+i*14)+"ms"});
+    /* stitches appear as one group (a single opacity change instead of hundreds) */
     requestAnimationFrame(()=>fig.classList.add("drawn"));
     // scissors ride the cutting line while its stitches appear
     const sc=fig.querySelector(".sk-scissors"),path=fig.querySelector(".sk-stitch-src path");
@@ -1078,7 +1086,7 @@ if(grid){
   const NS="http://www.w3.org/2000/svg", INK="#191917";
   const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e};
-  let W=0,H=0,y0=0,clipRect,needle,tail,pts=[],maxY=[];
+  let W=0,H=0,y0=0,rev,revIn,needle,tail,pts=[],maxY=[];
   let cur=0,target=0,intro=0,introTarget=0,introLen=0,running=false,built=false;
 
   function build(){
@@ -1090,15 +1098,17 @@ if(grid){
       ? `M ${W*0.62} 118 C ${W*0.72} 128, ${X} ${Math.max(hh*0.2,140)}, ${X} ${Math.max(hh*0.36,200)} L ${X} ${H-26}`
       : `M ${W*0.6} 70 C ${W*0.68} 82, ${W*0.9} ${Math.max(hh*0.14,100)}, ${W*0.84} ${hh*0.36} S ${W*0.7} ${hh*0.62}, ${W*0.8} ${hh*0.72} S ${X} ${hh*0.82}, ${X} ${hh*1.02} L ${X} ${H-26}`;
     svg.setAttribute("viewBox",`0 0 ${W} ${H}`); svg.innerHTML="";
-    const defs=el("defs",{}), clip=el("clipPath",{id:"seamClip",clipPathUnits:"userSpaceOnUse"});
-    clipRect=el("rect",{x:0,y:-40,width:W,height:0});
-    clip.appendChild(clipRect); defs.appendChild(clip); svg.appendChild(defs);
-    const g=el("g",{"clip-path":"url(#seamClip)"});
+    /* the stitches are drawn ONCE into their own layer; scrolling only slides two wrappers (a reveal window and its counter-move),
+       so the browser never redraws the long seam: transform-only, compositor work */
+    if(rev) rev.remove();
+    rev=document.createElement("div"); rev.className="seam-rev"; revIn=document.createElement("div"); revIn.className="seam-rev-in";
+    const st=el("svg",{viewBox:`0 0 ${W} ${H}`,width:W,height:H,"aria-hidden":"true"});
+    const g=el("g",{});
     // twin-needle machine stitch: two parallel rows of short stitches
     const main=el("path",{d,fill:"none",stroke:INK,"stroke-width":1.6,"stroke-dasharray":"7 4.5","stroke-linecap":"round"});
     g.appendChild(main);
     g.appendChild(el("path",{d,fill:"none",stroke:INK,"stroke-width":1.6,"stroke-dasharray":"7 4.5","stroke-linecap":"round",transform:"translate(-6 0)",opacity:0.55}));
-    svg.appendChild(g);
+    st.appendChild(g); revIn.appendChild(st); rev.appendChild(revIn); wrap.appendChild(rev);
     // measure the seam once: a point every few px, plus how far down it has reached
     const len=main.getTotalLength(), step=4; pts=[]; maxY=[]; let my=-1e9;
     for(let L=0;L<=len;L+=step){const p=main.getPointAtLength(L);pts.push(p);my=Math.max(my,p.y);maxY.push(my)}
@@ -1106,12 +1116,14 @@ if(grid){
     // thread tail where the seam starts
     tail=el("path",{d:`M ${p0.x} ${p0.y} q -18 -14 -34 -4 t -26 10`,fill:"none",stroke:INK,"stroke-width":1.1,style:"transition:opacity .8s ease;opacity:"+(introTarget?0.6:0)});
     svg.appendChild(tail);
-    // needle that rides at the end of the stitching
-    needle=el("g",{style:"transition:opacity .6s ease;opacity:0"});
-    needle.appendChild(el("line",{x1:0,y1:-34,x2:0,y2:10,stroke:INK,"stroke-width":2.2,"stroke-linecap":"round"}));
-    needle.appendChild(el("ellipse",{cx:0,cy:-27,rx:1.3,ry:3.4,fill:"#fff",stroke:INK,"stroke-width":0.9}));
-    needle.appendChild(el("circle",{cx:0,cy:0,r:3.2,fill:"none",stroke:INK,"stroke-width":1,opacity:0.5}));
-    svg.appendChild(needle);
+    // needle that rides at the end of the stitching: its own tiny layer, moved with a CSS transform
+    if(needle) needle.remove();
+    needle=document.createElement("div"); needle.className="seam-needle";
+    const ns=el("svg",{viewBox:"-8 -40 16 56",width:16,height:56,"aria-hidden":"true"});
+    ns.appendChild(el("line",{x1:0,y1:-34,x2:0,y2:10,stroke:INK,"stroke-width":2.2,"stroke-linecap":"round"}));
+    ns.appendChild(el("ellipse",{cx:0,cy:-27,rx:1.3,ry:3.4,fill:"#fff",stroke:INK,"stroke-width":0.9}));
+    ns.appendChild(el("circle",{cx:0,cy:0,r:3.2,fill:"none",stroke:INK,"stroke-width":1,opacity:0.5}));
+    needle.appendChild(ns); wrap.appendChild(needle);
     built=true; draw(true);
   }
 
@@ -1124,26 +1136,34 @@ if(grid){
     const y=Math.max(cur,y0+intro*introLen), i=idxAt(y);
     if(i===lastIdx&&!force) return; lastIdx=i;
     const done=i>=pts.length-1;
-    clipRect.setAttribute("height",done?H+80:(i?maxY[i]+40:0));
+    const rv=done?H+40:(i?maxY[i]:-40);
+    rev.style.transform=`translate3d(0,${(rv-H).toFixed(1)}px,0)`; revIn.style.transform=`translate3d(0,${(H-rv).toFixed(1)}px,0)`;
     const a=pts[i], b=i?pts[i-1]:a, c=i?a:(pts[1]||{x:a.x,y:a.y+1});
     const ang=Math.atan2(c.y-b.y,c.x-b.x)*180/Math.PI-90;
-    needle.setAttribute("transform",`translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(${ang.toFixed(1)})`);
+    needle.style.transform=`translate3d(${a.x.toFixed(1)}px,${a.y.toFixed(1)}px,0) rotate(${ang.toFixed(1)}deg)`;
     needle.style.opacity=done||reduce||introTarget===0?0:1;
   }
 
   // where the seam should have reached, in px from the top of the section
-  let wrapTop=0;
-  function measure(){
+  /* page height is cached (reading it on every scroll forces a full layout) and refreshed only when the page resizes */
+  let wrapTop=0,docH=document.documentElement.scrollHeight;
+  if("ResizeObserver" in window)new ResizeObserver(()=>{docH=document.documentElement.scrollHeight}).observe(document.body);
+  /* scroll events only ask for a frame; the scroll position is read at the start of that frame, before anything is written,
+     so the browser never has to recalculate styles in the middle of a frame */
+  let wantRead=false;
+  function measure(){wantRead=true;kick()}
+  function readTarget(){
+    wantRead=false;
     const vh=innerHeight, scrolled=Math.max(0,scrollY-wrapTop);
     // starts small at the top, then the needle drifts down to ~60% of the screen and stays there
     target=Math.min(y0+scrolled*1.4, scrolled+vh*0.6);
     // at the very bottom of the page, finish the seam
-    if(innerHeight+scrollY>=document.documentElement.scrollHeight-4) target=H;
+    if(innerHeight+scrollY>=docH-4) target=H;
     if(reduce){target=H;intro=introTarget=1}
-    kick();
   }
 
   function tick(){
+    if(wantRead) readTarget();
     cur+=(target-cur)*0.18; intro+=(introTarget-intro)*0.06;
     if(Math.abs(target-cur)<0.5) cur=target;
     if(Math.abs(introTarget-intro)<0.002) intro=introTarget;
@@ -1153,7 +1173,7 @@ if(grid){
   function kick(){if(!running){running=true;requestAnimationFrame(tick)}}
 
   function start(){
-    build(); measure(); cur=target;
+    build(); readTarget(); cur=target;
     if(reduce){tail&&(tail.style.opacity=0.6);draw(true);return}
     // gentle opening: thread tail and needle fade in, then a few stitches are sewn
     setTimeout(()=>{introTarget=1;tail&&(tail.style.opacity=0.6);draw(true);kick()},700);

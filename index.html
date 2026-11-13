@@ -112,7 +112,20 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 .h3-float{animation:h3float 6s ease-in-out infinite}
 .h3-tilt{transform-style:preserve-3d}
 .h3.off .h3-float,.h3.off .h3-shadow{animation-play-state:paused}
-.h3-tilt img{display:block;width:100%;height:auto;filter:drop-shadow(0 1.75rem 1.5rem rgba(25,25,23,0.18))}
+.h3-tilt img{display:block;width:100%;height:auto}
+/* the floating tee turns around like a real shirt on a hanger: front, smooth 3D turn, back, turn back. Transform-only, runs on the compositor */
+.h3-float,.h3-tilt{transform-style:preserve-3d}
+.h3-tilt{perspective:1100px}
+.h3-flip{position:relative;transform-style:preserve-3d;animation:h3turn 10s infinite}
+.h3-front,.h3-back{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.h3-back{position:absolute;inset:0;transform:rotateY(180deg)}
+@keyframes h3turn{
+  0%,38%{transform:rotateY(0deg) scale(1);animation-timing-function:cubic-bezier(0.55,0,0.9,0.5)}
+  44%{transform:rotateY(90deg) scale(0.96);animation-timing-function:cubic-bezier(0.1,0.5,0.45,1)}
+  50%,88%{transform:rotateY(180deg) scale(1);animation-timing-function:cubic-bezier(0.55,0,0.9,0.5)}
+  94%{transform:rotateY(270deg) scale(0.96);animation-timing-function:cubic-bezier(0.1,0.5,0.45,1)}
+  100%{transform:rotateY(360deg) scale(1)}}
+.h3.off .h3-flip{animation-play-state:paused}
 .h3-shadow{display:block;width:62%;height:1.1rem;margin:0.5rem auto 0;border-radius:50%;background:radial-gradient(closest-side,rgba(25,25,23,0.22),rgba(25,25,23,0));animation:h3shadow 6s ease-in-out infinite}
 @keyframes h3float{0%,100%{transform:translateY(0)}50%{transform:translateY(-0.9rem)}}
 @keyframes h3shadow{0%,100%{transform:scaleX(1);opacity:1}50%{transform:scaleX(0.86);opacity:0.7}}
@@ -146,7 +159,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
   .h3-step.pos-b .h3-txt{left:0;transform:translateX(-50%);top:1.5rem;text-align:center}
   .h3-foot{position:absolute;left:0;right:0;bottom:0;margin:0}
 }
-@media (prefers-reduced-motion:reduce){.h3-float,.h3-shadow{animation:none}}
+@media (prefers-reduced-motion:reduce){.h3-float,.h3-shadow,.h3-flip{animation:none}}
 
 /* ===== HEADER ===== */
 .hdr{position:fixed;inset-inline:0;top:0;z-index:50;color:var(--ink);background:rgba(255,255,255,0.94);border-bottom:1px dashed var(--line);padding-top:env(safe-area-inset-top,0px)}
@@ -601,7 +614,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
   </div>
   <div class="h3-stage" id="h3Stage">
     <svg class="h3-seam" id="h3Seam" aria-hidden="true"></svg>
-    <div class="h3-tee"><div class="h3-float"><div class="h3-tilt" id="h3Tilt"><img src="images/hero-tee.webp" alt="Black tee printed with the Simple Threads logo" width="1294" height="1400" fetchpriority="high" decoding="async"></div></div><i class="h3-shadow" aria-hidden="true"></i></div>
+    <div class="h3-tee"><div class="h3-float"><div class="h3-tilt" id="h3Tilt"><div class="h3-flip"><img class="h3-front" src="images/hero-tee.webp" alt="Black tee printed with the Simple Threads logo" width="1294" height="1400" fetchpriority="high" decoding="async"><img class="h3-back" src="images/hero-tee-back.webp" alt="Back of the tee with a large Simple Threads print" width="1294" height="1400" decoding="async"></div></div></div><i class="h3-shadow" aria-hidden="true"></i></div>
     <ol class="h3-steps" id="h3Steps" aria-label="How ordering works">
       <li class="h3-step pos-l" data-at="0.16"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">01</span><p class="h3-h">Send your idea</p><p class="h3-p">A sketch, a photo, or just a description.</p></div></li>
       <li class="h3-step pos-b" data-at="0.5"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">02</span><p class="h3-h">Approve your sample</p><p class="h3-p">Check the fit, print, and color before we run the order.</p></div></li>
@@ -1107,7 +1120,7 @@ if(qf){
         needle.style.opacity=(reduce||n>=stitches.length||intro===0)?0:1}
     }
     if(wide.matches)steps.forEach(s=>s.classList.toggle("on",p>=parseFloat(s.dataset.at)-0.01));
-    else{const vh=innerHeight;steps.forEach(s=>{if(reduce||s.getBoundingClientRect().top<vh*0.78)s.classList.add("on")})}
+    /* narrow screens: steps light up via an IntersectionObserver set up below (no layout reads in the animation loop) */
     if(tilt&&!reduce&&fine)tilt.style.transform=`rotateY(${((cur-0.35)*30).toFixed(2)}deg) rotateX(${(cur*5).toFixed(2)}deg)`;
   }
   function measure(){if(heroOff)return;const end=arcBottom?Math.max(160,arcBottom-innerHeight*0.55):innerHeight*0.6;target=Math.min(1,Math.max(0,scrollY/end));if(reduce)target=1;kick()}
@@ -1116,6 +1129,9 @@ if(qf){
   function kick(){if(!running){running=true;requestAnimationFrame(tick)}}
   build();measure();cur=target;
   if(reduce){intro=1;draw(true)}else setTimeout(()=>{intro=0.001;draw(true);kick()},900);
+  if("IntersectionObserver" in window){const so=new IntersectionObserver(es=>es.forEach(e=>{if(!wide.matches&&e.isIntersecting){e.target.classList.add("on");so.unobserve(e.target)}}),{rootMargin:"0px 0px -22% 0px"});steps.forEach(x=>so.observe(x))}
+  else steps.forEach(x=>x.classList.add("on"));
+  if(reduce)steps.forEach(x=>x.classList.add("on"));
   addEventListener("scroll",measure,{passive:true});
   /* stop all hero work (float, shadow, seam loop) once the hero has scrolled away */
   if("IntersectionObserver" in window&&heroEl)new IntersectionObserver(es=>{heroOff=!es[0].isIntersecting;heroEl.classList.toggle("off",heroOff);if(!heroOff)measure()},{rootMargin:"200px 0px"}).observe(heroEl);

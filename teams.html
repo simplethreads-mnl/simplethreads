@@ -493,6 +493,8 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 @media (min-width:640px){.m-nav .l{font-size:3.75rem}.m-bot{flex-direction:row;align-items:flex-end}}
 @media (min-width:1024px){.modal .content{padding-inline:3rem}.m-nav .l{font-size:4.5rem}}
 .price-note{margin-top:0.5rem;font-size:0.875rem;line-height:1.5;color:var(--ink-muted);max-width:44ch}
+/* sections far off screen skip layout and paint until they come near */
+.cv{content-visibility:auto;contain-intrinsic-size:auto 60rem}
 </style>
 </head>
 <body id="top">
@@ -680,7 +682,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 
 
 <!-- ===== FAQ ===== -->
-<section class="sec">
+<section class="cv sec">
   <div class="container g12">
     <div class="s4 sh">
       <div data-anim="fade"><span class="eyebrow">Questions</span></div>

@@ -227,6 +227,18 @@ Adding images to the site:
   300 KB.
 - Measured on the home page (touch emulation, 4x slowed CPU): work per
   scroll frame 13.5 ms -> 5.2 ms after these changes.
+- Never read layout (scrollHeight, getBoundingClientRect, scrollY right after
+  writes) inside scroll handlers or animation loops; cache sizes and refresh
+  on resize. Scroll handlers only request a frame; read at the frame start.
+- Avoid CSS filter (drop-shadow) on elements that animate in 3D, and avoid
+  per-element script animation of many SVG pieces (fade groups instead).
+- brand.html: the page seam is drawn once and revealed by two counter-moving
+  wrappers (transform only); the needle is its own small layer. Service
+  sketches: no ghost duplicates, stitches fade as one group, each sketch has
+  contain:layout paint. Brand scroll work 28 ms -> 16 ms per frame (4x slowed).
+- Home hero tee turns to show its back every 10 s (CSS 3D, .h3-flip, images
+  hero-tee.webp front / hero-tee-back.webp back with the large back print);
+  pauses off screen; static under reduce motion.
 
 ## HOW TO WORK
 1. Always edit the latest version of the files the owner uploads (or the
