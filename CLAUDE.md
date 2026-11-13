@@ -236,9 +236,10 @@ Adding images to the site:
   wrappers (transform only); the needle is its own small layer. Service
   sketches: no ghost duplicates, stitches fade as one group, each sketch has
   contain:layout paint. Brand scroll work 28 ms -> 16 ms per frame (4x slowed).
-- Home hero tee turns to show its back every 10 s (CSS 3D, .h3-flip, images
-  hero-tee.webp front / hero-tee-back.webp back with the large back print);
-  pauses off screen; static under reduce motion.
+- The hero tee flip (turns to show the back print) was REMOVED from the
+  home page (Nov 2026) and saved in saved/tee-flip/ (demo.html, README.md,
+  front/back images) for future use elsewhere. saved/ is in .vercelignore and
+  nothing on the site links to it.
 
 ## HOW TO WORK
 1. Always edit the latest version of the files the owner uploads (or the

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tee flip (saved, not used on the site)</title>
+<style>
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fff;font-family:system-ui,sans-serif}
+.h3-tee{width:min(78vw,24rem);perspective:1400px}
+.h3-tilt img{display:block;width:100%;height:auto}
+/* ---- the saved effect ---- */
+.h3-float,.h3-tilt{transform-style:preserve-3d}
+.h3-tilt{perspective:1100px}
+.h3-flip{position:relative;transform-style:preserve-3d;animation:h3turn 10s infinite}
+.h3-front,.h3-back{backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.h3-back{position:absolute;inset:0;transform:rotateY(180deg)}
+@keyframes h3turn{
+  0%,38%{transform:rotateY(0deg) scale(1);animation-timing-function:cubic-bezier(0.55,0,0.9,0.5)}
+  44%{transform:rotateY(90deg) scale(0.96);animation-timing-function:cubic-bezier(0.1,0.5,0.45,1)}
+  50%,88%{transform:rotateY(180deg) scale(1);animation-timing-function:cubic-bezier(0.55,0,0.9,0.5)}
+  94%{transform:rotateY(270deg) scale(0.96);animation-timing-function:cubic-bezier(0.1,0.5,0.45,1)}
+  100%{transform:rotateY(360deg) scale(1)}}
+.h3.off .h3-flip{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.h3-flip{animation:none}}
+</style></head><body>
+<div class="h3-tee"><div class="h3-float"><div class="h3-tilt">
+<div class="h3-flip"><img class="h3-front" src="hero-tee-front.webp" alt="Black tee printed with the Simple Threads logo" width="1294" height="1400" fetchpriority="high" decoding="async"><img class="h3-back" src="hero-tee-back.webp" alt="Back of the tee with a large Simple Threads print" width="1294" height="1400" decoding="async"></div>
+</div></div></div>
+</body></html>
