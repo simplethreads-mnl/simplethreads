@@ -786,7 +786,7 @@ function play(el){
   const base=+el.dataset.delay||0,type=el.dataset.anim;
   if(type==="lines"){const st=+el.dataset.stagger||90;let top=null,line=-1;
     el.querySelectorAll(".w").forEach(w=>{const t=Math.round(w.offsetTop);if(top===null||Math.abs(t-top)>4){top=t;line++}w.firstChild.style.transitionDelay=(base+line*st)+"ms"})}
-  else if(type==="words"){const st=+el.dataset.stagger||16;el.querySelectorAll(".wi").forEach((wi,i)=>wi.style.transitionDelay=(base+i*st)+"ms")}
+  else if(type==="words"){const st=+el.dataset.stagger||16;el.querySelectorAll(".wi").forEach((wi,i)=>wi.style.transitionDelay=(base+Math.min(i*st,480))+"ms")}
   else el.style.transitionDelay=base+"ms";
   requestAnimationFrame(()=>el.classList.add("in"));
 }

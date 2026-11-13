@@ -110,7 +110,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 .h3-seam{display:none}
 .h3-tee{position:relative;width:min(78vw,24rem);margin:0 auto;perspective:1400px}
 .h3-float{animation:h3float 6s ease-in-out infinite}
-.h3-tilt{transform-style:preserve-3d;will-change:transform}
+.h3-tilt{transform-style:preserve-3d}
+.h3.off .h3-float,.h3.off .h3-shadow{animation-play-state:paused}
 .h3-tilt img{display:block;width:100%;height:auto;filter:drop-shadow(0 1.75rem 1.5rem rgba(25,25,23,0.18))}
 .h3-shadow{display:block;width:62%;height:1.1rem;margin:0.5rem auto 0;border-radius:50%;background:radial-gradient(closest-side,rgba(25,25,23,0.22),rgba(25,25,23,0));animation:h3shadow 6s ease-in-out infinite}
 @keyframes h3float{0%,100%{transform:translateY(0)}50%{transform:translateY(-0.9rem)}}
@@ -515,25 +516,47 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .m-bot ul a:hover{color:var(--on-dark)}
 @media (min-width:640px){.m-nav .l{font-size:3.75rem}.m-bot{flex-direction:row;align-items:flex-end}}
 @media (min-width:1024px){.modal .content{padding-inline:3rem}.m-nav .l{font-size:4.5rem}}
-/* ===== START HERE: three sections ===== */
-/* pinned deck: stays on screen while the cards fan out */
-.hs.hs-deck{height:240vh;padding:0;overflow:visible}
-.hs-pin{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;padding:5.5rem 1.5rem 2rem;overflow:hidden}
-.hs-deck .hs-vis{width:100%;height:clamp(14rem,44vh,26rem)}
-.hs-deck .hs-card{transform-origin:50% 135%}
-.hs-deck .hs-copy{margin-top:clamp(1.25rem,4vh,3rem)}
-@media (prefers-reduced-motion:reduce){.hs-deck{height:auto}.hs-pin{position:relative;height:auto;padding:5rem 1.5rem 6rem}}
-
-.hs{background:#fff;border-top:1px dashed var(--line);padding:5rem 1.5rem 6rem;text-align:center;overflow:hidden}
+/* ===== START HERE: three sections =====
+   Scroll-paced animations run as CSS scroll-driven animations (view timeline): no JavaScript per frame, in step with the scroll.
+   Each element's normal style is its FINISHED position; keyframes only describe where it starts.
+   Browsers without scroll timelines play the same keyframes once when the section comes into view. */
+.hs{background:#fff;border-top:1px dashed var(--line);padding:5rem 1.5rem 6rem;text-align:center;overflow:hidden;overflow:clip}
 .hs-grey{background:var(--surface-grey)}
 .hs-vis{position:relative;height:clamp(15rem,46vh,27rem);max-width:72rem;margin:0 auto}
-.hs-card{position:absolute;left:50%;top:50%;width:clamp(6rem,22vw,14rem);aspect-ratio:3/4;margin:0;background:#e6e7ea;border:1px solid rgba(25,25,23,0.12);box-shadow:0 1rem 1.75rem -1rem rgba(25,25,23,0.3);transform:translate(-50%,-50%);will-change:transform;backface-visibility:hidden}
+.hs-card{--cw:clamp(6rem,22vw,14rem);position:absolute;left:50%;top:50%;width:var(--cw);aspect-ratio:3/4;margin:0;background:#e6e7ea;border:1px solid rgba(25,25,23,0.12);box-shadow:0 1rem 1.75rem -1rem rgba(25,25,23,0.3);transform:translate(-50%,-50%);backface-visibility:hidden}
 .hs-card img{display:block;width:100%;height:100%;object-fit:cover}
-.hs-seam .hs-card{width:clamp(8.5rem,30vw,17rem)}
-.hs-mock .hs-card{width:clamp(8.5rem,30vw,17rem)}
-.hs-stitch{position:absolute;left:50%;top:8%;width:1.25rem;height:84%;transform:translateX(-50%);overflow:visible;clip-path:inset(0 0 100% 0)}
+.hs-seam .hs-card,.hs-mock .hs-card{--cw:clamp(8.5rem,30vw,17rem)}
+/* 1. blanks: a stacked deck fans out like a hand of cards */
+.hs-fan .hs-card{--sp:min(calc(var(--cw) * 0.5),calc((min(100vw,71.875rem) * 0.8 - var(--cw)) / 6));transform-origin:50% 135%;
+  transform:translate(-50%,-50%) translate(calc(var(--k) * var(--sp)),calc(var(--k) * var(--k) * 1.5px)) rotate(calc(var(--k) * 8deg));animation-name:hsFan}
+@keyframes hsFan{from{transform:translate(-50%,-50%) translate(calc(var(--k) * 1.5px),0) rotate(calc(var(--k) * 0.8deg))}}
+/* 2. brand: two photos part, a twin-needle seam sews down between them */
+.hs-l{transform:translate(-50%,-50%) translateX(calc(var(--cw) * -0.62)) rotate(-4deg);animation-name:hsL}
+.hs-r{transform:translate(-50%,-50%) translateX(calc(var(--cw) * 0.62)) rotate(4deg);animation-name:hsR}
+@keyframes hsL{from{transform:translate(-50%,-50%) translateY(3.5rem) rotate(-3deg);opacity:0}25%{opacity:1}}
+@keyframes hsR{from{transform:translate(-50%,-50%) translateY(3.5rem) rotate(3deg);opacity:0}25%{opacity:1}}
+.hs-stitch-w{position:absolute;left:50%;top:8%;width:1.25rem;height:84%;margin-left:-0.625rem;overflow:hidden;animation-name:hsSewW}
+.hs-stitch{display:block;width:100%;height:100%;animation-name:hsSewI}
 .hs-stitch line{stroke:var(--ink);stroke-width:1.6;stroke-dasharray:7 6;vector-effect:non-scaling-stroke}
-.hs-box{position:absolute;left:30%;top:24%;width:40%;height:38%;border:2px dashed #fff;box-shadow:0 0 0 1px rgba(0,0,0,0.25);opacity:0;transform:scale(1.15)}
+@keyframes hsSewW{from,45%{transform:translateY(-100%)}}
+@keyframes hsSewI{from,45%{transform:translateY(100%)}}
+/* 3. mockup: blank tee, print area appears, finished mockup slides in beside it */
+.hs-blank{transform:translate(-50%,-50%) translateX(calc(var(--cw) * -0.42)) rotate(-3deg);animation-name:hsBlank}
+.hs-done{transform:translate(-50%,-50%) translateX(calc(var(--cw) * 0.42)) rotate(4deg);animation-name:hsDone}
+.hs-box{position:absolute;left:30%;top:24%;width:40%;height:38%;border:2px dashed #fff;box-shadow:0 0 0 1px rgba(0,0,0,0.25);opacity:0.65;animation-name:hsBox}
+@keyframes hsBlank{from{transform:translate(-50%,-50%) translateY(4rem) scale(0.94);opacity:0}30%{opacity:1}45%{transform:translate(-50%,-50%)}}
+@keyframes hsDone{from,45%{transform:translate(-50%,-50%) translate(calc(var(--cw) * 1.4),2rem) rotate(8deg);opacity:0}75%{opacity:1}}
+@keyframes hsBox{from,30%{opacity:0;transform:scale(1.15)}55%{opacity:1;transform:scale(1)}}
+.hs [class*="hs-"]{animation-fill-mode:both;animation-timing-function:linear}
+@supports (animation-timeline:view()){
+  .hs-vis{view-timeline:--hs block}
+  .hs-card,.hs-stitch-w,.hs-stitch,.hs-box{animation-timeline:--hs;animation-range:entry 30% cover 52%}
+}
+@supports not (animation-timeline:view()){
+  .hs-card,.hs-stitch-w,.hs-stitch,.hs-box{animation-duration:1.1s;animation-timing-function:cubic-bezier(0.16,1,0.3,1);animation-play-state:paused}
+  .hs.in .hs-card,.hs.in .hs-stitch-w,.hs.in .hs-stitch,.hs.in .hs-box{animation-play-state:running}
+}
+@media (prefers-reduced-motion:reduce){.hs-card,.hs-stitch-w,.hs-stitch,.hs-box{animation:none!important}}
 .hs-copy{max-width:40rem;margin:clamp(2rem,5vh,3.5rem) auto 0}
 .hs-kick{font-size:0.8125rem;color:var(--ink-muted)}
 .hs-title{margin-top:0.875rem;font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5.2vw,3.75rem);line-height:1.08;letter-spacing:-0.01em;color:var(--ink)}
@@ -544,7 +567,9 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 @media (max-width:480px){.pill{font-size:0.8125rem;padding:0.85rem 1.25rem}}
 @media (hover:hover){.pill:hover{transform:translateY(-2px);box-shadow:0 1rem 1.8rem -0.8rem rgba(25,25,23,0.6)}.pill:hover .arr{transform:translateX(0.3rem)}}
 .pill:focus-visible{outline:2px dashed var(--ink);outline-offset:4px}
-@media (min-width:768px){.hs{padding:7rem 3rem 8rem}.hs-card{width:clamp(8rem,15vw,14rem)}.hs-seam .hs-card,.hs-mock .hs-card{width:clamp(11rem,22vw,17rem)}}
+@media (min-width:768px){.hs{padding:7rem 3rem 8rem}.hs-card{--cw:clamp(8rem,15vw,14rem)}.hs-seam .hs-card,.hs-mock .hs-card{--cw:clamp(11rem,22vw,17rem)}}
+/* sections far off screen skip layout and paint until they come near */
+.cv{content-visibility:auto;contain-intrinsic-size:auto 60rem}
 </style>
 </head>
 <body id="top">
@@ -596,33 +621,31 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== START HERE: three separate paths ===== -->
-<section class="hs hs-deck" id="start" data-hs="fan">
- <div class="hs-pin">
+<section class="hs" id="start">
   <div class="hs-vis hs-fan">
-    <figure class="hs-card"><img src="images/thumbs/beanie.webp" width="600" height="800" alt="Knitted Beanie" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card"><img src="images/thumbs/tshirt.webp" width="600" height="800" alt="Plain T-shirt" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card"><img src="images/thumbs/hoodie-navy.webp" width="600" height="800" alt="Plain Hoodie" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card"><img src="images/thumbs/varsity.webp" width="600" height="800" alt="Varsity Jacket" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card"><img src="images/thumbs/pullover.webp" width="600" height="800" alt="Pullover Hoodie" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card"><img src="images/thumbs/honeycomb.webp" width="600" height="800" alt="Honeycomb Polo" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card"><img src="images/thumbs/cap.webp" width="600" height="800" alt="Baseball Cap" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card" style="--k:-3;z-index:4"><img src="images/thumbs/beanie.webp" width="600" height="800" alt="Knitted Beanie" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card" style="--k:-2;z-index:6"><img src="images/thumbs/tshirt.webp" width="600" height="800" alt="Plain T-shirt" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card" style="--k:-1;z-index:8"><img src="images/thumbs/hoodie-navy.webp" width="600" height="800" alt="Plain Hoodie" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card" style="--k:0;z-index:10"><img src="images/thumbs/varsity.webp" width="600" height="800" alt="Varsity Jacket" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card" style="--k:1;z-index:8"><img src="images/thumbs/pullover.webp" width="600" height="800" alt="Pullover Hoodie" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card" style="--k:2;z-index:6"><img src="images/thumbs/honeycomb.webp" width="600" height="800" alt="Honeycomb Polo" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card" style="--k:3;z-index:4"><img src="images/thumbs/cap.webp" width="600" height="800" alt="Baseball Cap" loading="lazy" decoding="async"></figure>
   </div>
-  <div class="hs-copy">
+  <div class="hs-copy" data-anim="fadeUp">
     <p class="hs-kick">Our blanks</p>
     <h2 class="hs-title">Every piece starts as a <span class="accent">blank</span>.</h2>
     <a class="pill" href="teams.html#catalogue">Browse catalogue <span class="arr">→</span></a>
     <p class="hs-cap">Shirts, polos, jackets, caps, and beanies. No minimum order.</p>
   </div>
- </div>
 </section>
 
-<section class="hs hs-grey" data-hs="seam">
+<section class="hs hs-grey">
   <div class="hs-vis hs-seam">
-    <figure class="hs-card hs-l"><img data-img="achilles" alt="Stoicism Achilles tee, back print we produced"></figure>
-    <svg class="hs-stitch" viewBox="0 0 20 400" preserveAspectRatio="none" aria-hidden="true"><line x1="6" y1="0" x2="6" y2="400"/><line x1="14" y1="0" x2="14" y2="400"/></svg>
-    <figure class="hs-card hs-r"><img data-img="knight" alt="Stoicism Knight tee, back print we produced"></figure>
+    <figure class="hs-card hs-l"><img src="images/thumbs/achilles.webp" width="700" height="700" loading="lazy" decoding="async" alt="Stoicism Achilles tee, back print we produced"></figure>
+    <div class="hs-stitch-w" aria-hidden="true"><svg class="hs-stitch" viewBox="0 0 20 400" preserveAspectRatio="none"><line x1="6" y1="0" x2="6" y2="400"/><line x1="14" y1="0" x2="14" y2="400"/></svg></div>
+    <figure class="hs-card hs-r"><img src="images/thumbs/knight.webp" width="700" height="1050" loading="lazy" decoding="async" alt="Stoicism Knight tee, back print we produced"></figure>
   </div>
-  <div class="hs-copy">
+  <div class="hs-copy" data-anim="fadeUp">
     <p class="hs-kick">Build your brand</p>
     <h2 class="hs-title">From first sketch to full <span class="accent">run</span>.</h2>
     <a class="pill" href="brand.html">Start a brand <span class="arr">→</span></a>
@@ -630,12 +653,12 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
   </div>
 </section>
 
-<section class="hs" data-hs="mock">
+<section class="hs">
   <div class="hs-vis hs-mock">
-    <figure class="hs-card hs-blank"><img src="images/studio/tshirt-black.webp" alt="Plain black tee, ready for a design" loading="lazy" decoding="async"><span class="hs-box" aria-hidden="true"></span></figure>
-    <figure class="hs-card hs-done"><img data-img="d_conquer" alt="Conquer tee design mockup" style="object-position:78% 50%"></figure>
+    <figure class="hs-card hs-blank"><img src="images/thumbs/tshirt-black.webp" width="700" height="933" alt="Plain black tee, ready for a design" loading="lazy" decoding="async"><span class="hs-box" aria-hidden="true"></span></figure>
+    <figure class="hs-card hs-done"><img src="images/thumbs/d_conquer.webp" width="900" height="629" loading="lazy" decoding="async" alt="Conquer tee design mockup" style="object-position:78% 50%"></figure>
   </div>
-  <div class="hs-copy">
+  <div class="hs-copy" data-anim="fadeUp">
     <p class="hs-kick">Mockup tool</p>
     <h2 class="hs-title">See it <span class="accent">before</span> it’s made.</h2>
     <a class="pill" href="design.html#studio">Mockup Tool &amp; Custom Mockups <span class="arr">→</span></a>
@@ -644,7 +667,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== PORTFOLIO ===== -->
-<section class="sec" id="work">
+<section class="cv sec" id="work">
   <div class="container">
     <div class="sh">
       <div data-anim="fade"><span class="eyebrow">Brands we’ve built</span></div>
@@ -656,7 +679,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== DESIGN STUDIO ===== -->
-<section class="sec grey" id="design">
+<section class="cv sec grey" id="design">
   <div class="container">
     <div class="dz-head">
       <div class="sh">
@@ -676,7 +699,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== PRINCIPLES ===== -->
-<section class="sec grey">
+<section class="cv sec grey">
   <div class="container">
     <div class="sh">
       <div data-anim="fade"><span class="eyebrow">What we stand by</span></div>
@@ -691,7 +714,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== ABOUT ===== -->
-<section class="sec about" id="about">
+<section class="cv sec about" id="about">
   <div class="container">
     <div class="g12">
       <div class="s7">
@@ -714,7 +737,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== PROCESS ===== -->
-<section class="sec grey" id="process">
+<section class="cv sec grey" id="process">
   <div class="container g12">
     <div class="s5"><div class="sticky sh">
       <div data-anim="fade"><span class="eyebrow">From idea to delivery</span></div>
@@ -731,7 +754,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== SERVICES ===== -->
-<section class="sec" id="services">
+<section class="cv sec" id="services">
   <div class="container">
     <div class="svc-head">
       <div class="sh">
@@ -869,7 +892,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 
 
 <!-- ===== FAQ ===== -->
-<section class="sec">
+<section class="cv sec">
   <div class="container g12">
     <div class="s4 sh">
       <div data-anim="fade"><span class="eyebrow">Questions</span></div>
@@ -917,7 +940,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.19/dist/lenis.min.js"></script>
 <script>
 (() => {
-const IMGS={"initiald": "images/initiald.webp", "vagabond": "images/vagabond.jpg", "blackclover": "images/blackclover.jpg", "chrome": "images/chrome.jpg", "achilles": "images/achilles.jpg", "knight": "images/knight.webp", "excalibur": "images/excalibur.jpg", "dragon": "images/dragon.jpg", "d_lsa": "images/d_lsa.webp", "d_enjoy": "images/d_enjoy.webp", "d_conquer": "images/d_conquer.webp", "d_unchained": "images/d_unchained.webp", "door_teams": "images/door_teams.webp"};
+const IMGS={"initiald": "images/initiald.webp", "vagabond": "images/vagabond.webp", "blackclover": "images/blackclover.webp", "chrome": "images/chrome.webp", "achilles": "images/achilles.webp", "knight": "images/knight.webp", "excalibur": "images/excalibur.webp", "dragon": "images/dragon.webp", "d_lsa": "images/d_lsa.webp", "d_enjoy": "images/d_enjoy.webp", "d_conquer": "images/d_conquer.webp", "d_unchained": "images/d_unchained.webp", "door_teams": "images/door_teams.webp"};
 const NAV=[["Home", "index.html"], ["Teams & Events", "teams.html"], ["Build Your Brand", "brand.html"], ["Mockup Tool & Custom Mockups", "design.html#studio"], ["Contact", "#contact"]];
 const WORKS=[
   ["Achilles","Stoicism","Black tee, back print with split-quote hem line","Design assistance, production","achilles","1/1"],
@@ -974,7 +997,7 @@ function play(el){
   const base=+el.dataset.delay||0,type=el.dataset.anim;
   if(type==="lines"){const st=+el.dataset.stagger||90;let top=null,line=-1;
     el.querySelectorAll(".w").forEach(w=>{const t=Math.round(w.offsetTop);if(top===null||Math.abs(t-top)>4){top=t;line++}w.firstChild.style.transitionDelay=(base+line*st)+"ms"})}
-  else if(type==="words"){const st=+el.dataset.stagger||16;el.querySelectorAll(".wi").forEach((wi,i)=>wi.style.transitionDelay=(base+i*st)+"ms")}
+  else if(type==="words"){const st=+el.dataset.stagger||16;el.querySelectorAll(".wi").forEach((wi,i)=>wi.style.transitionDelay=(base+Math.min(i*st,480))+"ms")}
   else el.style.transitionDelay=base+"ms";
   requestAnimationFrame(()=>el.classList.add("in"));
 }
@@ -1047,6 +1070,7 @@ if(qf){
    Stitches are short lines laid along a curve; scrolling reveals them one by one
    and lights each step as the needle passes it. Only redraws while something moves. */
 (function(){
+  const fine=matchMedia("(pointer:fine)").matches,heroEl=document.querySelector(".h3");let heroOff=false;
   const stage=document.getElementById("h3Stage"),svg=document.getElementById("h3Seam"),tilt=document.getElementById("h3Tilt"),steps=[...document.querySelectorAll("#h3Steps .h3-step")];
   if(!stage) return;
   const NS="http://www.w3.org/2000/svg",INK="#191917",reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,wide=matchMedia("(min-width:900px)");
@@ -1084,15 +1108,17 @@ if(qf){
     }
     if(wide.matches)steps.forEach(s=>s.classList.toggle("on",p>=parseFloat(s.dataset.at)-0.01));
     else{const vh=innerHeight;steps.forEach(s=>{if(reduce||s.getBoundingClientRect().top<vh*0.78)s.classList.add("on")})}
-    if(tilt&&!reduce)tilt.style.transform=`rotateY(${((cur-0.35)*30).toFixed(2)}deg) rotateX(${(cur*5).toFixed(2)}deg)`;
+    if(tilt&&!reduce&&fine)tilt.style.transform=`rotateY(${((cur-0.35)*30).toFixed(2)}deg) rotateX(${(cur*5).toFixed(2)}deg)`;
   }
-  function measure(){const end=arcBottom?Math.max(160,arcBottom-innerHeight*0.55):innerHeight*0.6;target=Math.min(1,Math.max(0,scrollY/end));if(reduce)target=1;kick()}
+  function measure(){if(heroOff)return;const end=arcBottom?Math.max(160,arcBottom-innerHeight*0.55):innerHeight*0.6;target=Math.min(1,Math.max(0,scrollY/end));if(reduce)target=1;kick()}
   function tick(){cur+=(target-cur)*0.14;if(Math.abs(target-cur)<0.001)cur=target;if(intro>0&&intro<1)intro=Math.min(1,intro+0.02);draw();
     if(cur!==target||(intro>0&&intro<1))requestAnimationFrame(tick);else running=false}
   function kick(){if(!running){running=true;requestAnimationFrame(tick)}}
   build();measure();cur=target;
   if(reduce){intro=1;draw(true)}else setTimeout(()=>{intro=0.001;draw(true);kick()},900);
   addEventListener("scroll",measure,{passive:true});
+  /* stop all hero work (float, shadow, seam loop) once the hero has scrolled away */
+  if("IntersectionObserver" in window&&heroEl)new IntersectionObserver(es=>{heroOff=!es[0].isIntersecting;heroEl.classList.toggle("off",heroOff);if(!heroOff)measure()},{rootMargin:"200px 0px"}).observe(heroEl);
   let rt,lw=stage.clientWidth;
   addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>{if(stage.clientWidth===lw)return;lw=stage.clientWidth;build()},200)});
   if(wide.addEventListener)wide.addEventListener("change",build);
@@ -1191,50 +1217,12 @@ if(grid){
 }
 
 
-/* ===== START HERE sections: scroll-driven, each with its own motion ===== */
-(function(){
-  const secs=[...document.querySelectorAll(".hs[data-hs]")];if(!secs.length)return;
-  const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),ease=t=>1-Math.pow(1-t,3);
-  const T=(el,x,y,r,s)=>{el.style.transform=`translate(-50%,-50%) translate(${x.toFixed(1)}px,${y.toFixed(1)}px) rotate(${r.toFixed(2)}deg) scale(${s.toFixed(3)})`};
-  function prog(sec){const r=sec.getBoundingClientRect(),vh=innerHeight;if(reduce)return 1;
-    if(sec.classList.contains("hs-deck"))return cl(-r.top/Math.max(1,sec.offsetHeight-vh));
-    return cl((vh-r.top)/(vh*0.95))}
-  const draw={
-    fan(sec,p){
-      const cards=sec._c||(sec._c=[...sec.querySelectorAll(".hs-card")]),copy=sec._k||(sec._k=sec.querySelector(".hs-copy"));
-      const n=cards.length,mid=(n-1)/2,cw=sec._w||(sec._w=cards[0].offsetWidth);
-      const spread=ease(cl((p-0.08)/0.62));
-      const sp=Math.min(cw*0.5,(Math.min(innerWidth,1150)*0.8-cw)/(n-1));
-      cards.forEach((el,i)=>{const k=i-mid;
-        /* stacked deck: tiny offsets; spread: rotate around a point below the cards, like fanning a hand */
-        const sx=k*1.5*(1-spread),sy=-i*1.2*(1-spread),sr=(k*0.8)*(1-spread);
-        T(el,k*sp*spread+sx,sy+k*k*1.5*spread,k*8*spread+sr,1);
-        el.style.zIndex=String(100-Math.round(Math.abs(k)*2))});
-      copy.style.opacity=String(cl((p-0.45)/0.25));
-      copy.style.transform=`translateY(${((1-cl((p-0.45)/0.25))*1.25).toFixed(2)}rem)`;
-    },
-    seam(sec,p){
-      const l=sec.querySelector(".hs-l"),r=sec.querySelector(".hs-r"),st=sec.querySelector(".hs-stitch"),cw=l.offsetWidth;
-      const open=ease(cl((p-0.15)/0.55)),gap=cw*0.62*open;
-      T(l,-gap,(1-ease(cl(p/0.4)))*60,-4*open-3*(1-open),1);T(r,gap,(1-ease(cl(p/0.4)))*60,4*open+3*(1-open),1);
-      l.style.opacity=r.style.opacity=String(cl(p*3));
-      st.style.clipPath=`inset(0 0 ${(100-cl((p-0.45)/0.4)*100).toFixed(1)}% 0)`;
-    },
-    mock(sec,p){
-      const b=sec.querySelector(".hs-blank"),d=sec.querySelector(".hs-done"),box=sec.querySelector(".hs-box"),cw=b.offsetWidth;
-      const inB=ease(cl(p/0.35)),boxP=ease(cl((p-0.3)/0.25)),slide=ease(cl((p-0.5)/0.4));
-      T(b,-cw*0.42*slide,(1-inB)*70,-3*slide,0.94+0.06*inB);b.style.opacity=String(cl(p*3));
-      box.style.opacity=String(boxP*(1-slide*0.35));box.style.transform=`scale(${(1.15-0.15*boxP).toFixed(3)})`;
-      T(d,cw*(0.42*slide+(1-slide)*1.4),(1-slide)*30,4*slide+8*(1-slide),1);d.style.opacity=String(cl(slide*2.5));
-    }
-  };
-  let ticking=false;
-  function run(){ticking=false;secs.forEach(sec=>{const r=sec.getBoundingClientRect();if(r.bottom<-200||r.top>innerHeight+200)return;draw[sec.dataset.hs](sec,prog(sec))})}
-  const req=()=>{if(!ticking){ticking=true;requestAnimationFrame(run)}};
-  addEventListener("scroll",req,{passive:true});addEventListener("resize",()=>{secs.forEach(s=>{s._w=0});req()});if(lenis)lenis.on("scroll",req);
-  secs.forEach(sec=>sec.querySelectorAll("img").forEach(im=>im.addEventListener("load",req,{once:true})));
-  secs.forEach(sec=>draw[sec.dataset.hs](sec,prog(sec)));
-})();
+/* START HERE sections animate in CSS (scroll timelines). Only for browsers without them: play once when a section comes into view */
+if(!(window.CSS&&CSS.supports&&CSS.supports("animation-timeline: view()"))){
+  const hs=document.querySelectorAll(".hs");
+  if("IntersectionObserver" in window){const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");o.unobserve(e.target)}}),{threshold:0.3});hs.forEach(x=>o.observe(x))}
+  else hs.forEach(x=>x.classList.add("in"));
+}
 
 })();
 </script>
