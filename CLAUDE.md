@@ -75,8 +75,8 @@ language with short, numbered steps.
 
 ## SITE STRUCTURE (static HTML on Vercel, deployed from GitHub)
 - index.html: home page. Hero with a "Three steps. That's it." card; motto
-  quote; "Start here / What are you making?" with three door cards (Teams &
-  Events, Build Your Brand, Design & Mockups) that have solid buttons;
+  quote; "Start here / What are you making?" with three door cards (Our Blanks,
+  Build Your Brand, Mockup Tool; no numbers) that have solid buttons;
   portfolio; design studio; principles; about; process; services and print
   methods explained; quote form; testimonials; clients; FAQ; footer.
 - teams.html: For Teams & Events, plus the full catalogue (filters, product
