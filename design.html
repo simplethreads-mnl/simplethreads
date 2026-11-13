@@ -527,7 +527,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .ms-brush .ms-small{margin:0 0.25rem 0 0}
 .ms-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:2.75rem;padding:0 1rem;border:1px dashed var(--line);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink);background:#fff;cursor:pointer;transition:background-color .2s,color .2s}
 .ms-btn[aria-pressed="true"]{background:var(--ink);color:#fff;border-style:solid;border-color:var(--ink)}
-.ms-btn:disabled{opacity:.35;cursor:default}
+.ms-btn:disabled,.ms-btn[aria-disabled="true"]{opacity:.35;cursor:default}
 .ms-btn:focus-visible,.ms-p:focus-visible,.ms-sw:focus-visible{outline:1px dashed var(--ink);outline-offset:3px}
 @media (hover:hover) and (min-width:769px){.ms-btn:not(:disabled):not([aria-pressed="true"]):hover{background:var(--surface-grey)}}
 .ms-sq{width:2.75rem;padding:0}
@@ -661,6 +661,17 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
             <button class="ms-btn ms-sq" data-brush="14" aria-pressed="true">M</button>
             <button class="ms-btn ms-sq" data-brush="30" aria-pressed="false">L</button>
           </div>
+        </div>
+        <div class="ms-grp">
+          <p class="ms-l">Print style</p>
+          <div class="ms-row" id="msMethods">
+            <button class="ms-btn" data-m="DTG" aria-pressed="true">DTG</button>
+            <button class="ms-btn" data-m="DTF" aria-pressed="false">DTF</button>
+            <button class="ms-btn" data-m="Silk screen" aria-pressed="false">Silk screen</button>
+            <button class="ms-btn" data-m="Sublimation" aria-pressed="false">Sublimation</button>
+            <button class="ms-btn" data-m="Embroidery" aria-pressed="false">Embroidery</button>
+          </div>
+          <p class="ms-small" id="msMethodNote"></p>
         </div>
         <div class="ms-grp">
           <p class="ms-l">Colour</p>
@@ -1136,7 +1147,7 @@ const SWATCHES=[["#191917","Ink"],["#ffffff","White"],["#f2eee6","Cream"],["#c81
 const src=(f,v)=>`images/studio/${f}${v==="back"?"-back":""}.webp`;
 const peso=n=>"PHP "+n.toLocaleString("en-PH");
 const $i=id=>document.getElementById(id);
-const st={p:0,c:0,view:"front",zone:"full",colour:"#191917",font:"Satoshi",brush:14,fx:true,objs:{front:[],back:[]},hist:[],hi:-1,busy:false};
+const st={method:"DTG",p:0,c:0,view:"front",zone:"full",colour:"#191917",font:"Satoshi",brush:14,fx:true,objs:{front:[],back:[]},hist:[],hi:-1,busy:false};
 let cv=null,guide=null,ready=false;
 const P=()=>SP[st.p], C=()=>P().cols[st.c], file=()=>C()[2];
 /* Quick place spots measured on each photo (centre line, chest width, neckline or hood, pocket or placket, hem) and set with print-shop rules: full front about 11 in wide and 3 in below the neckline, left chest about 3.75 in wide and 4 in off centre, full back about 12 in wide, upper back about 9 in. Same [x, y, w, h, angle°] format as ZONES, which stays as a fallback. */
@@ -1150,6 +1161,55 @@ $i("msSws").innerHTML=SWATCHES.map(([c,n])=>`<button class="ms-sw" style="backgr
 $i("msFont").innerHTML=FONTLIST.map(([f,l])=>`<option value="${f}">${l}</option>`).join("");
 const darkHex=h=>{const n=parseInt(h.slice(1),16);return (.299*(n>>16)+.587*(n>>8&255)+.114*(n&255))<110};
 function autoColour(){if(st.userColour)return;st.colour=darkHex(C()[1])?"#ffffff":"#191917";document.querySelectorAll("#msSws [data-c]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.c===st.colour));if(cv)cv.freeDrawingBrush.color=st.colour}
+/* ===== print styles: how the design is shown on the fabric ===== */
+const SUBLIM={"drifit-white":1,"drifit-white-back":1};           /* white polyester only (owner: sublimation only where it works) */
+const INKS=[[25,25,23],[200,30,40],[30,70,160],[30,130,70],[245,245,242]];  /* silk screen inks: black, red, blue, green, white */
+const EMB_MAX_IN=10;                                                /* owner: embroidery up to 10 inches on every blank */
+const METHOD_NOTE={
+  "DTG":"Printed straight into the fabric: soft to the touch, full colour, good for fine detail.",
+  "DTF":"A printed film pressed onto the fabric: crisp edges and bright colour.",
+  "Silk screen":"Solid inks in black, red, blue, green, and white. Your design is shown in these colours.",
+  "Sublimation":"Dye goes into the fabric, so white parts of the design take the shirt colour. Only for blanks that can be sublimated.",
+  "Embroidery":"Stitched in thread, up to 10 inches wide or tall. Fine detail and gradients are simplified."};
+const canSub=()=>!!SUBLIM[file()];
+/* pixels per inch on the current photo, from its measured full-front (11 in) or full-back (12 in) spot */
+function ppi(v){const s=SPOTS[file()+(v==="back"?"-back":"")];return s?s.full[2]*W/(v==="back"?12:11):W*0.33/11}
+function clampEmb(o){
+  if(st.method!=="Embroidery"||!o||o.isGuide)return false;
+  const lim=EMB_MAX_IN*ppi(o.view||st.view),w=o.width*o.scaleX,h=o.height*o.scaleY,m=Math.max(w,h);
+  if(m<=lim+0.5)return false;const k=lim/m;o.set({scaleX:o.scaleX*k,scaleY:o.scaleY*k});o.setCoords();return true}
+function paintMethods(){
+  document.querySelectorAll("#msMethods [data-m]").forEach(b=>{const m=b.dataset.m,off=m==="Sublimation"&&!canSub();
+    b.setAttribute("aria-pressed",m===st.method);b.setAttribute("aria-disabled",off?"true":"false");b.title=off?"Not available on this blank":""});
+  $i("msMethodNote").textContent=(METHOD_NOTE[st.method]||"")+(canSub()?"":" Sublimation isn’t available on this blank.");
+}
+function setMethod(m){
+  if(m==="Sublimation"&&!canSub()){msg("Sublimation isn’t available on this blank. It only works on white polyester, like the white Dri-fit Polo.");return}
+  st.method=m;paintMethods();
+  if(ready&&m==="Embroidery"){let hit=false;["front","back"].forEach(v=>design(v).forEach(o=>{if(clampEmb(o))hit=true}));
+    if(hit){msg("Embroidery is limited to 10 inches, so larger designs were sized down to fit.");cv.requestRenderAll();changed();return}}
+  msg("");schedule();
+}
+$i("msMethods").addEventListener("click",e=>{const b=e.target.closest("[data-m]");if(b)setMethod(b.dataset.m)});
+/* reduce the design to a few solid colours (silk screen inks, or embroidery threads) */
+function quantize(cnv,mode){
+  const c=cnv.getContext("2d",{willReadFrequently:true}),w=cnv.width,h=cnv.height,img=c.getImageData(0,0,w,h),D=img.data;
+  let pal=INKS;
+  if(mode==="Embroidery"){ /* pick up to 6 thread colours from the design (small k-means on a sample) */
+    const smp=[];for(let i=0;i<D.length;i+=4*Math.max(1,Math.floor(D.length/4/5000)))if(D[i+3]>110)smp.push([D[i],D[i+1],D[i+2]]);
+    if(!smp.length)return 0;const K=Math.min(6,smp.length);pal=[];for(let k=0;k<K;k++)pal.push(smp[Math.floor(k*smp.length/K)].slice());
+    for(let it=0;it<8;it++){const sum=pal.map(()=>[0,0,0,0]);smp.forEach(p=>{let bi=0,bd=1e9;pal.forEach((q,j)=>{const d=(p[0]-q[0])**2+(p[1]-q[1])**2+(p[2]-q[2])**2;if(d<bd){bd=d;bi=j}});const s=sum[bi];s[0]+=p[0];s[1]+=p[1];s[2]+=p[2];s[3]++});
+      pal=pal.map((q,j)=>sum[j][3]?[sum[j][0]/sum[j][3],sum[j][1]/sum[j][3],sum[j][2]/sum[j][3]]:q)}}
+  const used=new Set(),per=Math.max(2,Math.round(w/380));
+  for(let i=0,px=0;i<D.length;i+=4,px++){
+    if(D[i+3]<=110){D[i+3]=0;continue}
+    let bi=0,bd=1e9;for(let j=0;j<pal.length;j++){const q=pal[j],d=(D[i]-q[0])**2+(D[i+1]-q[1])**2+(D[i+2]-q[2])**2;if(d<bd){bd=d;bi=j}}
+    used.add(bi);let r=pal[bi][0],g=pal[bi][1],b=pal[bi][2];
+    if(mode==="Embroidery"){ /* satin-stitch texture: diagonal thread ridges */
+      const x=px%w,y=(px/w)|0,t=((x+y)%(per*2))/(per*2),f=0.84+0.28*Math.abs(Math.sin(t*Math.PI));r*=f;g*=f;b*=f}
+    D[i]=r;D[i+1]=g;D[i+2]=b;D[i+3]=255}
+  c.putImageData(img,0,0);return used.size;
+}
 function paintInfo(){
   const p=P();
   $i("msName").textContent=p.name;
@@ -1161,7 +1221,7 @@ function paintInfo(){
   $i("msZones").innerHTML=Object.entries(ZNAME[st.view]).map(([z,n])=>`<button class="ms-btn" data-zone="${z}" aria-pressed="${z===st.zone}">${n}</button>`).join("");
   $i("msStill").src=src(file(),st.view);
 }
-paintInfo();autoColour();
+paintInfo();autoColour();paintMethods();
 
 /* ---------- load the engine when the studio comes near ---------- */
 let loading=null;
@@ -1190,7 +1250,8 @@ function init(){
   ready=true; size(); setBg(); setGuide();
   $i("msLoad").hidden=true; $i("msStill").style.visibility="hidden";
   record();
-  cv.on("object:modified",changed);
+  cv.on("object:modified",e=>{if(clampEmb(e.target)){msg("Embroidery is limited to 10 inches wide or tall.");cv.requestRenderAll()}changed()});
+  cv.on("object:scaling",e=>{if(clampEmb(e.target))msg("Embroidery is limited to 10 inches wide or tall.")});
   cv.on("text:changed",e=>{if(e.target===cv.getActiveObject())$i("msTxIn").value=e.target.text;changed()});
   cv.on("path:created",e=>{const o=e.path;o.zone=st.zone;o.view=st.view;o.clipPath=clip(o);changed()});
   cv.on("selection:created",sel);cv.on("selection:updated",sel);
@@ -1299,19 +1360,27 @@ function layer(v,pw){
   return out;
 }
 async function composite(v,pw,mark){
-  const ph=Math.round(pw*4/3), sh=await shade(src(file(),v));
+  const ph=Math.round(pw*4/3), sh=await shade(src(file(),v)), meth=st.method;
   const out=mk(pw,ph),x=out.getContext("2d");x.imageSmoothingQuality="high";
   if(sh)x.drawImage(sh.img,0,0,pw,ph);
   if(v===st.view)st.objs[v]=design(v);
   if(design(v).length){
     const d=layer(v,pw);
     if(sh&&sh.mask){const mx=d.getContext("2d");mx.globalCompositeOperation="destination-in";mx.drawImage(sh.mask,0,0,pw,ph);mx.globalCompositeOperation="source-over"}
+    if(meth==="Silk screen"||meth==="Embroidery"){const n=quantize(d,meth);if(!mark&&v===st.view)$i("msMethodNote").textContent=METHOD_NOTE[meth]+(meth==="Silk screen"?` This design uses ${n} of 5 inks.`:` This design uses ${n} thread colour${n===1?"":"s"}.`)}
     const t=mk(pw,ph),tx=t.getContext("2d");
-    if(sh){tx.drawImage(sh.dark,0,0,pw,ph);tx.globalCompositeOperation="destination-in";tx.drawImage(d,0,0);
-      const dx=d.getContext("2d");dx.globalCompositeOperation="multiply";dx.drawImage(t,0,0);
+    if(sh&&meth!=="Sublimation"){
+      /* folds and texture from the photo; DTF film sits on top so it takes less of them */
+      const k=meth==="DTF"?0.45:meth==="Embroidery"?0.7:1;
+      tx.drawImage(sh.dark,0,0,pw,ph);tx.globalCompositeOperation="destination-in";tx.drawImage(d,0,0);
+      const dx=d.getContext("2d");dx.globalCompositeOperation="multiply";dx.globalAlpha=k;dx.drawImage(t,0,0);dx.globalAlpha=1;
       tx.globalCompositeOperation="source-over";tx.clearRect(0,0,pw,ph);tx.drawImage(sh.light,0,0,pw,ph);tx.globalCompositeOperation="destination-in";tx.drawImage(d,0,0);
-      dx.globalCompositeOperation="screen";dx.globalAlpha=.55;dx.drawImage(t,0,0);dx.globalAlpha=1;dx.globalCompositeOperation="source-over";}
-    x.globalAlpha=.97;x.drawImage(d,0,0);x.globalAlpha=1;
+      dx.globalCompositeOperation="screen";dx.globalAlpha=meth==="DTF"?.8:.55;dx.drawImage(t,0,0);dx.globalAlpha=1;dx.globalCompositeOperation="source-over";}
+    if(meth==="Sublimation"){ /* dye inside the fabric: the shirt shows through, white in the design becomes the shirt colour */
+      x.globalCompositeOperation="multiply";x.globalAlpha=.96;x.drawImage(d,0,0);x.globalCompositeOperation="source-over";x.globalAlpha=1}
+    else if(meth==="Embroidery"){ /* raised thread: a soft shadow under the stitching */
+      x.save();x.shadowColor="rgba(0,0,0,0.45)";x.shadowBlur=Math.max(1,pw/500);x.shadowOffsetY=Math.max(1,pw/700);x.drawImage(d,0,0);x.restore()}
+    else{x.globalAlpha=meth==="DTG"?.92:meth==="DTF"?1:.98;x.drawImage(d,0,0);x.globalAlpha=1}
   }
   if(mark){x.font=`italic ${Math.round(pw*.028)}px "Playfair Display", Georgia, serif`;x.fillStyle="rgba(25,25,23,0.55)";x.textAlign="right";x.fillText("simple threads",pw*.965,ph*.975)}
   return out;
@@ -1333,7 +1402,7 @@ function schedule(){
 $i("msPick").addEventListener("click",e=>{const b=e.target.closest(".ms-p");if(!b)return;switchBlank(+b.dataset.p,0)});
 $i("msCols").addEventListener("click",e=>{const b=e.target.closest("[data-col]");if(!b)return;switchBlank(st.p,+b.dataset.col)});
 function switchBlank(p,c){
-  const oldF=file();st.p=p;st.c=c;paintInfo();autoColour();
+  const oldF=file();st.p=p;st.c=c;paintInfo();autoColour();if(st.method==="Sublimation"&&!canSub()){st.method="DTG";msg("Sublimation isn’t available on this blank, so the preview is back to DTG.")}paintMethods();
   if(!ready){boot();return}
   const newF=file();
   if(oldF!==newF)["front","back"].forEach(v=>design(v).forEach(o=>{
@@ -1404,7 +1473,7 @@ async function exportImage(){
   const out=mk(W*parts.length,H),x=out.getContext("2d");parts.forEach((c,i)=>x.drawImage(c,i*W,0));
   return out;
 }
-const fname=()=>`Simple Threads mockup - ${P().name} - ${C()[0]}.png`;
+const fname=()=>`Simple Threads mockup - ${P().name} - ${C()[0]} - ${st.method}.png`;
 function save(c){return new Promise(r=>c.toBlob(b=>{const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=fname();document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);r()},"image/png"))}
 let lastImg=null;
 $i("msSave").onclick=async()=>{const b=$i("msSave");b.disabled=true;msg("Preparing your mockup…");
@@ -1423,7 +1492,8 @@ $i("msQuote").onclick=async()=>{
   $i("qmImg").src=c.toDataURL("image/jpeg",.7);$i("qmName").textContent=p.name;
   $i("qmPrice").innerHTML=`${peso(p.price)}<small>per piece, blank</small>`;
   $i("qmProduct").value=p.name;$i("qmChip").value=p.chip;$i("qmColour").value=C()[0];$i("qmPlace").value=places();
-  const m=qm.querySelector('[name="message"]');if(!m.value)m.value="Made in the mockup studio. I’ll send the image by Viber or email.\nPlacement: "+places();
+  const m=qm.querySelector('[name="message"]');if(!m.value)m.value="Made in the mockup studio. I’ll send the image by Viber or email.\nPrint style: "+st.method+"\nPlacement: "+places();
+  const ms=qm.querySelector('[name="method"]');if(ms)ms.value=st.method;
   $i("qmMail").href=`mailto:simplethreads.mnl@gmail.com?subject=${encodeURIComponent("My mockup — "+p.name)}&body=${encodeURIComponent("Hi Simple Threads,\n\nHere is my mockup ("+p.name+", "+C()[0]+"). Placement: "+places()+".\n\n(Attach the saved image before sending.)")}`;
   qm.querySelector(".qf-status").textContent="";
   qmLast=document.activeElement;qm.classList.add("open");qm.setAttribute("aria-hidden","false");
