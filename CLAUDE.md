@@ -125,15 +125,10 @@ language with short, numbered steps.
   not to a print box. The "Quick place" buttons only choose where the next
   item starts (sleeve spots pre-tilted); they never move existing art. The
   quote lists each item's standard spot, or "Custom spot".
-- Studio print styles (#msMethods): DTG (default), DTF, Silk screen,
-  Embroidery. Sublimation was removed from the studio at the owner's request
-  (Nov 2026); it is still a service and stays in the quote forms. Applied only in the printed view/download
-  (composite in design.html). Owner rules (Nov 2026): embroidery max 10 in
-  wide or tall on every blank and spot (clampEmb, ppi from SPOTS full-front
-  = 11 in / full-back = 12 in); silk screen inks black, red, blue, green, white
-  (INKS). Embroidery reduces to up to 6 thread colours with a stitch texture.
-  The chosen style pre-fills the quote's "Print or embroidery" field and is
-  in the download file name.
+- Studio print styles (DTG, DTF, silk screen, embroidery with a 10 in limit)
+  were tried and removed at the owner's request (Nov 2026); the studio has
+  one print look. The code is saved in saved/print-styles/ (README, patch,
+  full page versions with and without sublimation) for later use.
 - Studio photos still needed: originals of the back views for the white, grey,
   and navy Plain Hoodie, Dri-fit Polo, and Honeycomb Polo (current ones are
   640px and look soft). Known limit: on Plain Hoodies, a full-front design

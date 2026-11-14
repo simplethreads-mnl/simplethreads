@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Design & Mockups — Simple Threads</title>
+<meta name="description" content="Simple Threads is a Manila-based apparel studio offering design assistance and custom shirts, hoodies, jackets, caps, beanies, and lanyards in DTF, DTG, silk screen, sublimation, and embroidery. No minimum order.">
+<meta property="og:title" content="Simple Threads — Apparel Design & Manufacturing">
+<meta property="og:description" content="Design assistance and custom apparel production in Manila. No minimum order.">
+<meta property="og:url" content="https://simplethreadsmnl.vercel.app/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#191917">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Crect%20width%3D%2272%22%20height%3D%2272%22%20rx%3D%2214%22%20fill%3D%22%23191917%22/%3E%3Crect%20x%3D%2216%22%20y%3D%2216%22%20width%3D%2240%22%20height%3D%2240%22%20transform%3D%22rotate%2845%2036%2036%29%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%223.5%22/%3E%3Crect%20x%3D%2224.5%22%20y%3D%2224.5%22%20width%3D%2223%22%20height%3D%2223%22%20transform%3D%22rotate%2845%2036%2036%29%22%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-width%3D%222.5%22%20stroke-dasharray%3D%223.5%203%22/%3E%3C/svg%3E">
+<style>
+/* ===== LENIS ===== */
+html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}
+
+/* ===== TOKENS ===== */
+:root{
+  --canvas:#ffffff;--surface-grey:#f2eee6;--surface-dark:#191917;
+  --ink:#191917;--ink-muted:rgba(25,25,23,0.6);--ink-faint:rgba(25,25,23,0.3);
+  --on-dark:#ffffff;--on-dark-muted:rgba(255,255,255,0.6);--on-dark-faint:rgba(255,255,255,0.3);
+  --line:rgba(25,25,23,0.2);--line-strong:rgba(25,25,23,0.4);--line-on-dark:rgba(255,255,255,0.2);
+  --serif:"Playfair Display",Georgia,"Times New Roman",serif;
+  --sans:"Satoshi",system-ui,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --ease:cubic-bezier(0.16,1,0.3,1);--quart:cubic-bezier(0.165,0.84,0.44,1);
+  color-scheme:light;
+}
+/* ===== RESET ===== */
+*,*::before,*::after{box-sizing:border-box}*{margin:0;padding:0}
+html{font-size:16px}
+@media (max-width:1920px){html{font-size:0.833333vw}}
+@media (max-width:1440px){html{font-size:1.111111vw}}
+@media (max-width:1024px){html{font-size:1.5625vw}}
+@media (max-width:640px){html{font-size:4.444444vw}}
+img{display:block;max-width:100%}ul,ol{list-style:none}a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+body{background:var(--canvas);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spacing:-0.01em;line-height:1.12}
+::selection{background:#191917;color:#fff}
+:focus-visible{outline:1px dashed currentColor;outline-offset:4px}
+.accent{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none}
+.container{max-width:120rem;margin-inline:auto;width:100%}
+
+.sec{border-top:1px dashed var(--line);background:#fff;padding:6rem 1.5rem}
+.sec.grey{background:var(--surface-grey)}
+[id]{scroll-margin-top:6rem}
+@media (min-width:1024px){.sec{padding:8rem 3rem}}
+
+.g12{display:grid;grid-template-columns:minmax(0,1fr);gap:3rem}
+@media (min-width:1024px){
+  .g12{grid-template-columns:repeat(12,minmax(0,1fr));gap:2rem}
+  .s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}.s5{grid-column:span 5}
+  .s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}
+  .c7{grid-column:7 / span 6}.c8{grid-column:8 / span 5}
+}
+
+/* ===== PRIMITIVES ===== */
+.eyebrow{display:inline-flex;align-items:center;gap:0.75rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.2em;color:var(--ink-muted)}
+.eyebrow::before{content:"";width:2rem;height:1px;background:var(--ink-muted)}
+.eyebrow.dark{color:var(--on-dark-muted)}.eyebrow.dark::before{background:var(--on-dark-muted)}
+.sh .eyebrow{margin-bottom:1.5rem}
+.sh-title{max-width:18ch;font-size:2.25rem;color:var(--ink)}
+@media (min-width:640px){.sh-title{font-size:3rem}}
+@media (min-width:1024px){.sh-title{font-size:4.5rem}}
+
+.cta{display:inline-flex;align-items:center;gap:0.75rem;padding:1rem 2rem;font-size:0.875rem;text-transform:uppercase;letter-spacing:0.14em;transition:background-color .3s,color .3s}
+.cta .arr{display:inline-block;transition:transform .4s var(--ease)}
+.cta.solid{background:#191917;color:#fff}
+.cta.ghost{border:1px dashed var(--line);color:#191917}
+.cta.dark.solid{background:#fff;color:#191917}
+@media (hover:hover) and (min-width:769px){
+  .cta.solid:hover{background:rgba(25,25,23,0.9)}
+  .cta.ghost:hover{background:#191917;color:#fff}
+  .cta.dark.solid:hover{background:rgba(255,255,255,0.9)}
+  .cta:hover .arr{transform:translateX(0.4rem)}
+}
+
+.media{position:relative;overflow:hidden;background:#1d1d1b;width:100%;aspect-ratio:3/4}
+.media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 60%}
+.media.sq{aspect-ratio:1/1}
+.media.sq img{object-position:center}
+.media .scaler{position:absolute;inset:0;transition:transform .7s var(--ease)}
+
+/* ===== MOTION ===== */
+[data-anim="fadeUp"]{opacity:0;transform:translateY(2.5rem);transition:opacity .72s var(--ease),transform .72s var(--ease)}
+[data-anim="fade"]{opacity:0;transition:opacity .64s var(--ease)}
+[data-anim="plate"]{opacity:0;transform:translateY(3.5rem) scale(1.04);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+[data-anim].in{opacity:1;transform:none}
+.lines .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 0.06em 0.1em;margin:0 -0.06em -0.1em}
+.lines .wi{display:inline-block;transform:translateY(110%);opacity:0;transition:transform 1s var(--ease),opacity 1s var(--ease)}
+.lines.in .wi{transform:none;opacity:1}
+.words .wi{display:inline-block;transform:translateY(0.8rem);opacity:0;transition:transform .72s var(--quart),opacity .72s var(--quart)}
+.words.in .wi{transform:none;opacity:1}
+@media (prefers-reduced-motion:reduce){[data-anim],.lines .wi,.words .wi{opacity:1!important;transform:none!important;transition:none!important}}
+
+/* ===== HEADER ===== */
+.hdr{position:fixed;inset-inline:0;top:0;z-index:50;color:var(--ink);background:rgba(255,255,255,0.94);border-bottom:1px dashed var(--line);padding-top:env(safe-area-inset-top,0px)}
+.hdr-in{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:1.25rem 1.5rem}
+.hdr-left{display:none}
+.hdr-left p:first-child{font-size:0.875rem;letter-spacing:-0.02em}
+.hdr-left p:last-child{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted)}
+.logo{display:inline-flex;align-items:center;gap:0.75rem;justify-self:start}
+.logo .mark{width:1.5rem;height:1.5rem;flex:none;display:block}
+.logo .word{font-family:var(--serif);font-style:italic;text-transform:lowercase;font-size:1.125rem;letter-spacing:0.04em}
+.hdr-right{justify-self:end;display:flex;align-items:center;gap:2rem}
+.hdr-nav{display:none;gap:2rem}
+.hdr-nav a{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.875rem;text-transform:uppercase;letter-spacing:0.14em}
+.hdr-nav a::before{content:"";width:1px;height:1px;border-radius:50%;background:currentColor;opacity:0;transition:opacity .3s}
+.hdr-nav a:hover::before{opacity:1}
+.menu-btn{display:inline-flex;align-items:center;gap:0.75rem}
+.menu-btn .lbl{display:none;font-size:0.875rem;text-transform:uppercase;letter-spacing:0.16em}
+.burger{display:flex;flex-direction:column;gap:0.375rem}.burger i{display:block;height:1px;width:1.5rem;background:currentColor}
+@media (min-width:640px){.menu-btn .lbl{display:inline}}
+@media (min-width:1024px){.hdr-in{grid-template-columns:repeat(3,1fr);padding:1.25rem 3rem}.hdr-left{display:block}.hdr .logo{justify-self:center}.hdr-nav{display:flex}}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:100svh;padding:8rem 1.5rem 4rem}
+.hero .g12{align-items:center}
+.hero h1{max-width:14ch;font-size:3.75rem;line-height:1.04;margin-top:1.5rem}
+.hero .lead{max-width:46ch;font-size:1.125rem;line-height:1.625;color:var(--ink-muted);margin-top:2.5rem}
+.cta-row{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:1rem}
+.hero-facts{display:none;margin-top:3rem;border-top:1px solid var(--line);padding-top:2rem}
+.hero-facts dl{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--ink-faint)}
+.hero-facts dd{font-size:0.875rem;color:var(--ink);margin-top:0.25rem}
+.cue{margin-top:3rem;display:flex;align-items:center;gap:0.75rem}
+.cue span{font-size:0.6rem;text-transform:uppercase;letter-spacing:0.3em;color:var(--ink-faint)}
+.cue i{display:block;width:1px;height:2.5rem;background:var(--line-strong)}
+@media (min-width:640px){.hero h1{font-size:4.5rem}}
+@media (min-width:1024px){.hero{padding:12rem 3rem 4rem}.hero h1{font-size:6rem}.hero-facts{display:block}.cue{display:none}}
+
+/* hero steps card */
+.hero-card{background:#191917;color:#fff;padding:2.5rem 2rem;display:flex;flex-direction:column;gap:2.5rem}
+.hc-top{display:flex;flex-direction:column;gap:1.5rem}
+.hc-mark{width:3.5rem;height:3.5rem}
+.hc-title{font-family:var(--serif);font-size:2.25rem;line-height:1.12;letter-spacing:-0.01em}
+.hc-steps li{display:flex;gap:1.25rem;align-items:baseline;border-top:1px dashed var(--line-on-dark);padding-block:1.25rem}
+.hc-n{font-family:var(--serif);font-size:0.875rem;color:var(--on-dark-muted);min-width:1.5rem}
+.hc-h{font-size:1.125rem;font-weight:500}
+.hc-p{margin-top:0.25rem;font-size:0.9375rem;line-height:1.5;color:var(--on-dark-muted)}
+.hc-foot{border-top:1px dashed var(--line-on-dark);padding-top:1.5rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--on-dark-muted)}
+@media (min-width:1024px){.hero-card{padding:3.5rem 3rem}.hc-title{font-size:3rem}}
+/* ===== STATEMENT ===== */
+.statement{padding:7rem 1.5rem}
+.statement .container{max-width:80rem}
+.statement .eyebrow{margin-bottom:3rem}
+.statement .passage{font-family:var(--serif);font-size:1.875rem;line-height:1.3}
+.statement .sig{margin-top:3rem}
+.statement .sig span{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--ink-muted)}
+@media (min-width:640px){.statement .passage{font-size:2.25rem}}
+@media (min-width:1024px){.statement{padding:10rem 3rem}.statement .passage{font-size:3rem;line-height:1.25}}
+
+/* ===== PORTFOLIO ===== */
+.intro{margin-top:1.5rem;max-width:52ch;font-size:1rem;line-height:1.625;color:var(--ink-muted)}
+.gallery{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:4rem}
+.work figcaption{border-top:1px dashed var(--line);margin-top:1.5rem;padding-top:1.25rem;display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem}
+.work h3{font-family:var(--sans);font-size:1.25rem;font-weight:500;letter-spacing:0;line-height:1.3}
+.work .med{font-size:0.875rem;color:var(--ink-muted);margin-top:0.25rem}
+.work .tags{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-faint);margin-top:0.25rem}
+.work .client{font-family:var(--serif);font-style:italic;font-size:1rem;white-space:nowrap}
+@media (min-width:1024px){
+  .gallery{margin-top:6rem;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:2rem;row-gap:0}
+  .work{grid-column:1 / span 6}
+  .work:nth-child(even){grid-column:7 / span 6;margin-top:8rem}
+}
+
+/* ===== DESIGN STUDIO ===== */
+.dz-head{display:flex;flex-direction:column;gap:2rem}
+.dz-lead{max-width:44ch;font-size:1rem;line-height:1.625;color:var(--ink-muted)}
+.dz-grid{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:3rem 2rem}
+.dz-media{aspect-ratio:10/7;background:#e9e9e7}
+.dz-media img{object-position:center}
+.dz-item figcaption{border-top:1px dashed var(--line);margin-top:1.25rem;padding-top:1rem;display:flex;justify-content:space-between;align-items:baseline;gap:1.5rem}
+.dz-item h3{font-family:var(--sans);font-size:1.25rem;font-weight:500;letter-spacing:0;line-height:1.3}
+.dz-item .med{font-size:0.875rem;color:var(--ink-muted);margin-top:0.25rem}
+.dz-tag{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-faint);white-space:nowrap}
+.dz-cta{margin-top:4rem;display:flex;justify-content:center}
+@media (min-width:768px){.dz-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1024px){.dz-head{flex-direction:row;align-items:flex-end;justify-content:space-between}}
+/* ===== PINNED ===== */
+.pinned{border-top:1px dashed var(--line);background:var(--surface-dark);min-height:100svh;display:flex;align-items:center;padding:6rem 1.5rem;color:var(--on-dark)}
+.pinned .g12{align-items:center}
+.pinned .copy{max-width:34rem}
+.pinned .eyebrow{margin-bottom:1.5rem}
+.pinned h2{font-size:2.25rem;color:var(--on-dark)}
+.pinned .body{margin-top:2rem;font-size:1.125rem;line-height:1.625;color:var(--on-dark-muted)}
+.pinned .cta-wrap{margin-top:2.5rem}
+.pinned.center .copy{max-width:40rem;margin-inline:auto;text-align:center}
+.pinned.center .cta-wrap{display:flex;justify-content:center}
+@media (min-width:640px){.pinned h2{font-size:3rem}}
+@media (min-width:1024px){.pinned{padding:6rem 3rem}.pinned h2{font-size:3.75rem}}
+
+/* ===== PRINCIPLES ===== */
+.cards3{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);column-gap:3rem;row-gap:2.5rem}
+.card{border-top:1px dashed var(--line);padding-top:2rem;display:flex;flex-direction:column}
+.card .idx{font-family:var(--serif);font-size:1.5rem}
+.card h3{font-family:var(--sans);margin-top:1.5rem;font-size:1.25rem;font-weight:500;line-height:1.25;letter-spacing:0}
+.card p{margin-top:0.75rem;font-size:1rem;line-height:1.625;color:var(--ink-muted)}
+@media (min-width:640px){.cards3{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+/* ===== ABOUT ===== */
+.about .eyebrow{margin-bottom:2rem}
+.about h2{max-width:20ch;font-size:2.25rem;line-height:1.1}
+.about .paras > * + *{margin-top:1.5rem}
+.about .paras p{max-width:52ch;font-size:1rem;line-height:1.625;color:var(--ink-muted)}
+.photos{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.5rem}
+.ledger{margin-top:4rem;border-top:1px dashed var(--line);padding-top:2.5rem;display:grid;grid-template-columns:repeat(2,1fr);column-gap:2rem;row-gap:1.5rem}
+.ledger dd{margin-top:0.5rem;font-size:1rem}
+@media (hover:hover) and (min-width:769px){.photo:hover .scaler{transform:scale(1.06)}}
+@media (min-width:640px){.about h2{font-size:3rem}.photos{grid-template-columns:repeat(3,1fr)}.ledger{grid-template-columns:repeat(4,1fr)}}
+@media (min-width:1024px){.about h2{font-size:3.75rem}.photos{margin-top:5rem}}
+
+/* ===== PROCESS ===== */
+@media (min-width:1024px){.sticky{position:sticky;top:8rem}}
+.steps li{border-top:1px dashed var(--line);padding-block:2.5rem;display:flex;flex-direction:column;gap:1rem}
+.steps .idx{font-family:var(--serif);font-size:4.5rem;line-height:1;color:var(--ink-faint)}
+.steps h3{font-family:var(--sans);font-size:1.5rem;font-weight:500;letter-spacing:0}
+.steps p{margin-top:1rem;max-width:48ch;font-size:1.125rem;line-height:1.625;color:var(--ink-muted)}
+@media (min-width:640px){.steps li{padding-block:3rem;flex-direction:row;gap:3rem}.steps .idx{font-size:6rem;min-width:7rem}.steps .txt{padding-top:0.75rem}}
+@media (min-width:1024px){.steps h3{font-size:1.875rem}}
+
+/* ===== SERVICES ===== */
+.svc-head{display:flex;flex-direction:column;gap:2.5rem}
+.svc-head .lead{max-width:42ch;font-size:1rem;line-height:1.625;color:var(--ink-muted)}
+.products{margin-top:4rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2rem}
+.products article{border-top:1px dashed var(--line);padding-block:2rem;display:flex;flex-direction:column}
+.products .n{font-family:var(--serif);font-size:0.875rem;color:var(--ink-muted)}
+.products h3{margin-top:1rem;font-size:1.5rem}
+.products p{margin-top:0.5rem;font-size:0.875rem;line-height:1.6;color:var(--ink-muted)}
+.pm-title{font-size:1.875rem}
+.methods{margin-top:2.5rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2rem}
+.methods a{display:block}
+.methods .box{background:var(--surface-grey);padding:2rem;min-height:16rem;display:flex;flex-direction:column;justify-content:space-between;transition:transform .6s var(--ease)}
+.methods .name{font-family:var(--serif);font-size:1.875rem}
+.methods .bf{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-faint)}
+.methods .bd{font-size:1rem;line-height:1.5;color:var(--ink-muted);margin-top:0.5rem}
+.svc-cta{margin-top:4rem;display:flex;justify-content:center}
+@media (hover:hover) and (min-width:769px){.methods a:hover .box{transform:translateY(-0.75rem)}}
+@media (min-width:640px){.methods{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1024px){.svc-head{flex-direction:row;align-items:flex-end;justify-content:space-between}.products{grid-template-columns:repeat(4,minmax(0,1fr))}.pm-title{font-size:2.25rem}.methods{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* methods explained */
+.m-head{margin-top:6rem;display:flex;flex-direction:column;gap:1.5rem}
+.m-intro{max-width:46ch;font-size:1rem;line-height:1.625;color:var(--ink-muted)}
+.mrows{margin-top:3rem}
+.mrow{border-top:1px dashed var(--line);padding-block:3rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2rem;align-items:center}
+.m-art{background:var(--surface-grey);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.m-art svg{width:88%;height:auto;display:block}
+.m-full{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--ink-muted)}
+.m-name{margin-top:0.75rem;font-family:var(--serif);font-weight:400;font-size:2.25rem;line-height:1.12;letter-spacing:-0.01em}
+.m-how{margin-top:1.25rem;max-width:48ch;font-size:1.125rem;line-height:1.625;color:var(--ink-muted)}
+.m-dl{margin-top:2rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.5rem;border-top:1px dashed var(--line);padding-top:1.5rem}
+.m-dl dd{margin-top:0.5rem;font-size:1rem;line-height:1.55}
+@media (min-width:640px){.m-dl{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2rem}}
+@media (min-width:1024px){
+  .m-head{flex-direction:row;align-items:flex-end;justify-content:space-between}
+  .pm-title{max-width:16ch}
+  .mrow{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:2rem}
+  .m-txt{grid-column:1 / -1;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:2rem;align-items:start}
+  .m-full{grid-column:1 / span 4;grid-row:1}
+  .m-name{grid-column:1 / span 4;grid-row:2}
+  .m-how{grid-column:5 / span 8;grid-row:1 / span 2;margin-top:0}
+  .m-dl{grid-column:5 / span 8;grid-row:3}
+  .m-name{font-size:3rem}
+}
+/* ===== QUOTE FORM ===== */
+.cta.dark.ghost{border:1px dashed var(--line-on-dark);color:#fff}
+@media (hover:hover) and (min-width:769px){.cta.dark.ghost:hover{background:#fff;color:#191917}}
+.pinned.center{flex-direction:column;justify-content:center}
+.qf,.qc{max-width:48rem;margin-inline:auto;width:100%;text-align:left}
+.qf{margin-top:3.5rem;border:1px dashed var(--line-on-dark);padding:2rem 1.5rem;color-scheme:dark}
+.qf-title{font-family:var(--serif);font-size:1.875rem;line-height:1.12}
+.qf-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:1.25rem;margin-top:1.75rem}
+.qf-field{display:flex;flex-direction:column;gap:0.5rem}
+.qf-wide{margin-top:1.25rem}
+.qf-l{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--on-dark-muted)}
+.qf input:not([type=checkbox]),.qf select,.qf textarea{box-sizing:border-box;font:inherit;font-size:max(16px,1rem);color:#fff;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.28);border-radius:0;padding:0.8rem 1rem;width:100%;min-height:2.9rem}
+.qf textarea{resize:vertical;line-height:1.5}
+.qf-field{min-width:0}
+.qf input[type=date]{-webkit-appearance:none;appearance:none;display:block;min-width:0;max-width:100%;box-sizing:border-box;height:2.9rem;line-height:1.2;text-align:left}
+.qf input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0}
+.qf input[type=date]::-webkit-calendar-picker-indicator{filter:invert(1);opacity:.7}
+.qf select option{color:#191917}
+.qf input::placeholder,.qf textarea::placeholder{color:rgba(255,255,255,0.45)}
+.qf input:focus,.qf select:focus,.qf textarea:focus{outline:1px solid #fff;outline-offset:1px}
+.qf [aria-invalid="true"]{border-color:#fff;border-style:dashed}
+.qf-set{border:0;margin-top:1.75rem;padding:0}
+.qf-set legend{padding:0;margin-bottom:0.75rem}
+.qf-chips{display:flex;flex-wrap:wrap;gap:0.5rem}
+.chip{position:relative;cursor:pointer}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip span{display:inline-flex;align-items:center;min-height:2.75rem;padding:0 1rem;border:1px solid rgba(255,255,255,0.28);font-size:0.875rem;transition:background-color .2s,color .2s}
+.chip input:checked + span{background:#fff;color:#191917;border-color:#fff}
+.chip input:focus-visible + span{outline:1px dashed #fff;outline-offset:3px}
+.qf-hp{position:absolute;left:-9999px}
+.qf-actions{margin-top:2rem;display:flex;flex-direction:column;align-items:flex-start;gap:1rem}
+.qf-actions .cta[disabled]{opacity:.6;cursor:wait}
+.qf-status{font-size:1rem;line-height:1.5;color:var(--on-dark-muted);min-height:1.5em}
+.qf-status a{color:#fff;text-decoration:underline}
+.qc{margin-top:3rem}
+.qc-lead{font-family:var(--serif);font-size:1.5rem}
+.qc-grid{margin-top:1.5rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.5rem}
+.qc-item{border-top:1px dashed var(--line-on-dark);padding-top:1.5rem;display:flex;flex-direction:column;align-items:flex-start;gap:0.5rem}
+.qc-val{font-size:1.25rem;color:#fff;word-break:break-word}
+.qc-btn{margin-top:1rem}
+@media (min-width:640px){.qf{padding:2.5rem}.qf-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.qc-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}.qf-actions{flex-direction:row;align-items:center;gap:1.5rem}}
+/* ===== CATALOGUE ===== */
+.cat-head{display:flex;flex-direction:column;gap:2rem}
+.cat-lead{max-width:46ch;font-size:1rem;line-height:1.625;color:var(--ink-muted)}
+.cat-tabs{margin-top:3rem;display:flex;flex-wrap:wrap;gap:0.5rem}
+.cat-tab{min-height:2.75rem;padding:0 1.25rem;border:1px dashed var(--line);font-size:0.8125rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink);transition:background-color .2s,color .2s}
+.cat-tab[aria-selected="true"]{background:var(--ink);color:#fff;border-style:solid;border-color:var(--ink)}
+.cat-grid{margin-top:2.5rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2.5rem 1rem}
+.pc{display:flex;flex-direction:column}
+.pc[hidden]{display:none}
+.pc-media{display:block;width:100%;aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;position:relative;padding:0;cursor:pointer}
+.pc-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),opacity .25s}
+@media (hover:hover) and (min-width:769px){.pc-media:hover img{transform:scale(1.04)}}
+.pc-sw,.pm-sw{display:flex;flex-wrap:wrap;gap:0.375rem;margin-top:0.875rem;align-items:center}
+.sw{width:1.75rem;height:1.75rem;border-radius:50%;border:1px solid rgba(25,25,23,0.25);position:relative;flex:none}
+.sw[aria-pressed="true"]{box-shadow:0 0 0 2px #fff,0 0 0 3px var(--ink)}
+.sw-more{font-size:0.75rem;color:var(--ink-muted);padding:0 0.25rem;min-height:1.75rem}
+.pc-name{margin-top:0.875rem;font-family:var(--sans);font-size:1rem;font-weight:500;letter-spacing:0;line-height:1.3}
+.pc-col{margin-top:0.125rem;font-size:0.8125rem;color:var(--ink-muted)}
+.pc-price{margin-top:0.625rem;font-family:var(--serif);font-size:1.375rem}
+.pc-price small,.pm-price small{white-space:nowrap;display:inline-block;font-family:var(--sans);font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted);margin-left:0.35rem}
+.pc-actions{margin-top:1rem;display:flex;flex-direction:column;gap:0.5rem}
+.pc-actions .cta{justify-content:center;padding:0.85rem 1rem;font-size:0.75rem}
+.cat-note{margin-top:3rem;font-size:0.8125rem;color:var(--ink-muted)}
+.pm{position:fixed;inset:0;z-index:70;display:flex;align-items:center;justify-content:center;visibility:hidden;opacity:0;transition:opacity .3s,visibility 0s .3s}
+.pm.open{visibility:visible;opacity:1;transition:opacity .3s}
+.pm-back{position:absolute;inset:0;background:rgba(25,25,23,0.55)}
+.pm-panel{position:relative;background:#fff;width:min(64rem,100%);max-height:100%;overflow:auto;-webkit-overflow-scrolling:touch;padding:calc(3.5rem + env(safe-area-inset-top,0px)) 1.5rem calc(2rem + env(safe-area-inset-bottom,0px));transform:translateY(1.5rem);transition:transform .4s var(--ease)}
+.pm.open .pm-panel{transform:none}
+.pm-x{position:absolute;top:calc(1rem + env(safe-area-inset-top,0px));right:1.25rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;min-height:2.75rem}
+.pm-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:2rem}
+.pm-left,.pm-right{min-width:0}
+.pm-media{aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;position:relative}
+.pm-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pm-thumbs{margin-top:0.75rem;display:flex;gap:0.5rem;overflow-x:auto;padding-bottom:0.25rem}
+.pm-th{flex:none;width:3.75rem;aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;position:relative;border:1px solid transparent}
+.pm-th img{width:100%;height:100%;object-fit:cover}
+.pm-th[aria-pressed="true"]{border-color:var(--ink)}
+.pm-cat{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--ink-muted)}
+.pm-name{margin-top:0.75rem;font-size:2.25rem}
+.pm-price{margin-top:0.75rem;font-family:var(--serif);font-size:1.75rem}
+.pm-desc{margin-top:1.25rem;font-size:1rem;line-height:1.625;color:var(--ink-muted)}
+.pm-col-l{margin-top:1.75rem;font-size:0.8125rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink-muted)}
+.pm-col-l span{color:var(--ink);text-transform:none;letter-spacing:0;font-size:0.9375rem}
+.pm-notes{margin-top:1.75rem;border-top:1px dashed var(--line);padding-top:1.25rem;display:grid;gap:0.5rem}
+.pm-notes li{font-size:0.9375rem;color:var(--ink-muted);padding-left:1.1rem;position:relative}
+.pm-notes li::before{content:"";position:absolute;left:0;top:0.55em;width:0.45rem;height:0.45rem;border:1px solid var(--ink);transform:rotate(45deg)}
+.pm-actions{margin-top:2rem}
+@media (min-width:768px){.cat-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:3rem 1.5rem}.pc-actions{flex-direction:row}.pc-actions .cta{flex:1}.pm-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3rem}.pm-panel{padding:3.5rem 3rem 3rem}}
+@media (min-width:1024px){.cat-head{flex-direction:row;align-items:flex-end;justify-content:space-between}.cat-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.pm-name{font-size:3rem}}
+.pm-shown{margin-top:0.75rem;font-size:0.8125rem;color:var(--ink-muted)}
+.pm-cols{margin-top:0.5rem;font-size:1rem;line-height:1.6;color:var(--ink)}
+.pc-media img{image-rendering:auto}
+.vw{min-height:2rem;padding:0 0.9rem;border:1px dashed var(--line);font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink)}
+.vw[aria-pressed="true"]{background:var(--ink);color:#fff;border-style:solid;border-color:var(--ink)}
+/* ===== DOORS & PAGE HEROES ===== */
+.doors{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem}
+.door{display:flex;flex-direction:column;color:inherit}
+.door .media{aspect-ratio:4/5;background:#e6e7ea}
+.door .media img{object-position:center}
+.door .media.fit img{object-fit:contain;background:#f4f4f2}
+.door-t{border-top:1px dashed var(--line);margin-top:1.25rem;padding-top:1.25rem}
+.door-k{font-family:var(--serif);font-size:0.875rem;color:var(--ink-muted)}
+.door h3{margin-top:0.5rem;font-size:1.75rem}
+.door p.door-d{margin-top:0.5rem;font-size:0.9375rem;line-height:1.55;color:var(--ink-muted)}
+.door-go{display:inline-flex;gap:0.5rem;margin-top:1rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em}
+.door-go .arr{transition:transform .4s var(--ease)}
+@media (hover:hover) and (min-width:769px){.door:hover .scaler{transform:scale(1.05)}.door:hover .door-go .arr{transform:translateX(0.4rem)}}
+@media (min-width:768px){.doors{grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem}}
+.ph{padding:9rem 1.5rem 5rem;border-bottom:1px dashed var(--line)}
+.ph .back{display:inline-flex;gap:0.5rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted);margin-bottom:2.5rem}
+.ph h1{margin-top:1.5rem;max-width:16ch;font-size:3rem;line-height:1.06}
+.ph .lead{margin-top:2rem;max-width:52ch;font-size:1.125rem;line-height:1.625;color:var(--ink-muted)}
+.ph .facts{margin-top:3rem;border-top:1px solid var(--line);padding-top:2rem;display:grid;grid-template-columns:minmax(0,1fr);gap:1.5rem;max-width:60rem}
+.ph .facts dd{margin-top:0.25rem;font-size:1rem}
+@media (min-width:640px){.ph h1{font-size:4rem}.ph .facts{grid-template-columns:repeat(3,1fr)}}
+@media (min-width:1024px){.ph{padding:12rem 3rem 6rem}.ph h1{font-size:5.5rem}}
+.offer{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem 2rem}
+@media (min-width:640px){.offer{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1024px){.offer.four{grid-template-columns:repeat(4,minmax(0,1fr))}.offer.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.page-cta{margin-top:3.5rem;display:flex;flex-wrap:wrap;gap:1rem}
+/* ===== TESTIMONIALS ===== */
+
+.quotes{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem}
+.quotes figure{border-top:1px dashed var(--line);padding-top:2rem;height:100%;display:flex;flex-direction:column;justify-content:space-between}
+.quotes blockquote{font-family:var(--serif);font-size:1.25rem;line-height:1.625;max-width:32ch}
+.quotes figcaption{margin-top:2.5rem}
+.quotes .who{font-size:1rem}.quotes .role{font-size:0.875rem;color:var(--ink-muted);margin-top:0.25rem}
+@media (min-width:768px){.quotes{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1024px){.quotes blockquote{font-size:1.5rem}}
+
+/* ===== CLIENTS ===== */
+.clients .sh{margin-bottom:4rem}
+.venues{display:grid;grid-template-columns:minmax(0,1fr);column-gap:2rem}
+.venues li{border-top:1px dashed var(--line);padding-block:1.5rem;display:flex;align-items:baseline;gap:1.25rem}
+.venues .n{font-family:var(--serif);font-size:0.875rem;color:var(--ink-muted)}
+.venues .v{font-family:var(--serif);font-size:1.25rem}
+@media (min-width:640px){.venues{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1024px){.venues{grid-template-columns:repeat(3,1fr)}.venues .v{font-size:1.5rem}}
+
+/* ===== FAQ ===== */
+.faq-row{border-top:1px dashed var(--line)}
+.faq-row h3{font-family:var(--sans);letter-spacing:0;line-height:1.3}
+.faq-row button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:2rem;padding-block:2rem;text-align:left}
+.faq-row .q{font-size:1.25rem;font-weight:500}
+.faq-row .plus{font-size:1.5rem;display:inline-block;transition:transform .45s var(--ease);line-height:1}
+.faq-row.open .plus{transform:rotate(45deg)}
+.faq-panel{height:0;opacity:0;overflow:hidden;transition:height .55s var(--ease),opacity .55s var(--ease)}
+.faq-row.open .faq-panel{opacity:1}
+.faq-panel .pad{padding-bottom:2.5rem}
+.faq-panel p{max-width:60ch;font-size:1.125rem;line-height:1.625;color:var(--ink-muted)}
+@media (min-width:1024px){.faq-row .q{font-size:1.5rem}}
+
+/* ===== FOOTER ===== */
+.ftr{background:var(--surface-dark);color:#fff;padding:6rem 1.5rem calc(3rem + env(safe-area-inset-bottom,0px))}
+.ftr .g12{gap:4rem}
+.ftr .tag{font-family:var(--serif);font-style:italic;margin-top:1.5rem;max-width:28ch;font-size:1.5rem;color:var(--on-dark-muted)}
+.ftr .mail{display:inline-block;margin-top:2rem;font-size:0.875rem;text-transform:uppercase;letter-spacing:0.16em;transition:color .3s}
+.ftr .mail:hover{color:var(--on-dark-muted)}
+.ftr .mail.tel{display:block;margin-top:0.75rem;width:max-content}
+.ftr .ct{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--on-dark-faint)}
+.ftr .col ul{margin-top:1.5rem}.ftr .col li + li{margin-top:0.75rem}
+.ftr .col a{font-size:1rem;color:var(--on-dark-muted);transition:color .3s}.ftr .col a:hover{color:var(--on-dark)}
+.giant{margin-top:6rem;overflow:hidden;text-align:center;white-space:nowrap;font-family:var(--sans);font-size:10.5vw;font-weight:900;text-transform:uppercase;line-height:0.8;letter-spacing:-0.04em;color:rgba(255,255,255,0.1)}
+.legal{margin-top:3rem;border-top:1px dashed var(--line-on-dark);padding-top:2rem;display:flex;flex-direction:column;gap:1rem;justify-content:space-between}
+.legal p,.legal a{font-size:0.875rem;color:var(--on-dark-faint);transition:color .3s}
+.legal p{max-width:60ch}.legal a:hover{color:var(--on-dark-muted)}
+.legal ul{display:flex;gap:1.5rem}
+@media (min-width:640px){.legal{flex-direction:row}}
+@media (min-width:1024px){.ftr{padding-inline:3rem}.ftr .g12{gap:3rem}}
+
+/* ===== MODAL ===== */
+.modal{position:fixed;inset:0;z-index:60;color:#fff;visibility:hidden;pointer-events:none}
+.modal.open{visibility:visible;pointer-events:auto}
+.modal .panel{position:absolute;inset:0;background:#191917;transform-origin:top;transform:scaleY(0);transition:transform .35s var(--ease)}
+.modal.open .panel{transform:scaleY(1);transition-duration:.6s}
+.modal .content{position:relative;height:100%;display:flex;flex-direction:column;padding:calc(1.5rem + env(safe-area-inset-top,0px)) 1.5rem calc(2.5rem + env(safe-area-inset-bottom,0px))}
+.m-top{display:flex;justify-content:space-between;align-items:center}
+.m-top .ml{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.28em;color:var(--on-dark-faint)}
+.m-top button{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;transition:color .3s}
+.m-top button:hover{color:var(--on-dark-muted)}
+.m-nav{flex:1;display:flex;flex-direction:column;justify-content:center;gap:0.5rem}
+.m-nav a{display:flex;align-items:baseline;gap:1.25rem;opacity:0;transform:translateY(1.5rem);transition:opacity .2s,transform .2s}
+.modal.open .m-nav a{opacity:1;transform:none;transition:opacity .62s var(--ease),transform .62s var(--ease);transition-delay:var(--d)}
+.m-nav .n{width:2rem;font-size:0.875rem;color:var(--on-dark-muted)}
+.m-nav .l{font-family:var(--serif);font-size:3rem;line-height:1.12;letter-spacing:-0.01em}
+.m-nav a:hover .l{font-style:italic}
+.m-bot{border-top:1px dashed var(--line-on-dark);padding-top:2rem;display:flex;flex-direction:column;gap:1.5rem;justify-content:space-between;opacity:0;transition:opacity .2s}
+.modal.open .m-bot{opacity:1;transition:opacity .64s var(--ease) .6s}
+.m-bot .mail{font-size:1.125rem}.m-bot .loc{font-size:0.875rem;color:var(--on-dark-muted);margin-top:0.25rem}
+.m-bot ul{display:flex;gap:1.5rem}
+.m-bot ul a{font-size:0.875rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--on-dark-muted);transition:color .3s}
+.m-bot ul a:hover{color:var(--on-dark)}
+@media (min-width:640px){.m-nav .l{font-size:3.75rem}.m-bot{flex-direction:row;align-items:flex-end}}
+@media (min-width:1024px){.modal .content{padding-inline:3rem}.m-nav .l{font-size:4.5rem}}
+/* quick quote window (cream) */
+.qm-panel{background:#f2eee6;width:min(46rem,100%)}
+.qm-title{margin-top:1.25rem;font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1.12;letter-spacing:-0.01em}
+.qm-item{margin-top:1.75rem;display:flex;gap:1.25rem;align-items:center;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:1.25rem 0}
+.qm-thumb{flex:none;width:4.5rem;aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;position:relative}
+.qm-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.qm-info{min-width:0}
+.qm-name{margin-top:0.375rem;font-family:var(--serif);font-size:1.5rem;line-height:1.15}
+.qm-price{margin-top:0.25rem;font-family:var(--serif);font-size:1.125rem}
+.qm-price small{font-family:var(--sans);font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted);margin-left:0.35rem;white-space:nowrap}
+.qmf-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:1.25rem;margin-top:1.75rem}
+.qmf-field{display:flex;flex-direction:column;gap:0.5rem;min-width:0}
+.qmf-field [hidden]{display:none}
+.qmf-wide{margin-top:1.25rem}
+.qmf-l{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted)}
+.qmf input:not([type=checkbox]):not([type=hidden]),.qmf select,.qmf textarea{box-sizing:border-box;font:inherit;font-size:max(16px,1rem);color:var(--ink);background:#fff;border:1px solid rgba(25,25,23,0.22);border-radius:0;padding:0.8rem 1rem;width:100%;min-height:2.9rem;-webkit-appearance:none;appearance:none}
+.qmf select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 1.2rem) 50%,calc(100% - 0.85rem) 50%;background-size:0.35rem 0.35rem;background-repeat:no-repeat;padding-right:2.5rem}
+.qmf textarea{resize:vertical;line-height:1.5}
+.qmf input[type=date]{display:block;height:2.9rem;line-height:1.2;text-align:left}
+.qmf input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0}
+.qmf input::placeholder,.qmf textarea::placeholder{color:var(--ink-faint)}
+.qmf input:focus,.qmf select:focus,.qmf textarea:focus{outline:1px solid var(--ink);outline-offset:1px}
+.qmf [aria-invalid="true"]{border-color:var(--ink);border-style:dashed}
+.qmf .qf-status{color:var(--ink-muted)}
+.qmf .qf-status a{color:var(--ink)}
+.qm-alt{margin-top:1.75rem;border-top:1px dashed var(--line);padding-top:1.25rem;font-size:0.9375rem;color:var(--ink-muted)}
+.qm-alt a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+@media (min-width:640px){.qmf-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.qm-title{font-size:2.5rem}}
+/* ===== MOCKUP STUDIO ===== */
+.ms{margin-top:3.5rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2rem;align-items:start}
+.ms-pick{display:flex;gap:0.75rem;overflow-x:auto;padding-bottom:0.5rem;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.ms-p{flex:none;width:5rem;text-align:left;display:flex;flex-direction:column;gap:0.5rem;padding:0;border:0;background:none;cursor:pointer}
+.ms-p .th{display:block;aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;position:relative;border:1px solid transparent;transition:border-color .2s}
+.ms-p .th img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ms-p .nm{font-size:0.75rem;line-height:1.3;color:var(--ink-muted)}
+.ms-p[aria-pressed="true"] .th{border-color:var(--ink)}
+.ms-p[aria-pressed="true"] .nm{color:var(--ink)}
+.ms-mid{min-width:0}
+.ms-stage{position:relative;width:86%;max-width:40rem;margin-inline:auto;aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;touch-action:none}
+.ms-stage .canvas-container,.ms-stage canvas{position:absolute!important;inset:0}
+.ms-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ms-print{width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .25s}
+.ms-print.on{opacity:1}
+.ms-load{position:absolute;left:50%;bottom:1.25rem;transform:translateX(-50%);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted);background:rgba(255,255,255,0.85);padding:0.5rem 0.875rem;white-space:nowrap}
+.ms-load[hidden]{display:none}
+.ms-hint{max-width:40rem;width:86%;margin:0.875rem auto 0;font-size:0.8125rem;line-height:1.5;color:var(--ink-muted)}
+.ms-panel{display:flex;flex-direction:column;gap:1.5rem;min-width:0}
+.ms-grp{border-top:1px dashed var(--line);padding-top:1.25rem}
+.ms-grp[hidden]{display:none}
+.ms-l{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--ink-muted);margin-bottom:0.75rem}
+.ms-name{font-family:var(--serif);font-size:1.5rem;line-height:1.15}
+.ms-price{margin-top:0.25rem;font-family:var(--serif);font-size:1.125rem}
+.ms-price small{font-family:var(--sans);font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted);margin-left:0.35rem}
+.ms-cols{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.875rem}
+.ms-cols:empty{display:none}
+.ms-small{font-size:0.8125rem;line-height:1.5;color:var(--ink-muted);margin-top:0.625rem}
+.ms-small:empty{display:none}
+.ms-row{display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center}
+.ms-row[hidden]{display:none}
+.ms-brush{margin-top:0.75rem}
+.ms-brush .ms-small{margin:0 0.25rem 0 0}
+.ms-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:2.75rem;padding:0 1rem;border:1px dashed var(--line);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--ink);background:#fff;cursor:pointer;transition:background-color .2s,color .2s}
+.ms-btn[aria-pressed="true"]{background:var(--ink);color:#fff;border-style:solid;border-color:var(--ink)}
+.ms-btn:disabled,.ms-btn[aria-disabled="true"]{opacity:.35;cursor:default}
+.ms-btn:focus-visible,.ms-p:focus-visible,.ms-sw:focus-visible{outline:1px dashed var(--ink);outline-offset:3px}
+@media (hover:hover) and (min-width:769px){.ms-btn:not(:disabled):not([aria-pressed="true"]):hover{background:var(--surface-grey)}}
+.ms-sq{width:2.75rem;padding:0}
+.ms-file input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.ms-sw{width:2.25rem;height:2.25rem;border-radius:50%;border:1px solid rgba(25,25,23,0.25);flex:none;cursor:pointer;position:relative;padding:0}
+.ms-sw[aria-pressed="true"]{box-shadow:0 0 0 2px #fff,0 0 0 3px var(--ink)}
+.ms-sw.pick{background:conic-gradient(#e33,#ec3,#3c5,#3ae,#83e,#e33)}
+.ms-sw.pick input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.ms-tx{display:grid;grid-template-columns:minmax(0,1fr);gap:0.5rem;margin-bottom:0.75rem}
+.ms-tx[hidden]{display:none}
+.ms-tx input,.ms-tx select{box-sizing:border-box;font:inherit;font-size:max(16px,1rem);color:var(--ink);background:#fff;border:1px solid rgba(25,25,23,0.22);border-radius:0;padding:0.7rem 0.875rem;width:100%;min-height:2.75rem}
+.ms-tx input:focus,.ms-tx select:focus{outline:1px solid var(--ink);outline-offset:1px}
+.ms-fin{border-top:1px dashed var(--line);padding-top:1.5rem;display:flex;flex-direction:column;align-items:stretch;gap:0.75rem}
+.ms-fin .cta{justify-content:center}
+.ms-fin .cta[disabled]{opacity:.6;cursor:wait}
+@media (min-width:640px){.ms-tx{grid-template-columns:minmax(0,1fr) 12rem}}
+@media (min-width:768px){
+  .ms-stage,.ms-hint{width:100%}
+  .ms{grid-template-columns:minmax(0,1fr) minmax(0,20rem);column-gap:2.5rem}
+  .ms-pick{grid-column:1 / -1}
+  .ms-mid{grid-column:1}
+  .ms-panel{grid-column:2;grid-row:2}
+  .ms-p{width:6rem}
+}
+@media (min-width:1200px){
+  .ms{grid-template-columns:13rem minmax(0,1fr) 22rem}
+  .ms-pick{grid-column:1;grid-row:1;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 0.75rem;overflow:visible;padding:0}
+  .ms-p{width:auto}
+  .ms-mid{grid-column:2;grid-row:1}
+  .ms-panel{grid-column:3;grid-row:1}
+}
+@media (prefers-reduced-motion:reduce){.ms-print{transition:none}}
+.qm-note{margin-top:1.25rem;font-size:0.9375rem;line-height:1.55;color:var(--ink)}
+.qm-send{margin-top:1.75rem;border-top:1px dashed var(--line);padding-top:1.25rem}
+.qm-send .qmf-l{display:block;margin-bottom:0.75rem}
+.qm-send-row{display:flex;flex-wrap:wrap;gap:0.5rem}
+.qm-again{margin-top:1rem;font-size:0.875rem;color:var(--ink);text-decoration:underline;text-underline-offset:3px;min-height:2.75rem;padding:0;background:none;border:0;cursor:pointer}
+.price-note{margin-top:0.5rem;font-size:0.875rem;line-height:1.5;color:var(--ink-muted);max-width:44ch}
+/* sections far off screen skip layout and paint until they come near */
+.cv{content-visibility:auto;contain-intrinsic-size:auto 60rem}
+</style>
+</head>
+<body id="top">
+
+<!-- ===== HEADER ===== -->
+<header class="hdr">
+  <div class="hdr-in">
+    <div class="hdr-left"><p>Apparel Design &amp; Manufacturing</p><p>Design · Print · Produce</p></div>
+    <a class="logo" href="index.html" aria-label="Simple Threads, home"><svg class="mark" viewBox="0 0 72 72" aria-hidden="true"><rect x="16" y="16" width="40" height="40" transform="rotate(45 36 36)" fill="none" stroke="currentColor" stroke-width="3"></rect><rect x="24.5" y="24.5" width="23" height="23" transform="rotate(45 36 36)" fill="none" stroke="currentColor" stroke-width="2.2" stroke-dasharray="3.5 3"></rect></svg><span class="word">simple threads</span></a>
+    <div class="hdr-right">
+      <nav class="hdr-nav" aria-label="Primary"><a href="teams.html">Teams</a><a href="brand.html">Brands</a><a href="#studio">Mockups</a></nav>
+      <button class="menu-btn" id="menuOpen" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false"><span class="lbl">Menu</span><span class="burger" aria-hidden="true"><i></i><i></i></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="ph">
+  <div class="container">
+    <a class="back" href="index.html">← Simple Threads</a>
+    <div data-anim="fade"><span class="eyebrow">Design &amp; mockups</span></div>
+    <h1 data-anim="lines" data-stagger="120">See it <span class="accent">before</span> it’s made.</h1>
+    <p class="lead" data-anim="words" data-stagger="16" data-delay="300">Not sure how your idea will look? Our designers turn it into print-ready artwork and realistic front-and-back mockups, so you can approve every detail before anything is printed.</p>
+    <div class="page-cta" data-anim="fadeUp" data-delay="500"><a class="cta solid" href="#contact">Start a design <span class="arr">→</span></a><a class="cta ghost" href="#studio">Try the mockup studio <span class="arr">→</span></a><a class="cta ghost" href="#design">See our mockups <span class="arr">→</span></a></div>
+  </div>
+</section>
+<section class="sec">
+  <div class="container">
+    <div class="sh">
+      <div data-anim="fade"><span class="eyebrow">How it works</span></div>
+      <h2 class="sh-title" data-anim="lines">Three steps to a design you’re sure of.</h2>
+    </div>
+    <div class="offer three">
+      <article class="card" data-anim="fadeUp"><span class="idx">01</span><h3>Share your idea</h3><p>Send a sketch, a reference photo, or just a description of what you want.</p></article>
+      <article class="card" data-anim="fadeUp" data-delay="90"><span class="idx">02</span><h3>We design &amp; mock it up</h3><p>Our designers create the artwork and show it on the garment you choose, front and back.</p></article>
+      <article class="card" data-anim="fadeUp" data-delay="180"><span class="idx">03</span><h3>Revise &amp; approve</h3><p>We adjust it until it’s right. Once you approve, it goes straight to sampling and production.</p></article>
+    </div>
+  </div>
+</section>
+<!-- ===== MOCKUP STUDIO ===== -->
+<section class="sec" id="studio">
+  <div class="container">
+    <div class="dz-head">
+      <div class="sh">
+        <div data-anim="fade"><span class="eyebrow">Mockup studio</span></div>
+        <h2 class="sh-title" data-anim="lines">Make it <span class="accent">yours</span>.</h2>
+      </div>
+      <p class="dz-lead" data-anim="fade">Pick a blank, add your artwork or type your own, and see it printed on the fabric. When it looks right, save it and send it to us for a quote.</p>
+    </div>
+    <div class="ms" id="ms">
+      <div class="ms-pick" id="msPick" role="list" aria-label="Choose a blank"></div>
+      <div class="ms-mid">
+        <div class="ms-stage" id="msStage">
+          <img class="ms-still" id="msStill" alt="" decoding="async">
+          <canvas id="msCanvas"></canvas>
+          <canvas class="ms-print" id="msPrint" aria-hidden="true"></canvas>
+          <p class="ms-load" id="msLoad">Loading the studio…</p>
+        </div>
+        <p class="ms-hint" id="msHint">Tap outside your design to see it printed. Mockups are for reference; the final print may vary slightly.</p>
+      </div>
+      <div class="ms-panel">
+        <div class="ms-grp">
+          <p class="ms-l">Blank</p>
+          <p class="ms-name" id="msName"></p>
+          <p class="ms-price" id="msPrice"></p>
+          <p class="price-note">Blank only. Decoration is quoted once we see your design.</p>
+          <div class="ms-cols" id="msCols"></div>
+          <p class="ms-small" id="msColNote"></p>
+        </div>
+        <div class="ms-grp">
+          <p class="ms-l">View</p>
+          <div class="ms-row" id="msViews">
+            <button class="ms-btn" data-view="front" aria-pressed="true">Front</button>
+            <button class="ms-btn" data-view="back" aria-pressed="false">Back</button>
+          </div>
+        </div>
+        <div class="ms-grp">
+          <p class="ms-l">Quick place</p>
+          <div class="ms-row" id="msZones"></div>
+        </div>
+        <div class="ms-grp">
+          <p class="ms-l">Add</p>
+          <div class="ms-row">
+            <label class="ms-btn ms-file">Upload image<input type="file" id="msFile" accept="image/png,image/jpeg,image/webp"></label>
+            <button class="ms-btn" id="msText">Add text</button>
+            <button class="ms-btn" id="msDraw" aria-pressed="false">Draw</button>
+          </div>
+          <div class="ms-row ms-brush" id="msBrush" hidden>
+            <span class="ms-small">Brush</span>
+            <button class="ms-btn ms-sq" data-brush="6" aria-pressed="false">S</button>
+            <button class="ms-btn ms-sq" data-brush="14" aria-pressed="true">M</button>
+            <button class="ms-btn ms-sq" data-brush="30" aria-pressed="false">L</button>
+          </div>
+        </div>
+        <div class="ms-grp">
+          <p class="ms-l">Print style</p>
+          <div class="ms-row" id="msMethods">
+            <button class="ms-btn" data-m="DTG" aria-pressed="true">DTG</button>
+            <button class="ms-btn" data-m="DTF" aria-pressed="false">DTF</button>
+            <button class="ms-btn" data-m="Silk screen" aria-pressed="false">Silk screen</button>
+            <button class="ms-btn" data-m="Sublimation" aria-pressed="false">Sublimation</button>
+            <button class="ms-btn" data-m="Embroidery" aria-pressed="false">Embroidery</button>
+          </div>
+          <p class="ms-small" id="msMethodNote"></p>
+        </div>
+        <div class="ms-grp">
+          <p class="ms-l">Colour</p>
+          <div class="ms-row ms-sws" id="msSws"></div>
+        </div>
+        <div class="ms-grp ms-sel" id="msSel" hidden>
+          <p class="ms-l">Selected</p>
+          <div class="ms-tx" id="msTx" hidden>
+            <input type="text" id="msTxIn" aria-label="Edit text" maxlength="80">
+            <select id="msFont" aria-label="Font"></select>
+          </div>
+          <div class="ms-row">
+            <button class="ms-btn" id="msFwd">Forward</button>
+            <button class="ms-btn" id="msBwd">Backward</button>
+            <button class="ms-btn" id="msDup">Duplicate</button>
+            <button class="ms-btn" id="msDel">Delete</button>
+          </div>
+        </div>
+        <div class="ms-grp">
+          <div class="ms-row">
+            <button class="ms-btn" id="msUndo" disabled>Undo</button>
+            <button class="ms-btn" id="msRedo" disabled>Redo</button>
+            <button class="ms-btn" id="msClear">Clear</button>
+            <button class="ms-btn" id="msFx" aria-pressed="true">Print effect</button>
+          </div>
+        </div>
+        <div class="ms-fin">
+          <button class="cta solid" id="msSave">Download mockup <span class="arr">→</span></button>
+          <button class="cta ghost" id="msQuote">Request a quote <span class="arr">→</span></button>
+          <p class="ms-small" id="msMsg" role="status" aria-live="polite"></p>
+          <p class="ms-small">Your images stay on your device. Nothing is uploaded until you send them to us.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DESIGN STUDIO ===== -->
+<section class="cv sec grey" id="design">
+  <div class="container">
+    <div class="dz-head">
+      <div class="sh">
+        <div data-anim="fade"><span class="eyebrow">Design studio</span></div>
+        <h2 class="sh-title" data-anim="lines">We <span class="accent">design</span>, too.</h2>
+      </div>
+      <p class="dz-lead" data-anim="fade">No artwork yet? Our designers turn your idea into print-ready graphics and front-and-back mockups, so you can see the finished shirt before anything is printed.</p>
+    </div>
+    <div class="dz-grid">
+      <figure class="dz-item" data-anim="plate"><div class="media dz-media"><img data-img="d_lsa" alt="LSA tee design, front and back mockup"></div><figcaption><div><h3>LSA</h3><p class="med">Front chest logo, full-back wave graphic</p></div><span class="dz-tag">Mockup</span></figcaption></figure>
+      <figure class="dz-item" data-anim="plate" data-delay="100"><div class="media dz-media"><img data-img="d_enjoy" alt="Enjoy the Process tee design, front and back mockup"></div><figcaption><div><h3>Enjoy the Process</h3><p class="med">Navy tee, script lettering front and back</p></div><span class="dz-tag">Mockup</span></figcaption></figure>
+      <figure class="dz-item" data-anim="plate"><div class="media dz-media"><img data-img="d_conquer" alt="Conquer tee design, front and back mockup"></div><figcaption><div><h3>Conquer</h3><p class="med">Chrome front logo, full-back sword graphic</p></div><span class="dz-tag">Mockup</span></figcaption></figure>
+      <figure class="dz-item" data-anim="plate" data-delay="100"><div class="media dz-media"><img data-img="d_unchained" alt="Unchained tee design, front and back mockup"></div><figcaption><div><h3>Unchained</h3><p class="med">Front graphic with weight plate, full-back spine wings</p></div><span class="dz-tag">Mockup</span></figcaption></figure>
+    </div>
+    <div class="dz-cta" data-anim="fadeUp"><a class="cta solid" href="#contact">Start a design <span class="arr">→</span></a></div>
+  </div>
+</section>
+
+<!-- ===== QUICK QUOTE WINDOW (opens from the mockup studio) ===== -->
+<div class="pm qm" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="qmTitle" aria-hidden="true">
+  <div class="pm-back" data-close></div>
+  <div class="pm-panel qm-panel" data-lenis-prevent>
+    <button class="pm-x" data-close aria-label="Close">Close ✕</button>
+    <span class="eyebrow">Request a quote</span>
+    <h3 class="qm-title" id="qmTitle">Get a quote for this <span class="accent">piece</span>.</h3>
+    <div class="qm-item">
+      <div class="qm-thumb"><img id="qmImg" alt=""></div>
+      <div class="qm-info">
+        <p class="pm-cat" id="qmCat">Made in the mockup studio</p>
+        <p class="qm-name" id="qmName"></p>
+        <p class="qm-price" id="qmPrice"></p>
+        <p class="price-note">Blank only. Decoration is quoted once we see your design.</p>
+      </div>
+    </div>
+    <p class="qm-note" id="qmNote">We saved your mockup to your device. After you send this form, attach that image in a Viber message or email so we can see your design.</p>
+    <form class="qmf" id="quickQuote" novalidate>
+      <input type="hidden" name="product" id="qmProduct">
+      <input type="hidden" name="products" id="qmChip">
+      <input type="hidden" name="placement" id="qmPlace">
+      <div class="qmf-grid">
+        <label class="qmf-field"><span class="qmf-l">Name *</span><input name="name" type="text" autocomplete="name" required></label>
+        <label class="qmf-field"><span class="qmf-l">Email *</span><input name="email" type="email" autocomplete="email" required></label>
+        <label class="qmf-field"><span class="qmf-l">Mobile number</span><input name="mobile" type="tel" autocomplete="tel" placeholder="09XX-XXX-XXXX"></label>
+        <label class="qmf-field"><span class="qmf-l">Quantity (rough is fine)</span><input name="quantity" type="number" min="1" inputmode="numeric" placeholder="e.g. 50"></label>
+        <label class="qmf-field"><span class="qmf-l">Colour</span><input name="colour" id="qmColour" type="text"></label>
+        <label class="qmf-field"><span class="qmf-l">Print or embroidery</span>
+          <select name="method"><option>Not sure — recommend one</option><option>DTF</option><option>DTG</option><option>Silk screen</option><option>Sublimation</option><option>Embroidery</option></select></label>
+        <label class="qmf-field"><span class="qmf-l">Needed by</span><input name="deadline" type="date"></label>
+        <label class="qmf-field"><span class="qmf-l">Design link (optional)</span><input name="design_link" type="url" placeholder="Google Drive or any link"></label>
+      </div>
+      <label class="qmf-field qmf-wide"><span class="qmf-l">Anything else?</span><textarea name="message" rows="3" placeholder="Sizes, quantities per size, anything you have in mind."></textarea></label>
+      <input type="checkbox" name="botcheck" class="qf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="qf-actions">
+        <button class="cta solid" type="submit">Send quote request <span class="arr">→</span></button>
+        <p class="qf-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+    <div class="qm-send">
+      <p class="qmf-l">Send us your mockup</p>
+      <div class="qm-send-row">
+        <a class="cta ghost" href="viber://chat?number=%2B639613826973">Message on Viber <span class="arr">→</span></a>
+        <a class="cta ghost" id="qmMail" href="mailto:simplethreads.mnl@gmail.com?subject=My%20mockup">Email us <span class="arr">→</span></a>
+      </div>
+      <button class="qm-again" id="qmAgain" type="button">Download the mockup again</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PINNED CTA #2 ===== -->
+<section class="pinned center" id="contact">
+  <div class="container"><div class="copy">
+    <div data-anim="fade"><span class="eyebrow dark">Get in touch</span></div>
+    <h2 data-anim="lines">Tell us what you want to make.</h2>
+    <p class="body" data-anim="words" data-stagger="16">Fill in what you can — rough numbers are fine. No minimum order; we’ll reply with options and a price for your quantity.</p>
+  </div>
+  <form class="qf" id="quoteForm" novalidate data-anim="fadeUp" data-delay="300" aria-labelledby="qfTitle">
+    <p class="qf-title" id="qfTitle">Request a quote</p>
+    <div class="qf-grid">
+      <label class="qf-field"><span class="qf-l">Name *</span><input name="name" type="text" autocomplete="name" required></label>
+      <label class="qf-field"><span class="qf-l">Email *</span><input name="email" type="email" autocomplete="email" required></label>
+      <label class="qf-field"><span class="qf-l">Mobile number</span><input name="mobile" type="tel" autocomplete="tel" placeholder="09XX-XXX-XXXX"></label>
+      <label class="qf-field"><span class="qf-l">Brand, team, or event</span><input name="organization" type="text" autocomplete="organization"></label>
+    </div>
+    <fieldset class="qf-set">
+      <legend class="qf-l">What do you need?</legend>
+      <div class="qf-chips">
+        <label class="chip"><input type="checkbox" name="products" value="T-shirts"><span>T-shirts</span></label>
+        <label class="chip"><input type="checkbox" name="products" value="Hoodies"><span>Hoodies</span></label>
+        <label class="chip"><input type="checkbox" name="products" value="Long sleeves"><span>Long sleeves</span></label>
+        <label class="chip"><input type="checkbox" name="products" value="Polos"><span>Polos</span></label>
+        <label class="chip"><input type="checkbox" name="products" value="Jackets"><span>Jackets</span></label>
+        <label class="chip"><input type="checkbox" name="products" value="Caps"><span>Caps</span></label>
+        <label class="chip"><input type="checkbox" name="products" value="Beanies"><span>Beanies</span></label>
+        <label class="chip"><input type="checkbox" name="products" value="Lanyards"><span>Lanyards</span></label>
+        <label class="chip"><input type="checkbox" name="products" value="Other"><span>Other</span></label>
+      </div>
+    </fieldset>
+    <div class="qf-grid">
+      <label class="qf-field"><span class="qf-l">Quantity (rough is fine)</span><input name="quantity" type="number" min="1" inputmode="numeric" placeholder="e.g. 50"></label>
+      <label class="qf-field"><span class="qf-l">Print or embroidery</span>
+        <select name="method"><option>Not sure — recommend one</option><option>DTF</option><option>DTG</option><option>Silk screen</option><option>Sublimation</option><option>Embroidery</option></select></label>
+      <label class="qf-field"><span class="qf-l">Needed by</span><input name="deadline" type="date"></label>
+      <label class="qf-field"><span class="qf-l">Design link (optional)</span><input name="design_link" type="url" placeholder="Google Drive or any link"></label>
+    </div>
+    <label class="qf-field qf-wide"><span class="qf-l">Tell us about your idea</span><textarea name="message" rows="4" placeholder="Colors, sizes, where the print goes, anything you have in mind."></textarea></label>
+    <input type="checkbox" name="botcheck" class="qf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="qf-actions">
+      <button class="cta dark solid" type="submit" id="qfSubmit">Send quote request <span class="arr">→</span></button>
+      <p class="qf-status" id="qfStatus" role="status" aria-live="polite"></p>
+    </div>
+  </form>
+  <div class="qc" data-anim="fadeUp">
+    <p class="qc-lead">Prefer to message us directly?</p>
+    <div class="qc-grid">
+      <div class="qc-item">
+        <p class="qf-l">Viber</p>
+        <a class="qc-val" href="viber://chat?number=%2B639613826973">0961-382-6973</a>
+        <a class="cta dark ghost qc-btn" href="viber://chat?number=%2B639613826973">Message on Viber <span class="arr">→</span></a>
+      </div>
+      <div class="qc-item">
+        <p class="qf-l">Email</p>
+        <a class="qc-val" href="mailto:simplethreads.mnl@gmail.com">simplethreads.mnl@gmail.com</a>
+        <a class="cta dark ghost qc-btn" href="mailto:simplethreads.mnl@gmail.com?subject=Quote%20request">Send an email <span class="arr">→</span></a>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+
+<!-- ===== FAQ ===== -->
+<section class="cv sec">
+  <div class="container g12">
+    <div class="s4 sh">
+      <div data-anim="fade"><span class="eyebrow">Questions</span></div>
+      <h2 class="sh-title" data-anim="lines">Before you order.</h2>
+    </div>
+    <div class="s8" id="faq"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="ftr">
+  <div class="container">
+    <div class="g12">
+      <div class="s5" data-anim="fadeUp">
+        <a class="logo" href="index.html" aria-label="Simple Threads, home"><svg class="mark" viewBox="0 0 72 72" aria-hidden="true"><rect x="16" y="16" width="40" height="40" transform="rotate(45 36 36)" fill="none" stroke="currentColor" stroke-width="3"></rect><rect x="24.5" y="24.5" width="23" height="23" transform="rotate(45 36 36)" fill="none" stroke="currentColor" stroke-width="2.2" stroke-dasharray="3.5 3"></rect></svg><span class="word">simple threads</span></a>
+        <p class="tag">Your idea, simply made.</p>
+        <a class="mail" href="mailto:simplethreads.mnl@gmail.com">simplethreads.mnl@gmail.com</a>
+        <a class="mail tel" href="tel:+639613826973">0961-382-6973</a>
+      </div>
+      <div class="s2 col"><p class="ct">Explore</p><ul><li><a href="index.html#work">Work</a></li><li><a href="teams.html#catalogue">Catalogue</a></li><li><a href="index.html#services">Services</a></li><li><a href="index.html#process">Process</a></li><li><a href="index.html#about">About</a></li></ul></div>
+      <div class="s2 col"><p class="ct">Products</p><ul><li><a href="index.html#services">Shirts &amp; hoodies</a></li><li><a href="index.html#services">Outerwear</a></li><li><a href="index.html#services">Headwear</a></li><li><a href="index.html#services">Lanyards</a></li></ul></div>
+      <div class="s3 col"><p class="ct">Contact</p><ul><li><a href="#contact">Get a quote</a></li><li><a href="mailto:simplethreads.mnl@gmail.com">Email us</a></li><li><a href="tel:+639613826973">Call us</a></li><li><a href="viber://chat?number=%2B639613826973">Viber</a></li></ul></div>
+    </div>
+    <div class="giant" data-anim="fadeUp" aria-hidden="true">Simple Threads</div>
+    <div class="legal">
+      <p>© 2026 Simple Threads. All rights reserved. Client artwork shown with permission and remains the property of each brand.</p>
+      <ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== MODAL MENU ===== -->
+<div class="modal" id="menu" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
+  <div class="panel"></div>
+  <div class="content">
+    <div class="m-top"><span class="ml">Menu</span><button id="menuClose">Close ✕</button></div>
+    <nav class="m-nav" id="mnav" aria-label="Menu"></nav>
+    <div class="m-bot">
+      <div><a class="mail" href="mailto:simplethreads.mnl@gmail.com">simplethreads.mnl@gmail.com</a><p class="loc">Manila, Philippines · <a href="tel:+639613826973">0961-382-6973</a></p></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.19/dist/lenis.min.js"></script>
+<script>
+(() => {
+const IMGS={"d_lsa": "images/d_lsa.webp", "d_enjoy": "images/d_enjoy.webp", "d_conquer": "images/d_conquer.webp", "d_unchained": "images/d_unchained.webp"};
+const NAV=[["Home", "index.html"], ["Teams & Events", "teams.html"], ["Build Your Brand", "brand.html"], ["Mockup Tool & Custom Mockups", "#studio"], ["Contact", "#contact"]];
+const WORKS=[
+  ["Achilles","Stoicism","Black tee, back print with split-quote hem line","Design assistance, production","achilles","1/1"],
+  ["Knight","Stoicism","Oversized tee, full-back print","Design assistance, production","knight","2/3"]];
+const PRODUCTS=[
+  ["T-shirts","Regular, oversized, and boxy fits in cotton, French terry, and blends."],
+  ["Hoodies","Pullover and zip-up, mid to heavy weight, with front, back, and sleeve prints."],
+  ["Long sleeves","Crewneck tees and jerseys with room for sleeve graphics."],
+  ["Polos","Pique and dri-fit polos for teams, uniforms, and corporate wear."],
+  ["Jackets","Windbreakers, varsity, and coach jackets, printed or embroidered."],
+  ["Caps","Dad caps, snapbacks, and trucker hats, embroidered or printed."],
+  ["Beanies","Cuffed and fisherman beanies with woven or printed labels."],
+  ["Lanyards","Full-color sublimated lanyards for events, schools, and offices."]];
+const METHODS=[
+  ["DTF","Detailed, full-color designs on almost any fabric, including small runs."],
+  ["DTG","Photographic prints and gradients on cotton, with a soft hand feel."],
+  ["Silk screen","Bold artwork and larger quantities, with vivid, durable ink."],
+  ["Sublimation","All-over prints on polyester garments and lanyards that never crack or peel."]];
+const FAQ=[
+  ["Is there a minimum order?","No. You can order as few or as many pieces as you need. Pricing is tiered by quantity, so the larger the order, the lower the price per piece."],
+  ["I don’t have a finished design. Can you help?","Yes. Design assistance is part of what we do. Send a sketch, a reference, or a description, and our designers will prepare print-ready artwork and a mockup for your approval."],
+  ["Which print method should I choose?","It depends on the artwork, the fabric, and the quantity. Fine detail and small runs suit DTF or DTG, bold designs in volume suit silk screen, all-over polyester prints suit sublimation, and logos on polos, caps, and jackets look best embroidered. We’ll recommend one with your quote."],
+  ["How long does production take?","For 1–5 pieces, your order is ready 2–3 days after sample approval. Bigger orders typically take 2–3 weeks after sample approval, depending on quantity, garment, and print method. Rush orders may be possible — ask early."],
+  ["Can I see a sample first?","Yes. We produce a sample for approval before the full run so you can check fit, fabric, and print."]];
+const $=s=>document.querySelector(s),pad=i=>String(i+1).padStart(2,"0");
+($("#gallery")||{}).innerHTML=WORKS.map(([t,c,g,sv,img,r])=>`
+  <article class="work"><figure data-anim="plate">
+    <div class="media parallax" style="aspect-ratio:${r}"><img data-img="${img}" alt="${c} — ${t}" style="object-position:center"></div>
+    <figcaption><div><h3>${t}</h3><p class="med">${g}</p><p class="tags">${sv}</p></div><span class="client">${c}</span></figcaption>
+  </figure></article>`).join("");
+($("#products")||{}).innerHTML=PRODUCTS.map(([t,d],i)=>`<article data-anim="fadeUp" data-delay="${(i%4)*80}"><span class="n">${pad(i)}</span><h3>${t}</h3><p>${d}</p></article>`).join("");
+($("#faq")||{}).innerHTML=FAQ.map(([q,a],i)=>`
+  <div class="faq-row" data-anim="fade" data-delay="${i*80}">
+    <h3><button id="fq${i}" aria-expanded="false" aria-controls="fp${i}"><span class="q">${q}</span><span class="plus" aria-hidden="true">+</span></button></h3>
+    <div class="faq-panel" id="fp${i}" role="region" aria-labelledby="fq${i}"><div class="pad"><p>${a}</p></div></div>
+  </div>`).join("");
+($("#mnav")||{}).innerHTML=NAV.map(([l,h],i)=>`<a href="${h}" style="--d:${180+i*70}ms"><span class="n">${pad(i)}</span><span class="l">${l}</span></a>`).join("");
+document.querySelectorAll("img[data-img]").forEach((im,i)=>{im.decoding="async";if(im.dataset.img!=="dragon"||i>0)im.loading="lazy";im.src=IMGS[im.dataset.img]});
+
+/* text split */
+function split(el){
+  const walk=node=>[...node.childNodes].forEach(n=>{
+    if(n.nodeType===3){const f=document.createDocumentFragment();
+      n.textContent.split(/(\s+)/).forEach(p=>{if(!p)return;if(/^\s+$/.test(p)){f.appendChild(document.createTextNode(" "));return}
+        const w=document.createElement("span");w.className="w";const wi=document.createElement("span");wi.className="wi";wi.textContent=p;w.appendChild(wi);f.appendChild(w)});
+      n.replaceWith(f)} else if(n.nodeType===1) walk(n)});
+  walk(el);
+}
+document.querySelectorAll('[data-anim="lines"],[data-anim="words"]').forEach(el=>{split(el);el.classList.add(el.dataset.anim)});
+
+/* reveals */
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function play(el){
+  const base=+el.dataset.delay||0,type=el.dataset.anim;
+  if(type==="lines"){const st=+el.dataset.stagger||90;let top=null,line=-1;
+    el.querySelectorAll(".w").forEach(w=>{const t=Math.round(w.offsetTop);if(top===null||Math.abs(t-top)>4){top=t;line++}w.firstChild.style.transitionDelay=(base+line*st)+"ms"})}
+  else if(type==="words"){const st=+el.dataset.stagger||16;el.querySelectorAll(".wi").forEach((wi,i)=>wi.style.transitionDelay=(base+Math.min(i*st,480))+"ms")}
+  else el.style.transitionDelay=base+"ms";
+  requestAnimationFrame(()=>el.classList.add("in"));
+}
+const anims=document.querySelectorAll("[data-anim]");
+if(reduce||!("IntersectionObserver" in window))anims.forEach(e=>e.classList.add("in"));
+else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){io.unobserve(e.target);play(e.target)}}),{threshold:0,rootMargin:"0px 0px -10% 0px"});
+  Promise.race([document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve(),new Promise(r=>setTimeout(r,1000))]).then(()=>anims.forEach(e=>io.observe(e)))}
+document.addEventListener("transitionend",e=>{const t=e.target;if(t.matches&&t.matches("[data-anim].in")&&t.style.transitionDelay)t.style.transitionDelay=""});
+
+/* lenis */
+let lenis=null;
+if(window.Lenis&&!reduce&&matchMedia("(pointer:fine)").matches){lenis=new Lenis({smoothWheel:true});const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};requestAnimationFrame(raf)}
+window.__lenis=lenis;
+function go(h){
+  if(h==="#top"){lenis?lenis.scrollTo(0):scrollTo({top:0,behavior:reduce?"auto":"smooth"});return}
+  const el=document.querySelector(h);if(!el)return;
+  if(lenis)lenis.scrollTo(el,{offset:-(parseFloat(getComputedStyle(el).scrollMarginTop)||0)});else el.scrollIntoView({behavior:reduce?"auto":"smooth"});
+}
+document.addEventListener("click",e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const h=a.getAttribute("href");e.preventDefault();if(h==="#")return;
+  if(a.closest("#menu")){closeMenu();setTimeout(()=>go(h),260)}else go(h)});
+
+/* parallax */
+const plx=[...document.querySelectorAll(".parallax")],lg=matchMedia("(min-width:1024px) and (pointer:fine)");
+let plxRem=parseFloat(getComputedStyle(document.documentElement).fontSize),plxOn=true;
+function parallax(e){if(reduce||!plx.length)return;if(e&&e.type==="resize")plxRem=parseFloat(getComputedStyle(document.documentElement).fontSize);
+  if(!lg.matches){if(plxOn){plx.forEach(el=>el.style.transform="");plxOn=false}return}plxOn=true;const vh=innerHeight,rem=plxRem;
+  plx.forEach(el=>{const r=el.parentElement.getBoundingClientRect();if(r.bottom<-200||r.top>vh+200)return;
+    const p=Math.min(1,Math.max(0,(vh-r.top)/(vh+r.height)));el.style.transform=`translate3d(0,${(2.5-5*p)*rem}px,0)`})}
+if(lenis)lenis.on("scroll",parallax);else addEventListener("scroll",parallax,{passive:true});
+addEventListener("resize",parallax);parallax();
+
+/* faq */
+document.querySelectorAll(".faq-row").forEach(row=>{const b=row.querySelector("button"),p=row.querySelector(".faq-panel"),inner=p.firstElementChild;
+  b.addEventListener("click",()=>{const o=!row.classList.contains("open");row.classList.toggle("open",o);b.setAttribute("aria-expanded",o);p.style.height=o?inner.scrollHeight+"px":"0px"});
+  new ResizeObserver(()=>{if(row.classList.contains("open"))p.style.height=inner.scrollHeight+"px"}).observe(inner)});
+
+/* menu */
+const menu=$("#menu"),ob=$("#menuOpen"),cb=$("#menuClose"),H=document.documentElement;
+function openMenu(){menu.classList.add("open");menu.setAttribute("aria-hidden","false");ob.setAttribute("aria-expanded","true");lenis&&lenis.stop();Object.assign(H.style,{overflow:"hidden",height:"100%",position:"relative"});setTimeout(()=>cb.focus(),50)}
+function closeMenu(){if(!menu.classList.contains("open"))return;menu.classList.remove("open");menu.setAttribute("aria-hidden","true");ob.setAttribute("aria-expanded","false");Object.assign(H.style,{overflow:"",height:"",position:""});lenis&&lenis.start();ob.focus({preventScroll:true})}
+ob.addEventListener("click",openMenu);cb.addEventListener("click",closeMenu);addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu()});
+/* quote form — paste your Web3Forms access key between the quotes to send straight to Gmail */
+const WEB3FORMS_KEY="e6b201c3-d5af-41c5-aa9f-355f06ccb31a";
+const STUDIO_EMAIL="simplethreads.mnl@gmail.com";
+/* both quote forms (the big one at the bottom and the studio window) send the same way */
+function wireQuote(qf){
+  if(!qf)return;
+  const qs=qf.querySelector(".qf-status"),qb=qf.querySelector('[type="submit"]');
+  qf.addEventListener("submit",async e=>{
+    e.preventDefault();
+    let ok=true;
+    qf.querySelectorAll("[required]").forEach(el=>{const bad=!el.value.trim()||(el.type==="email"&&!/^\S+@\S+\.\S+$/.test(el.value));el.setAttribute("aria-invalid",bad?"true":"false");if(bad&&ok){ok=false;el.focus()}});
+    if(!ok){qs.textContent="Please add your name and a valid email so we can reply.";return}
+    const fd=new FormData(qf);
+    if(fd.get("botcheck")){qs.textContent="Thanks! We’ll be in touch soon.";return}
+    const d={name:fd.get("name").trim(),email:fd.get("email").trim(),mobile:fd.get("mobile")||"",organization:fd.get("organization")||"",products:fd.getAll("products").join(", ")||"Not specified",quantity:fd.get("quantity")||"Not specified",method:fd.get("method"),deadline:fd.get("deadline")||"Not specified",design_link:fd.get("design_link")||"",message:fd.get("message")||""};
+    if(fd.get("product"))d.product=fd.get("product");
+    if(fd.has("colour"))d.colour=(fd.get("colour")||"").trim()||"Not specified";
+    if(fd.get("placement"))d.placement=fd.get("placement");
+    const body=`Name: ${d.name}\nEmail: ${d.email}\nMobile: ${d.mobile}\nBrand / team / event: ${d.organization}\n`+(d.product?`Product: ${d.product}\nColour: ${d.colour}\n`:"")+(d.placement?`Placement: ${d.placement}\n`:"")+`Products: ${d.products}\nQuantity: ${d.quantity}\nPrint or embroidery: ${d.method}\nNeeded by: ${d.deadline}\nDesign link: ${d.design_link}\n\n${d.message}`;
+    const subject="Quote request — "+d.name+(d.product?" ("+d.product+")":"");
+    const mailto=`mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    if(!WEB3FORMS_KEY){location.href=mailto;qs.innerHTML="Your email app should open with your request filled in — just press send.";return}
+    qb.disabled=true;qs.textContent="Sending…";
+    try{
+      const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:WEB3FORMS_KEY,subject,from_name:"Simple Threads website",replyto:d.email,...d})});
+      const j=await r.json().catch(()=>({}));
+      if(!r.ok||!j.success)throw new Error("send failed");
+      qf.reset();qf.querySelectorAll("[aria-invalid]").forEach(el=>el.removeAttribute("aria-invalid"));
+      qs.textContent=`Thanks, ${d.name}! Your request is in. We’ll reply by email soon.`;
+    }catch(err){
+      qs.innerHTML=`Sorry, that didn’t send. <a href="${mailto}">Email your request instead</a> or message us on Viber.`;
+    }finally{qb.disabled=false}
+  });
+}
+wireQuote(document.getElementById("quoteForm"));
+wireQuote(document.getElementById("quickQuote"));
+/* ===== CATALOGUE ===== */
+const HOOD="Black, Navy Blue, White, Ash Grey";
+const CAPC="Black, Grey, Navy Blue, Red, Army Green, Green";
+const CATALOGUE=[
+ {id:"tshirt",name:"Plain T-shirt",cat:"shirts",label:"Shirts & polos",chip:"T-shirts",price:200,desc:"100% combed cotton, 200 GSM. A clean everyday tee for prints and embroidery.",shown:"Black",cols:""},
+ {id:"drifit",name:"Dri-fit Polo",cat:"shirts",label:"Shirts & polos",chip:"Polos",price:300,desc:"Lightweight, quick-dry polo. Great for teams, events, and uniforms.",shown:"White",cols:""},
+ {id:"honeycomb",name:"Honeycomb Polo",cat:"shirts",label:"Shirts & polos",chip:"Polos",price:340,desc:"Textured honeycomb-knit polo with a classic collar.",shown:"Purple",cols:""},
+ {id:"pullover",name:"Pullover Hoodie",cat:"jackets",label:"Jackets & hoodies",chip:"Hoodies",price:650,desc:"100% cotton, 400 GSM. Thick and softly textured, oversized fit, no drawstrings.",shown:"Black",cols:HOOD},
+ {id:"hoodie",name:"Plain Hoodie",cat:"jackets",label:"Jackets & hoodies",chip:"Hoodies",price:650,desc:"Cotton, 320 GSM. Classic fit with drawstring hood and kangaroo pocket.",shown:"Navy Blue",cols:HOOD,photos:[["Navy Blue","#1b2238","hoodie-navy"],["Ash Grey","#c4c4c1","hoodie-grey"],["White","#f2f1ec","hoodie-white"]]},
+ {id:"varsity",name:"Varsity Jacket",cat:"jackets",label:"Jackets & hoodies",chip:"Jackets",price:450,desc:"Cotton, with contrast white sleeves, striped trims, and snap buttons. Sizes M to 3XL.",shown:"Black",cols:"Blue, Black, Red, Brown, Pink, Green"},
+ {id:"corporate",name:"Corporate Jacket",cat:"jackets",label:"Jackets & hoodies",chip:"Jackets",price:850,desc:"Hooded jacket with contrast black zips, zip side pockets, and elastic cuffs.",shown:"Grey",cols:""},
+ {id:"windbreaker",name:"Windbreaker",cat:"jackets",label:"Jackets & hoodies",chip:"Jackets",price:800,desc:"Lightweight hooded windbreaker with full zip, drawcord hood, and side pockets.",shown:"White",cols:""},
+ {id:"cap",name:"Baseball Cap",cat:"headwear",label:"Headwear",chip:"Caps",price:190,desc:"Plain cap with Velcro strap closure. Embroidery-ready front panel.",shown:"Black",cols:CAPC,views:[["Front","cap"],["Side","cap-side"]]},
+ {id:"washed",name:"Washed Cap",cat:"headwear",label:"Headwear",chip:"Caps",price:175,desc:"Soft, washed finish for a worn-in, vintage look.",shown:"Blue",cols:CAPC,views:[["Front","washed"],["Side","washed-side"]]},
+ {id:"netcap",name:"Net Cap",cat:"headwear",label:"Headwear",chip:"Caps",price:185,desc:"Trucker style with a foam front panel and breathable mesh back. Available in any colour; ask us for options.",shown:"Khaki and brown",cols:"Any colour",views:[["Front","netcap"],["Side","netcap-side"]]},
+ {id:"beanie",name:"Knitted Beanie",cat:"headwear",label:"Headwear",chip:"Beanies",price:150,desc:"100% cotton, ribbed fisherman style with a folded cuff.",shown:"Navy",cols:"Blue, White, Purple, Teal, Red, Black, Pink, Orange, Yellow, Army Green, Magenta, Grey, Green"}
+];
+const peso=n=>"PHP "+n.toLocaleString("en-PH");
+const ncols=p=>p.cols&&p.cols!=="Any colour"?p.cols.split(",").length:0;
+const meta=p=>p.cols==="Any colour"?"Any colour":ncols(p)?ncols(p)+" colours available":"Colours to follow";
+const src=(p,i)=>p.photos?CATIMG[p.photos[i][2]]:p.views?CATIMG[p.views[i][1]]:CATIMG[p.id];
+const shownName=(p,i)=>p.photos?p.photos[i][0]:p.shown;
+const sel=CATALOGUE.map(()=>0);
+const swHTML=(p,i0)=>p.views?p.views.map((v,i)=>`<button class="vw" aria-pressed="${i===i0}" data-i="${i}">${v[0]}</button>`).join(""):p.photos?p.photos.map((c,i)=>`<button class="sw" style="background:${c[1]}" aria-label="${c[0]}" aria-pressed="${i===i0}" data-i="${i}"></button>`).join(""):"";
+const grid=document.getElementById("catGrid");
+if(grid){
+  grid.innerHTML=CATALOGUE.map((p,pi)=>`<article class="pc" data-cat="${p.cat}" data-p="${pi}">
+      <button class="pc-media" data-open aria-label="View details: ${p.name}"><img alt="${p.name}${p.shown?", shown in "+p.shown:""}" src="${src(p,0)}" loading="lazy" decoding="async"></button>
+      ${(p.photos||p.views)?`<div class="pc-sw">${swHTML(p,0)}</div>`:""}
+      <h3 class="pc-name">${p.name}</h3>
+      <p class="pc-col">${meta(p)}</p>
+      <p class="pc-price">${peso(p.price)}<small>per piece, blank</small></p>
+      <div class="pc-actions"><button class="cta solid" data-quote>Get a quote</button><button class="cta ghost" data-open>View details</button></div>
+    </article>`).join("");
+  const pm=document.getElementById("catModal"); let cur=-1, lastFocus=null;
+  const $id=id=>document.getElementById(id);
+  function quote(pi){
+    const p=CATALOGUE[pi], f=document.getElementById("quoteForm");
+    if(f){
+      const chip=f.querySelector(`input[name="products"][value="${p.chip}"]`); if(chip) chip.checked=true;
+      const msg=f.querySelector('[name="message"]'); const line=`Interested in: ${p.name}${p.photos?" — "+shownName(p,sel[pi]):""}`;
+      if(msg && !msg.value.includes(line)) msg.value=(msg.value?msg.value.trim()+"\n":"")+line+(p.photos?"":" (colour: )");
+    }
+    const was=pm.classList.contains("open"); closeModal(); setTimeout(()=>go("#contact"),was?120:0);
+  }
+  function openModal(pi){
+    cur=pi; const p=CATALOGUE[pi]; lastFocus=document.activeElement;
+    $id("pmCat").textContent=p.label; $id("pmName").textContent=p.name; $id("pmDesc").textContent=p.desc;
+    $id("pmPrice").innerHTML=`${peso(p.price)}<small>per piece, blank</small>`;
+    $id("pmSw").innerHTML=swHTML(p,sel[pi]); setModal(sel[pi]);
+    $id("pmCol").textContent=p.cols||"To follow — ask us for current options";
+
+    pm.classList.add("open"); pm.setAttribute("aria-hidden","false");
+    lenis&&lenis.stop(); document.documentElement.style.overflow="hidden";
+    setTimeout(()=>pm.querySelector(".pm-x").focus(),50);
+  }
+  function setCard(card,pi,i){
+    const p=CATALOGUE[pi]; sel[pi]=i; const im=card.querySelector(".pc-media img");
+    im.src=src(p,i); im.alt=p.name+", shown in "+shownName(p,i);
+    card.querySelectorAll(".sw,.vw").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.i===i));
+  }
+  function setModal(i){
+    const p=CATALOGUE[cur]; sel[cur]=i;
+    $id("pmImg").src=src(p,i); $id("pmImg").alt=p.name+(shownName(p,i)?", shown in "+shownName(p,i):"");
+    $id("pmShown").textContent=shownName(p,i)?"Shown in "+shownName(p,i):"Illustration for reference";
+    $id("pmSw").querySelectorAll(".sw,.vw").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.i===i));
+    const card=grid.querySelector(`.pc[data-p="${cur}"]`); if(card&&(p.photos||p.views)) setCard(card,cur,i);
+  }
+  function closeModal(){
+    if(!pm.classList.contains("open"))return;
+    pm.classList.remove("open"); pm.setAttribute("aria-hidden","true");
+    document.documentElement.style.overflow=""; lenis&&lenis.start(); lastFocus&&lastFocus.focus({preventScroll:true});
+  }
+  grid.addEventListener("click",e=>{
+    const card=e.target.closest(".pc"); if(!card)return; const pi=+card.dataset.p;
+    const sw=e.target.closest(".sw,.vw"); if(sw){setCard(card,pi,+sw.dataset.i);return}
+    if(e.target.closest("[data-open]")){openModal(pi);return}
+    if(e.target.closest("[data-quote]")) quote(pi);
+  });
+  pm.addEventListener("click",e=>{
+    if(e.target.closest("[data-close]")){closeModal();return}
+    const sw=e.target.closest(".sw,.vw"); if(sw){setModal(+sw.dataset.i);return}
+    if(e.target.closest("#pmQuote")) quote(cur);
+  });
+  addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+  document.querySelectorAll(".cat-tab").forEach(t=>t.addEventListener("click",()=>{
+    document.querySelectorAll(".cat-tab").forEach(x=>x.setAttribute("aria-selected",x===t));
+    const f=t.dataset.f; grid.querySelectorAll(".pc").forEach(c=>{c.hidden=!(f==="all"||c.dataset.cat===f)});
+  }));
+}
+
+/* ===== MOCKUP STUDIO ===== */
+(function(){
+const root=document.getElementById("ms"); if(!root) return;
+const FABRIC_URL="https://cdn.jsdelivr.net/npm/fabric@5.3.0/dist/fabric.min.js";
+const FONTS_URL="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600&display=swap";
+const W=1152,H=1536;
+/* print zones, as [x, y, width, height, angle°] in fractions of the photo (x, y = top-left before rotating); sleeves tilt with the sleeve. Tuned to the studio photos and checked against the garment masks */
+const ZONES={
+ tee:{front:{full:[.30,.20,.40,.40],chest:[.57,.20,.14,.10],lsleeve:[.83,.325,.11,.07,-24],rsleeve:[.06,.325,.11,.07,24]},back:{full:[.28,.22,.44,.42],upper:[.40,.16,.20,.06]}},
+ hoodie:{front:{full:[.31,.25,.38,.27],chest:[.57,.26,.13,.08],lsleeve:[.835,.42,.07,.20,-6],rsleeve:[.095,.42,.07,.20,6]},back:{full:[.29,.34,.42,.38],upper:[.38,.34,.24,.09]}},
+ jacket:{front:{full:[.30,.24,.40,.36],chest:[.58,.25,.14,.09],lsleeve:[.83,.41,.07,.20,-7],rsleeve:[.10,.41,.07,.20,7]},back:{full:[.28,.30,.44,.40],upper:[.38,.30,.24,.09]}},
+ varsity:{front:{full:[.30,.22,.40,.36],chest:[.58,.21,.15,.10],lsleeve:[.8275,.40,.095,.24,-6],rsleeve:[.0775,.40,.095,.24,6]},back:{full:[.25,.19,.50,.48],upper:[.36,.17,.28,.08]}},
+ polo:{front:{full:[.30,.40,.40,.28],chest:[.58,.24,.14,.10],lsleeve:[.825,.3325,.10,.065,-15],rsleeve:[.075,.3325,.10,.065,15]},back:{full:[.28,.26,.44,.40],upper:[.40,.20,.20,.06]}}
+};
+const ZNAME={front:{full:"Full front",chest:"Left chest",lsleeve:"Left sleeve",rsleeve:"Right sleeve"},back:{full:"Full back",upper:"Upper back"}};
+const SP=[
+ {name:"Plain T-shirt",chip:"T-shirts",price:200,type:"tee",cols:[["Black","#161616","tshirt-black"]],note:"More colours to follow from our supplier. Tell us your colour in your quote."},
+ {name:"Plain Hoodie",chip:"Hoodies",price:650,type:"hoodie",cols:[["Navy Blue","#1b2238","hoodie-navy"],["Ash Grey","#c4c4c1","hoodie-grey"],["White","#f2f1ec","hoodie-white"],["Brown","#5a3e2b","hoodie-brown"]],note:"Also in Black."},
+ {name:"Pullover Hoodie",chip:"Hoodies",price:650,type:"hoodie",cols:[["Black","#161616","pullover-black"]],note:"Also in Navy Blue, White, and Ash Grey."},
+ {name:"Dri-fit Polo",chip:"Polos",price:300,type:"polo",cols:[["White","#f4f4f2","drifit-white"]],note:"More colours to follow from our supplier."},
+ {name:"Honeycomb Polo",chip:"Polos",price:340,type:"polo",cols:[["Purple","#5b1fa8","honeycomb-purple"]],note:"More colours to follow from our supplier."},
+ {name:"Varsity Jacket",chip:"Jackets",price:450,type:"varsity",cols:[["Black","#161616","varsity-black"]],note:"Also in Blue, Red, Brown, Pink, and Green."},
+ {name:"Corporate Jacket",chip:"Jackets",price:850,type:"jacket",cols:[["Grey","#bdbdbd","corporate-grey"]],note:"More colours to follow from our supplier."},
+ {name:"Windbreaker",chip:"Jackets",price:800,type:"jacket",cols:[["White","#f4f4f2","windbreaker-white"]],note:"More colours to follow from our supplier."}
+];
+const FONTLIST=[["Satoshi","Satoshi"],["Playfair Display","Playfair"],["Anton","Anton"],["Caveat","Caveat (script)"]];
+const SWATCHES=[["#191917","Ink"],["#ffffff","White"],["#f2eee6","Cream"],["#c8102e","Red"],["#1b2238","Navy"],["#d9a520","Gold"]];
+const src=(f,v)=>`images/studio/${f}${v==="back"?"-back":""}.webp`;
+const peso=n=>"PHP "+n.toLocaleString("en-PH");
+const $i=id=>document.getElementById(id);
+const st={method:"DTG",p:0,c:0,view:"front",zone:"full",colour:"#191917",font:"Satoshi",brush:14,fx:true,objs:{front:[],back:[]},hist:[],hi:-1,busy:false};
+let cv=null,guide=null,ready=false;
+const P=()=>SP[st.p], C=()=>P().cols[st.c], file=()=>C()[2];
+/* Quick place spots measured on each photo (centre line, chest width, neckline or hood, pocket or placket, hem) and set with print-shop rules: full front about 11 in wide and 3 in below the neckline, left chest about 3.75 in wide and 4 in off centre, full back about 12 in wide, upper back about 9 in. Same [x, y, w, h, angle°] format as ZONES, which stays as a fallback. */
+const SPOTS={"tshirt-black":{"full":[0.3272,0.2636,0.3355,0.2974],"chest":[0.5659,0.2636,0.1144,0.0858],"lsleeve":[0.83,0.325,0.11,0.07,-24],"rsleeve":[0.06,0.325,0.11,0.07,24]},"drifit-white":{"full":[0.3389,0.3816,0.3162,0.2803],"chest":[0.5638,0.261,0.1078,0.0809],"lsleeve":[0.825,0.3325,0.1,0.065,-15],"rsleeve":[0.075,0.3325,0.1,0.065,15]},"honeycomb-purple":{"full":[0.335,0.3425,0.33,0.2925],"chest":[0.5697,0.2328,0.1125,0.0844],"lsleeve":[0.825,0.3325,0.1,0.065,-15],"rsleeve":[0.075,0.3325,0.1,0.065,15]},"varsity-black":{"full":[0.3066,0.325,0.3669,0.3252],"chest":[0.5675,0.325,0.1251,0.0938],"lsleeve":[0.8275,0.4,0.095,0.24,-6],"rsleeve":[0.0775,0.4,0.095,0.24,6]},"hoodie-navy":{"full":[0.3405,0.3179,0.319,0.2322],"chest":[0.5674,0.285,0.1087,0.0816],"lsleeve":[0.835,0.42,0.07,0.2,-6],"rsleeve":[0.095,0.42,0.07,0.2,6]},"hoodie-grey":{"full":[0.3405,0.3079,0.319,0.2422],"chest":[0.5674,0.28,0.1087,0.0816],"lsleeve":[0.835,0.42,0.07,0.2,-6],"rsleeve":[0.095,0.42,0.07,0.2,6]},"hoodie-white":{"full":[0.3405,0.3079,0.319,0.2422],"chest":[0.5674,0.28,0.1087,0.0816],"lsleeve":[0.835,0.42,0.07,0.2,-6],"rsleeve":[0.095,0.42,0.07,0.2,6]},"hoodie-brown":{"full":[0.3405,0.3179,0.319,0.2322],"chest":[0.5674,0.285,0.1087,0.0816],"lsleeve":[0.835,0.42,0.07,0.2,-6],"rsleeve":[0.095,0.42,0.07,0.2,6]},"pullover-black":{"full":[0.335,0.2995,0.33,0.2305],"chest":[0.5697,0.27,0.1125,0.0844],"lsleeve":[0.835,0.42,0.07,0.2,-6],"rsleeve":[0.095,0.42,0.07,0.2,6]},"windbreaker-white":{"full":[0.3162,0.2909,0.3575,0.2891],"chest":[0.5706,0.3031,0.1219,0.0914],"lsleeve":[0.83,0.41,0.07,0.2,-7],"rsleeve":[0.1,0.41,0.07,0.2,7]},"corporate-grey":{"full":[0.3317,0.2653,0.3245,0.2876],"chest":[0.5626,0.2764,0.1106,0.083],"lsleeve":[0.83,0.41,0.07,0.2,-7],"rsleeve":[0.1,0.41,0.07,0.2,7]},"tshirt-black-back":{"full":[0.312,0.2101,0.366,0.3202],"upper":[0.3578,0.1575,0.2745,0.0595]},"drifit-white-back":{"full":[0.3245,0.2255,0.345,0.3019],"upper":[0.3676,0.1759,0.2587,0.0561]},"honeycomb-purple-back":{"full":[0.32,0.1988,0.36,0.315],"upper":[0.365,0.147,0.27,0.0585]},"varsity-black-back":{"full":[0.2899,0.2275,0.4002,0.3502],"upper":[0.3399,0.17,0.3002,0.065]},"hoodie-navy-back":{"full":[0.326,0.3522,0.348,0.3045],"upper":[0.3695,0.3283,0.261,0.0566]},"hoodie-grey-back":{"full":[0.326,0.3522,0.348,0.3045],"upper":[0.3695,0.3283,0.261,0.0566]},"hoodie-white-back":{"full":[0.326,0.3522,0.348,0.3045],"upper":[0.3695,0.3283,0.261,0.0566]},"hoodie-brown-back":{"full":[0.326,0.3422,0.348,0.3045],"upper":[0.3695,0.3183,0.261,0.0566]},"pullover-black-back":{"full":[0.32,0.334,0.36,0.315],"upper":[0.365,0.3093,0.27,0.0585]},"windbreaker-white-back":{"full":[0.306,0.3467,0.378,0.3307],"upper":[0.3533,0.3207,0.2835,0.0614]},"corporate-grey-back":{"full":[0.324,0.3313,0.342,0.2992],"upper":[0.3668,0.3078,0.2565,0.0556]}};
+const zr=(z,v,f)=>{const s=SPOTS[(f||file())+(v==="back"?"-back":"")],T=ZONES[P().type][v];const a=(s&&(s[z]||s.full))||T[z]||T.full;return{left:(a[0]+a[2]/2)*W,top:(a[1]+a[3]/2)*H,width:a[2]*W,height:a[3]*H,angle:a[4]||0,originX:"center",originY:"center"}};
+const msg=t=>{$i("msMsg").textContent=t||""};
+
+/* ---------- static UI (works before the engine loads) ---------- */
+$i("msPick").innerHTML=SP.map((p,i)=>`<button class="ms-p" role="listitem" data-p="${i}" aria-pressed="${i===0}"><span class="th"><img src="${src(p.cols[0][2],"front")}" alt="" loading="lazy" decoding="async"></span><span class="nm">${p.name}</span></button>`).join("");
+$i("msSws").innerHTML=SWATCHES.map(([c,n])=>`<button class="ms-sw" style="background:${c}" data-c="${c}" aria-label="${n}" aria-pressed="${c===st.colour}"></button>`).join("")+`<label class="ms-sw pick" aria-label="Any colour"><input type="color" id="msPickC" value="#191917"></label>`;
+$i("msFont").innerHTML=FONTLIST.map(([f,l])=>`<option value="${f}">${l}</option>`).join("");
+const darkHex=h=>{const n=parseInt(h.slice(1),16);return (.299*(n>>16)+.587*(n>>8&255)+.114*(n&255))<110};
+function autoColour(){if(st.userColour)return;st.colour=darkHex(C()[1])?"#ffffff":"#191917";document.querySelectorAll("#msSws [data-c]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.c===st.colour));if(cv)cv.freeDrawingBrush.color=st.colour}
+/* ===== print styles: how the design is shown on the fabric ===== */
+const SUBLIM={"drifit-white":1,"drifit-white-back":1};           /* white polyester only (owner: sublimation only where it works) */
+const INKS=[[25,25,23],[200,30,40],[30,70,160],[30,130,70],[245,245,242]];  /* silk screen inks: black, red, blue, green, white */
+const EMB_MAX_IN=10;                                                /* owner: embroidery up to 10 inches on every blank */
+const METHOD_NOTE={
+  "DTG":"Printed straight into the fabric: soft to the touch, full colour, good for fine detail.",
+  "DTF":"A printed film pressed onto the fabric: crisp edges and bright colour.",
+  "Silk screen":"Solid inks in black, red, blue, green, and white. Your design is shown in these colours.",
+  "Sublimation":"Dye goes into the fabric, so white parts of the design take the shirt colour. Only for blanks that can be sublimated.",
+  "Embroidery":"Stitched in thread, up to 10 inches wide or tall. Fine detail and gradients are simplified."};
+const canSub=()=>!!SUBLIM[file()];
+/* pixels per inch on the current photo, from its measured full-front (11 in) or full-back (12 in) spot */
+function ppi(v){const s=SPOTS[file()+(v==="back"?"-back":"")];return s?s.full[2]*W/(v==="back"?12:11):W*0.33/11}
+function clampEmb(o){
+  if(st.method!=="Embroidery"||!o||o.isGuide)return false;
+  const lim=EMB_MAX_IN*ppi(o.view||st.view),w=o.width*o.scaleX,h=o.height*o.scaleY,m=Math.max(w,h);
+  if(m<=lim+0.5)return false;const k=lim/m;o.set({scaleX:o.scaleX*k,scaleY:o.scaleY*k});o.setCoords();return true}
+function paintMethods(){
+  document.querySelectorAll("#msMethods [data-m]").forEach(b=>{const m=b.dataset.m,off=m==="Sublimation"&&!canSub();
+    b.setAttribute("aria-pressed",m===st.method);b.setAttribute("aria-disabled",off?"true":"false");b.title=off?"Not available on this blank":""});
+  $i("msMethodNote").textContent=(METHOD_NOTE[st.method]||"")+(canSub()?"":" Sublimation isn’t available on this blank.");
+}
+function setMethod(m){
+  if(m==="Sublimation"&&!canSub()){msg("Sublimation isn’t available on this blank. It only works on white polyester, like the white Dri-fit Polo.");return}
+  st.method=m;paintMethods();
+  if(ready&&m==="Embroidery"){let hit=false;["front","back"].forEach(v=>design(v).forEach(o=>{if(clampEmb(o))hit=true}));
+    if(hit){msg("Embroidery is limited to 10 inches, so larger designs were sized down to fit.");cv.requestRenderAll();changed();return}}
+  msg("");schedule();
+}
+$i("msMethods").addEventListener("click",e=>{const b=e.target.closest("[data-m]");if(b)setMethod(b.dataset.m)});
+/* reduce the design to a few solid colours (silk screen inks, or embroidery threads) */
+function quantize(cnv,mode){
+  const c=cnv.getContext("2d",{willReadFrequently:true}),w=cnv.width,h=cnv.height,img=c.getImageData(0,0,w,h),D=img.data;
+  let pal=INKS;
+  if(mode==="Embroidery"){ /* pick up to 6 thread colours from the design (small k-means on a sample) */
+    const smp=[];for(let i=0;i<D.length;i+=4*Math.max(1,Math.floor(D.length/4/5000)))if(D[i+3]>110)smp.push([D[i],D[i+1],D[i+2]]);
+    if(!smp.length)return 0;const K=Math.min(6,smp.length);pal=[];for(let k=0;k<K;k++)pal.push(smp[Math.floor(k*smp.length/K)].slice());
+    for(let it=0;it<8;it++){const sum=pal.map(()=>[0,0,0,0]);smp.forEach(p=>{let bi=0,bd=1e9;pal.forEach((q,j)=>{const d=(p[0]-q[0])**2+(p[1]-q[1])**2+(p[2]-q[2])**2;if(d<bd){bd=d;bi=j}});const s=sum[bi];s[0]+=p[0];s[1]+=p[1];s[2]+=p[2];s[3]++});
+      pal=pal.map((q,j)=>sum[j][3]?[sum[j][0]/sum[j][3],sum[j][1]/sum[j][3],sum[j][2]/sum[j][3]]:q)}}
+  const used=new Set(),per=Math.max(2,Math.round(w/380));
+  for(let i=0,px=0;i<D.length;i+=4,px++){
+    if(D[i+3]<=110){D[i+3]=0;continue}
+    let bi=0,bd=1e9;for(let j=0;j<pal.length;j++){const q=pal[j],d=(D[i]-q[0])**2+(D[i+1]-q[1])**2+(D[i+2]-q[2])**2;if(d<bd){bd=d;bi=j}}
+    used.add(bi);let r=pal[bi][0],g=pal[bi][1],b=pal[bi][2];
+    if(mode==="Embroidery"){ /* satin-stitch texture: diagonal thread ridges */
+      const x=px%w,y=(px/w)|0,t=((x+y)%(per*2))/(per*2),f=0.84+0.28*Math.abs(Math.sin(t*Math.PI));r*=f;g*=f;b*=f}
+    D[i]=r;D[i+1]=g;D[i+2]=b;D[i+3]=255}
+  c.putImageData(img,0,0);return used.size;
+}
+function paintInfo(){
+  const p=P();
+  $i("msName").textContent=p.name;
+  $i("msPrice").innerHTML=`${peso(p.price)}<small>per piece, blank</small>`;
+  $i("msCols").innerHTML=p.cols.length>1?p.cols.map((c,i)=>`<button class="ms-sw" style="background:${c[1]}" data-col="${i}" aria-label="${c[0]}" aria-pressed="${i===st.c}"></button>`).join(""):"";
+  $i("msColNote").textContent=(p.cols.length>1?"Shown in "+C()[0]+". ":"Shown in "+C()[0]+". ")+(p.note||"");
+  document.querySelectorAll(".ms-p").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.p===st.p));
+  document.querySelectorAll("#msViews .ms-btn").forEach(b=>b.setAttribute("aria-pressed",b.dataset.view===st.view));
+  $i("msZones").innerHTML=Object.entries(ZNAME[st.view]).map(([z,n])=>`<button class="ms-btn" data-zone="${z}" aria-pressed="${z===st.zone}">${n}</button>`).join("");
+  $i("msStill").src=src(file(),st.view);
+}
+paintInfo();autoColour();paintMethods();
+
+/* ---------- load the engine when the studio comes near ---------- */
+let loading=null;
+function boot(){
+  if(loading) return loading;
+  if(!document.querySelector('link[data-ms-fonts]')){const l=document.createElement("link");l.rel="stylesheet";l.href=FONTS_URL;l.dataset.msFonts="1";document.head.appendChild(l)}
+  loading=new Promise((res,rej)=>{if(window.fabric)return res();const s=document.createElement("script");s.src=FABRIC_URL;s.async=true;s.onload=res;s.onerror=rej;document.head.appendChild(s)})
+    .then(init).catch(()=>{$i("msLoad").textContent="The studio couldn’t load. Refresh the page, or message us on Viber.";loading=null});
+  return loading;
+}
+if("IntersectionObserver" in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();boot()}},{rootMargin:"800px 0px"});io.observe(root)}else boot();
+root.addEventListener("pointerdown",()=>boot(),{once:true,capture:true});
+
+/* ---------- engine ---------- */
+function init(){
+  if(ready) return;
+  const F=fabric;
+  Object.assign(F.Object.prototype,{transparentCorners:false,cornerColor:"#191917",cornerStrokeColor:"#ffffff",borderColor:"#191917",cornerStyle:"circle",cornerSize:14,touchCornerSize:30,borderDashArray:[5,4],padding:6,borderScaleFactor:1.5});
+  cv=new F.Canvas("msCanvas",{preserveObjectStacking:true,selection:false,controlsAboveOverlay:true,enableRetinaScaling:true,allowTouchScrolling:false});
+  const stage=$i("msStage");
+  function size(){const w=stage.clientWidth,h=Math.round(w*4/3);cv.setDimensions({width:w,height:h});cv.setZoom(w/W);const pc=$i("msPrint"),r=Math.min(2,window.devicePixelRatio||1);pc.width=Math.min(W,Math.round(w*r));pc.height=Math.round(pc.width*4/3);cv.requestRenderAll();schedule()}
+  new ResizeObserver(size).observe(stage);
+  guide=new F.Rect({fill:"",stroke:"#ffffff",strokeWidth:3,strokeDashArray:[14,10],selectable:false,evented:false,excludeFromExport:true,isGuide:true,shadow:new F.Shadow({color:"rgba(0,0,0,0.45)",blur:4})});
+  cv.add(guide);
+  cv.freeDrawingBrush=new F.PencilBrush(cv);
+  ready=true; size(); setBg(); setGuide();
+  $i("msLoad").hidden=true; $i("msStill").style.visibility="hidden";
+  record();
+  cv.on("object:modified",e=>{if(clampEmb(e.target)){msg("Embroidery is limited to 10 inches wide or tall.");cv.requestRenderAll()}changed()});
+  cv.on("object:scaling",e=>{if(clampEmb(e.target))msg("Embroidery is limited to 10 inches wide or tall.")});
+  cv.on("text:changed",e=>{if(e.target===cv.getActiveObject())$i("msTxIn").value=e.target.text;changed()});
+  cv.on("path:created",e=>{const o=e.path;o.zone=st.zone;o.view=st.view;o.clipPath=clip(o);changed()});
+  cv.on("selection:created",sel);cv.on("selection:updated",sel);
+  cv.on("selection:cleared",()=>{$i("msSel").hidden=true;schedule()});
+  cv.on("mouse:down",()=>fx(false));
+  cv.on("mouse:up",()=>schedule());
+  stage.addEventListener("pointerdown",()=>{window.__lenis&&window.__lenis.stop()});
+  addEventListener("pointerup",()=>{window.__lenis&&window.__lenis.start()});
+  addEventListener("pointercancel",()=>{window.__lenis&&window.__lenis.start()});
+  addEventListener("keydown",e=>{if((e.key==="Delete"||e.key==="Backspace")&&cv.getActiveObject()&&!cv.getActiveObject().isEditing&&!/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)){e.preventDefault();del()}});
+  if(document.fonts)document.fonts.ready.then(()=>cv.requestRenderAll());
+}
+function design(v){return v===st.view&&cv?cv.getObjects().filter(o=>!o.isGuide):st.objs[v]}
+/* designs can go anywhere on the garment: each one is clipped to the garment outline (mask), not to a print box */
+const maskEl={};
+const maskUrl=v=>src(file(),v).replace("images/studio/","images/studio/masks/").replace(".webp",".png");
+function loadMask(v){const u=maskUrl(v);if(maskEl[u])return;const im=new Image();maskEl[u]={ready:false,im};
+  im.onload=()=>{maskEl[u].ready=true;if(!ready)return;["front","back"].forEach(w=>{if(maskUrl(w)===u)design(w).forEach(o=>{o.clipPath=clip(o);o.dirty=true})});cv.requestRenderAll()};
+  im.src=u}
+function clip(o){const m=maskEl[maskUrl(o.view||st.view)];if(!m||!m.ready){loadMask(o.view||st.view);return undefined}
+  return new fabric.Image(m.im,{left:0,top:0,originX:"left",originY:"top",scaleX:W/m.im.naturalWidth,scaleY:H/m.im.naturalHeight,absolutePositioned:true})}
+function setBg(){
+  if(!ready) return;
+  const want=src(file(),st.view);
+  fabric.Image.fromURL(want,img=>{if(src(file(),st.view)!==want)return;img.set({scaleX:W/img.width,scaleY:H/img.height});cv.setBackgroundImage(img,()=>{cv.requestRenderAll();schedule()})});
+  shade(want);loadMask("front");loadMask("back");
+  ["front","back"].forEach(v=>design(v).forEach(o=>{o.clipPath=clip(o);o.dirty=true}));
+}
+const HINT="Drag, resize, or rotate your design anywhere on the garment. Tap outside it to see it printed. Mockups are for reference; the final print may vary slightly.";
+function hint(){const h=$i("msHint");if(h)h.textContent=/sleeve/.test(st.zone)?"Sleeve prints are small. Keep logos simple for the best result. Tap outside your design to see it printed.":HINT}
+let guideT=0;
+function setGuide(){hint();if(!guide)return;guide.set(zr(st.zone,st.view));guide.visible=true;cv.bringToFront(guide);cv.requestRenderAll();
+  clearTimeout(guideT);guideT=setTimeout(()=>{guide.visible=false;cv.requestRenderAll()},1500)}
+function fit(o,z){
+  const r=zr(z,st.view);const bw=o.width*o.scaleX,bh=o.height*o.scaleY;
+  const s=Math.min(r.width*0.8/(o.width||1),r.height*0.8/(o.height||1));
+  if(o.type!=="i-text"||bw>r.width||bh>r.height) o.set({scaleX:s,scaleY:s});
+  o.set({originX:"center",originY:"center",left:r.left,top:r.top,angle:r.angle});
+  o.zone=z;o.view=st.view;o.clipPath=clip(o);o.setCoords();
+}
+function add(o){fx(false);fit(o,st.zone);cv.add(o);cv.bringToFront(guide);cv.setActiveObject(o);cv.requestRenderAll();changed()}
+function sel(){
+  const o=cv.getActiveObject();if(!o)return;fx(false);
+  $i("msSel").hidden=false;
+  const isT=o.type==="i-text";$i("msTx").hidden=!isT;
+  if(isT){$i("msTxIn").value=o.text;$i("msFont").value=o.fontFamily}
+  if(o.zone&&o.zone!==st.zone){st.zone=o.zone;document.querySelectorAll("#msZones .ms-btn").forEach(b=>b.setAttribute("aria-pressed",b.dataset.zone===st.zone));setGuide()}
+}
+function changed(){record();schedule()}
+
+/* ---------- history (both views) ---------- */
+function snap(){const out={};["front","back"].forEach(v=>out[v]=design(v).map(o=>{const j=o.toObject(["zone","view"]);delete j.clipPath;return j}));return JSON.stringify(out)}
+function record(){const s=snap();if(st.hist[st.hi]===s)return upd();st.hist=st.hist.slice(0,st.hi+1);st.hist.push(s);if(st.hist.length>60)st.hist.shift();st.hi=st.hist.length-1;upd()}
+function upd(){$i("msUndo").disabled=st.hi<=0;$i("msRedo").disabled=st.hi>=st.hist.length-1}
+function restore(s){
+  const d=JSON.parse(s);
+  const live=(arr)=>new Promise(r=>fabric.util.enlivenObjects(arr,objs=>{objs.forEach((o,i)=>{o.zone=arr[i].zone;o.view=arr[i].view;o.clipPath=clip(o)});r(objs)}));
+  return Promise.all([live(d.front),live(d.back)]).then(([f,b])=>{
+    cv.discardActiveObject();design(st.view).forEach(o=>cv.remove(o));
+    st.objs.front=f;st.objs.back=b;
+    st.objs[st.view].forEach(o=>cv.add(o));cv.bringToFront(guide);cv.requestRenderAll();upd();schedule();
+  });
+}
+$i("msUndo").onclick=()=>{if(st.hi>0){st.hi--;restore(st.hist[st.hi])}};
+$i("msRedo").onclick=()=>{if(st.hi<st.hist.length-1){st.hi++;restore(st.hist[st.hi])}};
+$i("msClear").onclick=()=>{if(!ready||!design(st.view).length)return;cv.discardActiveObject();design(st.view).forEach(o=>cv.remove(o));changed()};
+
+/* ---------- fabric shading (folds and highlights from the photo) ---------- */
+const shades={};
+function shade(url){
+  if(shades[url]) return shades[url];
+  const load=u=>new Promise(r=>{const i=new Image();i.onload=()=>r(i);i.onerror=()=>r(null);i.src=u});
+  return shades[url]=Promise.all([load(url),load(url.replace("images/studio/","images/studio/masks/").replace(".webp",".png"))]).then(([img,mi])=>{
+    if(!img) return null;
+    const w=576,h=768,c=document.createElement("canvas");c.width=w;c.height=h;const x=c.getContext("2d",{willReadFrequently:true});x.drawImage(img,0,0,w,h);
+    const L=x.getImageData(0,0,w,h);
+    /* local average of the fabric only (garment pixels), so the white background doesn't brighten it near the edges */
+    const g=document.createElement("canvas");g.width=w;g.height=h;const gx=g.getContext("2d");gx.drawImage(img,0,0,w,h);
+    if(mi){gx.globalCompositeOperation="destination-in";gx.drawImage(mi,0,0,w,h)}
+    const s=document.createElement("canvas");s.width=36;s.height=48;const sx=s.getContext("2d");sx.imageSmoothingQuality="high";sx.drawImage(g,0,0,36,48);
+    const b=document.createElement("canvas");b.width=w;b.height=h;const bx=b.getContext("2d",{willReadFrequently:true});bx.imageSmoothingQuality="high";bx.drawImage(s,0,0,w,h);
+    const M=bx.getImageData(0,0,w,h);
+    const dk=new ImageData(w,h),lt=new ImageData(w,h);
+    for(let i=0;i<L.data.length;i+=4){
+      const l=.299*L.data[i]+.587*L.data[i+1]+.114*L.data[i+2], m=M.data[i+3]>8?Math.max(28,.299*M.data[i]+.587*M.data[i+1]+.114*M.data[i+2]):l;
+      const r=(l+4)/(m+4);
+      const d=Math.round(255*Math.max(.42,Math.min(1,1-(1-r)*1.15))), gg=Math.round(255*Math.max(0,Math.min(.45,(r-1)*.9)));
+      dk.data[i]=dk.data[i+1]=dk.data[i+2]=d;dk.data[i+3]=255;lt.data[i]=lt.data[i+1]=lt.data[i+2]=gg;lt.data[i+3]=255;
+    }
+    const D=document.createElement("canvas");D.width=w;D.height=h;D.getContext("2d").putImageData(dk,0,0);
+    const T=document.createElement("canvas");T.width=w;T.height=h;T.getContext("2d").putImageData(lt,0,0);
+    return {img,dark:D,light:T,mask:mi};
+  });
+}
+const mk=(w,h)=>{const c=document.createElement("canvas");c.width=w;c.height=h;return c};
+/* design layer for a view at a given pixel width */
+function layer(v,pw){
+  const was=st.view,bg=cv.backgroundImage,act=cv.getActiveObject(),cur=design(was);
+  cv.renderOnAddRemove=false;
+  if(v!==was){cur.forEach(o=>cv.remove(o));st.objs[was]=cur;st.objs[v].forEach(o=>cv.add(o))}
+  const gv=guide.visible;cv.backgroundImage=null;guide.visible=false;
+  const out=cv.toCanvasElement(pw/cv.getWidth());
+  cv.backgroundImage=bg;guide.visible=gv;
+  if(v!==was){st.objs[v].forEach(o=>cv.remove(o));cur.forEach(o=>cv.add(o));cv.bringToFront(guide);if(act)cv.setActiveObject(act)}
+  cv.renderOnAddRemove=true;
+  return out;
+}
+async function composite(v,pw,mark){
+  const ph=Math.round(pw*4/3), sh=await shade(src(file(),v)), meth=st.method;
+  const out=mk(pw,ph),x=out.getContext("2d");x.imageSmoothingQuality="high";
+  if(sh)x.drawImage(sh.img,0,0,pw,ph);
+  if(v===st.view)st.objs[v]=design(v);
+  if(design(v).length){
+    const d=layer(v,pw);
+    if(sh&&sh.mask){const mx=d.getContext("2d");mx.globalCompositeOperation="destination-in";mx.drawImage(sh.mask,0,0,pw,ph);mx.globalCompositeOperation="source-over"}
+    if(meth==="Silk screen"||meth==="Embroidery"){const n=quantize(d,meth);if(!mark&&v===st.view)$i("msMethodNote").textContent=METHOD_NOTE[meth]+(meth==="Silk screen"?` This design uses ${n} of 5 inks.`:` This design uses ${n} thread colour${n===1?"":"s"}.`)}
+    const t=mk(pw,ph),tx=t.getContext("2d");
+    if(sh&&meth!=="Sublimation"){
+      /* folds and texture from the photo; DTF film sits on top so it takes less of them */
+      const k=meth==="DTF"?0.45:meth==="Embroidery"?0.7:1;
+      tx.drawImage(sh.dark,0,0,pw,ph);tx.globalCompositeOperation="destination-in";tx.drawImage(d,0,0);
+      const dx=d.getContext("2d");dx.globalCompositeOperation="multiply";dx.globalAlpha=k;dx.drawImage(t,0,0);dx.globalAlpha=1;
+      tx.globalCompositeOperation="source-over";tx.clearRect(0,0,pw,ph);tx.drawImage(sh.light,0,0,pw,ph);tx.globalCompositeOperation="destination-in";tx.drawImage(d,0,0);
+      dx.globalCompositeOperation="screen";dx.globalAlpha=meth==="DTF"?.8:.55;dx.drawImage(t,0,0);dx.globalAlpha=1;dx.globalCompositeOperation="source-over";}
+    if(meth==="Sublimation"){ /* dye inside the fabric: the shirt shows through, white in the design becomes the shirt colour */
+      x.globalCompositeOperation="multiply";x.globalAlpha=.96;x.drawImage(d,0,0);x.globalCompositeOperation="source-over";x.globalAlpha=1}
+    else if(meth==="Embroidery"){ /* raised thread: a soft shadow under the stitching */
+      x.save();x.shadowColor="rgba(0,0,0,0.45)";x.shadowBlur=Math.max(1,pw/500);x.shadowOffsetY=Math.max(1,pw/700);x.drawImage(d,0,0);x.restore()}
+    else{x.globalAlpha=meth==="DTG"?.92:meth==="DTF"?1:.98;x.drawImage(d,0,0);x.globalAlpha=1}
+  }
+  if(mark){x.font=`italic ${Math.round(pw*.028)}px "Playfair Display", Georgia, serif`;x.fillStyle="rgba(25,25,23,0.55)";x.textAlign="right";x.fillText("simple threads",pw*.965,ph*.975)}
+  return out;
+}
+let timer=0;
+function fx(on){$i("msPrint").classList.toggle("on",!!on)}
+function schedule(){
+  clearTimeout(timer);
+  if(!ready)return;
+  timer=setTimeout(async()=>{
+    if(!st.fx||cv.getActiveObject()||cv.isDrawingMode||!design(st.view).length){fx(false);return}
+    const pc=$i("msPrint"),c=await composite(st.view,pc.width,false);
+    if(cv.getActiveObject()||cv.isDrawingMode)return;
+    pc.getContext("2d").drawImage(c,0,0,pc.width,pc.height);fx(true);
+  },160);
+}
+
+/* ---------- controls ---------- */
+$i("msPick").addEventListener("click",e=>{const b=e.target.closest(".ms-p");if(!b)return;switchBlank(+b.dataset.p,0)});
+$i("msCols").addEventListener("click",e=>{const b=e.target.closest("[data-col]");if(!b)return;switchBlank(st.p,+b.dataset.col)});
+function switchBlank(p,c){
+  const oldF=file();st.p=p;st.c=c;paintInfo();autoColour();if(st.method==="Sublimation"&&!canSub()){st.method="DTG";msg("Sublimation isn’t available on this blank, so the preview is back to DTG.")}paintMethods();
+  if(!ready){boot();return}
+  const newF=file();
+  if(oldF!==newF)["front","back"].forEach(v=>design(v).forEach(o=>{
+    const a=zr(o.zone,v,oldF),b=zr(o.zone,v,newF),k=b.width/a.width;
+    const cx=b.left+(o.left-a.left)*k,cy=b.top+(o.top-a.top)*(b.height/a.height);
+    o.set({left:cx,top:cy,scaleX:o.scaleX*k,scaleY:o.scaleY*k,angle:(o.angle||0)+b.angle-a.angle});o.clipPath=clip(o);o.setCoords();
+  }));
+  setBg();setGuide();cv.requestRenderAll();changed();
+}
+$i("msViews").addEventListener("click",e=>{const b=e.target.closest("[data-view]");if(!b||b.dataset.view===st.view)return;
+  if(ready){cv.discardActiveObject();st.objs[st.view]=design(st.view);design(st.view).forEach(o=>cv.remove(o))}
+  st.view=b.dataset.view;st.zone="full";paintInfo();
+  if(ready){st.objs[st.view].forEach(o=>cv.add(o));setBg();setGuide()}else boot();
+});
+$i("msZones").addEventListener("click",e=>{const b=e.target.closest("[data-zone]");if(!b)return;st.zone=b.dataset.zone;
+  document.querySelectorAll("#msZones .ms-btn").forEach(x=>x.setAttribute("aria-pressed",x===b));hint();
+  if(!ready){boot();return}
+  cv.discardActiveObject();setGuide();schedule();
+});
+$i("msFile").addEventListener("change",async e=>{
+  const f=e.target.files&&e.target.files[0];e.target.value="";if(!f)return;
+  await boot();if(!ready)return;
+  if(!/^image\//.test(f.type)){msg("Please choose a PNG or JPG image.");return}
+  msg("Adding your image…");
+  const url=URL.createObjectURL(f),im=new Image();
+  im.onload=()=>{
+    const k=Math.min(1,2000/Math.max(im.naturalWidth,im.naturalHeight)),c=mk(Math.round(im.naturalWidth*k),Math.round(im.naturalHeight*k));
+    c.getContext("2d").drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(url);
+    stopDraw();add(new fabric.Image(c));msg("");
+  };
+  im.onerror=()=>{msg("That image couldn’t be opened. Try a PNG or JPG.");URL.revokeObjectURL(url)};
+  im.src=url;
+});
+$i("msText").onclick=async()=>{await boot();if(!ready)return;stopDraw();
+  const t=new fabric.IText("Your text",{fontFamily:st.font,fill:st.colour,fontSize:140,textAlign:"center",fontWeight:st.font==="Satoshi"?700:400});
+  add(t);setTimeout(()=>{const i=$i("msTxIn");if(i&&matchMedia("(hover:hover)").matches){i.focus();i.select()}},60);
+};
+function stopDraw(){if(cv)cv.isDrawingMode=false;$i("msDraw").setAttribute("aria-pressed","false");$i("msBrush").hidden=true}
+$i("msDraw").onclick=async()=>{await boot();if(!ready)return;const on=!cv.isDrawingMode;cv.discardActiveObject();cv.isDrawingMode=on;
+  $i("msDraw").setAttribute("aria-pressed",on);$i("msBrush").hidden=!on;
+  cv.freeDrawingBrush.color=st.colour;cv.freeDrawingBrush.width=st.brush;setGuide();if(on)fx(false);else schedule();cv.requestRenderAll()};
+$i("msBrush").addEventListener("click",e=>{const b=e.target.closest("[data-brush]");if(!b)return;st.brush=+b.dataset.brush;if(cv)cv.freeDrawingBrush.width=st.brush;
+  document.querySelectorAll("#msBrush [data-brush]").forEach(x=>x.setAttribute("aria-pressed",x===b))});
+function setColour(c){st.colour=c;document.querySelectorAll("#msSws [data-c]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.c===c));
+  if(!ready)return;cv.freeDrawingBrush.color=c;const o=cv.getActiveObject();
+  if(o&&o.type==="i-text"){o.set("fill",c);cv.requestRenderAll();changed()}else if(o&&o.type==="path"){o.set("stroke",c);cv.requestRenderAll();changed()}}
+$i("msSws").addEventListener("click",e=>{const b=e.target.closest("[data-c]");if(b){st.userColour=true;setColour(b.dataset.c)}});
+$i("msPickC").addEventListener("input",e=>{st.userColour=true;setColour(e.target.value)});
+$i("msTxIn").addEventListener("input",e=>{const o=cv&&cv.getActiveObject();if(o&&o.type==="i-text"){o.set("text",e.target.value||" ");cv.requestRenderAll()}});
+$i("msTxIn").addEventListener("change",()=>changed());
+$i("msFont").addEventListener("change",e=>{st.font=e.target.value;const o=cv&&cv.getActiveObject();if(!o||o.type!=="i-text")return;
+  const go=()=>{o.set({fontFamily:st.font,fontWeight:st.font==="Satoshi"?700:400});o.initDimensions&&o.initDimensions();o.setCoords();cv.requestRenderAll();changed()};
+  document.fonts&&document.fonts.load(`140px "${st.font}"`).then(go,go)||go()});
+$i("msFwd").onclick=()=>{const o=cv.getActiveObject();if(o){cv.bringForward(o);cv.bringToFront(guide);changed()}};
+$i("msBwd").onclick=()=>{const o=cv.getActiveObject();if(o){cv.sendBackwards(o);changed()}};
+$i("msDup").onclick=()=>{const o=cv.getActiveObject();if(!o)return;o.clone(c=>{c.set({left:o.left+30,top:o.top+30});c.zone=o.zone;c.view=o.view;c.clipPath=clip(c);cv.add(c);cv.bringToFront(guide);cv.setActiveObject(c);cv.requestRenderAll();changed()},["zone","view"])};
+function del(){const o=cv.getActiveObject();if(!o)return;cv.remove(o);cv.discardActiveObject();cv.requestRenderAll();$i("msSel").hidden=true;changed()}
+$i("msDel").onclick=del;
+$i("msFx").onclick=()=>{st.fx=!st.fx;$i("msFx").setAttribute("aria-pressed",st.fx);schedule()};
+
+/* ---------- finish: download and quote ---------- */
+function used(){return ["front","back"].filter(v=>design(v).length)}
+async function exportImage(){
+  await boot();if(!ready)return null;
+  cv.discardActiveObject();stopDraw();cv.requestRenderAll();
+  const vs=used();if(!vs.length){msg("Add an image, text, or drawing first.");return null}
+  const parts=[];for(const v of vs)parts.push(await composite(v,W,true));
+  const out=mk(W*parts.length,H),x=out.getContext("2d");parts.forEach((c,i)=>x.drawImage(c,i*W,0));
+  return out;
+}
+const fname=()=>`Simple Threads mockup - ${P().name} - ${C()[0]} - ${st.method}.png`;
+function save(c){return new Promise(r=>c.toBlob(b=>{const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=fname();document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},4000);r()},"image/png"))}
+let lastImg=null;
+$i("msSave").onclick=async()=>{const b=$i("msSave");b.disabled=true;msg("Preparing your mockup…");
+  try{const c=await exportImage();if(c){lastImg=c;await save(c);msg("Saved. Check your downloads or Photos.")}}catch(err){msg("Sorry, that didn’t save. Try again.")}finally{b.disabled=false}};
+function spot(o,v){const c=o.getCenterPoint();
+  for(const z of Object.keys(ZNAME[v])){const r=zr(z,v),a=-(r.angle||0)*Math.PI/180,dx=c.x-r.left,dy=c.y-r.top;
+    const x=dx*Math.cos(a)-dy*Math.sin(a),y=dx*Math.sin(a)+dy*Math.cos(a);if(Math.abs(x)<=r.width/2&&Math.abs(y)<=r.height/2)return ZNAME[v][z]}
+  return v==="back"?"Custom spot (back)":"Custom spot (front)"}
+function places(){return used().map(v=>[...new Set(design(v).map(o=>spot(o,v)))].join(", ")).join("; ")}
+const qm=$i("quoteModal");let qmLast=null;
+$i("msQuote").onclick=async()=>{
+  const b=$i("msQuote");b.disabled=true;msg("Preparing your mockup…");
+  let c=null;try{c=await exportImage()}catch(err){}
+  b.disabled=false;if(!c)return;msg("");lastImg=c;save(c);
+  const p=P();
+  $i("qmImg").src=c.toDataURL("image/jpeg",.7);$i("qmName").textContent=p.name;
+  $i("qmPrice").innerHTML=`${peso(p.price)}<small>per piece, blank</small>`;
+  $i("qmProduct").value=p.name;$i("qmChip").value=p.chip;$i("qmColour").value=C()[0];$i("qmPlace").value=places();
+  const m=qm.querySelector('[name="message"]');if(!m.value)m.value="Made in the mockup studio. I’ll send the image by Viber or email.\nPrint style: "+st.method+"\nPlacement: "+places();
+  const ms=qm.querySelector('[name="method"]');if(ms)ms.value=st.method;
+  $i("qmMail").href=`mailto:simplethreads.mnl@gmail.com?subject=${encodeURIComponent("My mockup — "+p.name)}&body=${encodeURIComponent("Hi Simple Threads,\n\nHere is my mockup ("+p.name+", "+C()[0]+"). Placement: "+places()+".\n\n(Attach the saved image before sending.)")}`;
+  qm.querySelector(".qf-status").textContent="";
+  qmLast=document.activeElement;qm.classList.add("open");qm.setAttribute("aria-hidden","false");
+  window.__lenis&&window.__lenis.stop();document.documentElement.style.overflow="hidden";qm.querySelector(".pm-panel").scrollTop=0;
+  setTimeout(()=>qm.querySelector(".pm-x").focus(),50);
+};
+function closeQ(){if(!qm.classList.contains("open"))return;qm.classList.remove("open");qm.setAttribute("aria-hidden","true");document.documentElement.style.overflow="";window.__lenis&&window.__lenis.start();qmLast&&qmLast.focus({preventScroll:true})}
+qm.addEventListener("click",e=>{if(e.target.closest("[data-close]"))closeQ()});
+addEventListener("keydown",e=>{if(e.key==="Escape")closeQ()});
+$i("qmAgain").onclick=()=>{if(lastImg)save(lastImg)};
+})();
+
+})();
+</script>
+</body>
+</html>
