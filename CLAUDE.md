@@ -126,12 +126,11 @@ language with short, numbered steps.
   item starts (sleeve spots pre-tilted); they never move existing art. The
   quote lists each item's standard spot, or "Custom spot".
 - Studio print styles (#msMethods): DTG (default), DTF, Silk screen,
-  Sublimation, Embroidery. Applied only in the printed view/download
+  Embroidery. Sublimation was removed from the studio at the owner's request
+  (Nov 2026); it is still a service and stays in the quote forms. Applied only in the printed view/download
   (composite in design.html). Owner rules (Nov 2026): embroidery max 10 in
   wide or tall on every blank and spot (clampEmb, ppi from SPOTS full-front
-  = 11 in / full-back = 12 in); sublimation only on blanks that can be
-  sublimated (SUBLIM list: currently only white Dri-fit Polo; ask the owner
-  before adding others); silk screen inks black, red, blue, green, white
+  = 11 in / full-back = 12 in); silk screen inks black, red, blue, green, white
   (INKS). Embroidery reduces to up to 6 thread colours with a stitch texture.
   The chosen style pre-fills the quote's "Print or embroidery" field and is
   in the download file name.
