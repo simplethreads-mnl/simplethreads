@@ -75,31 +75,36 @@ language with short, numbered steps.
   390px), iPad (about 1024px), and desktop.
 
 ## SITE STRUCTURE (static HTML on Vercel, deployed from GitHub)
-- index.html: home page. Hero: headline, buttons, and an animated photo
-  collage of real client work (owner request, Nov 2026; replaced the floating
-  tee) with the three steps on the stitched arc around it. Collage photos in
-  images/collage/ (720px WebP): Stoicism Knight (centre), Stoicism Pegasus,
-  navy "H" varsity, Akatsuki varsity, Black Clover, gothic wings tee,
-  Vagabond, Initial D, Grit. Tiles deal out from the centre, drift (CSS), and
-  one lifts to the front every 3.2 s (class swap, paused off screen). This is
-  the only place other clients' work appears (owner's choice). Also on the
-  home page: motto
-  quote; three separate "start here" sections (#start; owner's references: the
-  Portrait site), each centred with its own scroll animation, a kicker, a
-  big headline with one italic word, ONE dark rounded "pill" button and a
-  small caption: Our Blanks (blank cards fan out, "Browse catalogue" ->
-  teams.html#catalogue), Build Your Brand (Stoicism photos part and a
-  twin-needle seam sews between them, "Start a brand"), Mockup Tool (blank
-  tee, dashed print area draws, finished mockup slides in, "Mockup Tool &
-  Custom Mockups" -> design.html#studio). The pill button is a deliberate
-  exception to the square uppercase button style;
-  portfolio; design studio; principles; about; process; services and print
-  methods explained; quote form; FAQ; footer. Removed at the owner's request
-  (Nov 2026): the "Start a run" dark section, testimonials ("In their
-  words"), and the client list ("Brands that wear our work"). The Our Blanks
-  section (#start) is NOT pinned: a stacked deck of blank cards fans out
-  into a hand as the section scrolls up the screen (photos from
-  images/thumbs/). The fan is on the home page only, not Teams.
+- index.html: home page, in this order (owner, Nov 2026):
+  1. Hero: headline, buttons, and a line-drawn sewing machine (SVG, CSS
+     only: needle bobs, fabric feeds left, stitches appear behind the needle,
+     handwheel turns; paused off screen) with the three steps on the stitched
+     arc around it. Earlier hero visuals (floating tee, photo collage, hang
+     tag) were removed at the owner's request.
+  2. Three "start here" sections (owner's references: the Portrait site),
+     each centred with its own scroll animation, a kicker, a big headline with
+     one italic word, ONE dark rounded "pill" button and a small caption:
+     Mockup Tool (#start; blank tee, dashed print area draws, finished mockup
+     slides in, "Mockup Tool & Custom Mockups" -> design.html#studio), Build
+     Your Brand (Stoicism photos part and a twin-needle seam sews between
+     them, cut & sew, "Start a brand"), Our Blanks (blank cards fan out into a
+     hand, photos from images/thumbs/, "Browse catalogue" ->
+     teams.html#catalogue). The pill button is a deliberate exception to the
+     square uppercase button style. Not pinned; the fan is home page only.
+  3. "Made by us" (#made, grey): animated collage of real client work in
+     images/collage/ (720px WebP): Stoicism Knight (centre), Stoicism Pegasus,
+     navy "H" varsity, Akatsuki varsity, Black Clover, gothic wings tee,
+     Vagabond, Initial D, Grit. Heading "Whatever the occasion, we've *made*
+     it.", caption "Merch for local brands, teams, events, and everyday
+     wear.", pill "See our work" -> #work. Tiles deal out when the section
+     arrives, drift (CSS), one lifts to the front every 3.2 s only while on
+     screen. This is the only place other clients' work appears (owner's
+     choice).
+  4. Then: portfolio; design studio; principles; about; process; services
+     and print methods explained; quote form; FAQ; footer.
+  Removed at the owner's request (Nov 2026): the "How we work" statement
+  quote, the "Start a run" dark section, testimonials ("In their words"),
+  and the client list ("Brands that wear our work").
 - teams.html: For Teams & Events, plus the full catalogue (filters, product
   cards, details window, Front/Side views for caps, colour switching only
   where real mockups exist).
