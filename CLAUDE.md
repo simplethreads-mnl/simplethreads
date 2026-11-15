@@ -75,7 +75,15 @@ language with short, numbered steps.
   390px), iPad (about 1024px), and desktop.
 
 ## SITE STRUCTURE (static HTML on Vercel, deployed from GitHub)
-- index.html: home page. Hero with a "Three steps. That's it." card; motto
+- index.html: home page. Hero: headline, buttons, and an animated photo
+  collage of real client work (owner request, Nov 2026; replaced the floating
+  tee) with the three steps on the stitched arc around it. Collage photos in
+  images/collage/ (720px WebP): Stoicism Knight (centre), Stoicism Pegasus,
+  navy "H" varsity, Akatsuki varsity, Black Clover, gothic wings tee,
+  Vagabond, Initial D, Grit. Tiles deal out from the centre, drift (CSS), and
+  one lifts to the front every 3.2 s (class swap, paused off screen). This is
+  the only place other clients' work appears (owner's choice). Also on the
+  home page: motto
   quote; three separate "start here" sections (#start; owner's references: the
   Portrait site), each centred with its own scroll animation, a kicker, a
   big headline with one italic word, ONE dark rounded "pill" button and a

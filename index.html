@@ -109,14 +109,17 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 .h3-stage{position:relative;max-width:80rem;margin:2.5rem auto 0}
 .h3-seam{display:none}
 .h3-tee{position:relative;width:min(78vw,24rem);margin:0 auto;perspective:1400px}
-.h3-float{animation:h3float 6s ease-in-out infinite}
-.h3-tilt{transform-style:preserve-3d}
-.h3.off .h3-float,.h3.off .h3-shadow{animation-play-state:paused}
-.h3-tilt img{display:block;width:100%;height:auto}
-/* the floating tee turns around like a real shirt on a hanger: front, smooth 3D turn, back, turn back. Transform-only, runs on the compositor */
-.h3-shadow{display:block;width:62%;height:1.1rem;margin:0.5rem auto 0;border-radius:50%;background:radial-gradient(closest-side,rgba(25,25,23,0.22),rgba(25,25,23,0));animation:h3shadow 6s ease-in-out infinite}
-@keyframes h3float{0%,100%{transform:translateY(0)}50%{transform:translateY(-0.9rem)}}
-@keyframes h3shadow{0%,100%{transform:scaleX(1);opacity:1}50%{transform:scaleX(0.86);opacity:0.7}}
+/* hero collage: real client work dealt out like printed photos, drifting gently; one lifts to the front at a time. Transform + opacity only */
+.h3-col{aspect-ratio:1/1.082;container-type:inline-size;perspective:none;margin-bottom:2.5rem}
+.cl{position:absolute;left:calc(var(--x)*1%);top:calc(var(--y)*1%);width:calc(var(--w)*1%);z-index:var(--z);margin:0;transform:translate(-50%,-50%);transition:transform .9s var(--ease)}
+.cl.lift{z-index:30;transform:translate(-50%,-50%) scale(1.08)}
+.cl-in{animation:clIn 1s var(--ease) both;animation-delay:calc(var(--i)*85ms + 250ms)}
+.cl-f{position:relative;background:#fff;padding:3.2cqw 3.2cqw 3.2cqw;box-shadow:0 0.6rem 1.6rem rgba(25,25,23,0.16),0 0.1rem 0.25rem rgba(25,25,23,0.12);transform:rotate(var(--r));animation:clDrift var(--d,9s) ease-in-out calc(var(--i)*-1.3s) infinite alternate}
+.cl-f img{display:block;width:100%;height:auto;aspect-ratio:var(--a,1);object-fit:cover}
+.cl.st .cl-f::after{content:"";position:absolute;inset:1.6cqw;border:1px dashed rgba(25,25,23,0.35);pointer-events:none}
+@keyframes clIn{from{opacity:0;transform:translate(calc((50 - var(--x))*1cqw),calc((54 - var(--y))*1.082cqw)) rotate(calc(var(--r)*-2)) scale(0.5)}}
+@keyframes clDrift{from{transform:rotate(var(--r)) translateY(-0.6cqw)}to{transform:rotate(calc(var(--r) + 1.2deg)) translateY(0.8cqw)}}
+.h3.off .cl-f{animation-play-state:paused}
 .h3-steps{position:relative;margin:2.5rem auto 0;max-width:26rem;padding-left:2.25rem;display:flex;flex-direction:column;gap:1.75rem;text-align:left}
 .h3-steps::before{content:"";position:absolute;left:0.6875rem;top:0.5rem;bottom:0.5rem;border-left:1px dashed var(--line-strong)}
 .h3-step{position:relative}
@@ -135,7 +138,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
   .h3-say{font-size:1.5rem}
   .h3-stage{height:calc(clamp(19rem,28vw,26rem)*1.082*1.06 + 13.5rem);margin-top:3rem}
   .h3-seam{display:block;position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
-  .h3-tee{position:absolute;left:50%;top:0;width:clamp(19rem,28vw,26rem);transform:translateX(-50%)}
+  .h3-tee{position:absolute;left:50%;top:0;width:clamp(19rem,28vw,26rem);transform:translateX(-50%);margin:0}
   .h3-steps{position:absolute;inset:0;margin:0;max-width:none;padding:0;display:block}
   .h3-steps::before{display:none}
   .h3-step{position:absolute;width:0;height:0}
@@ -147,7 +150,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
   .h3-step.pos-b .h3-txt{left:0;transform:translateX(-50%);top:1.5rem;text-align:center}
   .h3-foot{position:absolute;left:0;right:0;bottom:0;margin:0}
 }
-@media (prefers-reduced-motion:reduce){.h3-float,.h3-shadow{animation:none}}
+@media (prefers-reduced-motion:reduce){.cl-in,.cl-f{animation:none}.cl{transition:none}}
 
 /* ===== HEADER ===== */
 .hdr{position:fixed;inset-inline:0;top:0;z-index:50;color:var(--ink);background:rgba(255,255,255,0.94);border-bottom:1px dashed var(--line);padding-top:env(safe-area-inset-top,0px)}
@@ -602,7 +605,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
   </div>
   <div class="h3-stage" id="h3Stage">
     <svg class="h3-seam" id="h3Seam" aria-hidden="true"></svg>
-    <div class="h3-tee"><div class="h3-float"><div class="h3-tilt" id="h3Tilt"><img src="images/hero-tee.webp" alt="Black tee printed with the Simple Threads logo" width="1294" height="1400" fetchpriority="high" decoding="async"></div></div><i class="h3-shadow" aria-hidden="true"></i></div>
+    <div class="h3-tee h3-col" id="h3Col" aria-label="Pieces we have made"><figure class="cl" style="--x:52;--y:12;--w:30;--r:3deg;--z:1;--i:0;--a:1;--d:7s"><div class="cl-in"><div class="cl-f"><img src="images/collage/varsity-h.webp" alt="Navy and cream varsity jacket with a lime H patch and script embroidery" width="720" height="720" decoding="async"></div></div></figure><figure class="cl" style="--x:20;--y:24;--w:36;--r:-7deg;--z:4;--i:1;--a:1;--d:9s"><div class="cl-in"><div class="cl-f"><img src="images/collage/stoicism-pegasus.webp" alt="Black tee, Stoicism full-back print of Pegasus and lightning" width="720" height="720" decoding="async"></div></div></figure><figure class="cl" style="--x:81;--y:25;--w:30;--r:6deg;--z:5;--i:2;--a:2/3;--d:11s"><div class="cl-in"><div class="cl-f"><img src="images/collage/akatsuki.webp" alt="Black and white varsity jacket with embroidered Akatsuki lettering on the back" width="480" height="720" decoding="async"></div></div></figure><figure class="cl" style="--x:14;--y:60;--w:32;--r:4deg;--z:3;--i:3;--a:1;--d:8s"><div class="cl-in"><div class="cl-f"><img src="images/collage/blackclover.webp" alt="Black Clover black oversized tee, full-back skull print" width="720" height="720" decoding="async"></div></div></figure><figure class="cl st" style="--x:50;--y:52;--w:40;--r:-2deg;--z:9;--i:4;--a:2/3;--d:10s"><div class="cl-in"><div class="cl-f"><img src="images/collage/stoicism-knight.webp" alt="Black tee, Stoicism full-back print of a knight at a writing desk" width="480" height="720" decoding="async" fetchpriority="high"></div></div></figure><figure class="cl" style="--x:86;--y:63;--w:28;--r:-5deg;--z:4;--i:5;--a:2/3;--d:7s"><div class="cl-in"><div class="cl-f"><img src="images/collage/wings.webp" alt="Black oversized tee with a large white gothic wings print on the back" width="480" height="720" decoding="async"></div></div></figure><figure class="cl" style="--x:22;--y:82;--w:32;--r:-6deg;--z:6;--i:6;--a:1;--d:9s"><div class="cl-in"><div class="cl-f"><img src="images/collage/vagabond.webp" alt="Vagabond cream tee, full-back print" width="720" height="720" decoding="async"></div></div></figure><figure class="cl" style="--x:51;--y:87;--w:26;--r:-2deg;--z:7;--i:7;--a:1;--d:11s"><div class="cl-in"><div class="cl-f"><img src="images/collage/initiald.webp" alt="Initial D black oversized tee, front chest print" width="720" height="720" decoding="async"></div></div></figure><figure class="cl" style="--x:80;--y:81;--w:28;--r:6deg;--z:6;--i:8;--a:3/4;--d:8s"><div class="cl-in"><div class="cl-f"><img src="images/collage/grit.webp" alt="Grit black tee, front print with a chrome ring graphic" width="540" height="720" decoding="async"></div></div></figure></div>
     <ol class="h3-steps" id="h3Steps" aria-label="How ordering works">
       <li class="h3-step pos-l" data-at="0.16"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">01</span><p class="h3-h">Send your idea</p><p class="h3-p">A sketch, a photo, or just a description.</p></div></li>
       <li class="h3-step pos-b" data-at="0.5"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">02</span><p class="h3-h">Approve your sample</p><p class="h3-p">Check the fit, print, and color before we run the order.</p></div></li>
@@ -1072,7 +1075,7 @@ if(qf){
    and lights each step as the needle passes it. Only redraws while something moves. */
 (function(){
   const fine=matchMedia("(pointer:fine)").matches,heroEl=document.querySelector(".h3");let heroOff=false;
-  const stage=document.getElementById("h3Stage"),svg=document.getElementById("h3Seam"),tilt=document.getElementById("h3Tilt"),steps=[...document.querySelectorAll("#h3Steps .h3-step")];
+  const stage=document.getElementById("h3Stage"),svg=document.getElementById("h3Seam"),tilt=null,steps=[...document.querySelectorAll("#h3Steps .h3-step")];
   if(!stage) return;
   const NS="http://www.w3.org/2000/svg",INK="#191917",reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,wide=matchMedia("(min-width:900px)");
   const el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e};
@@ -1121,6 +1124,9 @@ if(qf){
   else steps.forEach(x=>x.classList.add("on"));
   if(reduce)steps.forEach(x=>x.classList.add("on"));
   addEventListener("scroll",measure,{passive:true});
+  /* collage: every few seconds one photo lifts to the front (class swap only; skipped off screen) */
+  const tiles=[...stage.querySelectorAll(".cl")];let li=-1;
+  if(tiles.length&&!reduce)setTimeout(()=>setInterval(()=>{if(heroOff||document.hidden)return;if(li>=0)tiles[li].classList.remove("lift");li=(li+1)%tiles.length;tiles[li].classList.add("lift")},3200),1600);
   /* stop all hero work (float, shadow, seam loop) once the hero has scrolled away */
   if("IntersectionObserver" in window&&heroEl)new IntersectionObserver(es=>{heroOff=!es[0].isIntersecting;heroEl.classList.toggle("off",heroOff);if(!heroOff)measure()},{rootMargin:"200px 0px"}).observe(heroEl);
   let rt,lw=stage.clientWidth;
