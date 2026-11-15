@@ -525,24 +525,24 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .sw-st .sl{fill:none;stroke-width:1.3;stroke-dasharray:5 4;stroke-linecap:round;stroke:rgba(255,255,255,0.9)}
 .cta.dark .sw-st .sl{stroke:rgba(25,25,23,0.55)}
 .sw-st .mk{fill:none;stroke:#fff;stroke-width:5}
-.sw-on .sw-st .mk{stroke-dashoffset:0!important;transition:stroke-dashoffset 1.2s var(--ease)}
+.sw-on .sw-st .mk{stroke-dashoffset:0!important;transition:stroke-dashoffset 2.6s cubic-bezier(.45,0,.25,1)}
 /* needle run */
 .sw-nd{position:relative;display:inline-block}
 .sw-nd .sw-seam{position:absolute;left:0;right:0;bottom:-0.4rem;height:2px;overflow:hidden;pointer-events:none}
 .sw-nd .sw-seam i{position:absolute;inset:0;background:repeating-linear-gradient(90deg,currentColor 0 5px,transparent 5px 9px);transform:translateX(-101%)}
-.sw-on .sw-nd .sw-seam i{transform:none;transition:transform 1s cubic-bezier(.45,0,.2,1)}
+.sw-on .sw-nd .sw-seam i{transform:none;transition:transform 2.2s cubic-bezier(.45,0,.2,1)}
 .sw-nd .sw-ndl{position:absolute;bottom:-0.5rem;left:0;width:0.5rem;height:1.2rem;opacity:0;pointer-events:none}
 .sw-nd .sw-ndl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1.5px;margin-left:-0.75px;background:currentColor;border-radius:1px}
 .sw-nd .sw-ndl::after{content:"";position:absolute;left:50%;top:0.15rem;width:3px;height:5px;margin-left:-1.5px;border:1px solid currentColor;border-radius:2px}
-.sw-run .sw-nd .sw-ndl{animation:swNd 1s cubic-bezier(.45,0,.2,1) forwards}
+.sw-run .sw-nd .sw-ndl{animation:swNd 2.2s cubic-bezier(.45,0,.2,1) forwards}
 @keyframes swNd{0%{opacity:1;transform:translateX(-0.25rem)}10%{transform:translateX(calc(var(--nw,6rem)*0.1)) translateY(0.2rem)}20%{transform:translateX(calc(var(--nw,6rem)*0.2))}30%{transform:translateX(calc(var(--nw,6rem)*0.3)) translateY(0.2rem)}40%{transform:translateX(calc(var(--nw,6rem)*0.4))}50%{transform:translateX(calc(var(--nw,6rem)*0.5)) translateY(0.2rem)}60%{transform:translateX(calc(var(--nw,6rem)*0.6))}70%{transform:translateX(calc(var(--nw,6rem)*0.7)) translateY(0.2rem)}80%{transform:translateX(calc(var(--nw,6rem)*0.8))}90%{opacity:1;transform:translateX(calc(var(--nw,6rem)*0.9)) translateY(0.2rem)}100%{opacity:0;transform:translateX(var(--nw,6rem))}}
 /* sewn button (home pills) */
 .pill{background:var(--forest)}
-.pill .sw-sb{width:1.45rem;height:1.45rem;flex:none;margin-left:-0.35rem;transition:transform .6s var(--ease)}
+.pill .sw-sb{width:1.45rem;height:1.45rem;flex:none;margin-left:-0.35rem;transition:transform 1.4s var(--ease)}
 .sw-sb .rim{fill:none;stroke:currentColor;stroke-width:1.5}
 .sw-sb .h{fill:currentColor}
-.sw-sb .t{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:12;stroke-dashoffset:12;transition:stroke-dashoffset .45s var(--ease)}
-.sw-sb .t2{transition-delay:.3s}
+.sw-sb .t{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:12;stroke-dashoffset:12;transition:stroke-dashoffset 1s var(--ease)}
+.sw-sb .t2{transition-delay:.75s}
 .sw-on .sw-sb{transform:rotate(90deg)}
 .sw-on .sw-sb .t{stroke-dashoffset:0}
 @media (prefers-reduced-motion:reduce){.cta,.pill,.sw-st .mk,.sw-seam i,.sw-sb,.sw-sb .t{transition:none!important;animation:none!important}.sw-ndl{display:none}}
@@ -1048,7 +1048,7 @@ if(grid){
   function kind(b){return b.classList.contains("pill")?"sb":b.classList.contains("solid")?"st":b.classList.contains("ghost")?"nd":""}
   function play(b){const k=b._sw;if(!k)return;
     if(k==="st"){if(!stitch(b))return;b.classList.remove("sw-on");void b.offsetWidth;b.classList.add("sw-on")}
-    else if(k==="nd"){const nd=b.querySelector(".sw-nd");if(!nd)return;nd.style.setProperty("--nw",nd.offsetWidth+"px");b.classList.remove("sw-on","sw-run");void b.offsetWidth;b.classList.add("sw-on","sw-run");clearTimeout(b._swt);b._swt=setTimeout(()=>b.classList.remove("sw-run"),1100)}
+    else if(k==="nd"){const nd=b.querySelector(".sw-nd");if(!nd)return;nd.style.setProperty("--nw",nd.offsetWidth+"px");b.classList.remove("sw-on","sw-run");void b.offsetWidth;b.classList.add("sw-on","sw-run");clearTimeout(b._swt);b._swt=setTimeout(()=>b.classList.remove("sw-run"),2300)}
     else{b.classList.remove("sw-on");void b.offsetWidth;b.classList.add("sw-on")}}
   const io="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.target.offsetWidth){io.unobserve(e.target);setTimeout(()=>play(e.target),250)}}),{rootMargin:"0px 0px -12% 0px"}):null;
   function setup(b){const k=kind(b);if(!k)return;

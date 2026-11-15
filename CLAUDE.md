@@ -71,7 +71,8 @@ language with short, numbered steps.
   hover/tap, no per-scroll work): .cta.solid "stitched on" (white dashed
   stitch sews around the edge), .cta.ghost "needle run" (a needle leaves a
   stitched line under the words), .pill "sewn button" (4-hole button icon,
-  thread crosses its holes). Filter tabs, quote-form chips and Mockup studio
+  thread crosses its holes). Owner asked for slower motion: stitch 2.6 s,
+  needle 2.2 s, sewn button 1.4 s turn + 1 s per thread. Filter tabs, quote-form chips and Mockup studio
   buttons are rounded too, without animation.
 - Logo: the Diamond Stitch mark (an outlined diamond with a smaller dashed
   diamond inside, three even stitches per side with solid corners) next to
