@@ -86,7 +86,7 @@ language with short, numbered steps.
 
 ## SITE STRUCTURE (static HTML on Vercel, deployed from GitHub)
 - index.html: home page, in this order (owner, Nov 2026):
-  1. Hero: headline, buttons (outline "Design assistance" -> #design, outline
+  1. Hero: headline, buttons (outline "Design assistance" -> design.html (top), outline
      "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" ->
      #contact), and a line-drawn sewing machine (SVG, CSS
      only: needle bobs, fabric feeds left, stitches appear behind the needle,
@@ -145,7 +145,9 @@ language with short, numbered steps.
   and <name>-back.webp (1152×1536). The quote window can't carry the image
   (free Web3Forms), so the image is downloaded and the shopper sends it by
   Viber or email. The hint under the studio picture (#msHint) is forest green
-  (owner request).
+  (owner request). Under the studio intro, a forest-green "EXPERIMENTAL" note
+  says the tool is still being built and is best for DTF, DTG and
+  sublimation previews (owner, Nov 2026).
 - Quick place spots are set per photo in SPOTS (design.html), keyed by photo
   name (e.g. hoodie-navy, hoodie-navy-back), measured from each photo's centre
   line, chest width, neckline/hood, pocket/placket and hem, using print-shop

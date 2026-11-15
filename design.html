@@ -175,6 +175,8 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 /* ===== DESIGN STUDIO ===== */
 .dz-head{display:flex;flex-direction:column;gap:2rem}
 .dz-lead{max-width:44ch;font-size:1rem;line-height:1.625;color:var(--ink-muted)}
+.ms-beta{max-width:44ch;margin-top:1rem;font-size:0.875rem;line-height:1.55;color:var(--forest,#2f4a3a)}
+.ms-beta-tag{display:inline-block;margin-right:0.6rem;padding:0.2rem 0.65rem;border:1px dashed var(--forest,#2f4a3a);border-radius:999px;font-size:0.6875rem;font-weight:500;text-transform:uppercase;letter-spacing:0.14em;vertical-align:0.1em}
 .dz-grid{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:3rem 2rem}
 .dz-media{aspect-ratio:10/7;background:#e9e9e7}
 .dz-media img{object-position:center}
@@ -666,7 +668,10 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
         <div data-anim="fade"><span class="eyebrow">Mockup studio</span></div>
         <h2 class="sh-title" data-anim="lines">Make it <span class="accent">yours</span>.</h2>
       </div>
-      <p class="dz-lead" data-anim="fade">Pick a blank, add your artwork or type your own, and see it printed on the fabric. When it looks right, save it and send it to us for a quote.</p>
+      <div class="dz-side">
+        <p class="dz-lead" data-anim="fade">Pick a blank, add your artwork or type your own, and see it printed on the fabric. When it looks right, save it and send it to us for a quote.</p>
+        <p class="ms-beta" data-anim="fade"><span class="ms-beta-tag">Experimental</span>We’re still building and improving this tool. For now its previews are best for DTF, DTG, and sublimation prints.</p>
+      </div>
     </div>
     <div class="ms" id="ms">
       <div class="ms-pick" id="msPick" role="list" aria-label="Choose a blank"></div>
