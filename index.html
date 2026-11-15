@@ -612,6 +612,55 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 @media (min-width:768px){.hs{padding:7rem 3rem 8rem}.hs-card{--cw:clamp(8rem,15vw,14rem)}.hs-seam .hs-card,.hs-mock .hs-card{--cw:clamp(11rem,22vw,17rem)}.hs-mock{--mw:clamp(15rem,27vw,20rem)}}
 /* sections far off screen skip layout and paint until they come near */
 .cv{content-visibility:auto;contain-intrinsic-size:auto 60rem}
+/* ===== BUTTONS: rounded, forest green, sewing animations (owner, Nov 2026) =====
+   main .cta.solid = "stitched on" (dashed stitch sews around the edge), outline .cta.ghost = "needle run"
+   (a needle leaves a stitched line under the words), home .pill = "sewn button" (thread crosses a 4-hole button) */
+:root{--forest:#2f4a3a;--forest-d:#263d30}
+.cta{position:relative;isolation:isolate;border-radius:999px;padding:0.95rem 1.75rem;font-size:0.9375rem;font-weight:500;text-transform:none;letter-spacing:0.01em;overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background-color .3s,color .3s,transform .35s var(--ease),box-shadow .35s var(--ease)}
+.cta:active,.cta.sw-press{transform:scale(0.97)}
+.cta.solid{background:var(--forest);color:#fff;box-shadow:0 0.7rem 1.4rem -0.8rem rgba(25,25,23,0.55)}
+.cta.ghost{border:0;background:#fff;color:var(--ink,#191917);box-shadow:inset 0 0 0 1.5px #191917}
+.cta.dark.solid{background:#fff;color:#191917;box-shadow:0 0.7rem 1.4rem -0.8rem rgba(0,0,0,0.6)}
+.cta.dark.ghost{border:0;background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,0.85)}
+@media (hover:hover) and (min-width:769px){
+  .cta.solid:hover{background:var(--forest-d)}
+  .cta.ghost:hover{background:#fff;color:#191917}
+  .cta.dark.solid:hover{background:#f2eee6}
+  .cta.dark.ghost:hover{background:rgba(255,255,255,0.08);color:#fff}
+  .cta:hover .arr{transform:translateX(0.3rem)}
+}
+.pc-actions .cta{padding:0.75rem 0.9rem;font-size:0.8125rem;white-space:nowrap;letter-spacing:0;justify-content:center}
+.pc-actions .cta .arr{display:none}
+.cat-tab{border-radius:999px}
+.chip span{border-radius:999px;padding:0 1.1rem}
+.ms-btn{border-radius:999px}
+.ms-btn.ms-sq,.ms-sw{border-radius:50%}
+/* stitched on */
+.cta svg.sw-st{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:-1}
+.sw-st .sl{fill:none;stroke-width:1.3;stroke-dasharray:5 4;stroke-linecap:round;stroke:rgba(255,255,255,0.9)}
+.cta.dark .sw-st .sl{stroke:rgba(25,25,23,0.55)}
+.sw-st .mk{fill:none;stroke:#fff;stroke-width:5}
+.sw-on .sw-st .mk{stroke-dashoffset:0!important;transition:stroke-dashoffset 1.2s var(--ease)}
+/* needle run */
+.sw-nd{position:relative;display:inline-block}
+.sw-nd .sw-seam{position:absolute;left:0;right:0;bottom:-0.4rem;height:2px;overflow:hidden;pointer-events:none}
+.sw-nd .sw-seam i{position:absolute;inset:0;background:repeating-linear-gradient(90deg,currentColor 0 5px,transparent 5px 9px);transform:translateX(-101%)}
+.sw-on .sw-nd .sw-seam i{transform:none;transition:transform 1s cubic-bezier(.45,0,.2,1)}
+.sw-nd .sw-ndl{position:absolute;bottom:-0.5rem;left:0;width:0.5rem;height:1.2rem;opacity:0;pointer-events:none}
+.sw-nd .sw-ndl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1.5px;margin-left:-0.75px;background:currentColor;border-radius:1px}
+.sw-nd .sw-ndl::after{content:"";position:absolute;left:50%;top:0.15rem;width:3px;height:5px;margin-left:-1.5px;border:1px solid currentColor;border-radius:2px}
+.sw-run .sw-nd .sw-ndl{animation:swNd 1s cubic-bezier(.45,0,.2,1) forwards}
+@keyframes swNd{0%{opacity:1;transform:translateX(-0.25rem)}10%{transform:translateX(calc(var(--nw,6rem)*0.1)) translateY(0.2rem)}20%{transform:translateX(calc(var(--nw,6rem)*0.2))}30%{transform:translateX(calc(var(--nw,6rem)*0.3)) translateY(0.2rem)}40%{transform:translateX(calc(var(--nw,6rem)*0.4))}50%{transform:translateX(calc(var(--nw,6rem)*0.5)) translateY(0.2rem)}60%{transform:translateX(calc(var(--nw,6rem)*0.6))}70%{transform:translateX(calc(var(--nw,6rem)*0.7)) translateY(0.2rem)}80%{transform:translateX(calc(var(--nw,6rem)*0.8))}90%{opacity:1;transform:translateX(calc(var(--nw,6rem)*0.9)) translateY(0.2rem)}100%{opacity:0;transform:translateX(var(--nw,6rem))}}
+/* sewn button (home pills) */
+.pill{background:var(--forest)}
+.pill .sw-sb{width:1.45rem;height:1.45rem;flex:none;margin-left:-0.35rem;transition:transform .6s var(--ease)}
+.sw-sb .rim{fill:none;stroke:currentColor;stroke-width:1.5}
+.sw-sb .h{fill:currentColor}
+.sw-sb .t{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-dasharray:12;stroke-dashoffset:12;transition:stroke-dashoffset .45s var(--ease)}
+.sw-sb .t2{transition-delay:.3s}
+.sw-on .sw-sb{transform:rotate(90deg)}
+.sw-on .sw-sb .t{stroke-dashoffset:0}
+@media (prefers-reduced-motion:reduce){.cta,.pill,.sw-st .mk,.sw-seam i,.sw-sb,.sw-sb .t{transition:none!important;animation:none!important}.sw-ndl{display:none}}
 </style>
 </head>
 <body id="top">
@@ -1283,6 +1332,41 @@ if(!(window.CSS&&CSS.supports&&CSS.supports("animation-timeline: view()"))){
   sec.classList.add("off");
   new IntersectionObserver(es=>{on=es[0].isIntersecting;sec.classList.toggle("off",!on);if(on)sec.classList.add("in")},{threshold:0.2}).observe(sec);
   setInterval(()=>{if(!on||document.hidden)return;if(li>=0)tiles[li].classList.remove("lift");li=(li+1)%tiles.length;tiles[li].classList.add("lift")},3200);
+})();
+</script>
+<script>
+/* Buttons: sewing animations. Plays once when a button first comes into view, and again on hover/tap. No per-scroll work. */
+(function(){
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;let uid=0;
+  const SB='<svg class="sw-sb" viewBox="0 0 24 24" aria-hidden="true"><circle class="rim" cx="12" cy="12" r="10"/><circle class="h" cx="9" cy="9" r="1.3"/><circle class="h" cx="15" cy="9" r="1.3"/><circle class="h" cx="9" cy="15" r="1.3"/><circle class="h" cx="15" cy="15" r="1.3"/><path class="t" d="M9 9 L15 15"/><path class="t t2" d="M15 9 L9 15"/></svg>';
+  function stitch(b){const w=b.offsetWidth,h=b.offsetHeight;if(!w||!h)return false;const old=b.querySelector("svg.sw-st");if(old&&old.dataset.w==w&&old.dataset.h==h)return true;if(old)old.remove();
+    const i=4.5,r=(h-2*i)/2,P=Math.ceil(2*(w-2*i-2*r)+2*Math.PI*r),id="swm"+(uid++);
+    b.insertAdjacentHTML("beforeend",`<svg class="sw-st" data-w="${w}" data-h="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true"><defs><mask id="${id}" maskUnits="userSpaceOnUse"><rect class="mk" x="${i}" y="${i}" width="${w-2*i}" height="${h-2*i}" rx="${r}" style="stroke-dasharray:${P};stroke-dashoffset:${P}"/></mask></defs><rect class="sl" x="${i}" y="${i}" width="${w-2*i}" height="${h-2*i}" rx="${r}" mask="url(#${id})"/></svg>`);return true}
+  function wrap(b){if(b.querySelector(".sw-nd"))return;const nd=document.createElement("span");nd.className="sw-nd";
+    [...b.childNodes].forEach(n=>{if(n.nodeType===1&&(n.classList.contains("arr")||n.tagName==="svg"))return;nd.appendChild(n)});
+    if(!nd.textContent.trim())return;nd.insertAdjacentHTML("beforeend",'<span class="sw-seam" aria-hidden="true"><i></i></span><span class="sw-ndl" aria-hidden="true"></span>');b.insertBefore(nd,b.firstChild)}
+  function kind(b){return b.classList.contains("pill")?"sb":b.classList.contains("solid")?"st":b.classList.contains("ghost")?"nd":""}
+  function play(b){const k=b._sw;if(!k)return;
+    if(k==="st"){if(!stitch(b))return;b.classList.remove("sw-on");void b.offsetWidth;b.classList.add("sw-on")}
+    else if(k==="nd"){const nd=b.querySelector(".sw-nd");if(!nd)return;nd.style.setProperty("--nw",nd.offsetWidth+"px");b.classList.remove("sw-on","sw-run");void b.offsetWidth;b.classList.add("sw-on","sw-run");clearTimeout(b._swt);b._swt=setTimeout(()=>b.classList.remove("sw-run"),1100)}
+    else{b.classList.remove("sw-on");void b.offsetWidth;b.classList.add("sw-on")}}
+  const io="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.target.offsetWidth){io.unobserve(e.target);setTimeout(()=>play(e.target),250)}}),{rootMargin:"0px 0px -12% 0px"}):null;
+  function setup(b){const k=kind(b);if(!k)return;
+    if(k==="sb"&&!b.querySelector(".sw-sb"))b.insertAdjacentHTML("afterbegin",SB);
+    if(k==="nd")wrap(b);
+    if(k==="st"&&b._sw&&!b.querySelector("svg.sw-st")&&b.classList.contains("sw-on")){stitch(b)}
+    if(b._sw)return;b._sw=k;
+    if(reduce){if(k==="st")stitch(b);b.classList.add("sw-on");return}
+    b.addEventListener("pointerenter",e=>{if(e.pointerType==="mouse")play(b)});
+    b.addEventListener("pointerdown",e=>{b.classList.add("sw-press");if(e.pointerType!=="mouse")play(b)});
+    ["pointerup","pointerleave","pointercancel"].forEach(t=>b.addEventListener(t,()=>b.classList.remove("sw-press")));
+    if(io)io.observe(b);else play(b)}
+  function all(root){(root||document).querySelectorAll(".cta,.pill").forEach(setup)}
+  const go=()=>all();(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(go);go();
+  let mt;new MutationObserver(()=>{clearTimeout(mt);mt=setTimeout(go,120)}).observe(document.body,{childList:true,subtree:true});
+  let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>document.querySelectorAll(".cta.solid.sw-on").forEach(stitch),250)});
+  /* a button inside a window that just opened: sew it when the window shows */
+  document.addEventListener("click",()=>setTimeout(()=>document.querySelectorAll(".cta.solid").forEach(b=>{if(b._sw&&!b.querySelector("svg.sw-st")&&b.offsetWidth)play(b)}),350));
 })();
 </script>
 </body>
