@@ -28,9 +28,8 @@ language with short, numbered steps.
   request (Nov 2026) the website shows only Stoicism: portfolio (Achilles,
   Knight), the client list, and the testimonial. Keep the others off the site
   unless the owner asks to bring them back.
-- The Stoicism testimonial was removed from the home page (Nov 2026); the
-  placeholder still appears on brand.html. Remind the owner to replace or
-  remove it.
+- No testimonials, client lists or portfolio grids anywhere on the site
+  (owner, Nov 2026). Real client work appears only in the home collage.
 - Catalogue prices are for the plain blank only (no design). On the site
   this is stated in the catalogue intro, on every price ("per piece,
   blank"), in the details window and in the quote windows: design and
@@ -84,32 +83,37 @@ language with short, numbered steps.
   2. Three "start here" sections (owner's references: the Portrait site),
      each centred with its own scroll animation, a kicker, a big headline with
      one italic word, ONE dark rounded "pill" button and a small caption:
-     Mockup Tool (#start; blank tee, dashed print area draws, finished mockup
-     slides in, "Mockup Tool & Custom Mockups" -> design.html#studio), Build
+     Mockup Tool (#start; a design editor: black tee, a tool bar slides in,
+     a dashed print area with handles is dragged out, "YOUR DESIGN HERE" sets
+     in line by line, a cursor grabs the corner; "Mockup Tool & Custom
+     Mockups" -> design.html#studio), Build
      Your Brand (Stoicism photos part and a twin-needle seam sews between
      them, cut & sew, "Start a brand"), Our Blanks (blank cards fan out into a
      hand, photos from images/thumbs/, "Browse catalogue" ->
      teams.html#catalogue). The pill button is a deliberate exception to the
      square uppercase button style. Not pinned; the fan is home page only.
-  3. "Made by us" (#made, grey): animated collage of real client work in
+  3. "Made by us" (#made, white, wide): animated collage of real client work in
      images/collage/ (720px WebP): Stoicism Knight (centre), Stoicism Pegasus,
      navy "H" varsity, Akatsuki varsity, Black Clover, gothic wings tee,
      Vagabond, Initial D, Grit. Heading "Whatever the occasion, we've *made*
      it.", caption "Merch for local brands, teams, events, and everyday
-     wear.", pill "See our work" -> #work. Tiles deal out when the section
-     arrives, drift (CSS), one lifts to the front every 3.2 s only while on
-     screen. This is the only place other clients' work appears (owner's
+     wear." (no button). Phone: portrait cluster; 768px+: wide 16:10 layout
+     (positions per tile in CSS, .mc-box nth-child). When the section arrives
+     the photos fall onto a pile in the middle and spread out to their spots,
+     then drift (CSS); one lifts to the front every 3.2 s while on screen. This is the only place other clients' work appears (owner's
      choice).
-  4. Then: portfolio; design studio; principles; about; process; services
+  4. Then: design studio; principles; about; process; services
      and print methods explained; quote form; FAQ; footer.
-  Removed at the owner's request (Nov 2026): the "How we work" statement
+  Removed at the owner's request (Nov 2026): the portfolio ("Brands we've
+  built"; also removed from brand.html with its testimonial and client list,
+  and all "Work" links now go to index.html#made), the "How we work" statement
   quote, the "Start a run" dark section, testimonials ("In their words"),
   and the client list ("Brands that wear our work").
 - teams.html: For Teams & Events, plus the full catalogue (filters, product
   cards, details window, Front/Side views for caps, colour switching only
   where real mockups exist).
 - brand.html: Build Your Brand, with the stitched seam, services for brands,
-  portfolio, process, reviews, and quote form.
+  process, and quote form.
 - Navigation to the studio: header bar link "Mockups" and the menu item
   "Mockup Tool & Custom Mockups" (all pages) go to design.html#studio; home
   Mockup Tool section button reads "Mockup Tool & Custom Mockups".
