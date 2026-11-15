@@ -114,9 +114,12 @@ language with short, numbered steps.
   where real mockups exist).
 - brand.html: Build Your Brand, with the stitched seam, services for brands,
   process, and quote form.
-- Navigation to the studio: header bar link "Mockups" and the menu item
-  "Mockup Tool & Custom Mockups" (all pages) go to design.html#studio; home
-  Mockup Tool section button reads "Mockup Tool & Custom Mockups".
+- Header links (all pages, owner Nov 2026): "Teams & Events" (teams.html),
+  "Build a Brand" (brand.html), "Mockup Tool" (design.html#studio). Full menu:
+  Home, Teams & Events, Build a Brand, Mockup Tool & Custom Mockups, Contact.
+  At 1024–1279px the moniker on the left hides and the logo sits left so the
+  links fit. Page back links read "← Home". Home Mockup Tool section button
+  reads "Mockup Tool & Custom Mockups".
 - design.html: Design & Mockups, with a how-it-works section, the Mockup
   studio, design-studio mockups, and quote form.
 - Mockup studio (design.html, section #studio): shoppers pick a blank, add an
