@@ -109,8 +109,10 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 .logo .mark{width:1.5rem;height:1.5rem;flex:none;display:block}
 .logo .word{font-family:var(--serif);font-style:italic;text-transform:lowercase;font-size:1.125rem;letter-spacing:0.04em}
 .hdr-right{justify-self:end;display:flex;align-items:center;gap:2rem}
-.hdr-nav{display:none;gap:2rem}
+.hdr-nav{display:none;gap:2rem;justify-self:end;white-space:nowrap}
 .hdr-nav a{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.875rem;text-transform:uppercase;letter-spacing:0.14em}
+@media (max-width:1279px){.hdr-nav{gap:1.25rem}.hdr-nav a{font-size:0.75rem;letter-spacing:0.12em}}
+@media (min-width:1024px) and (max-width:1279px){.hdr-in{grid-template-columns:auto 1fr!important}.hdr-left{display:none!important}.hdr .logo{justify-self:start!important}}
 .hdr-nav a::before{content:"";width:1px;height:1px;border-radius:50%;background:currentColor;opacity:0;transition:opacity .3s}
 .hdr-nav a:hover::before{opacity:1}
 .menu-btn{display:inline-flex;align-items:center;gap:0.75rem}
@@ -505,7 +507,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
     <div class="hdr-left"><p>Apparel Design &amp; Manufacturing</p><p>Design · Print · Produce</p></div>
     <a class="logo" href="index.html" aria-label="Simple Threads, home"><svg class="mark" viewBox="0 0 72 72" aria-hidden="true"><rect x="16" y="16" width="40" height="40" transform="rotate(45 36 36)" fill="none" stroke="currentColor" stroke-width="3"></rect><rect x="24.5" y="24.5" width="23" height="23" transform="rotate(45 36 36)" fill="none" stroke="currentColor" stroke-width="2.2" stroke-dasharray="3.5 3"></rect></svg><span class="word">simple threads</span></a>
     <div class="hdr-right">
-      <nav class="hdr-nav" aria-label="Primary"><a href="teams.html">Teams</a><a href="brand.html">Brands</a><a href="design.html#studio">Mockups</a></nav>
+      <nav class="hdr-nav" aria-label="Primary"><a href="teams.html">Teams &amp; Events</a><a href="brand.html">Build a Brand</a><a href="design.html#studio">Mockup Tool</a></nav>
       <button class="menu-btn" id="menuOpen" aria-haspopup="dialog" aria-controls="menu" aria-expanded="false"><span class="lbl">Menu</span><span class="burger" aria-hidden="true"><i></i><i></i></span></button>
     </div>
   </div>
@@ -514,7 +516,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 <main>
 <section class="ph">
   <div class="container">
-    <a class="back" href="index.html">← Simple Threads</a>
+    <a class="back" href="index.html">← Home</a>
     <div data-anim="fade"><span class="eyebrow">For teams &amp; events</span></div>
     <h1 data-anim="lines" data-stagger="120">Uniforms and merch, <span class="accent">simply</span> made.</h1>
     <p class="lead" data-anim="words" data-stagger="16" data-delay="300">Shirts, polos, jackets, caps, and more for companies, schools, sports teams, and events — printed or embroidered with your logo. No minimum order, and the more you order, the less you pay per piece.</p>
@@ -732,7 +734,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 <script>
 (() => {
 const IMGS={};
-const NAV=[["Home", "index.html"], ["Teams & Events", "teams.html"], ["Build Your Brand", "brand.html"], ["Mockup Tool & Custom Mockups", "design.html#studio"], ["Contact", "#contact"]];
+const NAV=[["Home", "index.html"], ["Teams & Events", "teams.html"], ["Build a Brand", "brand.html"], ["Mockup Tool & Custom Mockups", "design.html#studio"], ["Contact", "#contact"]];
 const WORKS=[
   ["Achilles","Stoicism","Black tee, back print with split-quote hem line","Design assistance, production","achilles","1/1"],
   ["Knight","Stoicism","Oversized tee, full-back print","Design assistance, production","knight","2/3"]];
