@@ -108,9 +108,11 @@ language with short, numbered steps.
      Vagabond, Initial D, Grit. Heading "Whatever the occasion, we've *made*
      it.", caption "Merch for local brands, teams, events, and everyday
      wear." (no button). Phone: portrait cluster; 768px+: wide 16:10 layout
-     (positions per tile in CSS, .mc-box nth-child). When the section arrives
-     the photos fall onto a pile in the middle and spread out to their spots,
-     then drift (CSS); one lifts to the front every 3.2 s while on screen. This is the only place other clients' work appears (owner's
+     (positions per tile in CSS, .mc-box nth-child). Scroll-linked (CSS view
+     timeline on .mc-box, staggered per tile): the photos fall onto a pile in
+     the middle and spread out as you scroll down, and fold back into the
+     pile as you scroll up (owner request). Without scroll timelines it plays
+     once on arrival and resets when scrolled back above. Then they drift (CSS); one lifts to the front every 3.2 s while on screen. This is the only place other clients' work appears (owner's
      choice).
   4. Then: design studio; principles; about; process; services
      and print methods explained; quote form; FAQ; footer.
