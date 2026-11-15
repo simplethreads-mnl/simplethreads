@@ -109,8 +109,28 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 .h3-stage{position:relative;max-width:80rem;margin:2.5rem auto 0}
 .h3-seam{display:none}
 .h3-tee{position:relative;width:min(78vw,24rem);margin:0 auto;perspective:1400px}
-/* hero collage: real client work dealt out like printed photos, drifting gently; one lifts to the front at a time. Transform + opacity only */
-.h3-col{aspect-ratio:1/1.082;container-type:inline-size;perspective:none;margin-bottom:2.5rem}
+/* hero sewing machine: line drawing, needle bobs, fabric feeds left, stitches appear behind the needle. CSS transforms only, paused off screen */
+.h3-sewbox{aspect-ratio:1/1.082;perspective:none;margin-bottom:2rem}
+.sew{display:block;width:100%;height:100%;overflow:visible}
+.sew .ln{fill:#fff;stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+.sew .ln-f{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round}
+.sew .thr{fill:none;stroke:var(--ink);stroke-width:1;stroke-dasharray:2 3;opacity:.55}
+.sew .fab{fill:#f2eee6;stroke:rgba(25,25,23,0.35);stroke-width:1}
+.sew .st{stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:8 6}
+.sew .guide{stroke:rgba(25,25,23,0.25);stroke-width:1;stroke-dasharray:3 4}
+.sew .wd{font-family:var(--serif);font-style:italic;font-size:15px;fill:var(--ink)}
+.sew-needle{animation:sewNeedle .7s ease-in-out infinite}
+.sew-feed{animation:sewFeed 7s linear infinite}
+.sew-wheel{transform-box:fill-box;transform-origin:50% 50%;animation:sewSpin .7s linear infinite}
+.sew-spool{transform-box:fill-box;transform-origin:50% 50%;animation:sewSpool 2.1s ease-in-out infinite alternate}
+@keyframes sewNeedle{0%,100%{transform:translateY(0)}50%{transform:translateY(14px)}}
+@keyframes sewFeed{to{transform:translateX(-140px)}}
+@keyframes sewSpin{to{transform:rotate(360deg)}}
+@keyframes sewSpool{to{transform:scaleY(.94)}}
+.h3.off .sew *{animation-play-state:paused}
+@media (prefers-reduced-motion:reduce){.sew *{animation:none!important}}
+/* "Made by us" collage: real client work dealt out like printed photos when the section arrives, drifting gently; one lifts to the front at a time */
+.mc-box{position:relative;width:min(80vw,30rem);margin:0 auto;aspect-ratio:1/1.082;container-type:inline-size}
 .cl{position:absolute;left:calc(var(--x)*1%);top:calc(var(--y)*1%);width:calc(var(--w)*1%);z-index:var(--z);margin:0;transform:translate(-50%,-50%);transition:transform .9s var(--ease)}
 .cl.lift{z-index:30;transform:translate(-50%,-50%) scale(1.08)}
 .cl-in{animation:clIn 1s var(--ease) both;animation-delay:calc(var(--i)*85ms + 250ms)}
@@ -119,7 +139,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 .cl.st .cl-f::after{content:"";position:absolute;inset:1.6cqw;border:1px dashed rgba(25,25,23,0.35);pointer-events:none}
 @keyframes clIn{from{opacity:0;transform:translate(calc((50 - var(--x))*1cqw),calc((54 - var(--y))*1.082cqw)) rotate(calc(var(--r)*-2)) scale(0.5)}}
 @keyframes clDrift{from{transform:rotate(var(--r)) translateY(-0.6cqw)}to{transform:rotate(calc(var(--r) + 1.2deg)) translateY(0.8cqw)}}
-.h3.off .cl-f{animation-play-state:paused}
+.mc.off .cl-f{animation-play-state:paused}
+.mc:not(.in) .cl-in{animation-play-state:paused}
 .h3-steps{position:relative;margin:2.5rem auto 0;max-width:26rem;padding-left:2.25rem;display:flex;flex-direction:column;gap:1.75rem;text-align:left}
 .h3-steps::before{content:"";position:absolute;left:0.6875rem;top:0.5rem;bottom:0.5rem;border-left:1px dashed var(--line-strong)}
 .h3-step{position:relative}
@@ -199,15 +220,6 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .hc-p{margin-top:0.25rem;font-size:0.9375rem;line-height:1.5;color:var(--on-dark-muted)}
 .hc-foot{border-top:1px dashed var(--line-on-dark);padding-top:1.5rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--on-dark-muted)}
 @media (min-width:1024px){.hero-card{padding:3.5rem 3rem}.hc-title{font-size:3rem}}
-/* ===== STATEMENT ===== */
-.statement{padding:7rem 1.5rem}
-.statement .container{max-width:80rem}
-.statement .eyebrow{margin-bottom:3rem}
-.statement .passage{font-family:var(--serif);font-size:1.875rem;line-height:1.3}
-.statement .sig{margin-top:3rem}
-.statement .sig span{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--ink-muted)}
-@media (min-width:640px){.statement .passage{font-size:2.25rem}}
-@media (min-width:1024px){.statement{padding:10rem 3rem}.statement .passage{font-size:3rem;line-height:1.25}}
 
 /* ===== PORTFOLIO ===== */
 .intro{margin-top:1.5rem;max-width:52ch;font-size:1rem;line-height:1.625;color:var(--ink-muted)}
@@ -605,7 +617,24 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
   </div>
   <div class="h3-stage" id="h3Stage">
     <svg class="h3-seam" id="h3Seam" aria-hidden="true"></svg>
-    <div class="h3-tee h3-col" id="h3Col" aria-label="Pieces we have made"><figure class="cl" style="--x:52;--y:12;--w:30;--r:3deg;--z:1;--i:0;--a:1;--d:7s"><div class="cl-in"><div class="cl-f"><img src="images/collage/varsity-h.webp" alt="Navy and cream varsity jacket with a lime H patch and script embroidery" width="720" height="720" decoding="async"></div></div></figure><figure class="cl" style="--x:20;--y:24;--w:36;--r:-7deg;--z:4;--i:1;--a:1;--d:9s"><div class="cl-in"><div class="cl-f"><img src="images/collage/stoicism-pegasus.webp" alt="Black tee, Stoicism full-back print of Pegasus and lightning" width="720" height="720" decoding="async"></div></div></figure><figure class="cl" style="--x:81;--y:25;--w:30;--r:6deg;--z:5;--i:2;--a:2/3;--d:11s"><div class="cl-in"><div class="cl-f"><img src="images/collage/akatsuki.webp" alt="Black and white varsity jacket with embroidered Akatsuki lettering on the back" width="480" height="720" decoding="async"></div></div></figure><figure class="cl" style="--x:14;--y:60;--w:32;--r:4deg;--z:3;--i:3;--a:1;--d:8s"><div class="cl-in"><div class="cl-f"><img src="images/collage/blackclover.webp" alt="Black Clover black oversized tee, full-back skull print" width="720" height="720" decoding="async"></div></div></figure><figure class="cl st" style="--x:50;--y:52;--w:40;--r:-2deg;--z:9;--i:4;--a:2/3;--d:10s"><div class="cl-in"><div class="cl-f"><img src="images/collage/stoicism-knight.webp" alt="Black tee, Stoicism full-back print of a knight at a writing desk" width="480" height="720" decoding="async" fetchpriority="high"></div></div></figure><figure class="cl" style="--x:86;--y:63;--w:28;--r:-5deg;--z:4;--i:5;--a:2/3;--d:7s"><div class="cl-in"><div class="cl-f"><img src="images/collage/wings.webp" alt="Black oversized tee with a large white gothic wings print on the back" width="480" height="720" decoding="async"></div></div></figure><figure class="cl" style="--x:22;--y:82;--w:32;--r:-6deg;--z:6;--i:6;--a:1;--d:9s"><div class="cl-in"><div class="cl-f"><img src="images/collage/vagabond.webp" alt="Vagabond cream tee, full-back print" width="720" height="720" decoding="async"></div></div></figure><figure class="cl" style="--x:51;--y:87;--w:26;--r:-2deg;--z:7;--i:7;--a:1;--d:11s"><div class="cl-in"><div class="cl-f"><img src="images/collage/initiald.webp" alt="Initial D black oversized tee, front chest print" width="720" height="720" decoding="async"></div></div></figure><figure class="cl" style="--x:80;--y:81;--w:28;--r:6deg;--z:6;--i:8;--a:3/4;--d:8s"><div class="cl-in"><div class="cl-f"><img src="images/collage/grit.webp" alt="Grit black tee, front print with a chrome ring graphic" width="540" height="720" decoding="async"></div></div></figure></div>
+    <div class="h3-tee h3-sewbox"><svg class="sew" viewBox="0 0 400 433" role="img" aria-label="A sewing machine stitching fabric">
+<defs><clipPath id="sewBed"><rect x="40" y="320" width="320" height="40"/></clipPath><clipPath id="sewL"><rect x="40" y="320" width="78" height="40"/></clipPath></defs>
+<ellipse cx="200" cy="392" rx="168" ry="8" fill="rgba(25,25,23,0.07)"/>
+<rect class="ln" x="40" y="350" width="320" height="28" rx="8"/>
+<path class="ln" d="M250 350 V205 Q250 196 241 196 H160 Q150 196 150 206 V240 Q150 252 138 252 H98 Q86 252 86 240 V150 Q86 110 126 110 H290 Q330 110 330 150 V350 Z"/>
+<g transform="translate(170 153)"><rect x="-8" y="-8" width="16" height="16" transform="rotate(45)" fill="none" stroke="#191917" stroke-width="1.4"/><rect x="-4.4" y="-4.4" width="8.8" height="8.8" transform="rotate(45)" fill="none" stroke="#191917" stroke-width="1" stroke-dasharray="2 1.6"/></g>
+<text class="wd" x="186" y="158">simple threads</text>
+<g class="sew-wheel"><circle class="ln" cx="330" cy="172" r="24"/><circle class="ln-f" cx="330" cy="172" r="5"/><line class="ln-f" x1="330" y1="152" x2="330" y2="167"/><line class="ln-f" x1="330" y1="177" x2="330" y2="192"/><line class="ln-f" x1="310" y1="172" x2="325" y2="172"/><line class="ln-f" x1="335" y1="172" x2="350" y2="172"/></g>
+<line class="ln-f" x1="212" y1="110" x2="212" y2="98"/>
+<g class="sew-spool"><rect class="ln" x="199" y="72" width="26" height="26" rx="3"/><line class="ln-f" x1="203" y1="80" x2="221" y2="80"/><line class="ln-f" x1="203" y1="85" x2="221" y2="85"/><line class="ln-f" x1="203" y1="90" x2="221" y2="90"/></g>
+<path class="thr" d="M199 85 C150 85 112 95 104 128"/>
+<g clip-path="url(#sewBed)"><g class="sew-feed"><rect class="fab" x="40" y="336" width="460" height="15" rx="2"/><line class="guide" x1="40" y1="343.5" x2="500" y2="343.5"/></g>
+<g clip-path="url(#sewL)"><g class="sew-feed"><line class="st" x1="40" y1="343.5" x2="500" y2="343.5"/></g></g></g>
+<rect class="ln" x="104" y="252" width="28" height="10" rx="3"/>
+<line class="ln-f" x1="128" y1="262" x2="128" y2="330"/>
+<g class="sew-needle"><line class="ln-f" x1="118" y1="262" x2="118" y2="300" style="stroke-width:2"/><line class="ln-f" x1="118" y1="300" x2="118" y2="326" style="stroke-width:1.2"/></g>
+<path class="ln" d="M106 330 h28 l3 6 h-34z"/>
+</svg></div>
     <ol class="h3-steps" id="h3Steps" aria-label="How ordering works">
       <li class="h3-step pos-l" data-at="0.16"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">01</span><p class="h3-h">Send your idea</p><p class="h3-p">A sketch, a photo, or just a description.</p></div></li>
       <li class="h3-step pos-b" data-at="0.5"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">02</span><p class="h3-h">Approve your sample</p><p class="h3-p">Check the fit, print, and color before we run the order.</p></div></li>
@@ -615,31 +644,17 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
   </div>
 </section>
 
-<!-- ===== STATEMENT ===== -->
-<section class="sec statement">
-  <div class="container">
-    <div data-anim="fade"><span class="eyebrow">How we work</span></div>
-    <p class="passage" data-anim="words" data-stagger="30">Making apparel should feel as easy as wearing it. So we handle the details — refining the artwork with you, matching the print method to the design, and checking every piece, so it arrives just the way you pictured it.</p>
-    <div class="sig" data-anim="fadeUp" data-delay="400"><span>— The Simple Threads team</span></div>
-  </div>
-</section>
-
 <!-- ===== START HERE: three separate paths ===== -->
 <section class="hs" id="start">
-  <div class="hs-vis hs-fan">
-    <figure class="hs-card" style="--k:-3;z-index:4"><img src="images/thumbs/beanie.webp" width="600" height="800" alt="Knitted Beanie" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card" style="--k:-2;z-index:6"><img src="images/thumbs/tshirt.webp" width="600" height="800" alt="Plain T-shirt" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card" style="--k:-1;z-index:8"><img src="images/thumbs/hoodie-navy.webp" width="600" height="800" alt="Plain Hoodie" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card" style="--k:0;z-index:10"><img src="images/thumbs/varsity.webp" width="600" height="800" alt="Varsity Jacket" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card" style="--k:1;z-index:8"><img src="images/thumbs/pullover.webp" width="600" height="800" alt="Pullover Hoodie" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card" style="--k:2;z-index:6"><img src="images/thumbs/honeycomb.webp" width="600" height="800" alt="Honeycomb Polo" loading="lazy" decoding="async"></figure>
-    <figure class="hs-card" style="--k:3;z-index:4"><img src="images/thumbs/cap.webp" width="600" height="800" alt="Baseball Cap" loading="lazy" decoding="async"></figure>
+  <div class="hs-vis hs-mock">
+    <figure class="hs-card hs-blank"><img src="images/thumbs/tshirt-black.webp" width="700" height="933" alt="Plain black tee, ready for a design" loading="lazy" decoding="async"><span class="hs-box" aria-hidden="true"></span></figure>
+    <figure class="hs-card hs-done"><img src="images/thumbs/d_conquer.webp" width="900" height="629" loading="lazy" decoding="async" alt="Conquer tee design mockup" style="object-position:78% 50%"></figure>
   </div>
   <div class="hs-copy" data-anim="fadeUp">
-    <p class="hs-kick">Our blanks</p>
-    <h2 class="hs-title">Every piece starts as a <span class="accent">blank</span>.</h2>
-    <a class="pill" href="teams.html#catalogue">Browse catalogue <span class="arr">→</span></a>
-    <p class="hs-cap">Shirts, polos, jackets, caps, and beanies. No minimum order.</p>
+    <p class="hs-kick">Mockup tool</p>
+    <h2 class="hs-title">See it <span class="accent">before</span> it’s made.</h2>
+    <a class="pill" href="design.html#studio">Mockup Tool &amp; Custom Mockups <span class="arr">→</span></a>
+    <p class="hs-cap">Try your artwork on our blanks, or let us make custom mockups for you.</p>
   </div>
 </section>
 
@@ -658,15 +673,31 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <section class="hs">
-  <div class="hs-vis hs-mock">
-    <figure class="hs-card hs-blank"><img src="images/thumbs/tshirt-black.webp" width="700" height="933" alt="Plain black tee, ready for a design" loading="lazy" decoding="async"><span class="hs-box" aria-hidden="true"></span></figure>
-    <figure class="hs-card hs-done"><img src="images/thumbs/d_conquer.webp" width="900" height="629" loading="lazy" decoding="async" alt="Conquer tee design mockup" style="object-position:78% 50%"></figure>
+  <div class="hs-vis hs-fan">
+    <figure class="hs-card" style="--k:-3;z-index:4"><img src="images/thumbs/beanie.webp" width="600" height="800" alt="Knitted Beanie" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card" style="--k:-2;z-index:6"><img src="images/thumbs/tshirt.webp" width="600" height="800" alt="Plain T-shirt" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card" style="--k:-1;z-index:8"><img src="images/thumbs/hoodie-navy.webp" width="600" height="800" alt="Plain Hoodie" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card" style="--k:0;z-index:10"><img src="images/thumbs/varsity.webp" width="600" height="800" alt="Varsity Jacket" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card" style="--k:1;z-index:8"><img src="images/thumbs/pullover.webp" width="600" height="800" alt="Pullover Hoodie" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card" style="--k:2;z-index:6"><img src="images/thumbs/honeycomb.webp" width="600" height="800" alt="Honeycomb Polo" loading="lazy" decoding="async"></figure>
+    <figure class="hs-card" style="--k:3;z-index:4"><img src="images/thumbs/cap.webp" width="600" height="800" alt="Baseball Cap" loading="lazy" decoding="async"></figure>
   </div>
   <div class="hs-copy" data-anim="fadeUp">
-    <p class="hs-kick">Mockup tool</p>
-    <h2 class="hs-title">See it <span class="accent">before</span> it’s made.</h2>
-    <a class="pill" href="design.html#studio">Mockup Tool &amp; Custom Mockups <span class="arr">→</span></a>
-    <p class="hs-cap">Try your artwork on our blanks, or let us make custom mockups for you.</p>
+    <p class="hs-kick">Our blanks</p>
+    <h2 class="hs-title">Every piece starts as a <span class="accent">blank</span>.</h2>
+    <a class="pill" href="teams.html#catalogue">Browse catalogue <span class="arr">→</span></a>
+    <p class="hs-cap">Shirts, polos, jackets, caps, and beanies. No minimum order.</p>
+  </div>
+</section>
+
+<!-- ===== MADE BY US: collage ===== -->
+<section class="hs hs-grey mc" id="made">
+  <div class="mc-box" aria-label="Pieces we have made"><figure class="cl" style="--x:52;--y:12;--w:30;--r:3deg;--z:1;--i:0;--a:1;--d:7s"><div class="cl-in"><div class="cl-f"><img src="images/collage/varsity-h.webp" alt="Navy and cream varsity jacket with a lime H patch and script embroidery" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:20;--y:24;--w:36;--r:-7deg;--z:4;--i:1;--a:1;--d:9s"><div class="cl-in"><div class="cl-f"><img src="images/collage/stoicism-pegasus.webp" alt="Black tee, Stoicism full-back print of Pegasus and lightning" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:81;--y:25;--w:30;--r:6deg;--z:5;--i:2;--a:2/3;--d:11s"><div class="cl-in"><div class="cl-f"><img src="images/collage/akatsuki.webp" alt="Black and white varsity jacket with embroidered Akatsuki lettering on the back" width="480" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:14;--y:60;--w:32;--r:4deg;--z:3;--i:3;--a:1;--d:8s"><div class="cl-in"><div class="cl-f"><img src="images/collage/blackclover.webp" alt="Black Clover black oversized tee, full-back skull print" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl st" style="--x:50;--y:52;--w:40;--r:-2deg;--z:9;--i:4;--a:2/3;--d:10s"><div class="cl-in"><div class="cl-f"><img src="images/collage/stoicism-knight.webp" alt="Black tee, Stoicism full-back print of a knight at a writing desk" width="480" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:86;--y:63;--w:28;--r:-5deg;--z:4;--i:5;--a:2/3;--d:7s"><div class="cl-in"><div class="cl-f"><img src="images/collage/wings.webp" alt="Black oversized tee with a large white gothic wings print on the back" width="480" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:22;--y:82;--w:32;--r:-6deg;--z:6;--i:6;--a:1;--d:9s"><div class="cl-in"><div class="cl-f"><img src="images/collage/vagabond.webp" alt="Vagabond cream tee, full-back print" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:51;--y:87;--w:26;--r:-2deg;--z:7;--i:7;--a:1;--d:11s"><div class="cl-in"><div class="cl-f"><img src="images/collage/initiald.webp" alt="Initial D black oversized tee, front chest print" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:80;--y:81;--w:28;--r:6deg;--z:6;--i:8;--a:3/4;--d:8s"><div class="cl-in"><div class="cl-f"><img src="images/collage/grit.webp" alt="Grit black tee, front print with a chrome ring graphic" width="540" height="720" decoding="async" loading="lazy"></div></div></figure></div>
+  <div class="hs-copy" data-anim="fadeUp">
+    <p class="hs-kick">Made by us</p>
+    <h2 class="hs-title">Whatever the occasion, we’ve <span class="accent">made</span> it.</h2>
+    <a class="pill" href="#work">See our work <span class="arr">→</span></a>
+    <p class="hs-cap">Merch for local brands, teams, events, and everyday wear.</p>
   </div>
 </section>
 
@@ -1124,9 +1155,6 @@ if(qf){
   else steps.forEach(x=>x.classList.add("on"));
   if(reduce)steps.forEach(x=>x.classList.add("on"));
   addEventListener("scroll",measure,{passive:true});
-  /* collage: every few seconds one photo lifts to the front (class swap only; skipped off screen) */
-  const tiles=[...stage.querySelectorAll(".cl")];let li=-1;
-  if(tiles.length&&!reduce)setTimeout(()=>setInterval(()=>{if(heroOff||document.hidden)return;if(li>=0)tiles[li].classList.remove("lift");li=(li+1)%tiles.length;tiles[li].classList.add("lift")},3200),1600);
   /* stop all hero work (float, shadow, seam loop) once the hero has scrolled away */
   if("IntersectionObserver" in window&&heroEl)new IntersectionObserver(es=>{heroOff=!es[0].isIntersecting;heroEl.classList.toggle("off",heroOff);if(!heroOff)measure()},{rootMargin:"200px 0px"}).observe(heroEl);
   let rt,lw=stage.clientWidth;
@@ -1234,6 +1262,15 @@ if(!(window.CSS&&CSS.supports&&CSS.supports("animation-timeline: view()"))){
   else hs.forEach(x=>x.classList.add("in"));
 }
 
+})();
+</script>
+<script>
+/* "Made by us" collage: deal out when the section arrives; drift and the lift cycle only while it is on screen */
+(function(){const sec=document.getElementById("made");if(!sec)return;const tiles=[...sec.querySelectorAll(".cl")],reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;let li=-1,on=false;
+  if(!("IntersectionObserver" in window)||reduce){sec.classList.add("in");return}
+  sec.classList.add("off");
+  new IntersectionObserver(es=>{on=es[0].isIntersecting;sec.classList.toggle("off",!on);if(on)sec.classList.add("in")},{threshold:0.2}).observe(sec);
+  setInterval(()=>{if(!on||document.hidden)return;if(li>=0)tiles[li].classList.remove("lift");li=(li+1)%tiles.length;tiles[li].classList.add("lift")},3200);
 })();
 </script>
 </body>
