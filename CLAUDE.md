@@ -61,8 +61,18 @@ language with short, numbered steps.
   for body and UI (DM Sans fallback). Labels and buttons are small UPPERCASE
   with wide letter-spacing.
 - Signature details: 1px dashed "stitch" lines between sections and inside
-  cards; eyebrow labels with a short line before them; buttons are solid ink
-  or dashed-outline ghost, uppercase, with a "→" arrow that slides on hover.
+  cards; eyebrow labels with a short line before them.
+- Buttons (owner, Nov 2026; replaced the square uppercase buttons): rounded
+  pills, sentence case, "→" arrow. Main buttons (.cta.solid, home .pill) are
+  forest green #2f4a3a (hover #263d30), the ONE accent colour on the site;
+  outline buttons (.cta.ghost) are white with a 1.5px ink ring; on dark
+  sections a white button / white ring. Sewing animations (shared CSS block
+  "BUTTONS" + small script in each page, plays on first view and on
+  hover/tap, no per-scroll work): .cta.solid "stitched on" (white dashed
+  stitch sews around the edge), .cta.ghost "needle run" (a needle leaves a
+  stitched line under the words), .pill "sewn button" (4-hole button icon,
+  thread crosses its holes). Filter tabs, quote-form chips and Mockup studio
+  buttons are rounded too, without animation.
 - Logo: the Diamond Stitch mark (an outlined diamond with a smaller dashed
   diamond inside, three even stitches per side with solid corners) next to
   "simple threads" in Playfair italic, lowercase.
@@ -90,8 +100,7 @@ language with short, numbered steps.
      Your Brand (Stoicism photos part and a twin-needle seam sews between
      them, cut & sew, "Start a brand"), Our Blanks (blank cards fan out into a
      hand, photos from images/thumbs/, "Browse catalogue" ->
-     teams.html#catalogue). The pill button is a deliberate exception to the
-     square uppercase button style. Not pinned; the fan is home page only.
+     teams.html#catalogue). Not pinned; the fan is home page only.
   3. "Made by us" (#made, white, wide): animated collage of real client work in
      images/collage/ (720px WebP): Stoicism Knight (centre), Stoicism Pegasus,
      navy "H" varsity, Akatsuki varsity, Black Clover, gothic wings tee,
