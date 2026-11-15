@@ -130,14 +130,20 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 .h3.off .sew *{animation-play-state:paused}
 @media (prefers-reduced-motion:reduce){.sew *{animation:none!important}}
 /* "Made by us" collage: real client work dealt out like printed photos when the section arrives, drifting gently; one lifts to the front at a time */
-.mc-box{position:relative;width:min(80vw,30rem);margin:0 auto;aspect-ratio:1/1.082;container-type:inline-size}
+.mc-box{--ar:1.082;position:relative;width:min(88vw,32rem);margin:0 auto;aspect-ratio:1/1.082;container-type:inline-size}
+.mc .hs-copy{max-width:52rem}
+.mc-box .cl:nth-child(1){--x:52;--y:12;--w:30;--r:3deg;--z:1}.mc-box .cl:nth-child(2){--x:20;--y:24;--w:36;--r:-7deg;--z:4}.mc-box .cl:nth-child(3){--x:81;--y:25;--w:30;--r:6deg;--z:5}.mc-box .cl:nth-child(4){--x:14;--y:60;--w:32;--r:4deg;--z:3}.mc-box .cl:nth-child(5){--x:50;--y:52;--w:40;--r:-2deg;--z:9}.mc-box .cl:nth-child(6){--x:86;--y:63;--w:28;--r:-5deg;--z:4}.mc-box .cl:nth-child(7){--x:22;--y:82;--w:32;--r:-6deg;--z:6}.mc-box .cl:nth-child(8){--x:51;--y:87;--w:26;--r:-2deg;--z:7}.mc-box .cl:nth-child(9){--x:80;--y:81;--w:28;--r:6deg;--z:6}
+@media (min-width:768px){.mc-box{--ar:0.625;width:min(94vw,68rem);aspect-ratio:16/10}.mc-box .cl:nth-child(1){--x:67;--y:28;--w:22;--r:-4deg;--z:3}.mc-box .cl:nth-child(2){--x:33;--y:27;--w:22;--r:4deg;--z:4}.mc-box .cl:nth-child(3){--x:87;--y:38;--w:17;--r:6deg;--z:5}.mc-box .cl:nth-child(4){--x:12;--y:33;--w:20;--r:-6deg;--z:3}.mc-box .cl:nth-child(5){--x:50;--y:52;--w:22;--r:-1deg;--z:9}.mc-box .cl:nth-child(6){--x:14;--y:72;--w:16;--r:5deg;--z:4}.mc-box .cl:nth-child(7){--x:33;--y:75;--w:21;--r:-3deg;--z:6}.mc-box .cl:nth-child(8){--x:67;--y:76;--w:20;--r:4deg;--z:7}.mc-box .cl:nth-child(9){--x:86;--y:76;--w:17;--r:-6deg;--z:6}}
 .cl{position:absolute;left:calc(var(--x)*1%);top:calc(var(--y)*1%);width:calc(var(--w)*1%);z-index:var(--z);margin:0;transform:translate(-50%,-50%);transition:transform .9s var(--ease)}
 .cl.lift{z-index:30;transform:translate(-50%,-50%) scale(1.08)}
-.cl-in{animation:clIn 1s var(--ease) both;animation-delay:calc(var(--i)*85ms + 250ms)}
-.cl-f{position:relative;background:#fff;padding:3.2cqw 3.2cqw 3.2cqw;box-shadow:0 0.6rem 1.6rem rgba(25,25,23,0.16),0 0.1rem 0.25rem rgba(25,25,23,0.12);transform:rotate(var(--r));animation:clDrift var(--d,9s) ease-in-out calc(var(--i)*-1.3s) infinite alternate}
+.cl-in{animation:clIn 1.5s linear both;animation-delay:calc(var(--i)*110ms + 150ms)}
+.cl-f{position:relative;background:#fff;padding:5%;box-shadow:0 0.6rem 1.6rem rgba(25,25,23,0.16),0 0.1rem 0.25rem rgba(25,25,23,0.12);transform:rotate(var(--r));animation:clDrift var(--d,9s) ease-in-out calc(var(--i)*-1.3s) infinite alternate}
 .cl-f img{display:block;width:100%;height:auto;aspect-ratio:var(--a,1);object-fit:cover}
-.cl.st .cl-f::after{content:"";position:absolute;inset:1.6cqw;border:1px dashed rgba(25,25,23,0.35);pointer-events:none}
-@keyframes clIn{from{opacity:0;transform:translate(calc((50 - var(--x))*1cqw),calc((54 - var(--y))*1.082cqw)) rotate(calc(var(--r)*-2)) scale(0.5)}}
+.cl.st .cl-f::after{content:"";position:absolute;inset:2.5%;border:1px dashed rgba(25,25,23,0.35);pointer-events:none}
+@keyframes clIn{0%{opacity:0;transform:translate(calc((50 - var(--x))*1cqw),calc((50 - var(--y))*var(--ar)*1cqw - 34cqw)) rotate(calc(var(--r)*-4)) scale(1.06);animation-timing-function:cubic-bezier(0.55,0,1,0.45)}
+  12%{opacity:1}
+  46%{transform:translate(calc((50 - var(--x))*0.85cqw),calc((50 - var(--y))*var(--ar)*0.85cqw)) rotate(calc(var(--r)*-1.6)) scale(0.98);animation-timing-function:cubic-bezier(0.16,1,0.3,1)}
+  100%{opacity:1;transform:none}}
 @keyframes clDrift{from{transform:rotate(var(--r)) translateY(-0.6cqw)}to{transform:rotate(calc(var(--r) + 1.2deg)) translateY(0.8cqw)}}
 .mc.off .cl-f{animation-play-state:paused}
 .mc:not(.in) .cl-in{animation-play-state:paused}
@@ -557,22 +563,39 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 @keyframes hsSewW{from,45%{transform:translateY(-100%)}}
 @keyframes hsSewI{from,45%{transform:translateY(100%)}}
 /* 3. mockup: blank tee, print area appears, finished mockup slides in beside it */
-.hs-blank{transform:translate(-50%,-50%) translateX(calc(var(--cw) * -0.42)) rotate(-3deg);animation-name:hsBlank}
-.hs-done{transform:translate(-50%,-50%) translateX(calc(var(--cw) * 0.42)) rotate(4deg);animation-name:hsDone}
-.hs-box{position:absolute;left:30%;top:24%;width:40%;height:38%;border:2px dashed #fff;box-shadow:0 0 0 1px rgba(0,0,0,0.25);opacity:0.65;animation-name:hsBox}
-@keyframes hsBlank{from{transform:translate(-50%,-50%) translateY(4rem) scale(0.94);opacity:0}30%{opacity:1}45%{transform:translate(-50%,-50%)}}
-@keyframes hsDone{from,45%{transform:translate(-50%,-50%) translate(calc(var(--cw) * 1.4),2rem) rotate(8deg);opacity:0}75%{opacity:1}}
-@keyframes hsBox{from,30%{opacity:0;transform:scale(1.15)}55%{opacity:1;transform:scale(1)}}
-.hs [class*="hs-"]{animation-fill-mode:both;animation-timing-function:linear}
+/* 3. mockup tool: a design editor. Tools slide in, a print area is dragged out, "your design here" sets in line by line, the cursor grabs a handle */
+.hs-mock{--mw:clamp(12rem,46vw,17rem)}
+.hs-mock .hs-card.mk-card{--cw:var(--mw);container-type:inline-size;box-shadow:0 1.4rem 2.4rem -1.2rem rgba(25,25,23,0.35);animation-name:mkCard}
+.mk-sel{position:absolute;left:27%;top:23%;width:46%;height:42%;border:1.5px dashed rgba(255,255,255,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4cqw;animation-name:mkSel}
+.mk-h{position:absolute;width:3.2cqw;height:3.2cqw;background:#fff;border:1px solid var(--ink)}
+.mk-h:nth-child(1){left:-1.6cqw;top:-1.6cqw}.mk-h:nth-child(2){right:-1.6cqw;top:-1.6cqw}.mk-h:nth-child(3){left:-1.6cqw;bottom:-1.6cqw}.mk-h:nth-child(4){right:-1.6cqw;bottom:-1.6cqw}
+.mk-w{display:block;font-family:var(--sans);font-weight:700;font-size:8.4cqw;line-height:1;letter-spacing:0.06em;text-transform:uppercase;color:#fff}
+.mk-w1{animation-name:mkW1}.mk-w2{animation-name:mkW2}.mk-w3{animation-name:mkW3}
+.mk-cur{position:absolute;right:-5.5cqw;bottom:-9cqw;width:9cqw;height:auto;animation-name:mkCur}
+.mk-tools{position:absolute;left:50%;top:50%;display:flex;flex-direction:column;gap:0.5rem;transform:translate(calc(var(--mw) * -0.5 - 3.6rem),-50%)}
+.mk-t{display:grid;place-items:center;width:2.5rem;height:2.5rem;background:#fff;border:1px dashed var(--line-strong);color:var(--ink);font-family:var(--serif);font-size:1rem;animation-name:mkT}
+.mk-t svg{width:1.05rem;height:1.05rem}
+.mk-t.on{background:var(--ink);color:#fff;border-style:solid;border-color:var(--ink)}
+.mk-t:nth-child(2){animation-name:mkT2}.mk-t:nth-child(3){animation-name:mkT3}
+@keyframes mkCard{from{opacity:0;transform:translate(-50%,-50%) translateY(2rem) scale(0.96)}25%{opacity:1;transform:translate(-50%,-50%)}}
+@keyframes mkT{from{opacity:0;transform:translateX(-1rem)}20%{opacity:0;transform:translateX(-1rem)}35%{opacity:1;transform:none}}
+@keyframes mkT2{from,26%{opacity:0;transform:translateX(-1rem)}41%{opacity:1;transform:none}}
+@keyframes mkT3{from,32%{opacity:0;transform:translateX(-1rem)}47%{opacity:1;transform:none}}
+@keyframes mkSel{from,22%{opacity:0;transform:scale(0.2,0.12);transform-origin:0 0}48%{opacity:1;transform:none;transform-origin:0 0}}
+@keyframes mkW1{from,46%{opacity:0;transform:translateY(0.6rem)}60%{opacity:1;transform:none}}
+@keyframes mkW2{from,54%{opacity:0;transform:translateY(0.6rem)}68%{opacity:1;transform:none}}
+@keyframes mkW3{from,62%{opacity:0;transform:translateY(0.6rem)}76%{opacity:1;transform:none}}
+@keyframes mkCur{from,20%{opacity:0;transform:translate(-20cqw,-18cqw)}28%{opacity:1}48%{transform:translate(-2cqw,-2cqw)}70%{transform:none}84%{transform:scale(0.9)}}
+.hs [class*="hs-"],.hs .mk-a{animation-fill-mode:both;animation-timing-function:linear}
 @supports (animation-timeline:view()){
   .hs-vis{view-timeline:--hs block}
-  .hs-card,.hs-stitch-w,.hs-stitch,.hs-box{animation-timeline:--hs;animation-range:entry 30% cover 52%}
+  .hs-card,.hs-stitch-w,.hs-stitch,.hs-box,.mk-a{animation-timeline:--hs;animation-range:entry 30% cover 52%}
 }
 @supports not (animation-timeline:view()){
-  .hs-card,.hs-stitch-w,.hs-stitch,.hs-box{animation-duration:1.1s;animation-timing-function:cubic-bezier(0.16,1,0.3,1);animation-play-state:paused}
-  .hs.in .hs-card,.hs.in .hs-stitch-w,.hs.in .hs-stitch,.hs.in .hs-box{animation-play-state:running}
+  .hs-card,.hs-stitch-w,.hs-stitch,.hs-box,.mk-a{animation-duration:1.1s;animation-timing-function:cubic-bezier(0.16,1,0.3,1);animation-play-state:paused}
+  .hs.in .hs-card,.hs.in .hs-stitch-w,.hs.in .hs-stitch,.hs.in .hs-box,.hs.in .mk-a{animation-play-state:running}
 }
-@media (prefers-reduced-motion:reduce){.hs-card,.hs-stitch-w,.hs-stitch,.hs-box{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.hs-card,.hs-stitch-w,.hs-stitch,.hs-box,.mk-a{animation:none!important}}
 .hs-copy{max-width:40rem;margin:clamp(2rem,5vh,3.5rem) auto 0}
 .hs-kick{font-size:0.8125rem;color:var(--ink-muted)}
 .hs-title{margin-top:0.875rem;font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5.2vw,3.75rem);line-height:1.08;letter-spacing:-0.01em;color:var(--ink)}
@@ -583,7 +606,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 @media (max-width:480px){.pill{font-size:0.8125rem;padding:0.85rem 1.25rem}}
 @media (hover:hover){.pill:hover{transform:translateY(-2px);box-shadow:0 1rem 1.8rem -0.8rem rgba(25,25,23,0.6)}.pill:hover .arr{transform:translateX(0.3rem)}}
 .pill:focus-visible{outline:2px dashed var(--ink);outline-offset:4px}
-@media (min-width:768px){.hs{padding:7rem 3rem 8rem}.hs-card{--cw:clamp(8rem,15vw,14rem)}.hs-seam .hs-card,.hs-mock .hs-card{--cw:clamp(11rem,22vw,17rem)}}
+@media (min-width:768px){.hs{padding:7rem 3rem 8rem}.hs-card{--cw:clamp(8rem,15vw,14rem)}.hs-seam .hs-card,.hs-mock .hs-card{--cw:clamp(11rem,22vw,17rem)}.hs-mock{--mw:clamp(15rem,27vw,20rem)}}
 /* sections far off screen skip layout and paint until they come near */
 .cv{content-visibility:auto;contain-intrinsic-size:auto 60rem}
 </style>
@@ -611,7 +634,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
     <p class="h3-say" data-anim="fadeUp" data-delay="400">Custom shirts, hoodies, jackets, caps and lanyards, designed and made in Manila.</p>
     <div class="cta-row" data-anim="fadeUp" data-delay="600">
         <a class="cta solid" href="#start">What we offer <span class="arr">→</span></a>
-        <a class="cta ghost" href="#work">See our work <span class="arr">→</span></a>
+        <a class="cta ghost" href="#made">See our work <span class="arr">→</span></a>
         <a class="cta ghost" href="#contact">Get a quote <span class="arr">→</span></a>
       </div>
   </div>
@@ -647,8 +670,8 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 <!-- ===== START HERE: three separate paths ===== -->
 <section class="hs" id="start">
   <div class="hs-vis hs-mock">
-    <figure class="hs-card hs-blank"><img src="images/thumbs/tshirt-black.webp" width="700" height="933" alt="Plain black tee, ready for a design" loading="lazy" decoding="async"><span class="hs-box" aria-hidden="true"></span></figure>
-    <figure class="hs-card hs-done"><img src="images/thumbs/d_conquer.webp" width="900" height="629" loading="lazy" decoding="async" alt="Conquer tee design mockup" style="object-position:78% 50%"></figure>
+    <div class="mk-tools" aria-hidden="true"><span class="mk-t mk-a on">T</span><span class="mk-t mk-a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-5 4 4 3-3 4 4"/></svg></span><span class="mk-t mk-a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 20c3-1 4-3 4-3l9-9a2.1 2.1 0 0 0-3-3l-9 9s-2 1-1 6z"/></svg></span></div>
+    <figure class="hs-card mk-card"><img src="images/thumbs/tshirt-black.webp" width="700" height="933" alt="Plain black tee with a print area that reads Your design here" loading="lazy" decoding="async"><div class="mk-sel mk-a" aria-hidden="true"><i class="mk-h"></i><i class="mk-h"></i><i class="mk-h"></i><i class="mk-h"></i><span class="mk-w mk-w1 mk-a">Your</span><span class="mk-w mk-w2 mk-a">design</span><span class="mk-w mk-w3 mk-a">here</span><svg class="mk-cur mk-a" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3 L19 12 L12.5 13.5 L9.5 20 Z" fill="#fff" stroke="#191917" stroke-width="1.4" stroke-linejoin="round"/></svg></div></figure>
   </div>
   <div class="hs-copy" data-anim="fadeUp">
     <p class="hs-kick">Mockup tool</p>
@@ -691,25 +714,12 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== MADE BY US: collage ===== -->
-<section class="hs hs-grey mc" id="made">
-  <div class="mc-box" aria-label="Pieces we have made"><figure class="cl" style="--x:52;--y:12;--w:30;--r:3deg;--z:1;--i:0;--a:1;--d:7s"><div class="cl-in"><div class="cl-f"><img src="images/collage/varsity-h.webp" alt="Navy and cream varsity jacket with a lime H patch and script embroidery" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:20;--y:24;--w:36;--r:-7deg;--z:4;--i:1;--a:1;--d:9s"><div class="cl-in"><div class="cl-f"><img src="images/collage/stoicism-pegasus.webp" alt="Black tee, Stoicism full-back print of Pegasus and lightning" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:81;--y:25;--w:30;--r:6deg;--z:5;--i:2;--a:2/3;--d:11s"><div class="cl-in"><div class="cl-f"><img src="images/collage/akatsuki.webp" alt="Black and white varsity jacket with embroidered Akatsuki lettering on the back" width="480" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:14;--y:60;--w:32;--r:4deg;--z:3;--i:3;--a:1;--d:8s"><div class="cl-in"><div class="cl-f"><img src="images/collage/blackclover.webp" alt="Black Clover black oversized tee, full-back skull print" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl st" style="--x:50;--y:52;--w:40;--r:-2deg;--z:9;--i:4;--a:2/3;--d:10s"><div class="cl-in"><div class="cl-f"><img src="images/collage/stoicism-knight.webp" alt="Black tee, Stoicism full-back print of a knight at a writing desk" width="480" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:86;--y:63;--w:28;--r:-5deg;--z:4;--i:5;--a:2/3;--d:7s"><div class="cl-in"><div class="cl-f"><img src="images/collage/wings.webp" alt="Black oversized tee with a large white gothic wings print on the back" width="480" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:22;--y:82;--w:32;--r:-6deg;--z:6;--i:6;--a:1;--d:9s"><div class="cl-in"><div class="cl-f"><img src="images/collage/vagabond.webp" alt="Vagabond cream tee, full-back print" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:51;--y:87;--w:26;--r:-2deg;--z:7;--i:7;--a:1;--d:11s"><div class="cl-in"><div class="cl-f"><img src="images/collage/initiald.webp" alt="Initial D black oversized tee, front chest print" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--x:80;--y:81;--w:28;--r:6deg;--z:6;--i:8;--a:3/4;--d:8s"><div class="cl-in"><div class="cl-f"><img src="images/collage/grit.webp" alt="Grit black tee, front print with a chrome ring graphic" width="540" height="720" decoding="async" loading="lazy"></div></div></figure></div>
+<section class="hs mc" id="made">
+  <div class="mc-box" aria-label="Pieces we have made"><figure class="cl" style="--i:0;--a:1;--d:7s"><div class="cl-in"><div class="cl-f"><img src="images/collage/varsity-h.webp" alt="Navy and cream varsity jacket with a lime H patch and script embroidery" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--i:1;--a:1;--d:9s"><div class="cl-in"><div class="cl-f"><img src="images/collage/stoicism-pegasus.webp" alt="Black tee, Stoicism full-back print of Pegasus and lightning" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--i:2;--a:2/3;--d:11s"><div class="cl-in"><div class="cl-f"><img src="images/collage/akatsuki.webp" alt="Black and white varsity jacket with embroidered Akatsuki lettering on the back" width="480" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--i:3;--a:1;--d:8s"><div class="cl-in"><div class="cl-f"><img src="images/collage/blackclover.webp" alt="Black Clover black oversized tee, full-back skull print" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl st" style="--i:4;--a:2/3;--d:10s"><div class="cl-in"><div class="cl-f"><img src="images/collage/stoicism-knight.webp" alt="Black tee, Stoicism full-back print of a knight at a writing desk" width="480" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--i:5;--a:2/3;--d:7s"><div class="cl-in"><div class="cl-f"><img src="images/collage/wings.webp" alt="Black oversized tee with a large white gothic wings print on the back" width="480" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--i:6;--a:1;--d:9s"><div class="cl-in"><div class="cl-f"><img src="images/collage/vagabond.webp" alt="Vagabond cream tee, full-back print" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--i:7;--a:1;--d:11s"><div class="cl-in"><div class="cl-f"><img src="images/collage/initiald.webp" alt="Initial D black oversized tee, front chest print" width="720" height="720" decoding="async" loading="lazy"></div></div></figure><figure class="cl" style="--i:8;--a:3/4;--d:8s"><div class="cl-in"><div class="cl-f"><img src="images/collage/grit.webp" alt="Grit black tee, front print with a chrome ring graphic" width="540" height="720" decoding="async" loading="lazy"></div></div></figure></div>
   <div class="hs-copy" data-anim="fadeUp">
     <p class="hs-kick">Made by us</p>
     <h2 class="hs-title">Whatever the occasion, we’ve <span class="accent">made</span> it.</h2>
-    <a class="pill" href="#work">See our work <span class="arr">→</span></a>
     <p class="hs-cap">Merch for local brands, teams, events, and everyday wear.</p>
-  </div>
-</section>
-
-<!-- ===== PORTFOLIO ===== -->
-<section class="cv sec" id="work">
-  <div class="container">
-    <div class="sh">
-      <div data-anim="fade"><span class="eyebrow">Brands we’ve built</span></div>
-      <h2 class="sh-title" data-anim="lines">Designed with them, <span class="accent">made</span> by us.</h2>
-      <p class="intro" data-anim="fade">A selection of client pieces we helped design and manufacture. Artwork and brand names belong to each client.</p>
-    </div>
-    <div class="gallery" id="gallery"></div>
   </div>
 </section>
 
@@ -948,7 +958,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
         <a class="mail" href="mailto:simplethreads.mnl@gmail.com">simplethreads.mnl@gmail.com</a>
         <a class="mail tel" href="tel:+639613826973">0961-382-6973</a>
       </div>
-      <div class="s2 col"><p class="ct">Explore</p><ul><li><a href="#work">Work</a></li><li><a href="teams.html#catalogue">Catalogue</a></li><li><a href="#services">Services</a></li><li><a href="#process">Process</a></li><li><a href="#about">About</a></li></ul></div>
+      <div class="s2 col"><p class="ct">Explore</p><ul><li><a href="#made">Work</a></li><li><a href="teams.html#catalogue">Catalogue</a></li><li><a href="#services">Services</a></li><li><a href="#process">Process</a></li><li><a href="#about">About</a></li></ul></div>
       <div class="s2 col"><p class="ct">Products</p><ul><li><a href="#services">Shirts &amp; hoodies</a></li><li><a href="#services">Outerwear</a></li><li><a href="#services">Headwear</a></li><li><a href="#services">Lanyards</a></li></ul></div>
       <div class="s3 col"><p class="ct">Contact</p><ul><li><a href="#contact">Get a quote</a></li><li><a href="mailto:simplethreads.mnl@gmail.com">Email us</a></li><li><a href="tel:+639613826973">Call us</a></li><li><a href="viber://chat?number=%2B639613826973">Viber</a></li></ul></div>
     </div>
