@@ -86,7 +86,7 @@ language with short, numbered steps.
 
 ## SITE STRUCTURE (static HTML on Vercel, deployed from GitHub)
 - index.html: home page, in this order (owner, Nov 2026):
-  1. Hero: headline, buttons (outline "What we offer" -> #start, outline
+  1. Hero: headline, buttons (outline "Design assistance" -> #design, outline
      "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" ->
      #contact), and a line-drawn sewing machine (SVG, CSS
      only: needle bobs, fabric feeds left, stitches appear behind the needle,
