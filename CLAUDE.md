@@ -86,9 +86,11 @@ language with short, numbered steps.
 
 ## SITE STRUCTURE (static HTML on Vercel, deployed from GitHub)
 - index.html: home page, in this order (owner, Nov 2026):
-  1. Hero: headline, buttons, and a line-drawn sewing machine (SVG, CSS
+  1. Hero: headline, buttons (outline "What we offer" -> #start, outline
+     "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" ->
+     #contact), and a line-drawn sewing machine (SVG, CSS
      only: needle bobs, fabric feeds left, stitches appear behind the needle,
-     handwheel turns, 1.1 s per stitch; thread runs spool -> tension disc -> take-up hook -> needle bar -> eye; paused off screen) with the three steps on the stitched
+     handwheel turns, 1.1 s per stitch; thread runs spool -> tension disc -> take-up hook -> needle bar -> eye, the piece above the needle clamp stretches with the needle (.sew-tk scaleY) so it never detaches; paused off screen) with the three steps on the stitched
      arc around it. Earlier hero visuals (floating tee, photo collage, hang
      tag) were removed at the owner's request.
   2. Three "start here" sections (owner's references: the Portrait site),
