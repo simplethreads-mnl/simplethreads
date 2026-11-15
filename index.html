@@ -148,6 +148,12 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 @keyframes clDrift{from{transform:rotate(var(--r)) translateY(-0.6cqw)}to{transform:rotate(calc(var(--r) + 1.2deg)) translateY(0.8cqw)}}
 .mc.off .cl-f{animation-play-state:paused}
 .mc:not(.in) .cl-in{animation-play-state:paused}
+/* scroll-linked: photos fall and spread as you scroll down, and fold back into the pile as you scroll up */
+@supports (animation-timeline:view()){
+  .mc-box{view-timeline:--mc block}
+  .mc .cl-in{animation:clIn linear both;animation-delay:0s;animation-timeline:--mc;animation-range:entry calc(5% + var(--i) * 3%) cover calc(38% + var(--i) * 1.5%)}
+  .mc:not(.in) .cl-in{animation-play-state:running}
+}
 .h3-steps{position:relative;margin:2.5rem auto 0;max-width:26rem;padding-left:2.25rem;display:flex;flex-direction:column;gap:1.75rem;text-align:left}
 .h3-steps::before{content:"";position:absolute;left:0.6875rem;top:0.5rem;bottom:0.5rem;border-left:1px dashed var(--line-strong)}
 .h3-step{position:relative}
@@ -1330,7 +1336,7 @@ if(!(window.CSS&&CSS.supports&&CSS.supports("animation-timeline: view()"))){
 (function(){const sec=document.getElementById("made");if(!sec)return;const tiles=[...sec.querySelectorAll(".cl")],reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;let li=-1,on=false;
   if(!("IntersectionObserver" in window)||reduce){sec.classList.add("in");return}
   sec.classList.add("off");
-  new IntersectionObserver(es=>{on=es[0].isIntersecting;sec.classList.toggle("off",!on);if(on)sec.classList.add("in")},{threshold:0.2}).observe(sec);
+  new IntersectionObserver(es=>{const e=es[0];on=e.isIntersecting;sec.classList.toggle("off",!on);if(on)sec.classList.add("in");else if(e.boundingClientRect.top>0)sec.classList.remove("in")},{threshold:0.2}).observe(sec);
   setInterval(()=>{if(!on||document.hidden)return;if(li>=0)tiles[li].classList.remove("lift");li=(li+1)%tiles.length;tiles[li].classList.add("lift")},3200);
 })();
 </script>
