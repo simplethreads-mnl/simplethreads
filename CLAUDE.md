@@ -262,6 +262,9 @@ Adding images to the site:
 - Lenis smooth scroll only on mouse/trackpad devices; parallax and the hero
   tee tilt are off on touch devices. Hero animations pause off screen.
 - index.html below-the-fold sections use `.cv` (content-visibility:auto).
+  In-page links go through go(): it adds html.cv-all (lays every .cv section
+  out once), scrolls, then checks and corrects the landing spot, so a single
+  tap on "Get a quote" lands on the form. Keep this when adding .cv sections.
 - Word-by-word text reveals are capped (max 480 ms stagger).
 - Images: all WebP (PNG only for studio masks), none over 300 KB (largest
   about 156 KB); animated cards use images/thumbs/. Keep new images under

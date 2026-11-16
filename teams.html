@@ -497,6 +497,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .price-note{margin-top:0.5rem;font-size:0.875rem;line-height:1.5;color:var(--ink-muted);max-width:44ch}
 /* sections far off screen skip layout and paint until they come near */
 .cv{content-visibility:auto;contain-intrinsic-size:auto 60rem}
+.cv-all .cv{content-visibility:visible}
 /* ===== BUTTONS: rounded, forest green, sewing animations (owner, Nov 2026) =====
    main .cta.solid = "stitched on" (dashed stitch sews around the edge), outline .cta.ghost = "needle run"
    (a needle leaves a stitched line under the words), home .pill = "sewn button" (thread crosses a 4-hole button) */
@@ -852,11 +853,20 @@ document.addEventListener("transitionend",e=>{const t=e.target;if(t.matches&&t.m
 /* lenis */
 let lenis=null;
 if(window.Lenis&&!reduce&&matchMedia("(pointer:fine)").matches){lenis=new Lenis({smoothWheel:true});const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};requestAnimationFrame(raf)}
+/* in-page links: sections far down skip layout until needed (content-visibility), so lay them all out once
+   before measuring the target, then check the landing spot and correct it (fixes "first tap stops short") */
 function go(h){
   if(h==="#top"){lenis?lenis.scrollTo(0):scrollTo({top:0,behavior:reduce?"auto":"smooth"});return}
   const el=document.querySelector(h);if(!el)return;
-  if(lenis)lenis.scrollTo(el,{offset:-(parseFloat(getComputedStyle(el).scrollMarginTop)||0)});else el.scrollIntoView({behavior:reduce?"auto":"smooth"});
+  const root=document.documentElement;root.classList.add("cv-all");void el.getBoundingClientRect();
+  const off=()=>parseFloat(getComputedStyle(el).scrollMarginTop)||0;
+  const to=()=>{if(lenis)lenis.scrollTo(el,{offset:-off()});else el.scrollIntoView({behavior:reduce?"auto":"smooth"})};
+  to();
+  setTimeout(()=>{if(Math.abs(el.getBoundingClientRect().top-off())>6)to()},reduce?60:1100);
+  setTimeout(()=>{if(Math.abs(el.getBoundingClientRect().top-off())>6){if(lenis)lenis.scrollTo(el,{offset:-off(),immediate:true});else el.scrollIntoView()}root.classList.remove("cv-all")},reduce?120:2000);
 }
+/* arriving from another page with a #section in the address: land on it exactly */
+if(location.hash&&location.hash.length>1){addEventListener("load",()=>{try{if(document.querySelector(location.hash))setTimeout(()=>go(location.hash),60)}catch(e){}})}
 document.addEventListener("click",e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const h=a.getAttribute("href");e.preventDefault();if(h==="#")return;
   if(a.closest("#menu")){closeMenu();setTimeout(()=>go(h),260)}else go(h)});
 
