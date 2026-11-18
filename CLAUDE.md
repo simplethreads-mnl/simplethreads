@@ -17,7 +17,8 @@ language with short, numbered steps.
 - Moniker: "Apparel Design & Manufacturing" with "Design · Print · Produce"
 - Motto: "Simply made." (homepage headline: "Your idea, simply made.")
 - Address: 3F, 30 Jade St., Tandang Sora, Quezon City
-- Mobile / Viber: 0961 382 6973 · Email: simplethreadsmnl@gmail.com
+- Mobile / Viber / WhatsApp / Telegram: 0961 382 6973 (links: viber://chat?number=%2B639613826973,
+  https://wa.me/639613826973, https://t.me/+639613826973) · Email: simplethreadsmnl@gmail.com
   (simplethreads.mnl@gmail.com reaches the same inbox)
 - Services: design assistance, sampling, production, custom cut & sew.
   Decoration: DTF, DTG, silk screen, sublimation, embroidery.
@@ -189,6 +190,8 @@ language with short, numbered steps.
 - Loose .jpg files also sit in the repository root (dragon, excalibur,
   knight-1/2, pegasus-1/2). Check whether a page uses them before moving or
   deleting anything.
+- saved/profile-pics/: chat-app profile pictures (Ink, Forest, Cream; mark +
+  name or mark only; 1080×1080 PNG made from images/brand/logo-stacked-*.png).
 - `.vercelignore` keeps these notes (CLAUDE.md, vercel-site-prompt.md) off
   the live website. Keep it when adding new notes files.
 
