@@ -313,6 +313,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .qc-item{border-top:1px dashed var(--line-on-dark);padding-top:1.5rem;display:flex;flex-direction:column;align-items:flex-start;gap:0.5rem}
 .qc-val{font-size:1.25rem;color:#fff;word-break:break-word}
 .qc-btn{margin-top:1rem}
+.qc-btns{display:flex;flex-wrap:wrap;gap:0.5rem 0.6rem}.qc-btns .qc-btn{margin-top:0.5rem;padding:0.8rem 1.25rem}
 @media (min-width:640px){.qf{padding:2.5rem}.qf-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.qc-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}.qf-actions{flex-direction:row;align-items:center;gap:1.5rem}}
 /* ===== CATALOGUE ===== */
 .cat-head{display:flex;flex-direction:column;gap:2rem}
@@ -791,7 +792,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
         <p class="price-note">Blank only. Decoration is quoted once we see your design.</p>
       </div>
     </div>
-    <p class="qm-note" id="qmNote">We saved your mockup to your device. After you send this form, attach that image in a Viber message or email so we can see your design.</p>
+    <p class="qm-note" id="qmNote">We saved your mockup to your device. After you send this form, attach that image in a Viber, WhatsApp or Telegram message, or an email, so we can see your design.</p>
     <form class="qmf" id="quickQuote" novalidate>
       <input type="hidden" name="product" id="qmProduct">
       <input type="hidden" name="products" id="qmChip">
@@ -817,7 +818,9 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
     <div class="qm-send">
       <p class="qmf-l">Send us your mockup</p>
       <div class="qm-send-row">
-        <a class="cta ghost" href="viber://chat?number=%2B639613826973">Message on Viber <span class="arr">→</span></a>
+        <a class="cta ghost" href="viber://chat?number=%2B639613826973">Viber <span class="arr">→</span></a>
+        <a class="cta ghost" href="https://wa.me/639613826973" target="_blank" rel="noopener">WhatsApp <span class="arr">→</span></a>
+        <a class="cta ghost" href="https://t.me/+639613826973" target="_blank" rel="noopener">Telegram <span class="arr">→</span></a>
         <a class="cta ghost" id="qmMail" href="mailto:simplethreads.mnl@gmail.com?subject=My%20mockup">Email us <span class="arr">→</span></a>
       </div>
       <button class="qm-again" id="qmAgain" type="button">Download the mockup again</button>
@@ -872,9 +875,9 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
     <p class="qc-lead">Prefer to message us directly?</p>
     <div class="qc-grid">
       <div class="qc-item">
-        <p class="qf-l">Viber</p>
-        <a class="qc-val" href="viber://chat?number=%2B639613826973">0961-382-6973</a>
-        <a class="cta dark ghost qc-btn" href="viber://chat?number=%2B639613826973">Message on Viber <span class="arr">→</span></a>
+        <p class="qf-l">Viber · WhatsApp · Telegram</p>
+        <a class="qc-val" href="tel:+639613826973">0961-382-6973</a>
+        <div class="qc-btns"><a class="cta dark ghost qc-btn" href="viber://chat?number=%2B639613826973">Viber <span class="arr">→</span></a><a class="cta dark ghost qc-btn" href="https://wa.me/639613826973" target="_blank" rel="noopener">WhatsApp <span class="arr">→</span></a><a class="cta dark ghost qc-btn" href="https://t.me/+639613826973" target="_blank" rel="noopener">Telegram <span class="arr">→</span></a></div>
       </div>
       <div class="qc-item">
         <p class="qf-l">Email</p>
@@ -912,7 +915,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
       </div>
       <div class="s2 col"><p class="ct">Explore</p><ul><li><a href="index.html#made">Work</a></li><li><a href="teams.html#catalogue">Catalogue</a></li><li><a href="index.html#services">Services</a></li><li><a href="index.html#process">Process</a></li><li><a href="index.html#about">About</a></li></ul></div>
       <div class="s2 col"><p class="ct">Products</p><ul><li><a href="index.html#services">Shirts &amp; hoodies</a></li><li><a href="index.html#services">Outerwear</a></li><li><a href="index.html#services">Headwear</a></li><li><a href="index.html#services">Lanyards</a></li></ul></div>
-      <div class="s3 col"><p class="ct">Contact</p><ul><li><a href="#contact">Get a quote</a></li><li><a href="mailto:simplethreads.mnl@gmail.com">Email us</a></li><li><a href="tel:+639613826973">Call us</a></li><li><a href="viber://chat?number=%2B639613826973">Viber</a></li></ul></div>
+      <div class="s3 col"><p class="ct">Contact</p><ul><li><a href="#contact">Get a quote</a></li><li><a href="mailto:simplethreads.mnl@gmail.com">Email us</a></li><li><a href="tel:+639613826973">Call us</a></li><li><a href="viber://chat?number=%2B639613826973">Viber</a></li><li><a href="https://wa.me/639613826973" target="_blank" rel="noopener">WhatsApp</a></li><li><a href="https://t.me/+639613826973" target="_blank" rel="noopener">Telegram</a></li></ul></div>
     </div>
     <div class="giant" data-anim="fadeUp" aria-hidden="true">Simple Threads</div>
     <div class="legal">
@@ -1075,7 +1078,7 @@ function wireQuote(qf){
       qf.reset();qf.querySelectorAll("[aria-invalid]").forEach(el=>el.removeAttribute("aria-invalid"));
       qs.textContent=`Thanks, ${d.name}! Your request is in. We’ll reply by email soon.`;
     }catch(err){
-      qs.innerHTML=`Sorry, that didn’t send. <a href="${mailto}">Email your request instead</a> or message us on Viber.`;
+      qs.innerHTML=`Sorry, that didn’t send. <a href="${mailto}">Email your request instead</a> or message us on Viber, WhatsApp or Telegram (0961-382-6973).`;
     }finally{qb.disabled=false}
   });
 }
@@ -1235,7 +1238,7 @@ function boot(){
   if(loading) return loading;
   if(!document.querySelector('link[data-ms-fonts]')){const l=document.createElement("link");l.rel="stylesheet";l.href=FONTS_URL;l.dataset.msFonts="1";document.head.appendChild(l)}
   loading=new Promise((res,rej)=>{if(window.fabric)return res();const s=document.createElement("script");s.src=FABRIC_URL;s.async=true;s.onload=res;s.onerror=rej;document.head.appendChild(s)})
-    .then(init).catch(()=>{$i("msLoad").textContent="The studio couldn’t load. Refresh the page, or message us on Viber.";loading=null});
+    .then(init).catch(()=>{$i("msLoad").textContent="The studio couldn’t load. Refresh the page, or message us on Viber, WhatsApp or Telegram.";loading=null});
   return loading;
 }
 if("IntersectionObserver" in window){const io=new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting)){io.disconnect();boot()}},{rootMargin:"800px 0px"});io.observe(root)}else boot();
@@ -1489,7 +1492,7 @@ $i("msQuote").onclick=async()=>{
   $i("qmImg").src=c.toDataURL("image/jpeg",.7);$i("qmName").textContent=p.name;
   $i("qmPrice").innerHTML=`${peso(p.price)}<small>per piece, blank</small>`;
   $i("qmProduct").value=p.name;$i("qmChip").value=p.chip;$i("qmColour").value=C()[0];$i("qmPlace").value=places();
-  const m=qm.querySelector('[name="message"]');if(!m.value)m.value="Made in the mockup studio. I’ll send the image by Viber or email.\nPlacement: "+places();
+  const m=qm.querySelector('[name="message"]');if(!m.value)m.value="Made in the mockup studio. I’ll send the image by Viber, WhatsApp, Telegram or email.\nPlacement: "+places();
   $i("qmMail").href=`mailto:simplethreads.mnl@gmail.com?subject=${encodeURIComponent("My mockup — "+p.name)}&body=${encodeURIComponent("Hi Simple Threads,\n\nHere is my mockup ("+p.name+", "+C()[0]+"). Placement: "+places()+".\n\n(Attach the saved image before sending.)")}`;
   qm.querySelector(".qf-status").textContent="";
   qmLast=document.activeElement;qm.classList.add("open");qm.setAttribute("aria-hidden","false");
