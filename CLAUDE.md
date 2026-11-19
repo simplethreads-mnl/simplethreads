@@ -88,12 +88,23 @@ language with short, numbered steps.
 ## SITE STRUCTURE (static HTML on Vercel, deployed from GitHub)
 - index.html: home page, in this order (owner, Nov 2026):
   1. Hero: headline, buttons (outline "Design assistance" -> design.html (top), outline
-     "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" ->
-     #contact), and a line-drawn sewing machine (SVG, CSS
-     only: needle bobs, fabric feeds left, stitches appear behind the needle,
-     handwheel turns, 1.1 s per stitch; thread runs spool -> tension disc -> take-up hook -> needle bar -> eye, the piece above the needle clamp stretches with the needle (.sew-tk scaleY) so it never detaches; paused off screen) with the three steps on the stitched
-     arc around it. Earlier hero visuals (floating tee, photo collage, hang
-     tag) were removed at the owner's request.
+     "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" -> #contact),
+     then the CLOTHING RAIL (owner, Nov 2026; idea from a "clothing rail" prompt, light and on
+     brand): a chrome rail with 11 cut-out blanks hanging edge-on (rotateY -74deg, perspective
+     900px, drawn hanger) that swing round to face you on hover/tap while the others slide apart;
+     caption under it (name, "PHP x · per piece, blank"); a shelf below with Baseball Cap, Washed
+     Cap, Net Cap, Knitted Beanie. Tap the facing piece (or Enter) to lift it into a close-up view
+     (counter, Playfair italic name, price, colours, prev/next with swipe, Close/Esc, green "Get a
+     quote" that ticks the product chip and fills the message of the home form, "View in
+     catalogue"). One fixed design (1500 wide; 720 wide on phones, where the rail slides to centre
+     the faced piece) scaled to the width, sized on resize only. Data from CATALOGUE (exposed as
+     window.CATALOGUE; go() and lenis exposed as window.go / window.__lenis). Each garment has its
+     own 100px hit strip (.rl-hit) so overlapping boxes don't steal taps. Cut-outs in images/rail/
+     (garments from the studio photos + their masks; caps/beanie by GrabCut). This is the ONE place
+     backgrounds are removed; catalogue and studio photos keep their grey backgrounds. Then the three
+     steps (Send your idea, Approve your sample, Wear it) in a row (stacked on phone) and "No
+     minimum order · Design help included". The sewing machine hero was replaced and is saved in
+     saved/sewing-machine/. Earlier hero visuals (floating tee, photo collage, hang tag) were removed.
   2. Three "start here" sections (owner's references: the Portrait site),
      each centred with its own scroll animation, a kicker, a big headline with
      one italic word, ONE dark rounded "pill" button and a small caption:
