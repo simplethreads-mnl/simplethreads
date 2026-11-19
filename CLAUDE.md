@@ -90,8 +90,13 @@ language with short, numbered steps.
   1. Hero: headline, buttons (outline "Design assistance" -> design.html (top), outline
      "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" -> #contact),
      then the CLOTHING RAIL (owner, Nov 2026; idea from a "clothing rail" prompt, light and on
-     brand): a chrome rail with 11 cut-out blanks hanging edge-on (rotateY -74deg, perspective
-     900px, drawn hanger) that swing round to face you on hover/tap while the others slide apart;
+     brand): a chrome rail with 11 cut-out blanks hanging edge-on, in 3D (owner, Nov 2026): one shared
+     perspective (1600px) on .rl, preserve-3d through .rl-scene (rotateX 4deg; drag sideways on
+     iPad/desktop turns the rail up to 18deg, eases back; a drag is not a tap; text/image selection
+     off), each garment = sharp front photo + 2-7 soft darker back layers (images/rail/soft/,
+     pre-blurred and pre-darkened, NO CSS filter) stepped back in Z and tapered, side-light overlay
+     (.rl-lt, masked), soft shadow (.rl-gs), gentle sway (.rl-sw, paused when facing/off screen/
+     reduce motion), hanging at rotateY -66deg, drawn hanger) that swing round to face you on hover/tap while the others slide apart;
      caption under it (name, "PHP x · per piece, blank"); a shelf below with Baseball Cap, Washed
      Cap, Net Cap, Knitted Beanie. Tap the facing piece (or Enter) to lift it into a close-up view
      (counter, Playfair italic name, price, colours, prev/next with swipe, Close/Esc, green "Get a
