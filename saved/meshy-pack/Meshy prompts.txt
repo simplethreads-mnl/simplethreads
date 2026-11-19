@@ -1,0 +1,111 @@
+SIMPLE THREADS — MESHY AI PROMPTS FOR THE CLOTHING RAIL
+=======================================================
+
+HOW TO MAKE ONE MODEL (do ONE test first: Plain Hoodie - Ash Grey)
+1. In Meshy, choose "Image to 3D".
+2. Turn on multi-image / multi-view if offered, and upload the FRONT and BACK
+   pictures of one item (caps: FRONT and SIDE). Only one item per model.
+3. Settings:
+   - Style / mode: Realistic
+   - Texture: ON (PBR if offered)
+   - Symmetry: Auto
+   - Polycount / target: about 20,000–30,000 (keeps the website fast)
+   - Topology: Triangle is fine (quad not needed)
+4. Paste the matching prompt below into the prompt / texture box.
+5. When it's done, turn the model around and check the back and the sides.
+   If it looks good, download it as GLB and send it to me.
+6. Only then do the other pieces (credits cost money).
+
+WHAT TO CHECK BEFORE DOWNLOADING
+- Shape: shoulders, sleeves and hem look like real fabric, not a flat board.
+- Details match the photo: collar, cuffs, pockets, drawstrings, zips, snaps,
+  stripes. No extra pockets, zips or logos added.
+- Colour matches the photo.
+- No mannequin, no person, no stand inside the garment.
+If something is wrong, try "Regenerate" once, or tell me what looks off.
+
+-------------------------------------------------------
+BASE PROMPT (add the garment line below at the start)
+-------------------------------------------------------
+Hanging naturally on an invisible clothes hanger, as if on a shop rail.
+Soft real fabric with gentle drape and natural folds, shoulders slightly
+sloped, sleeves hanging straight down, hem relaxed. Realistic fabric
+thickness and stitched seams. Plain blank garment: no print, no logo, no
+text. No mannequin, no person, no hanger, no stand. Even soft studio
+lighting, accurate colour matching the reference photos.
+
+-------------------------------------------------------
+GARMENT LINES (put one in front of the base prompt)
+-------------------------------------------------------
+Plain T-shirt - Black:
+  A plain black crew-neck T-shirt, 100% cotton, short sleeves, small white
+  neck label.
+
+Dri-fit Polo - White:
+  A plain white short-sleeve polo shirt in lightweight quick-dry fabric,
+  soft collar, two-button placket.
+
+Honeycomb Polo - Purple:
+  A plain purple short-sleeve polo shirt in textured honeycomb knit,
+  classic collar, two-button placket, small side vents at the hem.
+
+Pullover Hoodie - Black:
+  A plain black oversized pullover hoodie in thick cotton fleece, hood
+  without drawstrings, kangaroo front pocket, ribbed cuffs and hem.
+
+Plain Hoodie - Navy Blue / Ash Grey / White / Brown (use the right colour):
+  A plain [colour] pullover hoodie in cotton fleece, drawstring hood with
+  two cords, kangaroo front pocket, ribbed cuffs and hem.
+
+Varsity Jacket - Black:
+  A black varsity jacket with white sleeves, striped black-and-white
+  ribbed collar, cuffs and hem, white snap buttons down the front, two
+  welt pockets.
+
+Corporate Jacket - Grey:
+  A plain grey hooded jacket with a black front zip, two zipped side
+  pockets with black zips, elastic cuffs.
+
+Windbreaker - White:
+  A plain white lightweight hooded windbreaker with a full front zip,
+  drawcord hood and side pockets, thin smooth fabric.
+
+-------------------------------------------------------
+CAPS AND BEANIE (use these instead of the base prompt)
+-------------------------------------------------------
+Baseball Cap - Black:
+  A plain black 6-panel baseball cap, soft cotton twill, curved brim with
+  stitching lines, small top button, no logo. Sitting upright on its own,
+  no head, no stand. Soft studio lighting, accurate colour.
+
+Washed Cap - Blue:
+  A plain blue washed-denim-look 6-panel cap, soft faded cotton, curved
+  brim with stitching lines, top button, no logo. Sitting upright on its
+  own, no head, no stand. Soft studio lighting, accurate colour.
+
+Net Cap - Khaki and Brown:
+  A trucker cap with a khaki foam front panel, black mesh back panels and
+  a dark brown curved brim, top button, no logo. Sitting upright on its
+  own, no head, no stand. Soft studio lighting, accurate colour.
+
+Knitted Beanie - Navy:
+  A plain navy ribbed knit beanie with a folded cuff, soft wool texture,
+  no logo. Sitting upright on its own, no head, no stand. Soft studio
+  lighting, accurate colour.
+
+-------------------------------------------------------
+IF MESHY HAS A "NEGATIVE PROMPT" BOX
+-------------------------------------------------------
+mannequin, person, body, head, hanger, stand, logo, print, text, extra
+pockets, extra zips, wrinkled mess, torn, low quality, blurry, flat board
+
+-------------------------------------------------------
+NOTES
+-------------------------------------------------------
+- Pictures are your own blank photos with the background removed
+  (transparent PNG, 1024 x 1024).
+- The back photos of the white, grey and navy Plain Hoodie, Dri-fit Polo
+  and Honeycomb Polo came from smaller originals and are a little soft.
+  If the back of those models looks blurry, send me sharper back photos.
+- Send me the GLB files (Google Drive or email works best). I'll turn
+  them into smooth turning pictures for the rail so the website stays fast.
