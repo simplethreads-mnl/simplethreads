@@ -95,8 +95,9 @@ language with short, numbered steps.
      caption under it (name, "PHP x · per piece, blank"); a shelf below with Baseball Cap, Washed
      Cap, Net Cap, Knitted Beanie. Tap the facing piece (or Enter) to lift it into a close-up view
      (counter, Playfair italic name, price, colours, prev/next with swipe, Close/Esc, green "Get a
-     quote" that ticks the product chip and fills the message of the home form, "View in
-     catalogue"). One fixed design (1500 wide; 720 wide on phones, where the rail slides to centre
+     quote" that opens the cream quick-quote window (#quoteModal/#quickQuote, same as the
+     catalogue's, on top of the close-up; product, chip and colour pre-filled; sends via Web3Forms),
+     "View in catalogue"). One fixed design (1500 wide; 720 wide on phones, where the rail slides to centre
      the faced piece) scaled to the width, sized on resize only. Data from CATALOGUE (exposed as
      window.CATALOGUE; go() and lenis exposed as window.go / window.__lenis). Each garment has its
      own 100px hit strip (.rl-hit) so overlapping boxes don't steal taps. Cut-outs in images/rail/

@@ -107,6 +107,38 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 .h3 .cta-row{justify-content:center;margin-top:2rem}
 @media (max-width:639px){.h3 .eyebrow::before{display:none}.h3 .cta-row{flex-direction:column;align-items:center}.h3 .cta-row .cta{width:16rem;justify-content:center}}
 .h3-stage{position:relative;max-width:80rem;margin:2.5rem auto 0}
+.qm-panel{background:#f2eee6;width:min(46rem,100%)}
+.qm-title{margin-top:1.25rem;font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1.12;letter-spacing:-0.01em}
+.qm-item{margin-top:1.75rem;display:flex;gap:1.25rem;align-items:center;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);padding:1.25rem 0}
+.qm-thumb{flex:none;width:4.5rem;aspect-ratio:3/4;background:#e6e7ea;overflow:hidden;position:relative}
+.qm-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.qm-info{min-width:0}
+.qm-name{margin-top:0.375rem;font-family:var(--serif);font-size:1.5rem;line-height:1.15}
+.qm-price{margin-top:0.25rem;font-family:var(--serif);font-size:1.125rem}
+.qm-price small{font-family:var(--sans);font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted);margin-left:0.35rem;white-space:nowrap}
+.qmf-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:1.25rem;margin-top:1.75rem}
+.qmf-field{display:flex;flex-direction:column;gap:0.5rem;min-width:0}
+.qmf-field [hidden]{display:none}
+.qmf-wide{margin-top:1.25rem}
+.qmf-l{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.16em;color:var(--ink-muted)}
+.qmf input:not([type=checkbox]):not([type=hidden]),.qmf select,.qmf textarea{box-sizing:border-box;font:inherit;font-size:max(16px,1rem);color:var(--ink);background:#fff;border:1px solid rgba(25,25,23,0.22);border-radius:0;padding:0.8rem 1rem;width:100%;min-height:2.9rem;-webkit-appearance:none;appearance:none}
+.qmf select{background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:calc(100% - 1.2rem) 50%,calc(100% - 0.85rem) 50%;background-size:0.35rem 0.35rem;background-repeat:no-repeat;padding-right:2.5rem}
+.qmf textarea{resize:vertical;line-height:1.5}
+.qmf input[type=date]{display:block;height:2.9rem;line-height:1.2;text-align:left}
+.qmf input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0}
+.qmf input::placeholder,.qmf textarea::placeholder{color:var(--ink-faint)}
+.qmf input:focus,.qmf select:focus,.qmf textarea:focus{outline:1px solid var(--ink);outline-offset:1px}
+.qmf [aria-invalid="true"]{border-color:var(--ink);border-style:dashed}
+.qmf .qf-status{color:var(--ink-muted)}
+.qmf .qf-status a{color:var(--ink)}
+.qm-alt{margin-top:1.75rem;border-top:1px dashed var(--line);padding-top:1.25rem;font-size:0.9375rem;color:var(--ink-muted)}
+.qm-alt a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+@media (min-width:640px){.qmf-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.qm-title{font-size:2.5rem}}
+.price-note{margin-top:0.5rem;font-size:0.875rem;line-height:1.5;color:var(--ink-muted);max-width:44ch}
+#quoteModal{z-index:90}
+#quoteModal .qm-panel{background:#f2eee6;width:min(46rem,100%)}
+#quoteModal .qm-thumb{background:#fff}
+#quoteModal .qm-thumb img{object-fit:contain;padding:6%}
 /* hero clothing rail: real blanks hang edge-on on a chrome rail, turn to face you on hover/tap, tap again to see one up close.
    Caps and beanies sit on a shelf below. Transform/opacity only; the stage is one fixed-size design scaled to the width (set on resize only). */
 .rl{position:relative;margin:2.75rem auto 0;width:100%;max-width:84rem}
@@ -940,6 +972,49 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
   </div>
 </section>
 
+<!-- ===== QUICK QUOTE WINDOW (opens from the clothing rail close-up) ===== -->
+<div class="pm qm" id="quoteModal" role="dialog" aria-modal="true" aria-labelledby="qmTitle" aria-hidden="true">
+  <div class="pm-back" data-close></div>
+  <div class="pm-panel qm-panel" data-lenis-prevent>
+    <button class="pm-x" data-close aria-label="Close">Close ✕</button>
+    <span class="eyebrow">Request a quote</span>
+    <h3 class="qm-title" id="qmTitle">Get a quote for this <span class="accent">piece</span>.</h3>
+    <div class="qm-item">
+      <div class="qm-thumb"><img id="qmImg" alt=""></div>
+      <div class="qm-info">
+        <p class="pm-cat" id="qmCat"></p>
+        <p class="qm-name" id="qmName"></p>
+        <p class="qm-price" id="qmPrice"></p>
+        <p class="price-note">Blank only. Decoration is quoted once we see your design.</p>
+      </div>
+    </div>
+    <form class="qmf" id="quickQuote" novalidate>
+      <input type="hidden" name="product" id="qmProduct">
+      <input type="hidden" name="products" id="qmChip">
+      <div class="qmf-grid">
+        <label class="qmf-field"><span class="qmf-l">Name *</span><input name="name" type="text" autocomplete="name" required></label>
+        <label class="qmf-field"><span class="qmf-l">Email *</span><input name="email" type="email" autocomplete="email" required></label>
+        <label class="qmf-field"><span class="qmf-l">Mobile number</span><input name="mobile" type="tel" autocomplete="tel" placeholder="09XX-XXX-XXXX"></label>
+        <label class="qmf-field"><span class="qmf-l">Quantity (rough is fine)</span><input name="quantity" type="number" min="1" inputmode="numeric" placeholder="e.g. 50"></label>
+        <label class="qmf-field"><span class="qmf-l">Colour</span>
+          <select name="colour" id="qmColSel"></select>
+          <input name="colour" id="qmColTxt" type="text" placeholder="e.g. Navy blue" hidden disabled></label>
+        <label class="qmf-field"><span class="qmf-l">Print or embroidery</span>
+          <select name="method"><option>Not sure — recommend one</option><option>DTF</option><option>DTG</option><option>Silk screen</option><option>Sublimation</option><option>Embroidery</option></select></label>
+        <label class="qmf-field"><span class="qmf-l">Needed by</span><input name="deadline" type="date"></label>
+        <label class="qmf-field"><span class="qmf-l">Design link (optional)</span><input name="design_link" type="url" placeholder="Google Drive or any link"></label>
+      </div>
+      <label class="qmf-field qmf-wide"><span class="qmf-l">Anything else?</span><textarea name="message" rows="3" placeholder="Sizes, where the print goes, anything you have in mind."></textarea></label>
+      <input type="checkbox" name="botcheck" class="qf-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="qf-actions">
+        <button class="cta solid" type="submit">Send quote request <span class="arr">→</span></button>
+        <p class="qf-status" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+    <p class="qm-alt">Prefer to chat? <a href="viber://chat?number=%2B639613826973">Viber</a> · <a href="https://wa.me/639613826973" target="_blank" rel="noopener">WhatsApp</a> · <a href="https://t.me/+639613826973" target="_blank" rel="noopener">Telegram</a> 0961-382-6973 · <a href="mailto:simplethreads.mnl@gmail.com">Email us</a></p>
+  </div>
+</div>
+
 <!-- ===== PINNED CTA #2 ===== -->
 <section class="pinned center" id="contact">
   <div class="container"><div class="copy">
@@ -1452,15 +1527,58 @@ if(!(window.CSS&&CSS.supports&&CSS.supports("animation-timeline: view()"))){
   V.querySelector(".rlv-x").addEventListener("click",()=>closeV());
   V.querySelector(".rlv-prev").addEventListener("click",()=>step(-1));
   V.querySelector(".rlv-next").addEventListener("click",()=>step(1));
-  addEventListener("keydown",e=>{if(open<0)return;if(e.key==="Escape")closeV();else if(e.key==="ArrowRight")step(1);else if(e.key==="ArrowLeft")step(-1)});
+  addEventListener("keydown",e=>{if(qm&&qm.classList.contains("open")){if(e.key==="Escape")closeQuote();return}if(open<0)return;if(e.key==="Escape")closeV();else if(e.key==="ArrowRight")step(1);else if(e.key==="ArrowLeft")step(-1)});
   let vx=null;V.addEventListener("touchstart",e=>{vx=e.touches[0].clientX},{passive:true});
   V.addEventListener("touchend",e=>{if(vx===null)return;const dx=e.changedTouches[0].clientX-vx;vx=null;if(Math.abs(dx)>50)step(dx<0?1:-1)},{passive:true});
-  /* Get a quote: fill the home quote form with this blank, then go there */
-  V.querySelector(".rlv-q").addEventListener("click",e=>{e.preventDefault();e.stopPropagation();const it=items[open];
-    closeV(()=>{const f=document.getElementById("quoteForm");if(f){
-      const ch=f.querySelector(`input[name="products"][value="${it.chip}"]`);if(ch)ch.checked=true;
-      const m=f.querySelector('[name="message"]');if(m&&!m.value)m.value=`I'm interested in the ${it.name}${it.col?" ("+it.col+")":""}, PHP ${it.price} per piece blank.`}
-      if(typeof window.go==="function")window.go("#contact");else location.hash="contact"})});
+
+  /* quick quote window (same as the catalogue's), opened on top of the close-up */
+  const qm=document.getElementById("quoteModal"),qmf=document.getElementById("quickQuote"),$q=id=>document.getElementById(id);
+  const WEB3FORMS_KEY="e6b201c3-d5af-41c5-aa9f-355f06ccb31a",STUDIO_EMAIL="simplethreads.mnl@gmail.com";
+  function wireQuote(qf){
+    if(!qf)return;
+    const qs=qf.querySelector(".qf-status"),qb=qf.querySelector('[type="submit"]');
+    qf.addEventListener("submit",async e=>{
+      e.preventDefault();
+      let ok=true;
+      qf.querySelectorAll("[required]").forEach(el=>{const bad=!el.value.trim()||(el.type==="email"&&!/^\S+@\S+\.\S+$/.test(el.value));el.setAttribute("aria-invalid",bad?"true":"false");if(bad&&ok){ok=false;el.focus()}});
+      if(!ok){qs.textContent="Please add your name and a valid email so we can reply.";return}
+      const fd=new FormData(qf);
+      if(fd.get("botcheck")){qs.textContent="Thanks! We’ll be in touch soon.";return}
+      const d={name:fd.get("name").trim(),email:fd.get("email").trim(),mobile:fd.get("mobile")||"",organization:fd.get("organization")||"",products:fd.getAll("products").join(", ")||"Not specified",quantity:fd.get("quantity")||"Not specified",method:fd.get("method"),deadline:fd.get("deadline")||"Not specified",design_link:fd.get("design_link")||"",message:fd.get("message")||""};
+      if(fd.get("product"))d.product=fd.get("product");
+      if(fd.has("colour"))d.colour=(fd.get("colour")||"").trim()||"Not specified";
+      const body=`Name: ${d.name}\nEmail: ${d.email}\nMobile: ${d.mobile}\nBrand / team / event: ${d.organization}\n`+(d.product?`Product: ${d.product}\nColour: ${d.colour}\n`:"")+`Products: ${d.products}\nQuantity: ${d.quantity}\nPrint or embroidery: ${d.method}\nNeeded by: ${d.deadline}\nDesign link: ${d.design_link}\n\n${d.message}`;
+      const subject="Quote request — "+d.name+(d.product?" ("+d.product+")":"");
+      const mailto=`mailto:${STUDIO_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if(!WEB3FORMS_KEY){location.href=mailto;qs.innerHTML="Your email app should open with your request filled in — just press send.";return}
+      qb.disabled=true;qs.textContent="Sending…";
+      try{
+        const r=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify({access_key:WEB3FORMS_KEY,subject,from_name:"Simple Threads website",replyto:d.email,...d})});
+        const j=await r.json().catch(()=>({}));
+        if(!r.ok||!j.success)throw new Error("send failed");
+        qf.reset();qf.querySelectorAll("[aria-invalid]").forEach(el=>el.removeAttribute("aria-invalid"));
+        qs.textContent=`Thanks, ${d.name}! Your request is in. We’ll reply by email soon.`;
+      }catch(err){
+        qs.innerHTML=`Sorry, that didn’t send. <a href="${mailto}">Email your request instead</a> or message us on Viber, WhatsApp or Telegram (0961-382-6973).`;
+      }finally{qb.disabled=false}
+    });
+  }
+  
+  if(qmf)wireQuote(qmf);
+  function quote(i){if(!qm)return;const it=items[i];
+    $q("qmImg").src=src(it.f);$q("qmImg").alt=it.name;$q("qmCat").textContent=C(it.id).label||"";
+    $q("qmName").textContent=it.name;$q("qmPrice").innerHTML="PHP "+it.price+"<small>per piece, blank</small>";
+    $q("qmProduct").value=it.name;$q("qmChip").value=it.chip;
+    const cs=$q("qmColSel"),ct=$q("qmColTxt"),list=it.cols&&it.cols!=="Any colour"?it.cols.split(",").map(c=>c.trim()):[];
+    const pick=list.includes(it.col)?it.col:"";
+    if(list.length){cs.innerHTML="";cs.add(new Option("Not sure yet","",!pick,!pick));list.forEach(c=>cs.add(new Option(c,c,c===pick,c===pick)));cs.hidden=cs.disabled=false;ct.hidden=ct.disabled=true}
+    else{ct.value=it.col&&it.cols!=="Any colour"?it.col:"";ct.placeholder=it.cols==="Any colour"?"Any colour, e.g. Navy blue":"Your preferred colour";ct.hidden=ct.disabled=false;cs.hidden=cs.disabled=true}
+    qmf.querySelector(".qf-status").textContent="";
+    qm.classList.add("open");qm.setAttribute("aria-hidden","false");qm.querySelector(".pm-panel").scrollTop=0;
+    setTimeout(()=>qm.querySelector(".pm-x").focus(),50)}
+  function closeQuote(){if(!qm||!qm.classList.contains("open"))return;qm.classList.remove("open");qm.setAttribute("aria-hidden","true");V.querySelector(".rlv-x").focus({preventScroll:true})}
+  if(qm)qm.addEventListener("click",e=>{if(e.target.closest("[data-close]"))closeQuote()});
+  V.querySelector(".rlv-q").addEventListener("click",e=>{e.preventDefault();e.stopPropagation();if(open>=0)quote(open)});
   window.__rail={open:openV,step,close:closeV,face:i=>{hov=i;layout()}};
 })();
 </script>
