@@ -107,31 +107,61 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 .h3 .cta-row{justify-content:center;margin-top:2rem}
 @media (max-width:639px){.h3 .eyebrow::before{display:none}.h3 .cta-row{flex-direction:column;align-items:center}.h3 .cta-row .cta{width:16rem;justify-content:center}}
 .h3-stage{position:relative;max-width:80rem;margin:2.5rem auto 0}
-.h3-seam{display:none}
-.h3-tee{position:relative;width:min(78vw,24rem);margin:0 auto;perspective:1400px}
-/* hero sewing machine: line drawing, needle bobs, fabric feeds left, stitches appear behind the needle. CSS transforms only, paused off screen */
-.h3-sewbox{aspect-ratio:1/1.082;perspective:none;margin-bottom:2rem}
-.sew{display:block;width:100%;height:100%;overflow:visible}
-.sew .ln{fill:#fff;stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
-.sew .ln-f{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round}
-.sew .thr{fill:none;stroke:var(--ink);stroke-width:1.1;opacity:.6}
-.sew .thr2{fill:none;stroke:var(--ink);stroke-width:1;opacity:.6}
-.sew .fab{fill:#f2eee6;stroke:rgba(25,25,23,0.35);stroke-width:1}
-.sew .st{stroke:var(--ink);stroke-width:2.4;stroke-linecap:round;stroke-dasharray:8 6}
-.sew .guide{stroke:rgba(25,25,23,0.25);stroke-width:1;stroke-dasharray:3 4}
-.sew .wd{font-family:var(--serif);font-style:italic;font-size:15px;fill:var(--ink)}
-.sew-needle{animation:sewNeedle 1.1s ease-in-out infinite}
-.sew-tk{transform-box:view-box;transform-origin:113px 232px;animation:sewTk 1.1s ease-in-out infinite}
-@keyframes sewTk{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.56)}}
-.sew-feed{animation:sewFeed 11s linear infinite}
-.sew-wheel{transform-box:fill-box;transform-origin:50% 50%;animation:sewSpin 1.1s linear infinite}
-.sew-spool{transform-box:fill-box;transform-origin:50% 50%;animation:sewSpool 3.3s ease-in-out infinite alternate}
-@keyframes sewNeedle{0%,100%{transform:translateY(0)}50%{transform:translateY(14px)}}
-@keyframes sewFeed{to{transform:translateX(-140px)}}
-@keyframes sewSpin{to{transform:rotate(360deg)}}
-@keyframes sewSpool{to{transform:scaleY(.94)}}
-.h3.off .sew *{animation-play-state:paused}
-@media (prefers-reduced-motion:reduce){.sew *{animation:none!important}}
+/* hero clothing rail: real blanks hang edge-on on a chrome rail, turn to face you on hover/tap, tap again to see one up close.
+   Caps and beanies sit on a shelf below. Transform/opacity only; the stage is one fixed-size design scaled to the width (set on resize only). */
+.rl{position:relative;margin:2.75rem auto 0;width:100%;max-width:84rem}
+.rl-art{position:absolute;left:0;top:0;transform-origin:0 0}
+.rl-track{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;transition:transform .75s cubic-bezier(.2,.8,.2,1)}
+.rl-track>*{pointer-events:none}
+.rl-hit{position:absolute;left:75px;top:0;width:100px;height:330px;pointer-events:auto}
+.rl-g.face{z-index:5}.rl-g.face .rl-hit{left:0;width:250px}
+.rl-bar{position:absolute;height:12px;border-radius:6px;background:linear-gradient(#fafafa 0%,#b9bcc1 28%,#5d6066 55%,#a9adb3 78%,#e6e7e9 100%);box-shadow:0 10px 18px rgba(25,25,23,.18)}
+.rl-bar::before,.rl-bar::after{content:"";position:absolute;top:-9px;width:16px;height:30px;border-radius:5px;background:linear-gradient(90deg,#8d9096,#f3f3f4 45%,#7a7d83)}
+.rl-bar::before{left:-14px}.rl-bar::after{right:-14px}
+.rl-g{position:absolute;left:0;top:22px;width:250px;height:330px;margin-left:-125px;perspective:900px;cursor:pointer;transition:transform .75s cubic-bezier(.2,.8,.2,1);-webkit-tap-highlight-color:transparent}
+.rl-g .rl-i{position:absolute;inset:0;transform-origin:50% 7%;transform:rotateY(-74deg);transition:transform .75s cubic-bezier(.2,.8,.2,1)}
+.rl-g.face .rl-i{transform:rotateY(0deg)}
+.rl-hg{position:absolute;left:0;top:0;width:250px;height:80px;overflow:visible}
+.rl-hg path{fill:none;stroke:#8d9096;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+.rl-im{position:absolute;left:0;top:56px;width:250px;height:272px;object-fit:contain;object-position:50% 0}
+.rl-sh{position:absolute;left:0;top:56px;width:250px;height:272px;background:rgba(25,25,23,.32);-webkit-mask:var(--src) 50% 0/contain no-repeat;mask:var(--src) 50% 0/contain no-repeat;opacity:1;transition:opacity .75s}
+.rl-g.face .rl-sh{opacity:0}
+.rl-cap{position:absolute;left:0;transform:translateX(-50%);text-align:center;white-space:nowrap;pointer-events:none;opacity:0;transition:opacity .35s,transform .75s cubic-bezier(.2,.8,.2,1);color:var(--ink-muted);letter-spacing:.12em;text-transform:uppercase}
+.rl-cap.on{opacity:1}
+.rl-cap b{display:block;color:var(--ink);font-weight:500;margin-bottom:.35em}
+.rl-shelf{position:absolute;height:10px;border-radius:3px;background:linear-gradient(#f4f4f5,#d8d9dc 60%,#b9bcc1);box-shadow:0 12px 16px -8px rgba(25,25,23,.28)}
+.rl-shelf::before,.rl-shelf::after{content:"";position:absolute;top:10px;width:10px;height:26px;background:linear-gradient(90deg,#8d9096,#e6e7e9,#7a7d83);border-radius:0 0 3px 3px}
+.rl-shelf::before{left:36px}.rl-shelf::after{right:36px}
+.rl-c{position:absolute;width:130px;height:130px;margin-left:-65px;cursor:pointer;transition:transform .5s cubic-bezier(.2,.8,.2,1);-webkit-tap-highlight-color:transparent}
+.rl-c img{position:absolute;left:0;bottom:0;width:100%;height:100%;object-fit:contain;object-position:50% 100%}
+.rl-c::after{content:"";position:absolute;left:12%;right:12%;bottom:-5px;height:10px;border-radius:50%;background:radial-gradient(closest-side,rgba(25,25,23,.28),rgba(25,25,23,0));z-index:-1}
+.rl-c.face{transform:translateY(-10px) scale(1.07)}
+.rl-hint{margin-top:.5rem;text-align:center;font-size:.8125rem;color:var(--ink-muted)}
+/* close-up view */
+.rlv{position:fixed;inset:0;z-index:80;display:grid;place-items:center;pointer-events:none;visibility:hidden}
+.rlv.open{pointer-events:auto;visibility:visible}
+.rlv-bg{position:absolute;inset:0;background:rgba(255,255,255,.95);opacity:0;transition:opacity .6s cubic-bezier(.2,.8,.2,1)}
+.rlv.open .rlv-bg{opacity:1}
+.rlv-in{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:5.5rem 1.25rem 2rem;width:100%;max-height:100%}
+.rlv-box{position:relative;width:min(78vw,26rem);height:min(48vh,26rem)}
+.rlv-big,.rlv-old{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.rlv-big{transform-origin:50% 50%}
+.rlv-old{opacity:0;pointer-events:none}
+.rlv-info{margin-top:1.5rem;opacity:0;transition:opacity .5s .25s}
+.rlv.open .rlv-info,.rlv.open .rlv-arr,.rlv.open .rlv-x{opacity:1}
+.rlv-num{font-size:.75rem;letter-spacing:.16em;color:var(--ink-muted)}
+.rlv-name{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.75rem,4vw,2.5rem);line-height:1.15;margin:.5rem 0 .35rem}
+.rlv-price{font-family:var(--serif);font-size:1.125rem}
+.rlv-price small{font-family:var(--sans);font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-muted);margin-left:.4rem}
+.rlv-cols{margin-top:.4rem;font-size:.875rem;color:var(--ink-muted);max-width:34rem}
+.rlv-act{margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center}
+.rlv-arr{position:absolute;top:50%;margin-top:-1.5rem;z-index:2;width:3rem;height:3rem;border-radius:50%;border:1px solid rgba(25,25,23,.35);display:grid;place-items:center;background:#fff;opacity:0;transition:opacity .4s .25s,background .2s,color .2s;color:var(--ink)}
+.rlv-arr svg{width:1.1rem;height:1.1rem;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.rlv-prev{left:-4rem}.rlv-next{right:-4rem}
+@media (max-width:600px){.rlv-prev{left:-0.75rem}.rlv-next{right:-0.75rem}}
+@media (hover:hover){.rlv-arr:hover{background:var(--ink);color:#fff}}
+.rlv-x{position:absolute;top:calc(env(safe-area-inset-top,0px) + 1.25rem);right:1.5rem;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;padding:.75rem .25rem;opacity:0;transition:opacity .4s .25s;color:var(--ink)}
+@media (prefers-reduced-motion:reduce){.rl-g,.rl-g .rl-i,.rl-track,.rl-cap,.rl-c,.rl-sh{transition:none!important}}
 /* "Made by us" collage: real client work dealt out like printed photos when the section arrives, drifting gently; one lifts to the front at a time */
 .mc-box{--ar:1.082;position:relative;width:min(88vw,32rem);margin:0 auto;aspect-ratio:1/1.082;container-type:inline-size}
 .mc .hs-copy{max-width:52rem}
@@ -172,19 +202,10 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
   .h3{padding:10rem 3rem 5rem}
   .h3 h1{font-size:5rem}
   .h3-say{font-size:1.5rem}
-  .h3-stage{height:calc(clamp(19rem,28vw,26rem)*1.082*1.06 + 13.5rem);margin-top:3rem}
-  .h3-seam{display:block;position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
-  .h3-tee{position:absolute;left:50%;top:0;width:clamp(19rem,28vw,26rem);transform:translateX(-50%);margin:0}
-  .h3-steps{position:absolute;inset:0;margin:0;max-width:none;padding:0;display:block}
+  .h3-steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2.5rem;max-width:62rem;padding:0;margin-top:3rem}
   .h3-steps::before{display:none}
-  .h3-step{position:absolute;width:0;height:0}
-  .h3-dot{left:0;top:0;width:1.75rem;height:1.75rem;transform:translate(-50%,-50%)}
-  .h3-step.on .h3-dot{transform:translate(-50%,-50%) scale(1.15)}
-  .h3-step .h3-txt{position:absolute;width:clamp(11rem,17vw,15rem)}
-  .h3-step.pos-l .h3-txt{right:1.75rem;top:-0.9rem;text-align:right}
-  .h3-step.pos-r .h3-txt{left:1.75rem;top:-0.9rem;text-align:left}
-  .h3-step.pos-b .h3-txt{left:0;transform:translateX(-50%);top:1.5rem;text-align:center}
-  .h3-foot{position:absolute;left:0;right:0;bottom:0;margin:0}
+  .h3-step{padding-left:2.5rem}
+  .h3-dot{left:0;top:0.1rem;width:1.6rem;height:1.6rem}
 }
 @media (prefers-reduced-motion:reduce){.cl-in,.cl-f{animation:none}.cl{transition:none}}
 
@@ -700,29 +721,13 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
         <a class="cta solid" href="#contact">Get a quote <span class="arr">→</span></a>
       </div>
   </div>
-  <div class="h3-stage" id="h3Stage">
-    <svg class="h3-seam" id="h3Seam" aria-hidden="true"></svg>
-    <div class="h3-tee h3-sewbox"><svg class="sew" viewBox="0 0 400 433" role="img" aria-label="A sewing machine stitching fabric">
-<defs><clipPath id="sewBed"><rect x="40" y="320" width="320" height="40"/></clipPath><clipPath id="sewL"><rect x="40" y="320" width="78" height="40"/></clipPath></defs>
-<ellipse cx="200" cy="392" rx="168" ry="8" fill="rgba(25,25,23,0.07)"/>
-<rect class="ln" x="40" y="350" width="320" height="28" rx="8"/>
-<g class="sew-needle"><line class="ln-f" x1="118" y1="200" x2="118" y2="262" style="stroke-width:3"/><rect class="ln" x="110" y="256" width="16" height="10" rx="2"/><line class="ln-f" x1="118" y1="266" x2="118" y2="300" style="stroke-width:2"/><line class="ln-f" x1="118" y1="300" x2="118" y2="326" style="stroke-width:1.2"/><path class="thr2" d="M113 256 V266 L117 305"/><circle cx="118" cy="306" r="1.4" fill="#fff" stroke="#191917" stroke-width=".7"/></g>
-<path class="ln" d="M250 350 V205 Q250 196 241 196 H160 Q150 196 150 206 V240 Q150 252 138 252 H98 Q86 252 86 240 V150 Q86 110 126 110 H290 Q330 110 330 150 V350 Z"/>
-<g transform="translate(170 153)"><rect x="-8" y="-8" width="16" height="16" transform="rotate(45)" fill="none" stroke="#191917" stroke-width="1.4"/><rect x="-4.4" y="-4.4" width="8.8" height="8.8" transform="rotate(45)" fill="none" stroke="#191917" stroke-width="1" stroke-dasharray="2 1.6"/></g>
-<text class="wd" x="186" y="158">simple threads</text>
-<g class="sew-wheel"><circle class="ln" cx="330" cy="172" r="24"/><circle class="ln-f" cx="330" cy="172" r="5"/><line class="ln-f" x1="330" y1="152" x2="330" y2="167"/><line class="ln-f" x1="330" y1="177" x2="330" y2="192"/><line class="ln-f" x1="310" y1="172" x2="325" y2="172"/><line class="ln-f" x1="335" y1="172" x2="350" y2="172"/></g>
-<line class="ln-f" x1="212" y1="110" x2="212" y2="98"/>
-<g class="sew-spool"><rect class="ln" x="199" y="72" width="26" height="26" rx="3"/><line class="ln-f" x1="203" y1="80" x2="221" y2="80"/><line class="ln-f" x1="203" y1="85" x2="221" y2="85"/><line class="ln-f" x1="203" y1="90" x2="221" y2="90"/></g>
-<path class="thr" d="M199 85 C160 85 128 92 116 112 C108 126 102 140 100 165 L100 214 L113 230 V232"/><line class="thr sew-tk" x1="113" y1="232" x2="113" y2="257"/><circle class="ln" cx="100" cy="170" r="5"/><path class="ln-f" d="M95 204 h6 a3 3 0 0 1 0 6 h-6"/>
-<g clip-path="url(#sewBed)"><g class="sew-feed"><rect class="fab" x="40" y="336" width="460" height="15" rx="2"/><line class="guide" x1="40" y1="343.5" x2="500" y2="343.5"/></g>
-<g clip-path="url(#sewL)"><g class="sew-feed"><line class="st" x1="40" y1="343.5" x2="500" y2="343.5"/></g></g></g>
-<line class="ln-f" x1="128" y1="252" x2="128" y2="330"/>
-<path class="ln" d="M106 330 h28 l3 6 h-34z"/>
-</svg></div>
+  <div class="rl" id="rail" aria-label="Our blanks on a rail"></div>
+  <p class="rl-hint" id="railHint">Tap a piece to turn it. Tap again to see it up close.</p>
+  <div class="h3-stage">
     <ol class="h3-steps" id="h3Steps" aria-label="How ordering works">
-      <li class="h3-step pos-l" data-at="0.16"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">01</span><p class="h3-h">Send your idea</p><p class="h3-p">A sketch, a photo, or just a description.</p></div></li>
-      <li class="h3-step pos-b" data-at="0.5"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">02</span><p class="h3-h">Approve your sample</p><p class="h3-p">Check the fit, print, and color before we run the order.</p></div></li>
-      <li class="h3-step pos-r" data-at="0.84"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">03</span><p class="h3-h">Wear it</p><p class="h3-p">Ready 2–3 days after sample approval for 1–5 pieces, or 2–3 weeks for bigger orders.</p></div></li>
+      <li class="h3-step"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">01</span><p class="h3-h">Send your idea</p><p class="h3-p">A sketch, a photo, or just a description.</p></div></li>
+      <li class="h3-step"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">02</span><p class="h3-h">Approve your sample</p><p class="h3-p">Check the fit, print, and color before we run the order.</p></div></li>
+      <li class="h3-step"><span class="h3-dot"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="8.6" y="8.6" width="6.8" height="6.8" transform="rotate(45 12 12)" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="1.6 1.4"/></svg></span><div class="h3-txt"><span class="h3-n">03</span><p class="h3-h">Wear it</p><p class="h3-p">Ready 2–3 days after sample approval for 1–5 pieces, or 2–3 weeks for bigger orders.</p></div></li>
     </ol>
     <p class="h3-foot">No minimum order · Design help included</p>
   </div>
@@ -1116,6 +1121,7 @@ document.addEventListener("transitionend",e=>{const t=e.target;if(t.matches&&t.m
 /* lenis */
 let lenis=null;
 if(window.Lenis&&!reduce&&matchMedia("(pointer:fine)").matches){lenis=new Lenis({smoothWheel:true});const raf=t=>{lenis.raf(t);requestAnimationFrame(raf)};requestAnimationFrame(raf)}
+window.__lenis=lenis;
 /* in-page links: sections far down skip layout until needed (content-visibility), so lay them all out once
    before measuring the target, then check the landing spot and correct it (fixes "first tap stops short") */
 function go(h){
@@ -1130,6 +1136,7 @@ function go(h){
 }
 /* arriving from another page with a #section in the address: land on it exactly */
 if(location.hash&&location.hash.length>1){addEventListener("load",()=>{try{if(document.querySelector(location.hash))setTimeout(()=>go(location.hash),60)}catch(e){}})}
+window.go=go;
 document.addEventListener("click",e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const h=a.getAttribute("href");e.preventDefault();if(h==="#")return;
   if(a.closest("#menu")){closeMenu();setTimeout(()=>go(h),260)}else go(h)});
 
@@ -1181,67 +1188,12 @@ if(qf){
     }finally{qb.disabled=false}
   });
 }
-/* ===== HERO: stitched arc around the logo tee =====
-   Stitches are short lines laid along a curve; scrolling reveals them one by one
-   and lights each step as the needle passes it. Only redraws while something moves. */
+/* ===== HERO: steps light up when seen; hero work pauses off screen ===== */
 (function(){
-  const fine=matchMedia("(pointer:fine)").matches,heroEl=document.querySelector(".h3");let heroOff=false;
-  const stage=document.getElementById("h3Stage"),svg=document.getElementById("h3Seam"),tilt=null,steps=[...document.querySelectorAll("#h3Steps .h3-step")];
-  if(!stage) return;
-  const NS="http://www.w3.org/2000/svg",INK="#191917",reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,wide=matchMedia("(min-width:900px)");
-  const el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e};
-  let stitches=[],pts=[],needle=null,shown=0,cur=0,target=0,intro=0,running=false,arcBottom=0;
-  function build(){
-    svg.innerHTML="";stitches=[];pts=[];shown=0;needle=null;
-    if(!wide.matches){steps.forEach(s=>{s.style.left=s.style.top=""});draw(true);return}
-    const W=stage.clientWidth,H=stage.clientHeight,tee=stage.querySelector(".h3-tee"),tw=tee.offsetWidth,th=tee.offsetHeight;
-    const lab=(steps[0]&&steps[0].querySelector(".h3-txt").offsetWidth)||240,cx=W/2,y0=th*0.36,rx=Math.max(tw*0.6,Math.min(W*0.4,tw*0.98,W/2-lab-48)),y1=th*1.06;
-    arcBottom=stage.getBoundingClientRect().top+scrollY+y1;
-    svg.setAttribute("viewBox",`0 0 ${W} ${H}`);
-    const d=`M ${cx-rx} ${y0} C ${cx-rx} ${y0+(y1-y0)*1.2}, ${cx-rx*0.55} ${y1}, ${cx} ${y1} S ${cx+rx} ${y0+(y1-y0)*1.2}, ${cx+rx} ${y0}`;
-    const guide=el("path",{d,fill:"none",stroke:INK,"stroke-width":1,opacity:0.13});svg.appendChild(guide);
-    const len=guide.getTotalLength(),g=el("g",{stroke:INK,"stroke-width":1.6,"stroke-linecap":"round"});
-    for(let L=0;L+7<=len;L+=11.5){const a=guide.getPointAtLength(L),b=guide.getPointAtLength(L+7);const ln=el("line",{x1:a.x.toFixed(1),y1:a.y.toFixed(1),x2:b.x.toFixed(1),y2:b.y.toFixed(1),opacity:0});g.appendChild(ln);stitches.push(ln);pts.push(a)}
-    svg.appendChild(g);
-    needle=el("g",{});needle.style.transition="opacity .5s";needle.style.opacity=0;
-    needle.appendChild(el("line",{x1:0,y1:-30,x2:0,y2:8,stroke:INK,"stroke-width":2,"stroke-linecap":"round"}));
-    needle.appendChild(el("ellipse",{cx:0,cy:-24,rx:1.2,ry:3,fill:"#fff",stroke:INK,"stroke-width":0.8}));
-    svg.appendChild(needle);
-    steps.forEach(s=>{const p=guide.getPointAtLength(len*parseFloat(s.dataset.at));s.style.left=p.x+"px";s.style.top=p.y+"px"});
-    measure();draw(true);
-  }
-  function draw(force){
-    const p=Math.max(cur,intro*0.17),n=Math.round(p*stitches.length);
-    if(stitches.length&&(n!==shown||force)){
-      for(let i=Math.min(n,shown);i<Math.max(n,shown);i++)stitches[i].setAttribute("opacity",i<n?1:0);
-      if(force)stitches.forEach((s,i)=>s.setAttribute("opacity",i<n?1:0));
-      shown=n;
-      if(needle){const i=Math.max(0,Math.min(pts.length-2,n-1)),a=pts[i],b=pts[i+1];
-        const ang=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI+90;
-        needle.setAttribute("transform",`translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(${ang.toFixed(1)})`);
-        needle.style.opacity=(reduce||n>=stitches.length||intro===0)?0:1}
-    }
-    if(wide.matches)steps.forEach(s=>s.classList.toggle("on",p>=parseFloat(s.dataset.at)-0.01));
-    /* narrow screens: steps light up via an IntersectionObserver set up below (no layout reads in the animation loop) */
-    if(tilt&&!reduce&&fine)tilt.style.transform=`rotateY(${((cur-0.35)*30).toFixed(2)}deg) rotateX(${(cur*5).toFixed(2)}deg)`;
-  }
-  function measure(){if(heroOff)return;const end=arcBottom?Math.max(160,arcBottom-innerHeight*0.55):innerHeight*0.6;target=Math.min(1,Math.max(0,scrollY/end));if(reduce)target=1;kick()}
-  function tick(){cur+=(target-cur)*0.14;if(Math.abs(target-cur)<0.001)cur=target;if(intro>0&&intro<1)intro=Math.min(1,intro+0.02);draw();
-    if(cur!==target||(intro>0&&intro<1))requestAnimationFrame(tick);else running=false}
-  function kick(){if(!running){running=true;requestAnimationFrame(tick)}}
-  build();measure();cur=target;
-  if(reduce){intro=1;draw(true)}else setTimeout(()=>{intro=0.001;draw(true);kick()},900);
-  if("IntersectionObserver" in window){const so=new IntersectionObserver(es=>es.forEach(e=>{if(!wide.matches&&e.isIntersecting){e.target.classList.add("on");so.unobserve(e.target)}}),{rootMargin:"0px 0px -22% 0px"});steps.forEach(x=>so.observe(x))}
-  else steps.forEach(x=>x.classList.add("on"));
-  if(reduce)steps.forEach(x=>x.classList.add("on"));
-  addEventListener("scroll",measure,{passive:true});
-  /* stop all hero work (float, shadow, seam loop) once the hero has scrolled away */
-  if("IntersectionObserver" in window&&heroEl)new IntersectionObserver(es=>{heroOff=!es[0].isIntersecting;heroEl.classList.toggle("off",heroOff);if(!heroOff)measure()},{rootMargin:"200px 0px"}).observe(heroEl);
-  let rt,lw=stage.clientWidth;
-  addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>{if(stage.clientWidth===lw)return;lw=stage.clientWidth;build()},200)});
-  if(wide.addEventListener)wide.addEventListener("change",build);
-  const img=stage.querySelector("img");if(img&&!img.complete)img.addEventListener("load",build,{once:true});
-  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(build);
+  const heroEl=document.querySelector(".h3"),steps=[...document.querySelectorAll("#h3Steps .h3-step")];
+  if(!("IntersectionObserver" in window)){steps.forEach(x=>x.classList.add("on"));return}
+  const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");so.unobserve(e.target)}}),{rootMargin:"0px 0px -15% 0px"});steps.forEach(x=>so.observe(x));
+  if(heroEl)new IntersectionObserver(es=>heroEl.classList.toggle("off",!es[0].isIntersecting),{rootMargin:"200px 0px"}).observe(heroEl);
 })();
 /* ===== CATALOGUE ===== */
 const HOOD="Black, Navy Blue, White, Ash Grey";
@@ -1259,7 +1211,7 @@ const CATALOGUE=[
  {id:"washed",name:"Washed Cap",cat:"headwear",label:"Headwear",chip:"Caps",price:175,desc:"Soft, washed finish for a worn-in, vintage look.",shown:"Blue",cols:CAPC,views:[["Front","washed"],["Side","washed-side"]]},
  {id:"netcap",name:"Net Cap",cat:"headwear",label:"Headwear",chip:"Caps",price:185,desc:"Trucker style with a foam front panel and breathable mesh back. Available in any colour; ask us for options.",shown:"Khaki and brown",cols:"Any colour",views:[["Front","netcap"],["Side","netcap-side"]]},
  {id:"beanie",name:"Knitted Beanie",cat:"headwear",label:"Headwear",chip:"Beanies",price:150,desc:"100% cotton, ribbed fisherman style with a folded cuff.",shown:"Navy",cols:"Blue, White, Purple, Teal, Red, Black, Pink, Orange, Yellow, Army Green, Magenta, Grey, Green"}
-];
+];window.CATALOGUE=CATALOGUE;
 const peso=n=>"PHP "+n.toLocaleString("en-PH");
 const ncols=p=>p.cols&&p.cols!=="Any colour"?p.cols.split(",").length:0;
 const meta=p=>p.cols==="Any colour"?"Any colour":ncols(p)?ncols(p)+" colours available":"Colours to follow";
@@ -1386,6 +1338,130 @@ if(!(window.CSS&&CSS.supports&&CSS.supports("animation-timeline: view()"))){
   let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(()=>document.querySelectorAll(".cta.solid.sw-on").forEach(stitch),250)});
   /* a button inside a window that just opened: sew it when the window shows */
   document.addEventListener("click",()=>setTimeout(()=>document.querySelectorAll(".cta.solid").forEach(b=>{if(b._sw&&!b.querySelector("svg.sw-st")&&b.offsetWidth)play(b)}),350));
+})();
+</script>
+<script>
+/* ===== HERO CLOTHING RAIL =====
+   Garments hang edge-on (rotateY -74deg under perspective 900px) and swing round to face you on hover/tap; the
+   others slide apart to make room. Tap the facing piece (or Enter) to lift it into a close-up view with prev/next.
+   One fixed-size design (W x H) scaled to the hero width; sizes are read only on resize. */
+(function(){
+  const host=document.getElementById("rail");if(!host||!window.CATALOGUE)return;const CATALOGUE=window.CATALOGUE;
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,fine=matchMedia("(hover:hover) and (pointer:fine)");
+  const C=id=>CATALOGUE.find(c=>c.id===id)||{};
+  const G=[["tshirt-black","tshirt","Black"],["drifit-white","drifit","White"],["honeycomb-purple","honeycomb","Purple"],["pullover-black","pullover","Black"],
+    ["hoodie-navy","hoodie","Navy Blue"],["hoodie-grey","hoodie","Ash Grey"],["hoodie-white","hoodie","White"],["hoodie-brown","hoodie","Brown"],
+    ["varsity-black","varsity","Black"],["corporate-grey","corporate","Grey"],["windbreaker-white","windbreaker","White"]];
+  const S=[["cap","cap"],["washed","washed"],["netcap","netcap"],["beanie","beanie"]];
+  const items=[...G.map(([f,id,col])=>({f,id,col,shelf:false})),...S.map(([f,id])=>({f,id,col:C(id).shown||"",shelf:true}))];
+  items.forEach(it=>{const c=C(it.id);it.name=c.name||it.id;it.price=c.price;it.chip=c.chip||"";it.cols=c.cols||"";});
+  const NG=G.length,N=items.length,src=f=>"images/rail/"+f+".webp";
+  /* sizes in design pixels */
+  const RAIL_Y=40,CAP_Y=372,SHELF_Y=590,H=730,SLOT=100,OPEN=96;
+  let W=1500,k=1,mobile=false,hov=-1,open=-1;
+  const art=document.createElement("div");art.className="rl-art";
+  const track=document.createElement("div");track.className="rl-track";
+  const bar=document.createElement("div");bar.className="rl-bar";track.appendChild(bar);
+  const HANG='<svg class="rl-hg" viewBox="0 0 250 80" aria-hidden="true"><path d="M125 46 V36 C125 24 138 24 138 14 C138 6 132 2 126 2 C120 2 116 6 116 11"/><path d="M125 46 L44 72 Q36 76 44 78 H206 Q214 76 206 72 Z"/></svg>';
+  const els=items.map((it,i)=>{
+    const d=document.createElement("div");d.setAttribute("role","button");d.tabIndex=-1;d.setAttribute("aria-label",it.name+(it.col?", "+it.col:""));
+    if(!it.shelf){d.className="rl-g";d.innerHTML=`<div class="rl-i">${HANG}<img class="rl-im" src="${src(it.f)}" alt="" loading="eager" decoding="async"><i class="rl-sh" style="--src:url(${src(it.f)})"></i></div><span class="rl-hit"></span>`;track.appendChild(d)}
+    else{d.className="rl-c";d.innerHTML=`<img src="${src(it.f)}" alt="" loading="lazy" decoding="async">`;art.appendChild(d)}
+    d.addEventListener("click",e=>{e.stopPropagation();if(hov===i&&!(fine.matches&&!it.shelf&&false))openV(i);else{hov=i;layout()}});
+    d.addEventListener("pointerenter",e=>{if(e.pointerType==="mouse"&&open<0){hov=i;layout()}});
+    return d});
+  const cap=document.createElement("div");cap.className="rl-cap";cap.innerHTML="<b></b><span></span>";
+  const shelf=document.createElement("div");shelf.className="rl-shelf";
+  art.appendChild(track);art.insertBefore(shelf,art.firstChild);art.appendChild(cap);host.appendChild(art);
+  host.addEventListener("pointerleave",e=>{if(e.pointerType==="mouse"&&open<0){hov=-1;layout()}});
+  /* position helpers */
+  const gx=i=>W/2+(i-(NG-1)/2)*SLOT;
+  const cx=i=>W/2+(i-NG-(S.length-1)/2)*150;
+  function off(){if(!mobile)return 0;const c=hov>=0&&hov<NG?hov:(NG-1)/2;return -((c-(NG-1)/2)*SLOT)}
+  function layout(){
+    const o=off();track.style.transform=`translateX(${o}px)`;
+    els.forEach((d,i)=>{const it=items[i];
+      if(!it.shelf){let x=gx(i);if(hov>=0&&hov<NG&&i!==hov)x+=Math.sign(i-hov)*OPEN;d.style.transform=`translateX(${x}px)`}
+      d.classList.toggle("face",i===hov)});
+    if(hov>=0){const it=items[hov];cap.querySelector("b").textContent=it.name+(it.col&&!it.shelf?" — "+it.col:"");
+      cap.querySelector("span").textContent="PHP "+it.price+" · per piece, blank";
+      let x=it.shelf?cx(hov):gx(hov)+o;cap.style.top=(it.shelf?SHELF_Y+44:CAP_Y)+"px";const half=cap.offsetWidth/2+12;x=Math.max(half,Math.min(W-half,x));cap.style.transform=`translateX(${x}px) translateX(-50%)`;cap.classList.add("on")}
+    else cap.classList.remove("on");
+  }
+  function size(){
+    const w=host.clientWidth;mobile=w<760;W=mobile?720:1500;k=w/W;
+    art.style.width=W+"px";art.style.height=H+"px";art.style.transform=`scale(${k})`;host.style.height=Math.round(H*k)+"px";
+    const span=(NG-1)*SLOT;bar.style.left=(W/2-span/2-90)+"px";bar.style.width=(span+180)+"px";bar.style.top=RAIL_Y+"px";
+    if(mobile){bar.style.left=(W/2-span/2-OPEN-90)+"px";bar.style.width=(span+2*OPEN+180)+"px"}
+    shelf.style.left=(W/2-320)+"px";shelf.style.width="640px";shelf.style.top=SHELF_Y+"px";
+    els.forEach((d,i)=>{if(items[i].shelf){d.style.left=cx(i)+"px";d.style.top=(SHELF_Y-130)+"px"}});
+    const f=Math.min(2.4,Math.max(1,1/k));cap.style.fontSize=(11*f)+"px";
+    layout();
+  }
+  size();let rt;addEventListener("resize",()=>{clearTimeout(rt);rt=setTimeout(size,150)});
+  if(reduce){}
+  /* keyboard on the rail */
+  host.tabIndex=0;host.setAttribute("role","group");
+  host.addEventListener("keydown",e=>{if(open>=0)return;
+    if(e.key==="ArrowRight"){hov=Math.min(N-1,hov+1);layout();e.preventDefault()}
+    else if(e.key==="ArrowLeft"){hov=hov<0?N-1:Math.max(0,hov-1);layout();e.preventDefault()}
+    else if(e.key==="Enter"&&hov>=0)openV(hov)});
+  /* swipe on touch: move along the rail */
+  let sx=null,sy=0;host.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+  host.addEventListener("touchend",e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;sx=null;
+    if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.3){const c=hov<0?Math.floor((NG-1)/2):hov;hov=Math.max(0,Math.min(N-1,c+(dx<0?1:-1)));layout()}},{passive:true});
+
+  /* ===== close-up view ===== */
+  const V=document.createElement("div");V.className="rlv";V.setAttribute("role","dialog");V.setAttribute("aria-modal","true");V.setAttribute("aria-label","Blank close-up");
+  const CH=d=>`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${d}"/></svg>`;
+  V.innerHTML=`<div class="rlv-bg"></div><div class="rlv-in"><div class="rlv-box"><img class="rlv-old" alt=""><img class="rlv-big" alt=""><button class="rlv-arr rlv-prev" type="button" aria-label="Previous">${CH("M15 5 8 12 15 19")}</button><button class="rlv-arr rlv-next" type="button" aria-label="Next">${CH("M9 5 16 12 9 19")}</button></div>
+    <div class="rlv-info"><p class="rlv-num"></p><h3 class="rlv-name"></h3><p class="rlv-price"></p><p class="rlv-cols"></p>
+    <div class="rlv-act"><a class="cta solid rlv-q" href="#contact">Get a quote <span class="arr">→</span></a><a class="cta ghost" href="teams.html#catalogue">View in catalogue <span class="arr">→</span></a></div></div></div>
+    <button class="rlv-x" type="button">Close ✕</button>`;
+  document.body.appendChild(V);
+  const big=V.querySelector(".rlv-big"),old=V.querySelector(".rlv-old"),box=V.querySelector(".rlv-box");
+  const EZ="cubic-bezier(.2,.8,.2,1)",pad=n=>String(n).padStart(2,"0");
+  function fill(i){const it=items[i];big.src=src(it.f);big.alt=it.name+(it.col?", "+it.col:"");
+    V.querySelector(".rlv-num").textContent=pad(i+1)+" / "+pad(N);
+    V.querySelector(".rlv-name").textContent=it.name+(it.col&&!it.shelf?" — "+it.col:"");
+    V.querySelector(".rlv-price").innerHTML="PHP "+it.price+"<small>per piece, blank</small>";
+    V.querySelector(".rlv-cols").textContent=it.cols?"Colours: "+it.cols+". Design and decoration are quoted separately.":"More colours to follow from our supplier. Design and decoration are quoted separately."}
+  function srcRect(i){const d=els[i];const t=d.querySelector(".rl-im")||d.querySelector("img");return t.getBoundingClientRect()}
+  function flip(i,back){const a=srcRect(i),b=box.getBoundingClientRect();
+    const s=Math.min(a.width/b.width,a.height/b.height),tx=(a.left+a.width/2)-(b.left+b.width/2),ty=(a.top+a.height/2)-(b.top+b.height/2);
+    return `translate(${tx}px,${ty}px) scale(${s})`}
+  let lockY=0;
+  function openV(i){if(open>=0)return;open=i;hov=i;layout();fill(i);
+    V.classList.add("open");document.documentElement.style.overflow="hidden";if(window.__lenis)window.__lenis.stop();
+    big.getAnimations().forEach(a=>a.cancel());
+    if(!reduce)big.animate([{transform:flip(i)},{transform:"none"}],{duration:750,easing:EZ,fill:"forwards"});
+    els[i].style.visibility="hidden";V.querySelector(".rlv-x").focus({preventScroll:true})}
+  function step(d){if(open<0)return;const from=open;open=(open+d+N)%N;
+    old.src=big.src;fill(open);els[from].style.visibility="";els[open].style.visibility="hidden";hov=open;layout();
+    if(reduce)return;
+    old.animate([{transform:"none",opacity:1},{transform:`translateX(${-d*120}px) scale(.94)`,opacity:0}],{duration:600,easing:EZ});
+    big.getAnimations().forEach(a=>a.cancel());
+    big.animate([{transform:`translateX(${d*120}px) scale(.94)`,opacity:0},{transform:"none",opacity:1}],{duration:600,easing:EZ,fill:"forwards"})}
+  function closeV(after){if(open<0)return;const i=open;
+    els[i].style.visibility="";const t=flip(i);els[i].style.visibility="hidden";
+    if(!reduce)big.animate([{transform:"none"},{transform:t}],{duration:650,easing:EZ,fill:"forwards"});
+    V.classList.remove("open");document.documentElement.style.overflow="";if(window.__lenis)window.__lenis.start();
+    setTimeout(()=>{els[i].style.visibility="";big.getAnimations().forEach(a=>a.cancel());open=-1;if(!fine.matches||after){hov=-1}layout();if(after)after()},reduce?0:650)}
+  V.querySelector(".rlv-bg").addEventListener("click",()=>closeV());
+  V.querySelector(".rlv-in").addEventListener("click",e=>{if(e.target===e.currentTarget||e.target.classList.contains("rlv-box"))closeV()});
+  V.querySelector(".rlv-x").addEventListener("click",()=>closeV());
+  V.querySelector(".rlv-prev").addEventListener("click",()=>step(-1));
+  V.querySelector(".rlv-next").addEventListener("click",()=>step(1));
+  addEventListener("keydown",e=>{if(open<0)return;if(e.key==="Escape")closeV();else if(e.key==="ArrowRight")step(1);else if(e.key==="ArrowLeft")step(-1)});
+  let vx=null;V.addEventListener("touchstart",e=>{vx=e.touches[0].clientX},{passive:true});
+  V.addEventListener("touchend",e=>{if(vx===null)return;const dx=e.changedTouches[0].clientX-vx;vx=null;if(Math.abs(dx)>50)step(dx<0?1:-1)},{passive:true});
+  /* Get a quote: fill the home quote form with this blank, then go there */
+  V.querySelector(".rlv-q").addEventListener("click",e=>{e.preventDefault();e.stopPropagation();const it=items[open];
+    closeV(()=>{const f=document.getElementById("quoteForm");if(f){
+      const ch=f.querySelector(`input[name="products"][value="${it.chip}"]`);if(ch)ch.checked=true;
+      const m=f.querySelector('[name="message"]');if(m&&!m.value)m.value=`I'm interested in the ${it.name}${it.col?" ("+it.col+")":""}, PHP ${it.price} per piece blank.`}
+      if(typeof window.go==="function")window.go("#contact");else location.hash="contact"})});
+  window.__rail={open:openV,step,close:closeV,face:i=>{hov=i;layout()}};
 })();
 </script>
 </body>
