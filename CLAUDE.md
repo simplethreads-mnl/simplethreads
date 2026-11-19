@@ -101,7 +101,9 @@ language with short, numbered steps.
      the faced piece) scaled to the width, sized on resize only. Data from CATALOGUE (exposed as
      window.CATALOGUE; go() and lenis exposed as window.go / window.__lenis). Each garment has its
      own 100px hit strip (.rl-hit) so overlapping boxes don't steal taps. Cut-outs in images/rail/
-     (garments from the studio photos + their masks; caps/beanie by GrabCut). This is the ONE place
+     (garments from the studio photos + their masks; caps/beanie by GrabCut; Nov 2026 re-made with
+     soft edges: outline smoothed, edge pulled in 1px, alpha feathered ~1.6px, grey edge colour
+     removed, WebP q90 — owner found the first cut-outs too sharp). This is the ONE place
      backgrounds are removed; catalogue and studio photos keep their grey backgrounds. Then the three
      steps (Send your idea, Approve your sample, Wear it) in a row (stacked on phone) and "No
      minimum order · Design help included". The sewing machine hero was replaced and is saved in
