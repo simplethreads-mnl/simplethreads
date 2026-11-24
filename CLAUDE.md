@@ -92,10 +92,11 @@ language with short, numbered steps.
   1. Hero: headline, buttons (outline "Design assistance" -> design.html (top), outline
      "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" -> #contact),
      then the PHOTO SPREAD (owner, Nov 2026; replaced the clothing rail, which is saved in
-     saved/clothing-rail/ with a README to bring it back): five Unsplash STOCK photos showing what we do
-     (owner rejected the AI studio set here and asked for stock): polo model, hands sewing, a rail of tees
-     (centre, largest), industrial embroidery machine (B&W), streetwear model; models cropped below the
-     chin; one shared soft grade (colour 0.82, contrast 0.96) so they sit together; images/stock/hero-*.webp.
+     saved/clothing-rail/ with a README to bring it back): five photos showing what we do. Ends: golf-polo
+     model and streetwear model from the AI studio set (images/studio-set/hero-polo-model,
+     hero-streetwear-model; no faces; owner kept these). Middle three: Unsplash STOCK (owner asked):
+     hands sewing, a rail of tees (centre, largest), industrial embroidery machine (B&W), with one soft
+     grade (colour 0.82, contrast 0.96); images/stock/hero-sewing, hero-collection, hero-embroidery.
      Staggered heights, inner dashed stitch frame, deal in once on load. Phone: all five in a swipeable
      row (scroll-snap). The quick-quote window (#quoteModal) went
      with the rail. Then the three steps (Send your idea, Approve your sample, Wear it) in a row (stacked
@@ -235,7 +236,7 @@ language with short, numbered steps.
   Real studio photos of the owner's own floor would be even better later.
 
 ## STUDIO SET (site mood images, Nov 2026)
-- images/studio-set/: hoodie-sage, varsity-black (880x1100), cargo-khaki, tee-acid-wash
+- images/studio-set/: hero-polo-model, hero-streetwear-model (home hero ends); hoodie-sage, varsity-black (880x1100), cargo-khaki, tee-acid-wash
   (720x960), team-kit (green polo + white tee stack on an oak table), design-table (designer's table with
   a white tee, swatches, ruler, tee sketch). AI-generated with Higgsfield (model z_image, ~0.15 credit
   each; the free plan blocks gpt_image/recraft and allows one job at a time). Mood images only, never

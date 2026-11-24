@@ -8,8 +8,6 @@
 | sewing-detail.webp | unsplash.com/photos/TAZUc51iPUM | Alexander Grey |
 
 images/studio-set/ is not stock: AI-generated with Higgsfield (see CLAUDE.md, STUDIO SET).
-| hero-polo.webp (cropped below the chin) | unsplash.com/photos/acDOZXe5UtQ | (see photo page) |
 | hero-sewing.webp | unsplash.com/photos/ALpGe_m9eXE | Vitaly Gariev |
 | hero-collection.webp | unsplash.com/photos/tvG4WvjgsEY | (see photo page) |
 | hero-embroidery.webp | unsplash.com/photos/bwg9U3WRgFg | Rendy Novantino |
-| hero-streetwear.webp (cropped below the chin, sign cropped out) | unsplash.com/photos/EIOmriN64sU | (see photo page) |
