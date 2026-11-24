@@ -10,4 +10,4 @@
 images/studio-set/ is not stock: AI-generated with Higgsfield (see CLAUDE.md, STUDIO SET).
 | hero-sewing.webp | unsplash.com/photos/ALpGe_m9eXE | Vitaly Gariev |
 | hero-collection.webp | unsplash.com/photos/tvG4WvjgsEY | (see photo page) |
-| hero-embroidery.webp | unsplash.com/photos/bwg9U3WRgFg | Rendy Novantino |
+| hero-embroidery.webp (thread brand on one cone cap softened out) | unsplash.com/photos/KAMaLRggG9g | PJ Wallace |

@@ -95,7 +95,8 @@ language with short, numbered steps.
      saved/clothing-rail/ with a README to bring it back): five photos showing what we do. Ends: golf-polo
      model and streetwear model from the AI studio set (images/studio-set/hero-polo-model,
      hero-streetwear-model; no faces; owner kept these). Middle three: Unsplash STOCK (owner asked):
-     hands sewing, a rail of tees (centre, largest), industrial embroidery machine (B&W), with one soft
+     hands sewing, a rail of tees (centre, largest), colourful thread cones on an industrial embroidery machine (owner
+     asked for colour, not B&W; a thread brand on one cap was softened out), with one soft
      grade (colour 0.82, contrast 0.96); images/stock/hero-sewing, hero-collection, hero-embroidery.
      Staggered heights, inner dashed stitch frame, deal in once on load. Phone: all five in a swipeable
      row (scroll-snap). The quick-quote window (#quoteModal) went
