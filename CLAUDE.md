@@ -92,9 +92,10 @@ language with short, numbered steps.
   1. Hero: headline, buttons (outline "Design assistance" -> design.html (top), outline
      "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" -> #contact),
      then the PHOTO SPREAD (owner, Nov 2026; replaced the clothing rail, which is saved in
-     saved/clothing-rail/ with a README to bring it back): five Unsplash stock photos of trendy pieces
-     being made / trendy outfits (formal pinstripe suit, streetwear sweatshirt + cargos, denim under the
-     needle (centre, largest), casual knit vest + jeans, washed denim; owner swapped three in Nov 2026) in images/stock/, staggered heights, inner dashed "stitch" frame, deal in once on
+     saved/clothing-rail/ with a README to bring it back): five apparel-focused Unsplash photos (owner:
+     the clothes must be the subject, no vague street/people shots): pastel hoodies on a rail, rust
+     bomber on a hanger, denim trucker jacket (centre, largest), black suit on a mannequin, sage tees on
+     wooden hangers, in images/stock/, staggered heights, inner dashed "stitch" frame, deal in once on
      load (transform/opacity); phone shows the middle three. The quick-quote window (#quoteModal) went
      with the rail. Then the three steps (Send your idea, Approve your sample, Wear it) in a row (stacked
      on phone) and "No
