@@ -3,3 +3,7 @@ CLAUDE.md
 vercel-site-prompt.md
 # saved effects for later, not part of the live site
 saved/
+
+# skills and prompts for Claude, not part of the live site
+.claude/
+prompts/
