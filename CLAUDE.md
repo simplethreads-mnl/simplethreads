@@ -95,8 +95,10 @@ language with short, numbered steps.
      iPad/desktop turns the rail up to 18deg, eases back; a drag is not a tap; text/image selection
      off), each garment = sharp front photo + 2-7 soft darker back layers (images/rail/soft/,
      pre-blurred and pre-darkened, NO CSS filter) stepped back in Z and tapered, side-light overlay
-     (.rl-lt, masked), soft shadow (.rl-gs), gentle sway (.rl-sw, paused when facing/off screen/
-     reduce motion), hanging at rotateY -66deg, drawn hanger) that swing round to face you on hover/tap while the others slide apart;
+     (.rl-lt, masked), soft shadow (.rl-gs), short damped swing (.rl-sw.settle, rlSettle
+     ~1.9 s) once on arrival and whenever a garment slides; NO constant sway (owner: hero "super slow and
+     laggy" on iPad, Nov 2026; constant sway on 11 3D garments ran at 16 fps, now 60 fps idle); touch devices
+     use at most 3 soft back layers per garment, hanging at rotateY -66deg, drawn hanger) that swing round to face you on hover/tap while the others slide apart;
      caption under it (name, "PHP x · per piece, blank"); a shelf below with Baseball Cap, Washed
      Cap, Net Cap, Knitted Beanie. Tap the facing piece (or Enter) to lift it into a close-up view
      (counter, Playfair italic name, price, colours, prev/next with swipe, Close/Esc, green "Get a
@@ -223,6 +225,10 @@ language with short, numbered steps.
 - JSON-LD: home page has ClothingStore (real address, phone, email only; no
   ratings) + WebSite; inner pages have BreadcrumbList. Update it if contact
   details change.
+- Icons: /favicon.ico (16/32/48) + images/brand/favicon.svg, favicon-48/192/512.png (real files;
+  Google can't use the old data: URI icon, which is why search showed a grey globe).
+- vercel.json redirects www.simplethreadsmnl.com to simplethreadsmnl.com. Never set the opposite
+  redirect (apex to www) in Vercel Domains, or the two would loop.
 - robots.txt and sitemap.xml are in the root. Add new pages to sitemap.xml.
 - vercel.json: images cached 1 day + stale-while-revalidate 7 days (so a
   replaced photo shows within a day), plus two safety headers.
