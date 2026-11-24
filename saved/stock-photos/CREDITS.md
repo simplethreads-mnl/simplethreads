@@ -9,5 +9,5 @@
 | apparel-hoodies.webp | unsplash.com/photos/RYHvzYdeoCI | (see photo page) |
 | apparel-bomber.webp | unsplash.com/photos/Fg15LdqpWrs | (see photo page) |
 | apparel-denim-jacket.webp | unsplash.com/photos/QRN47la37gw | (see photo page) |
-| apparel-suit.webp | unsplash.com/photos/G5RSe8i_Id8 | (see photo page) |
+| apparel-polo.webp | unsplash.com/photos/F5i3PZXYkvY | (see photo page) |
 | apparel-tees.webp (cropped to leave out a printed neck label) | unsplash.com/photos/xPJYL0l5Ii8 | (see photo page) |

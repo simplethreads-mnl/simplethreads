@@ -94,7 +94,7 @@ language with short, numbered steps.
      then the PHOTO SPREAD (owner, Nov 2026; replaced the clothing rail, which is saved in
      saved/clothing-rail/ with a README to bring it back): five apparel-focused Unsplash photos (owner:
      the clothes must be the subject, no vague street/people shots): pastel hoodies on a rail, rust
-     bomber on a hanger, denim trucker jacket (centre, largest), black suit on a mannequin, sage tees on
+     bomber on a hanger, denim trucker jacket (centre, largest), white pique polo on a hanger (owner prefers polo/golf wear over a suit), sage tees on
      wooden hangers, in images/stock/, staggered heights, inner dashed "stitch" frame, deal in once on
      load (transform/opacity); phone shows the middle three. The quick-quote window (#quoteModal) went
      with the rail. Then the three steps (Send your idea, Approve your sample, Wear it) in a row (stacked
