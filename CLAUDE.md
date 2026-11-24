@@ -67,12 +67,13 @@ language with short, numbered steps.
   pills, sentence case, "→" arrow. Main buttons (.cta.solid, home .pill) are
   forest green #2f4a3a (hover #263d30), the ONE accent colour on the site;
   outline buttons (.cta.ghost) are white with a 1.5px ink ring; on dark
-  sections a white button / white ring. Home .pill now uses the same "stitched on" edge as .cta.solid
-  (owner, Nov 2026: the white 4-hole "sewn button" icon looked off and was removed). Sewing animations (shared CSS block
+  sections a white button / white ring. Home .pill keeps the "sewn button" (owner wanted it back). Outline buttons
+  (.cta.ghost, all pages) are now "spool roll" (owner, Nov 2026, replaced white + needle-run underline):
+  cream #f2eee6 pill with a hairline ring, the arrow in a 2rem ink circle (class .sw-rl, added by the
+  button script when the .arr is visible) that rolls in on first view and on hover/tap. Sewing animations (shared CSS block
   "BUTTONS" + small script in each page, plays on first view and on
   hover/tap, no per-scroll work): .cta.solid "stitched on" (white dashed
-  stitch sews around the edge), .cta.ghost "needle run" (a needle leaves a
-  stitched line under the words), .pill "sewn button" (4-hole button icon,
+  stitch sews around the edge), .cta.ghost "spool roll" (arrow circle rolls in), .pill "sewn button" (4-hole button icon,
   thread crosses its holes). Owner asked for slower motion: stitch 2.6 s,
   needle 2.2 s, sewn button 1.4 s turn + 1 s per thread. Filter tabs, quote-form chips and Mockup studio
   buttons are rounded too, without animation.
@@ -91,10 +92,13 @@ language with short, numbered steps.
   1. Hero: headline, buttons (outline "Design assistance" -> design.html (top), outline
      "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" -> #contact),
      then the PHOTO SPREAD (owner, Nov 2026; replaced the clothing rail, which is saved in
-     saved/clothing-rail/ with a README to bring it back): five Unsplash stock photos of trendy pieces
-     being made (denim stack, sewing a jacket, denim under the needle (centre, largest), acid-wash/tie-dye
-     tees, washed denim) in images/stock/, staggered heights, inner dashed "stitch" frame, deal in once on
-     load (transform/opacity); phone shows the middle three. The quick-quote window (#quoteModal) went
+     saved/clothing-rail/ with a README to bring it back): five photos "that show what we do and what we
+     can do", all from ONE matching studio set (images/studio-set/hero-*.webp, Higgsfield): model in a navy
+     golf polo + cream chinos (no face), hands sewing sage fabric, a clothing collection on a rail (centre,
+     largest), embroidery hoop with a green diamond emblem, model in an acid-wash tee + wide cargo pants
+     (no face). Staggered heights, inner dashed stitch frame, deal in once on load. Phone: all five in a
+     swipeable row (scroll-snap). The owner rejected mixed stock photos ("different studios") and a single
+     photo. The quick-quote window (#quoteModal) went
      with the rail. Then the three steps (Send your idea, Approve your sample, Wear it) in a row (stacked
      on phone) and "No
      minimum order · Design help included". The sewing machine hero was replaced and is saved in
@@ -108,12 +112,11 @@ language with short, numbered steps.
      Mockups" -> design.html#studio), Cut & sew (owner, Nov 2026: straight to
      the point; kicker "Custom apparel", heading "Cut & *sew*.", lead "Bring your own pattern, or
      we'll draft one with you. Pick from a wide range of fabrics, approve a sample, and we produce it at
-     any quantity." (.hs-lead), pill "Start cut & sew" -> brand.html. Animation (owner asked for
-     something more graphic/3D): .cs3 scene, all CSS, scroll-paced on the --hs view timeline (range
-     entry 5% cover 50%): a denim sheet (images/stock/denim-texture.webp) lies flat with the pattern
-     marked in dashes, scissors cut round the front, the front + two sleeves (clip-path pieces) lift off in
-     3D, stand up and join into a tee, then cream seam stitches appear. Normal styles = finished tee.
-     Fallback plays once (3.6 s) on .hs.in), Our Blanks (blank cards fan out into a
+     any quantity." (.hs-lead), pill "Start cut & sew" -> brand.html. Animation (owner: "cute and
+     comprehensive"; replaced a 3D denim one they didn't like): .ck storyboard of five cute inline-SVG cards
+     on a dashed thread (01 Your pattern, 02 Pick a fabric, 03 We cut, 04 We sew (smiling sewing machine),
+     05 Ready to wear (blinking tee + heart)); cards pop in one by one on the --hs scroll timeline, small idle
+     loops run only while on screen (.ck.play); phone: 3 + 2 grid), Our Blanks (blank cards fan out into a
      hand, photos from images/thumbs/, "Browse catalogue" ->
      teams.html#catalogue). Not pinned; the fan is home page only.
   3. "Made by us" (#made, white, wide): animated collage of real client work in
@@ -231,6 +234,22 @@ language with short, numbered steps.
   under the Process heading. Never as catalogue products, portfolio or client work. Unsplash blocks
   direct downloads from the cloud session; use the images.unsplash.com/photo-<id> link instead.
   Real studio photos of the owner's own floor would be even better later.
+
+## STUDIO SET (site mood images, Nov 2026)
+- images/studio-set/: hero-polo-model, hero-sewing, hero-collection (880x1100), hero-embroidery,
+  hero-streetwear-model (home hero); hoodie-sage, varsity-black (880x1100), cargo-khaki, tee-acid-wash
+  (720x960), team-kit (green polo + white tee stack on an oak table), design-table (designer's table with
+  a white tee, swatches, ruler, tee sketch). AI-generated with Higgsfield (model z_image, ~0.15 credit
+  each; the free plan blocks gpt_image/recraft and allows one job at a time). Mood images only, never
+  shown as catalogue products, prices or client work.
+- Shared prompt style: "Editorial apparel product photograph. [garment] hangs on a light-oak wooden
+  hanger from a thin matte black clothing rail. Background: plain warm light-grey plaster wall, seamless
+  and empty. Soft diffused daylight from the left, gentle soft shadow on the wall to the right ... Clean
+  minimalist studio, muted natural colour grade. No people, no logos, no text. Photorealistic."
+- People in the set are always cropped below the chin (no faces).
+- Used on: home hero (5 hero-*), teams.html and design.html hero photo on the right (.ph-grid / .ph-vis; under
+  the text below 1024px), brand.html a 3-photo row under the services (.set3) and the varsity photo
+  under "How an order comes together" (.pr-ph).
 
 ## MOCKUPS & VISUALS WITH HIGGSFIELD
 Use the Higgsfield connector for image generation and editing when it's

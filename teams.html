@@ -429,6 +429,19 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .ph .facts dd{margin-top:0.25rem;font-size:1rem}
 @media (min-width:640px){.ph h1{font-size:4rem}.ph .facts{grid-template-columns:repeat(3,1fr)}}
 @media (min-width:1024px){.ph{padding:12rem 3rem 6rem}.ph h1{font-size:5.5rem}}
+/* page hero photo (owner, Nov 2026: "make the other pages more full"): one photo from the matching studio set
+   (images/studio-set/), right of the text on wide screens, under it on iPad portrait and phone */
+.ph-vis{position:relative;margin:3rem 0 0;max-width:26rem;aspect-ratio:3/4;border-radius:0.75rem;overflow:clip;background:#e6e7ea;box-shadow:0 1.4rem 2.6rem -1.6rem rgba(25,25,23,0.45)}
+.ph-vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph-vis::after{content:"";position:absolute;inset:0.55rem;border:1px dashed rgba(255,255,255,0.6);border-radius:0.45rem;pointer-events:none}
+@media (max-width:767px){.ph-vis{max-width:none;aspect-ratio:4/3}}
+@media (min-width:1024px){
+  .ph .container.ph-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,24rem);column-gap:clamp(2.5rem,5vw,5rem);align-items:start}
+  .ph-grid>*{grid-column:1}
+  .ph-grid>.ph-vis{grid-column:2;grid-row:1 / span 8;align-self:center;margin:0;max-width:none}
+  .ph-grid h1{font-size:clamp(3.25rem,5.4vw,5rem)}
+}
+
 .offer{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem 2rem}
 @media (min-width:640px){.offer{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:1024px){.offer.four{grid-template-columns:repeat(4,minmax(0,1fr))}.offer.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -512,18 +525,18 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .cv{content-visibility:auto;contain-intrinsic-size:auto 60rem}
 .cv-all .cv{content-visibility:visible}
 /* ===== BUTTONS: rounded, forest green, sewing animations (owner, Nov 2026) =====
-   main .cta.solid = "stitched on" (dashed stitch sews around the edge), outline .cta.ghost = "needle run"
-   (a needle leaves a stitched line under the words), home .pill = "sewn button" (thread crosses a 4-hole button) */
+   main .cta.solid = "stitched on" (dashed stitch sews around the edge), outline .cta.ghost = "spool roll"
+   (the arrow circle rolls in), home .pill = "sewn button" (thread crosses a 4-hole button) */
 :root{--forest:#2f4a3a;--forest-d:#263d30}
 .cta{position:relative;isolation:isolate;border-radius:999px;padding:0.95rem 1.75rem;font-size:0.9375rem;font-weight:500;text-transform:none;letter-spacing:0.01em;overflow:hidden;-webkit-tap-highlight-color:transparent;transition:background-color .3s,color .3s,transform .35s var(--ease),box-shadow .35s var(--ease)}
 .cta:active,.cta.sw-press{transform:scale(0.97)}
 .cta.solid{background:var(--forest);color:#fff;box-shadow:0 0.7rem 1.4rem -0.8rem rgba(25,25,23,0.55)}
-.cta.ghost{border:0;background:#fff;color:var(--ink,#191917);box-shadow:inset 0 0 0 1.5px #191917}
+.cta.ghost{border:0;background:#f2eee6;color:var(--ink,#191917);box-shadow:inset 0 0 0 1px rgba(25,25,23,0.22)}
 .cta.dark.solid{background:#fff;color:#191917;box-shadow:0 0.7rem 1.4rem -0.8rem rgba(0,0,0,0.6)}
 .cta.dark.ghost{border:0;background:transparent;color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,0.85)}
 @media (hover:hover) and (min-width:769px){
   .cta.solid:hover{background:var(--forest-d)}
-  .cta.ghost:hover{background:#fff;color:#191917}
+  .cta.ghost:hover{background:#e9e3d6;color:#191917}
   .cta.dark.solid:hover{background:#f2eee6}
   .cta.dark.ghost:hover{background:rgba(255,255,255,0.08);color:#fff}
   .cta:hover .arr{transform:translateX(0.3rem)}
@@ -540,16 +553,14 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .cta.dark .sw-st .sl{stroke:rgba(25,25,23,0.55)}
 .sw-st .mk{fill:none;stroke:#fff;stroke-width:5}
 .sw-on .sw-st .mk{stroke-dashoffset:0!important;transition:stroke-dashoffset 2.6s cubic-bezier(.45,0,.25,1)}
-/* needle run */
-.sw-nd{position:relative;display:inline-block}
-.sw-nd .sw-seam{position:absolute;left:0;right:0;bottom:-0.4rem;height:2px;overflow:hidden;pointer-events:none}
-.sw-nd .sw-seam i{position:absolute;inset:0;background:repeating-linear-gradient(90deg,currentColor 0 5px,transparent 5px 9px);transform:translateX(-101%)}
-.sw-on .sw-nd .sw-seam i{transform:none;transition:transform 2.2s cubic-bezier(.45,0,.2,1)}
-.sw-nd .sw-ndl{position:absolute;bottom:-0.5rem;left:0;width:0.5rem;height:1.2rem;opacity:0;pointer-events:none}
-.sw-nd .sw-ndl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1.5px;margin-left:-0.75px;background:currentColor;border-radius:1px}
-.sw-nd .sw-ndl::after{content:"";position:absolute;left:50%;top:0.15rem;width:3px;height:5px;margin-left:-1.5px;border:1px solid currentColor;border-radius:2px}
-.sw-run .sw-nd .sw-ndl{animation:swNd 2.2s cubic-bezier(.45,0,.2,1) forwards}
-@keyframes swNd{0%{opacity:1;transform:translateX(-0.25rem)}10%{transform:translateX(calc(var(--nw,6rem)*0.1)) translateY(0.2rem)}20%{transform:translateX(calc(var(--nw,6rem)*0.2))}30%{transform:translateX(calc(var(--nw,6rem)*0.3)) translateY(0.2rem)}40%{transform:translateX(calc(var(--nw,6rem)*0.4))}50%{transform:translateX(calc(var(--nw,6rem)*0.5)) translateY(0.2rem)}60%{transform:translateX(calc(var(--nw,6rem)*0.6))}70%{transform:translateX(calc(var(--nw,6rem)*0.7)) translateY(0.2rem)}80%{transform:translateX(calc(var(--nw,6rem)*0.8))}90%{opacity:1;transform:translateX(calc(var(--nw,6rem)*0.9)) translateY(0.2rem)}100%{opacity:0;transform:translateX(var(--nw,6rem))}}
+/* spool roll (outline buttons; owner, Nov 2026, replaced the "needle run"): a soft cream pill; the arrow sits in a
+   small ink circle that rolls in like a spool of thread when the button first shows, and on hover/tap */
+.cta.ghost.sw-rl{padding-right:0.5rem;gap:0.85rem}
+.sw-rl .arr{display:inline-grid;place-items:center;flex:none;width:2rem;height:2rem;border-radius:50%;background:var(--ink,#191917);color:#fff;font-size:0.875rem;line-height:1;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.cta.dark.ghost.sw-rl .arr{background:#fff;color:#191917}
+.sw-rl.sw-on .arr{animation:swRoll 1.5s cubic-bezier(.2,.75,.15,1) both}
+@keyframes swRoll{from{opacity:0;transform:translateX(calc(var(--rw,8rem) * -1)) rotate(-540deg)}18%{opacity:1}}
+@media (hover:hover){.cta.ghost.sw-rl:hover .arr{transform:translateX(0.2rem) rotate(-8deg)}}
 /* sewn button (home pills) */
 .pill{background:var(--forest)}
 .pill .sw-sb{width:1.45rem;height:1.45rem;flex:none;margin-left:-0.35rem;transition:transform 1.4s var(--ease)}
@@ -559,7 +570,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .sw-sb .t2{transition-delay:.75s}
 .sw-on .sw-sb{transform:rotate(90deg)}
 .sw-on .sw-sb .t{stroke-dashoffset:0}
-@media (prefers-reduced-motion:reduce){.cta,.pill,.sw-st .mk,.sw-seam i,.sw-sb,.sw-sb .t{transition:none!important;animation:none!important}.sw-ndl{display:none}}
+@media (prefers-reduced-motion:reduce){.cta,.pill,.sw-st .mk,.sw-seam i,.sw-sb,.sw-sb .t{transition:none!important;animation:none!important}.sw-rl .arr{animation:none!important}}
 </style>
 </head>
 <body id="top">
@@ -578,7 +589,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 
 <main>
 <section class="ph">
-  <div class="container">
+  <div class="container ph-grid">
     <a class="back" href="index.html">← Home</a>
     <div data-anim="fade"><span class="eyebrow">For teams &amp; events</span></div>
     <h1 data-anim="lines" data-stagger="120">Uniforms and merch, <span class="accent">simply</span> made.</h1>
@@ -589,6 +600,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
       <div><dt>1–5 pieces</dt><dd>Ready 2–3 days after sample approval</dd></div>
       <div><dt>Bulk orders</dt><dd>Lower price per piece</dd></div>
     </dl>
+    <figure class="ph-vis" data-anim="fadeUp" data-delay="400"><img src="images/studio-set/team-kit.webp" width="720" height="960" alt="Forest green polo on a hanger beside a stack of folded white tees" decoding="async" fetchpriority="high"></figure>
   </div>
 </section>
 <!-- ===== CATALOGUE ===== -->
@@ -1065,18 +1077,15 @@ if(grid){
   function stitch(b){const w=b.offsetWidth,h=b.offsetHeight;if(!w||!h)return false;const old=b.querySelector("svg.sw-st");if(old&&old.dataset.w==w&&old.dataset.h==h)return true;if(old)old.remove();
     const i=4.5,r=(h-2*i)/2,P=Math.ceil(2*(w-2*i-2*r)+2*Math.PI*r),id="swm"+(uid++);
     b.insertAdjacentHTML("beforeend",`<svg class="sw-st" data-w="${w}" data-h="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true"><defs><mask id="${id}" maskUnits="userSpaceOnUse"><rect class="mk" x="${i}" y="${i}" width="${w-2*i}" height="${h-2*i}" rx="${r}" style="stroke-dasharray:${P};stroke-dashoffset:${P}"/></mask></defs><rect class="sl" x="${i}" y="${i}" width="${w-2*i}" height="${h-2*i}" rx="${r}" mask="url(#${id})"/></svg>`);return true}
-  function wrap(b){if(b.querySelector(".sw-nd"))return;const nd=document.createElement("span");nd.className="sw-nd";
-    [...b.childNodes].forEach(n=>{if(n.nodeType===1&&(n.classList.contains("arr")||n.tagName==="svg"))return;nd.appendChild(n)});
-    if(!nd.textContent.trim())return;nd.insertAdjacentHTML("beforeend",'<span class="sw-seam" aria-hidden="true"><i></i></span><span class="sw-ndl" aria-hidden="true"></span>');b.insertBefore(nd,b.firstChild)}
-  function kind(b){return b.classList.contains("pill")?"sb":b.classList.contains("solid")?"st":b.classList.contains("ghost")?"nd":""}
+  function kind(b){return b.classList.contains("pill")?"sb":b.classList.contains("solid")?"st":b.classList.contains("ghost")?"rl":""}
   function play(b){const k=b._sw;if(!k)return;
     if(k==="st"){if(!stitch(b))return;b.classList.remove("sw-on");void b.offsetWidth;b.classList.add("sw-on")}
-    else if(k==="nd"){const nd=b.querySelector(".sw-nd");if(!nd)return;nd.style.setProperty("--nw",nd.offsetWidth+"px");b.classList.remove("sw-on","sw-run");void b.offsetWidth;b.classList.add("sw-on","sw-run");clearTimeout(b._swt);b._swt=setTimeout(()=>b.classList.remove("sw-run"),2300)}
+    else if(k==="rl"){if(!b.classList.contains("sw-rl"))return;b.style.setProperty("--rw",Math.max(60,b.offsetWidth-40)+"px");b.classList.remove("sw-on");void b.offsetWidth;b.classList.add("sw-on")}
     else{b.classList.remove("sw-on");void b.offsetWidth;b.classList.add("sw-on")}}
   const io="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&e.target.offsetWidth){io.unobserve(e.target);setTimeout(()=>play(e.target),250)}}),{rootMargin:"0px 0px -12% 0px"}):null;
   function setup(b){const k=kind(b);if(!k)return;
     if(k==="sb"&&!b.querySelector(".sw-sb"))b.insertAdjacentHTML("afterbegin",SB);
-    if(k==="nd")wrap(b);
+    if(k==="rl"&&b.querySelector(".arr")&&getComputedStyle(b.querySelector(".arr")).display!=="none")b.classList.add("sw-rl");
     if(k==="st"&&b._sw&&!b.querySelector("svg.sw-st")&&b.classList.contains("sw-on")){stitch(b)}
     if(b._sw)return;b._sw=k;
     if(reduce){if(k==="st")stitch(b);b.classList.add("sw-on");return}
