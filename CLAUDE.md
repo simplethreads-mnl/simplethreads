@@ -229,6 +229,8 @@ language with short, numbered steps.
 - Playbook: .claude/skills/web-studio/SKILL.md (stack choice, design, logo,
   speed, SEO, stock photos). Starter prompt for new projects:
   prompts/future-project-prompt.md. Both are kept off the live site.
+- No black-and-white photos on the site (owner, Nov 2026); use colour versions. Exception pending: the
+  client "wings" tee in the home collage is a real B&W photo (ask the owner for a colour original).
 - Stock photos (owner asked for them, Nov 2026): free Unsplash photos in images/stock/ (credits and
   source links in saved/stock-photos/CREDITS.md). Used for mood only: home hero spread, Cut & sew
   section, a 3-photo strip under About (pattern cutting, sewing machine, fabric rolls) and one photo

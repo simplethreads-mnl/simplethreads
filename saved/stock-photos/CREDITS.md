@@ -3,7 +3,7 @@
 | File (images/stock/) | Unsplash photo | Photographer |
 |---|---|---|
 | pattern-cutting.webp | unsplash.com/photos/oTvBFTB0wow | Erwin Bosman |
-| sewing-machine.webp | unsplash.com/photos/tabzu_kbVs0 | J Williams |
+| sewing-machine.webp (colour, replaced the B&W one) | unsplash.com/photos/vwUmBoT5_eA | Bozhin Karaivanov |
 | fabric-rolls.webp | unsplash.com/photos/kgC99X3WH1w | Ethan Bodnar |
 | sewing-detail.webp | unsplash.com/photos/TAZUc51iPUM | Alexander Grey |
 
