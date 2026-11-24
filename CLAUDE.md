@@ -91,12 +91,12 @@ language with short, numbered steps.
 - index.html: home page, in this order (owner, Nov 2026):
   1. Hero: headline, buttons (outline "Design assistance" -> design.html (top), outline
      "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" -> #contact),
-     then the PHOTO SPREAD (owner, Nov 2026; replaced the clothing rail, which is saved in
-     saved/clothing-rail/ with a README to bring it back): five apparel-focused Unsplash photos (owner:
-     the clothes must be the subject, no vague street/people shots): pastel hoodies on a rail, rust
-     bomber on a hanger, denim trucker jacket (centre, largest), white pique polo on a hanger (owner prefers polo/golf wear over a suit), sage tees on
-     wooden hangers, in images/stock/, staggered heights, inner dashed "stitch" frame, deal in once on
-     load (transform/opacity); phone shows the middle three. The quick-quote window (#quoteModal) went
+     then the HERO PHOTO (owner, Nov 2026; replaced the clothing rail, which is saved in
+     saved/clothing-rail/ with a README to bring it back): ONE wide apparel photo, hoodies in orange,
+     yellow, sage, blue and lilac on a black rail (Unsplash, Kajetan Sumila; images/stock/hero-hoodies.webp
+     1600 + -900 for phones via srcset; 16:9, 4:3 on phone, inner dashed stitch frame, deals in once).
+     The owner rejected mixed stock photos side by side ("they look like different studios"): only put
+     photos next to each other if they come from the same shoot. The quick-quote window (#quoteModal) went
      with the rail. Then the three steps (Send your idea, Approve your sample, Wear it) in a row (stacked
      on phone) and "No
      minimum order · Design help included". The sewing machine hero was replaced and is saved in

@@ -6,8 +6,4 @@
 | sewing-machine.webp | unsplash.com/photos/tabzu_kbVs0 | J Williams |
 | fabric-rolls.webp | unsplash.com/photos/kgC99X3WH1w | Ethan Bodnar |
 | sewing-detail.webp | unsplash.com/photos/TAZUc51iPUM | Alexander Grey |
-| apparel-hoodies.webp | unsplash.com/photos/RYHvzYdeoCI | (see photo page) |
-| apparel-bomber.webp | unsplash.com/photos/Fg15LdqpWrs | (see photo page) |
-| apparel-denim-jacket.webp | unsplash.com/photos/QRN47la37gw | (see photo page) |
-| apparel-polo.webp | unsplash.com/photos/F5i3PZXYkvY | (see photo page) |
-| apparel-tees.webp (cropped to leave out a printed neck label) | unsplash.com/photos/xPJYL0l5Ii8 | (see photo page) |
+| hero-hoodies.webp, hero-hoodies-900.webp | unsplash.com/photos/apkQDeIvX18 | Kajetan Sumila |
