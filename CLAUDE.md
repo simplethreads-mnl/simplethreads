@@ -67,12 +67,13 @@ language with short, numbered steps.
   pills, sentence case, "→" arrow. Main buttons (.cta.solid, home .pill) are
   forest green #2f4a3a (hover #263d30), the ONE accent colour on the site;
   outline buttons (.cta.ghost) are white with a 1.5px ink ring; on dark
-  sections a white button / white ring. Home .pill now uses the same "stitched on" edge as .cta.solid
-  (owner, Nov 2026: the white 4-hole "sewn button" icon looked off and was removed). Sewing animations (shared CSS block
+  sections a white button / white ring. Home .pill keeps the "sewn button" (owner wanted it back). Outline buttons
+  (.cta.ghost, all pages) are now "spool roll" (owner, Nov 2026, replaced white + needle-run underline):
+  cream #f2eee6 pill with a hairline ring, the arrow in a 2rem ink circle (class .sw-rl, added by the
+  button script when the .arr is visible) that rolls in on first view and on hover/tap. Sewing animations (shared CSS block
   "BUTTONS" + small script in each page, plays on first view and on
   hover/tap, no per-scroll work): .cta.solid "stitched on" (white dashed
-  stitch sews around the edge), .cta.ghost "needle run" (a needle leaves a
-  stitched line under the words), .pill "sewn button" (4-hole button icon,
+  stitch sews around the edge), .cta.ghost "spool roll" (arrow circle rolls in), .pill "sewn button" (4-hole button icon,
   thread crosses its holes). Owner asked for slower motion: stitch 2.6 s,
   needle 2.2 s, sewn button 1.4 s turn + 1 s per thread. Filter tabs, quote-form chips and Mockup studio
   buttons are rounded too, without animation.
@@ -92,8 +93,8 @@ language with short, numbered steps.
      "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" -> #contact),
      then the PHOTO SPREAD (owner, Nov 2026; replaced the clothing rail, which is saved in
      saved/clothing-rail/ with a README to bring it back): five Unsplash stock photos of trendy pieces
-     being made (denim stack, sewing a jacket, denim under the needle (centre, largest), acid-wash/tie-dye
-     tees, washed denim) in images/stock/, staggered heights, inner dashed "stitch" frame, deal in once on
+     being made / trendy outfits (formal pinstripe suit, streetwear sweatshirt + cargos, denim under the
+     needle (centre, largest), casual knit vest + jeans, washed denim; owner swapped three in Nov 2026) in images/stock/, staggered heights, inner dashed "stitch" frame, deal in once on
      load (transform/opacity); phone shows the middle three. The quick-quote window (#quoteModal) went
      with the rail. Then the three steps (Send your idea, Approve your sample, Wear it) in a row (stacked
      on phone) and "No
@@ -108,12 +109,11 @@ language with short, numbered steps.
      Mockups" -> design.html#studio), Cut & sew (owner, Nov 2026: straight to
      the point; kicker "Custom apparel", heading "Cut & *sew*.", lead "Bring your own pattern, or
      we'll draft one with you. Pick from a wide range of fabrics, approve a sample, and we produce it at
-     any quantity." (.hs-lead), pill "Start cut & sew" -> brand.html. Animation (owner asked for
-     something more graphic/3D): .cs3 scene, all CSS, scroll-paced on the --hs view timeline (range
-     entry 5% cover 50%): a denim sheet (images/stock/denim-texture.webp) lies flat with the pattern
-     marked in dashes, scissors cut round the front, the front + two sleeves (clip-path pieces) lift off in
-     3D, stand up and join into a tee, then cream seam stitches appear. Normal styles = finished tee.
-     Fallback plays once (3.6 s) on .hs.in), Our Blanks (blank cards fan out into a
+     any quantity." (.hs-lead), pill "Start cut & sew" -> brand.html. Animation (owner: "cute and
+     comprehensive"; replaced a 3D denim one they didn't like): .ck storyboard of five cute inline-SVG cards
+     on a dashed thread (01 Your pattern, 02 Pick a fabric, 03 We cut, 04 We sew (smiling sewing machine),
+     05 Ready to wear (blinking tee + heart)); cards pop in one by one on the --hs scroll timeline, small idle
+     loops run only while on screen (.ck.play); phone: 3 + 2 grid), Our Blanks (blank cards fan out into a
      hand, photos from images/thumbs/, "Browse catalogue" ->
      teams.html#catalogue). Not pinned; the fan is home page only.
   3. "Made by us" (#made, white, wide): animated collage of real client work in
