@@ -13,3 +13,4 @@
 | sewing-machine.webp | unsplash.com/photos/tabzu_kbVs0 | J Williams |
 | fabric-rolls.webp | unsplash.com/photos/kgC99X3WH1w | Ethan Bodnar |
 | sewing-detail.webp | unsplash.com/photos/TAZUc51iPUM | Alexander Grey |
+| denim-texture.webp (cropped, brightened) | unsplash.com/photos/WXuDzSIxiUo | Saifee Art |

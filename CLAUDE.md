@@ -55,7 +55,7 @@ language with short, numbered steps.
 - Mood: hushed, editorial, monochrome, lots of white space. Real product and
   portfolio photos are the only colour on the page.
 - Colours: ink #191917; white #ffffff; light grey sections #f3f3f3; muted
-  text rgba(25,25,23,0.6); faint rgba(25,25,23,0.3); hairlines
+  text rgba(25,25,23,0.74) (owner, Nov 2026: subtexts more visible; was 0.6); faint rgba(25,25,23,0.3); hairlines
   rgba(25,25,23,0.2). Cream #f2eee6 is used for profile and print assets.
 - Type: Playfair Display for headings, prices, numbers, and italic accent
   words (one italic word per heading, e.g. "Choose your *blank*."). Satoshi
@@ -108,8 +108,12 @@ language with short, numbered steps.
      Mockups" -> design.html#studio), Cut & sew (owner, Nov 2026: straight to
      the point; kicker "Custom apparel", heading "Cut & *sew*.", lead "Bring your own pattern, or
      we'll draft one with you. Pick from a wide range of fabrics, approve a sample, and we produce it at
-     any quantity.", pill "Start cut & sew" -> brand.html; stock photos fabric-range + pattern-drafting
-     part and a twin-needle seam sews between them), Our Blanks (blank cards fan out into a
+     any quantity." (.hs-lead), pill "Start cut & sew" -> brand.html. Animation (owner asked for
+     something more graphic/3D): .cs3 scene, all CSS, scroll-paced on the --hs view timeline (range
+     entry 5% cover 50%): a denim sheet (images/stock/denim-texture.webp) lies flat with the pattern
+     marked in dashes, scissors cut round the front, the front + two sleeves (clip-path pieces) lift off in
+     3D, stand up and join into a tee, then cream seam stitches appear. Normal styles = finished tee.
+     Fallback plays once (3.6 s) on .hs.in), Our Blanks (blank cards fan out into a
      hand, photos from images/thumbs/, "Browse catalogue" ->
      teams.html#catalogue). Not pinned; the fan is home page only.
   3. "Made by us" (#made, white, wide): animated collage of real client work in

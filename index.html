@@ -36,7 +36,7 @@ html.lenis,html.lenis body{height:auto}.lenis:not(.lenis-autoToggle).lenis-stopp
 /* ===== TOKENS ===== */
 :root{
   --canvas:#ffffff;--surface-grey:#f2eee6;--surface-dark:#191917;
-  --ink:#191917;--ink-muted:rgba(25,25,23,0.6);--ink-faint:rgba(25,25,23,0.3);
+  --ink:#191917;--ink-muted:rgba(25,25,23,0.74);--ink-faint:rgba(25,25,23,0.3);
   --on-dark:#ffffff;--on-dark-muted:rgba(255,255,255,0.6);--on-dark-faint:rgba(255,255,255,0.3);
   --line:rgba(25,25,23,0.2);--line-strong:rgba(25,25,23,0.4);--line-on-dark:rgba(255,255,255,0.2);
   --serif:"Playfair Display",Georgia,"Times New Roman",serif;
@@ -74,7 +74,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 }
 
 /* ===== PRIMITIVES ===== */
-.eyebrow{display:inline-flex;align-items:center;gap:0.75rem;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.2em;color:var(--ink-muted)}
+.eyebrow{display:inline-flex;align-items:center;gap:0.75rem;font-size:0.8125rem;text-transform:uppercase;letter-spacing:0.2em;color:var(--ink-muted)}
 .eyebrow::before{content:"";width:2rem;height:1px;background:var(--ink-muted)}
 .eyebrow.dark{color:var(--on-dark-muted)}.eyebrow.dark::before{background:var(--on-dark-muted)}
 .sh .eyebrow{margin-bottom:1.5rem}
@@ -206,7 +206,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 .h3-txt{opacity:0.45;transition:opacity .6s var(--ease)}
 .h3-step.on .h3-txt{opacity:1}
 .h3-step.on .h3-dot{color:var(--ink);transform:scale(1.15)}
-.h3-foot{margin-top:2.5rem;text-align:center;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--ink-muted)}
+.h3-foot{margin-top:2.5rem;text-align:center;font-size:0.8125rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--ink-muted)}
 @media (min-width:900px){
   .h3{padding:10rem 3rem 5rem}
   .h3 h1{font-size:5rem}
@@ -604,6 +604,28 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .hs-stitch line{stroke:var(--ink);stroke-width:1.6;stroke-dasharray:7 6;vector-effect:non-scaling-stroke}
 @keyframes hsSewW{from,45%{transform:translateY(-100%)}}
 @keyframes hsSewI{from,45%{transform:translateY(100%)}}
+/* 2. cut & sew (owner, Nov 2026: "more graphic, like a 3D animation"): a denim sheet lies flat on the table with
+   the pattern marked, scissors cut round the front, the pieces lift off in 3D, stand up and join into a tee, then
+   the seams are stitched. Scroll-paced like the others; normal styles = the finished tee. */
+.cs3{font-size:min(clamp(0.62rem,1.9vh,1.15rem),3.4vw);perspective:70em;perspective-origin:50% 35%}
+.cs-stage{position:absolute;left:50%;top:50%;width:26em;height:22em;margin:-11em 0 0 -13em;transform-style:preserve-3d;transform:rotateX(8deg) rotateY(-16deg);animation-name:csStage}
+.cs-sheet{position:absolute;left:1.5em;top:2.5em;width:23em;height:18em;border-radius:0.25em;background:linear-gradient(rgba(10,16,30,0.12),rgba(10,16,30,0.12)),url(images/stock/denim-texture.webp) 0 0/24em;box-shadow:0 2.2em 3em -1.6em rgba(25,25,23,0.55);opacity:0;animation-name:csSheet}
+.cs-sheet::after{content:"";position:absolute;inset:0.6em;border:1px dashed rgba(255,255,255,0.35);border-radius:0.15em}
+.cs-p{position:absolute;transform:translate3d(0,0,0) rotate(0deg) rotateY(var(--ry,0deg));animation-name:csP}
+.cs-p svg{position:absolute;inset:0;width:100%;height:100%}
+.cs-p polygon{fill:none;stroke:rgba(255,255,255,0.8);stroke-width:1.5;stroke-dasharray:5 4;vector-effect:non-scaling-stroke}
+.cs-body{left:7.5em;top:5em;width:11em;height:14em;clip-path:polygon(0% 8%,32% 0%,38% 0%,41% 4%,45% 6.5%,50% 7.5%,55% 6.5%,59% 4%,62% 0%,68% 0%,100% 8%,100% 100%,0% 100%);background:linear-gradient(90deg,rgba(0,0,0,0.22),rgba(0,0,0,0) 28%,rgba(255,255,255,0.06) 50%,rgba(0,0,0,0) 72%,rgba(0,0,0,0.22)),url(images/stock/denim-texture.webp) 0 0/15em;--sx:-4em;--sy:-1.5em;--sr:0deg}
+.cs-sll,.cs-slr{top:5.6em;width:5.2em;height:5em;background:linear-gradient(rgba(0,0,0,0.16),rgba(0,0,0,0.16)),url(images/stock/denim-texture.webp) -3em -2em/15em}
+.cs-sll{left:2.5em;clip-path:polygon(100% 8%,100% 90%,22% 100%,0% 62%);transform-origin:100% 40%;--ry:-20deg;--sx:14em;--sy:-2.3em;--sr:-8deg}
+.cs-slr{left:18.3em;clip-path:polygon(0% 8%,0% 90%,78% 100%,100% 62%);transform-origin:0 40%;--ry:20deg;--sx:-1.8em;--sy:6.2em;--sr:10deg}
+.cs-seam{position:absolute;inset:0;width:100%;height:100%;overflow:visible;transform:translateZ(0.06em);animation-name:csSeam}
+.cs-seam path{fill:none;stroke:#f2eee6;stroke-width:1.6;stroke-dasharray:3.4 2.6;stroke-linecap:round}
+.cs-sc{position:absolute;left:0;top:0;width:2.4em;height:2.4em;margin:-1.2em 0 0 -1.2em;opacity:0;animation-name:csSc}
+@keyframes csStage{0%,40%{transform:rotateX(58deg) rotateY(0deg) rotateZ(-12deg) scale(0.9)}}
+@keyframes csSheet{0%,36%{opacity:1;transform:none}52%{opacity:0;transform:translateZ(-4em)}}
+@keyframes csP{0%,36%{transform:translate3d(var(--sx),var(--sy),0) rotate(var(--sr)) rotateY(0deg)}58%{transform:translate3d(var(--sx),var(--sy),4em) rotate(var(--sr)) rotateY(0deg)}}
+@keyframes csSeam{0%,78%{opacity:0}}
+@keyframes csSc{0%,5%{opacity:0;transform:translate3d(3.5em,3em,0.4em) rotate(90deg)}9%{opacity:1;transform:translate3d(3.5em,4.5em,0.4em) rotate(90deg)}19%{transform:translate3d(3.5em,17.5em,0.4em) rotate(90deg)}21%{transform:translate3d(3.5em,17.5em,0.4em) rotate(0deg)}29%{transform:translate3d(14.5em,17.5em,0.4em) rotate(0deg)}31%{opacity:1;transform:translate3d(14.5em,17.5em,0.4em) rotate(-90deg)}37%{opacity:1;transform:translate3d(14.5em,6em,0.4em) rotate(-90deg)}40%,100%{opacity:0;transform:translate3d(14.5em,6em,0.4em) rotate(-90deg)}}
 /* 3. mockup: blank tee, print area appears, finished mockup slides in beside it */
 /* 3. mockup tool: a design editor. Tools slide in, a print area is dragged out, "your design here" sets in line by line, the cursor grabs a handle */
 .hs-mock{--mw:clamp(12rem,46vw,17rem)}
@@ -628,21 +650,24 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 @keyframes mkW2{from,54%{opacity:0;transform:translateY(0.6rem)}68%{opacity:1;transform:none}}
 @keyframes mkW3{from,62%{opacity:0;transform:translateY(0.6rem)}76%{opacity:1;transform:none}}
 @keyframes mkCur{from,20%{opacity:0;transform:translate(-20cqw,-18cqw)}28%{opacity:1}48%{transform:translate(-2cqw,-2cqw)}70%{transform:none}84%{transform:scale(0.9)}}
-.hs [class*="hs-"],.hs .mk-a{animation-fill-mode:both;animation-timing-function:linear}
+.hs [class*="hs-"],.hs .mk-a,.hs .cs-a{animation-fill-mode:both;animation-timing-function:linear}
 @supports (animation-timeline:view()){
   .hs-vis{view-timeline:--hs block}
   .hs-card,.hs-stitch-w,.hs-stitch,.hs-box,.mk-a{animation-timeline:--hs;animation-range:entry 30% cover 52%}
+  .cs-a{animation-timeline:--hs;animation-range:entry 5% cover 50%}
 }
 @supports not (animation-timeline:view()){
   .hs-card,.hs-stitch-w,.hs-stitch,.hs-box,.mk-a{animation-duration:1.1s;animation-timing-function:cubic-bezier(0.16,1,0.3,1);animation-play-state:paused}
   .hs.in .hs-card,.hs.in .hs-stitch-w,.hs.in .hs-stitch,.hs.in .hs-box,.hs.in .mk-a{animation-play-state:running}
+  .cs-a{animation-duration:3.6s;animation-timing-function:linear;animation-play-state:paused}
+  .hs.in .cs-a{animation-play-state:running}
 }
-@media (prefers-reduced-motion:reduce){.hs-card,.hs-stitch-w,.hs-stitch,.hs-box,.mk-a{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.hs-card,.hs-stitch-w,.hs-stitch,.hs-box,.mk-a,.cs-a{animation:none!important}}
 .hs-copy{max-width:40rem;margin:clamp(2rem,5vh,3.5rem) auto 0}
-.hs-kick{font-size:0.8125rem;color:var(--ink-muted)}
+.hs-kick{font-size:0.9375rem;color:var(--ink-muted)}
 .hs-title{margin-top:0.875rem;font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5.2vw,3.75rem);line-height:1.08;letter-spacing:-0.01em;color:var(--ink)}
-.hs-cap{margin-top:1rem;font-size:0.8125rem;line-height:1.5;color:var(--ink-muted)}
-.hs-lead{margin:1.1rem auto 0;max-width:34rem;font-size:clamp(0.9375rem,1.4vw,1.0625rem);line-height:1.6}
+.hs-cap{margin-top:1rem;font-size:0.9375rem;line-height:1.55;color:var(--ink-muted)}
+.hs-lead{margin:1.1rem auto 0;max-width:34rem;font-size:clamp(1rem,1.5vw,1.125rem);line-height:1.6;color:rgba(25,25,23,0.82)}
 .pill{display:inline-flex;align-items:center;gap:0.6rem;margin-top:2rem;padding:0.9rem 1.6rem;border-radius:999px;background:var(--ink);color:#fff;font-size:0.9375rem;font-weight:500;letter-spacing:0.01em;min-height:2.75rem;box-shadow:0 0.6rem 1.4rem -0.6rem rgba(25,25,23,0.55);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
 .pill .arr{transition:transform .35s var(--ease)}
 .pill{white-space:nowrap}
@@ -758,10 +783,15 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <section class="hs hs-grey">
-  <div class="hs-vis hs-seam">
-    <figure class="hs-card hs-l"><img src="images/stock/fabric-range.webp" width="700" height="700" loading="lazy" decoding="async" alt="Rolled fabrics in teal, white and blue"></figure>
-    <div class="hs-stitch-w" aria-hidden="true"><svg class="hs-stitch" viewBox="0 0 20 400" preserveAspectRatio="none"><line x1="6" y1="0" x2="6" y2="400"/><line x1="14" y1="0" x2="14" y2="400"/></svg></div>
-    <figure class="hs-card hs-r"><img src="images/stock/pattern-drafting.webp" width="700" height="1050" loading="lazy" decoding="async" alt="Pattern maker tracing a garment pattern piece at a work table"></figure>
+  <div class="hs-vis cs3" aria-hidden="true">
+    <div class="cs-stage cs-a">
+      <div class="cs-sheet cs-a"></div>
+      <div class="cs-p cs-body cs-a"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,8 32,0 38,0 41,4 45,6.5 50,7.5 55,6.5 59,4 62,0 68,0 100,8 100,100 0,100"/></svg></div>
+      <div class="cs-p cs-sll cs-a"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="100,8 100,90 22,100 0,62"/></svg></div>
+      <div class="cs-p cs-slr cs-a"><svg viewBox="0 0 100 100" preserveAspectRatio="none"><polygon points="0,8 0,90 78,100 100,62"/></svg></div>
+      <svg class="cs-seam cs-a" viewBox="0 0 260 220"><path d="M75 61 V101 M185 61 V101 M75 61 L110 50 M150 50 L185 61 M79 182 H181 M110 52.5 L119.6 58.1 L124.5 61.6 L130 63 L135.5 61.6 L140.4 58.1 L150 52.5"/></svg>
+      <svg class="cs-sc cs-a" viewBox="0 0 24 24"><g fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"><circle cx="5" cy="7" r="3"/><circle cx="5" cy="17" r="3"/><path d="M7.6 8.6 21 17M7.6 15.4 21 7"/></g></svg>
+    </div>
   </div>
   <div class="hs-copy" data-anim="fadeUp">
     <p class="hs-kick">Custom apparel</p>
