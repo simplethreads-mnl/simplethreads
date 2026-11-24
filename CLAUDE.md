@@ -214,6 +214,24 @@ language with short, numbered steps.
 - `.vercelignore` keeps these notes (CLAUDE.md, vercel-site-prompt.md) off
   the live website. Keep it when adding new notes files.
 
+## SEO & SITE FILES (added Nov 2026)
+- Live domain: https://simplethreadsmnl.com/ (the old simplethreadsmnl.vercel.app
+  address returns 404; never link to it). Every page has a canonical link,
+  its own meta description, Open Graph + Twitter tags with
+  images/brand/og-image.jpg (1200×630, cream, logo + stitch frame), and
+  images/brand/apple-touch-icon.png (180 px, iPad home screen).
+- JSON-LD: home page has ClothingStore (real address, phone, email only; no
+  ratings) + WebSite; inner pages have BreadcrumbList. Update it if contact
+  details change.
+- robots.txt and sitemap.xml are in the root. Add new pages to sitemap.xml.
+- vercel.json: images cached 1 day + stale-while-revalidate 7 days (so a
+  replaced photo shows within a day), plus two safety headers.
+- Playbook: .claude/skills/web-studio/SKILL.md (stack choice, design, logo,
+  speed, SEO, stock photos). Starter prompt for new projects:
+  prompts/future-project-prompt.md. Both are kept off the live site.
+- Stock photos: not used on this site on purpose; real product and client
+  photos are the brand. Stock is only for mood/texture (e.g. social posts).
+
 ## MOCKUPS & VISUALS WITH HIGGSFIELD
 Use the Higgsfield connector for image generation and editing when it's
 switched on in the chat. If it isn't available, tell the owner to tap
