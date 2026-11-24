@@ -403,6 +403,19 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .ph .facts dd{margin-top:0.25rem;font-size:1rem}
 @media (min-width:640px){.ph h1{font-size:4rem}.ph .facts{grid-template-columns:repeat(3,1fr)}}
 @media (min-width:1024px){.ph{padding:12rem 3rem 6rem}.ph h1{font-size:5.5rem}}
+/* page hero photo (owner, Nov 2026: "make the other pages more full"): one photo from the matching studio set
+   (images/studio-set/), right of the text on wide screens, under it on iPad portrait and phone */
+.ph-vis{position:relative;margin:3rem 0 0;max-width:26rem;aspect-ratio:3/4;border-radius:0.75rem;overflow:clip;background:#e6e7ea;box-shadow:0 1.4rem 2.6rem -1.6rem rgba(25,25,23,0.45)}
+.ph-vis img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph-vis::after{content:"";position:absolute;inset:0.55rem;border:1px dashed rgba(255,255,255,0.6);border-radius:0.45rem;pointer-events:none}
+@media (max-width:767px){.ph-vis{max-width:none;aspect-ratio:4/3}}
+@media (min-width:1024px){
+  .ph .container.ph-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,24rem);column-gap:clamp(2.5rem,5vw,5rem);align-items:start}
+  .ph-grid>*{grid-column:1}
+  .ph-grid>.ph-vis{grid-column:2;grid-row:1 / span 8;align-self:center;margin:0;max-width:none}
+  .ph-grid h1{font-size:clamp(3.25rem,5.4vw,5rem)}
+}
+
 .offer{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem 2rem}
 @media (min-width:640px){.offer{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:1024px){.offer.four{grid-template-columns:repeat(4,minmax(0,1fr))}.offer.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -651,12 +664,13 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 
 <main>
 <section class="ph">
-  <div class="container">
+  <div class="container ph-grid">
     <a class="back" href="index.html">← Home</a>
     <div data-anim="fade"><span class="eyebrow">Design &amp; mockups</span></div>
     <h1 data-anim="lines" data-stagger="120">See it <span class="accent">before</span> it’s made.</h1>
     <p class="lead" data-anim="words" data-stagger="16" data-delay="300">Not sure how your idea will look? Our designers turn it into print-ready artwork and realistic front-and-back mockups, so you can approve every detail before anything is printed.</p>
     <div class="page-cta" data-anim="fadeUp" data-delay="500"><a class="cta solid" href="#contact">Start a design <span class="arr">→</span></a><a class="cta ghost" href="#studio">Try the mockup studio <span class="arr">→</span></a><a class="cta ghost" href="#design">See our mockups <span class="arr">→</span></a></div>
+    <figure class="ph-vis" data-anim="fadeUp" data-delay="400"><img src="images/studio-set/design-table.webp" width="720" height="960" alt="Designer work table with a white tee, fabric swatches, a ruler and a t-shirt sketch" decoding="async" fetchpriority="high"></figure>
   </div>
 </section>
 <section class="sec">

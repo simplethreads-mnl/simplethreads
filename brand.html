@@ -403,6 +403,13 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .ph .facts dd{margin-top:0.25rem;font-size:1rem}
 @media (min-width:640px){.ph h1{font-size:4rem}.ph .facts{grid-template-columns:repeat(3,1fr)}}
 @media (min-width:1024px){.ph{padding:12rem 3rem 6rem}.ph h1{font-size:5.5rem}}
+/* matching studio-set photos (owner, Nov 2026: "more full, less blank") */
+.set3{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(0.5rem,1.4vw,1.25rem);margin-top:clamp(2.5rem,5vw,4rem)}
+.set3 figure,.pr-ph{position:relative;margin:0;aspect-ratio:3/4;border-radius:0.75rem;overflow:clip;background:#e6e7ea}
+.set3 img,.pr-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pr-ph{margin-top:2rem;max-width:20rem;aspect-ratio:4/5}
+@media (max-width:768px){.pr-ph{max-width:none;aspect-ratio:16/11}}
+
 .offer{margin-top:4rem;display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem 2rem}
 @media (min-width:640px){.offer{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (min-width:1024px){.offer.four{grid-template-columns:repeat(4,minmax(0,1fr))}.offer.three{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -721,6 +728,11 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
   <path d="M80 170 L130 170 L130 202 L80 202 Z"/>
 </g><g class="sk-stitches"></g></svg></figure></div><span class="idx">04</span><h3>Production &amp; finishing</h3><p>Printing, embroidery, labels, and packing, so your pieces arrive ready to sell.</p></article>
     </div>
+    <div class="set3" aria-label="A hoodie, cargo pants and an acid-wash tee">
+      <figure data-anim="fadeUp"><img src="images/studio-set/hoodie-sage.webp" width="720" height="960" loading="lazy" decoding="async" alt="Sage green oversized hoodie on a wooden hanger"></figure>
+      <figure data-anim="fadeUp" data-delay="90"><img src="images/studio-set/cargo-khaki.webp" width="720" height="960" loading="lazy" decoding="async" alt="Khaki wide-leg cargo pants on a wooden hanger"></figure>
+      <figure data-anim="fadeUp" data-delay="180"><img src="images/studio-set/tee-acid-wash.webp" width="720" height="960" loading="lazy" decoding="async" alt="Charcoal acid-wash oversized tee on a wooden hanger"></figure>
+    </div>
     <div class="page-cta" data-anim="fadeUp"><a class="cta ghost" href="teams.html#catalogue">Browse blanks &amp; prices <span class="arr">→</span></a></div>
   </div>
 </section>
@@ -731,6 +743,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
     <div class="s5"><div class="sticky sh">
       <div data-anim="fade"><span class="eyebrow">From idea to delivery</span></div>
       <h2 class="sh-title" data-anim="lines">How an order comes together.</h2>
+      <figure class="pr-ph" data-anim="fadeUp"><img src="images/studio-set/varsity-black.webp" width="880" height="1100" loading="lazy" decoding="async" alt="Black varsity jacket with cream sleeves on a wooden hanger"></figure>
     </div></div>
     <ol class="s7 steps">
       <li data-anim="fadeUp"><span class="idx">01</span><div class="txt"><h3>Consult</h3><p>Tell us about the brand, the garments, the quantities, and the date you need them. We’ll recommend blanks and print methods that fit the budget.</p></div></li>

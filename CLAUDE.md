@@ -91,12 +91,14 @@ language with short, numbered steps.
 - index.html: home page, in this order (owner, Nov 2026):
   1. Hero: headline, buttons (outline "Design assistance" -> design.html (top), outline
      "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" -> #contact),
-     then the HERO PHOTO (owner, Nov 2026; replaced the clothing rail, which is saved in
-     saved/clothing-rail/ with a README to bring it back): ONE wide apparel photo, hoodies in orange,
-     yellow, sage, blue and lilac on a black rail (Unsplash, Kajetan Sumila; images/stock/hero-hoodies.webp
-     1600 + -900 for phones via srcset; 16:9, 4:3 on phone, inner dashed stitch frame, deals in once).
-     The owner rejected mixed stock photos side by side ("they look like different studios"): only put
-     photos next to each other if they come from the same shoot. The quick-quote window (#quoteModal) went
+     then the PHOTO SPREAD (owner, Nov 2026; replaced the clothing rail, which is saved in
+     saved/clothing-rail/ with a README to bring it back): five photos from ONE matching studio set
+     (images/studio-set/, made with Higgsfield z_image: same warm light-grey wall, thin black rail,
+     light-oak hangers, soft light from the left, no logos/text): sage hoodie, navy golf polo with white
+     tipped collar, black/cream varsity (centre, largest), khaki cargo pants, charcoal acid-wash tee.
+     Staggered heights, inner dashed stitch frame, deal in once on load; phone shows the middle three.
+     The owner rejected mixed stock photos ("different studios") and a single photo: keep using this
+     set; new photos placed side by side must match it (same studio prompt, see SITE IMAGES below). The quick-quote window (#quoteModal) went
      with the rail. Then the three steps (Send your idea, Approve your sample, Wear it) in a row (stacked
      on phone) and "No
      minimum order · Design help included". The sewing machine hero was replaced and is saved in
@@ -232,6 +234,20 @@ language with short, numbered steps.
   under the Process heading. Never as catalogue products, portfolio or client work. Unsplash blocks
   direct downloads from the cloud session; use the images.unsplash.com/photo-<id> link instead.
   Real studio photos of the owner's own floor would be even better later.
+
+## STUDIO SET (site mood images, Nov 2026)
+- images/studio-set/: hoodie-sage, polo-navy, varsity-black (880x1100), cargo-khaki, tee-acid-wash
+  (720x960), team-kit (green polo + white tee stack on an oak table), design-table (designer's table with
+  a white tee, swatches, ruler, tee sketch). AI-generated with Higgsfield (model z_image, ~0.15 credit
+  each; the free plan blocks gpt_image/recraft and allows one job at a time). Mood images only, never
+  shown as catalogue products, prices or client work.
+- Shared prompt style: "Editorial apparel product photograph. [garment] hangs on a light-oak wooden
+  hanger from a thin matte black clothing rail. Background: plain warm light-grey plaster wall, seamless
+  and empty. Soft diffused daylight from the left, gentle soft shadow on the wall to the right ... Clean
+  minimalist studio, muted natural colour grade. No people, no logos, no text. Photorealistic."
+- Used on: home hero (5), teams.html and design.html hero photo on the right (.ph-grid / .ph-vis; under
+  the text below 1024px), brand.html a 3-photo row under the services (.set3) and the varsity photo
+  under "How an order comes together" (.pr-ph).
 
 ## MOCKUPS & VISUALS WITH HIGGSFIELD
 Use the Higgsfield connector for image generation and editing when it's

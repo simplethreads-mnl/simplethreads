@@ -6,4 +6,5 @@
 | sewing-machine.webp | unsplash.com/photos/tabzu_kbVs0 | J Williams |
 | fabric-rolls.webp | unsplash.com/photos/kgC99X3WH1w | Ethan Bodnar |
 | sewing-detail.webp | unsplash.com/photos/TAZUc51iPUM | Alexander Grey |
-| hero-hoodies.webp, hero-hoodies-900.webp | unsplash.com/photos/apkQDeIvX18 | Kajetan Sumila |
+
+images/studio-set/ is not stock: AI-generated with Higgsfield (see CLAUDE.md, STUDIO SET).
