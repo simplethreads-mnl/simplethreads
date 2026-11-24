@@ -159,8 +159,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 .pr-ph{margin-top:2rem;max-width:22rem}
 @media (max-width:768px){.pr-ph{aspect-ratio:16/10;max-width:none}}
 /* hero photo spread (owner, Nov 2026; replaced the clothing rail): trendy pieces being made, stock photos from Unsplash.
-   Five photos from ONE matching studio set showing what we do (owner, Nov 2026): golf-polo model, sewing, a collection
-   (centre, largest), embroidery, streetwear model. No faces. Phone: all five in a swipeable row. */
+   Five photos showing what we do (owner, Nov 2026): golf-polo model and streetwear model (studio set, no faces) at the
+   ends; Unsplash stock for sewing, a rail of tees (centre, largest) and an embroidery machine. Phone: swipeable row. */
 .hp{display:flex;justify-content:center;align-items:center;gap:clamp(0.6rem,1.4vw,1.25rem);width:100%;max-width:80rem;margin:clamp(2.5rem,5vw,4rem) auto 0;padding:0 1.5rem}
 .hp-f{position:relative;margin:0;flex:1 1 0;min-width:0;aspect-ratio:3/4;border-radius:0.75rem;overflow:clip;background:#e6e7ea;box-shadow:0 1.4rem 2.6rem -1.6rem rgba(25,25,23,0.45)}
 .hp-f img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -610,53 +610,29 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 .hs-stitch line{stroke:var(--ink);stroke-width:1.6;stroke-dasharray:7 6;vector-effect:non-scaling-stroke}
 @keyframes hsSewW{from,45%{transform:translateY(-100%)}}
 @keyframes hsSewI{from,45%{transform:translateY(100%)}}
-/* 2. cut & sew (owner, Nov 2026: "cute and comprehensive"): five little illustrated steps on a dashed thread:
-   pattern, fabric, cut, sew, ready to wear. Cards pop in one by one with the scroll (normal style = shown);
-   small idle loops (pencil, swatch, scissors, needle, blinking tee) run only while the section is on screen (.ck.play). */
-.hs-vis.ck{height:auto;max-width:64rem}
-.ck-row{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:1.25rem 0.75rem}
-.ck-step{margin:0;flex:0 0 calc(33.333% - 0.5rem);max-width:11.5rem;animation-name:ckIn}
-.ck-art{position:relative;aspect-ratio:1;border-radius:1.25rem;background:#fff;box-shadow:0 0.9rem 1.6rem -1.1rem rgba(25,25,23,0.35)}
-.ck-art::after{content:"";position:absolute;inset:0.45rem;border:1px dashed rgba(25,25,23,0.2);border-radius:0.9rem;pointer-events:none}
-.ck-art svg{position:absolute;inset:8%;width:84%;height:84%;overflow:visible}
-.ck-step figcaption{margin-top:0.7rem;font-size:0.9375rem;color:var(--ink)}
-.ck-n{display:block;font-family:var(--serif);font-size:0.8125rem;color:var(--ink-muted);margin-bottom:0.15rem}
+/* 2. cut & sew (owner, Nov 2026: "more serious, cute doesn't fit"): five technical line drawings in the style of a
+   tech pack (pattern, fabric, cut, sew, finish) on a dashed thread. Ink hairlines, one forest-green stitch accent each.
+   Scroll-paced only: each card fades up in turn, then its stitch details appear. No idle loops. Normal style = shown. */
+.hs-vis.ck{height:auto;max-width:66rem}
+.ck-row{position:relative;display:flex;flex-wrap:wrap;justify-content:center;gap:1.75rem 0.75rem}
+.ck-step{margin:0;flex:0 0 calc(33.333% - 0.5rem);max-width:12rem;text-align:left;animation-name:ckIn}
+.ck-art{position:relative;aspect-ratio:1;background:#fff;border:1px solid rgba(25,25,23,0.16);border-radius:0.35rem}
+.ck-art svg{position:absolute;inset:9%;width:82%;height:82%;overflow:visible}
+.ck-d{animation-name:ckD}
+.ck-step figcaption{margin-top:0.85rem;display:flex;flex-direction:column;gap:0.2rem}
+.ck-n{font-family:var(--serif);font-size:0.875rem;color:var(--ink-muted)}
+.ck-step b{font-weight:500;font-size:0.75rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink)}
+.ck-s{font-size:0.8125rem;line-height:1.4;color:var(--ink-muted)}
 .ck-thread{display:none}
 @media (min-width:768px){
   .ck-row{flex-wrap:nowrap;gap:clamp(0.75rem,2vw,1.5rem)}
   .ck-step{flex:1 1 0;max-width:none}
-  .ck-thread{display:block;position:absolute;left:6%;right:6%;top:calc((min(64rem,100vw - 6rem) - 4 * clamp(0.75rem,2vw,1.5rem)) / 10);width:88%;height:4px;margin-top:-2px;overflow:visible;transform-origin:0 50%;animation-name:ckThread}
-  .ck-thread path{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:6 5;vector-effect:non-scaling-stroke}
+  .ck-thread{display:block;position:absolute;left:4%;right:4%;top:calc((min(66rem,100vw - 6rem) - 4 * clamp(0.75rem,2vw,1.5rem)) / 10);width:92%;height:4px;margin-top:-2px;overflow:visible;transform-origin:0 50%;animation-name:ckThread}
+  .ck-thread path{fill:none;stroke:var(--ink);stroke-width:1;stroke-dasharray:4 4;opacity:0.5;vector-effect:non-scaling-stroke}
 }
-@keyframes ckIn{from{opacity:0;transform:translateY(2.25rem) scale(0.8)}70%{opacity:1;transform:translateY(-0.35rem) scale(1.04)}}
+@keyframes ckIn{from{opacity:0;transform:translateY(1.5rem)}}
+@keyframes ckD{from,45%{opacity:0}}
 @keyframes ckThread{from{transform:scaleX(0)}}
-/* idle loops */
-.ck-x{transform-box:fill-box}
-.ck-pen{animation:ckPen 2.4s ease-in-out infinite}
-.ck-sw{transform-origin:50% 100%;animation:ckSw 2.8s ease-in-out infinite}
-.ck-ok{transform-origin:50% 50%;animation:ckOk 2.8s ease-in-out infinite}
-.ck-sc{animation:ckSc 3.2s ease-in-out infinite}
-.ck-bu{transform-origin:0% 50%;animation:ckBu .5s ease-in-out infinite alternate}
-.ck-bl{transform-origin:0% 50%;animation:ckBl .5s ease-in-out infinite alternate}
-.ck-nd{animation:ckNd .45s ease-in-out infinite alternate}
-.ck-st{animation:ckSt .9s linear infinite}
-.ck-tee{transform-origin:50% 100%;animation:ckTee 2.6s ease-in-out infinite}
-.ck-eye{transform-origin:50% 50%;animation:ckEye 3.6s infinite}
-.ck-ht{transform-origin:50% 100%;animation:ckHt 2.6s ease-out infinite}
-.ck .ck-x{animation-play-state:paused}
-.ck.play .ck-x{animation-play-state:running}
-@keyframes ckPen{0%,100%{transform:translate(0,0)}25%{transform:translate(-14px,-6px)}50%{transform:translate(-22px,-18px)}75%{transform:translate(-8px,-12px)}}
-@keyframes ckSw{0%,20%,100%{transform:none}40%,70%{transform:translateY(-7px) rotate(-3deg)}}
-@keyframes ckOk{0%,30%,90%,100%{opacity:0;transform:scale(0.4)}42%{opacity:1;transform:scale(1.15)}50%,80%{opacity:1;transform:scale(1)}}
-@keyframes ckSc{0%{opacity:0;transform:translateX(0)}8%{opacity:1;transform:translateX(0)}72%{opacity:1;transform:translateX(58px)}86%,100%{opacity:0;transform:translateX(58px)}}
-@keyframes ckBu{to{transform:rotate(-16deg)}}
-@keyframes ckBl{to{transform:rotate(16deg)}}
-@keyframes ckNd{to{transform:translateY(6px)}}
-@keyframes ckSt{to{transform:translateX(-9px)}}
-@keyframes ckTee{0%,100%{transform:none}50%{transform:translateY(-4px) rotate(-2deg)}}
-@keyframes ckEye{0%,46%,54%,100%{transform:none}50%{transform:scaleY(0.1)}}
-@keyframes ckHt{0%,40%{opacity:0;transform:translateY(6px) scale(0.5)}55%{opacity:1;transform:translateY(0) scale(1.1)}100%{opacity:0;transform:translateY(-16px) scale(0.9)}}
-@media (prefers-reduced-motion:reduce){.ck .ck-x{animation:none!important}}
 /* 3. mockup: blank tee, print area appears, finished mockup slides in beside it */
 /* 3. mockup tool: a design editor. Tools slide in, a print area is dragged out, "your design here" sets in line by line, the cursor grabs a handle */
 .hs-mock{--mw:clamp(12rem,46vw,17rem)}
@@ -681,20 +657,20 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 @keyframes mkW2{from,54%{opacity:0;transform:translateY(0.6rem)}68%{opacity:1;transform:none}}
 @keyframes mkW3{from,62%{opacity:0;transform:translateY(0.6rem)}76%{opacity:1;transform:none}}
 @keyframes mkCur{from,20%{opacity:0;transform:translate(-20cqw,-18cqw)}28%{opacity:1}48%{transform:translate(-2cqw,-2cqw)}70%{transform:none}84%{transform:scale(0.9)}}
-.hs [class*="hs-"],.hs .mk-a,.hs .ck-step,.hs .ck-thread{animation-fill-mode:both;animation-timing-function:linear}
+.hs [class*="hs-"],.hs .mk-a,.hs .ck-step,.hs .ck-thread,.hs .ck-d{animation-fill-mode:both;animation-timing-function:linear}
 @supports (animation-timeline:view()){
   .hs-vis{view-timeline:--hs block}
   .hs-card,.hs-stitch-w,.hs-stitch,.hs-box,.mk-a{animation-timeline:--hs;animation-range:entry 30% cover 52%}
-  .ck-step{animation-timeline:--hs;animation-range:entry calc(8% + var(--i) * 7%) cover calc(28% + var(--i) * 5%)}
+  .ck-step,.ck-step .ck-d{animation-timeline:--hs;animation-range:entry calc(8% + var(--i) * 7%) cover calc(28% + var(--i) * 5%)}
   .ck-thread{animation-timeline:--hs;animation-range:entry 10% cover 50%}
 }
 @supports not (animation-timeline:view()){
   .hs-card,.hs-stitch-w,.hs-stitch,.hs-box,.mk-a{animation-duration:1.1s;animation-timing-function:cubic-bezier(0.16,1,0.3,1);animation-play-state:paused}
   .hs.in .hs-card,.hs.in .hs-stitch-w,.hs.in .hs-stitch,.hs.in .hs-box,.hs.in .mk-a{animation-play-state:running}
-  .ck-step,.ck-thread{animation-duration:0.8s;animation-timing-function:ease-out;animation-delay:calc(var(--i,0) * 0.18s);animation-play-state:paused}
-  .hs.in .ck-step,.hs.in .ck-thread{animation-play-state:running}
+  .ck-step,.ck-thread,.ck-d{animation-duration:0.9s;animation-timing-function:ease-out;animation-delay:calc(var(--i,0) * 0.18s);animation-play-state:paused}
+  .hs.in .ck-step,.hs.in .ck-thread,.hs.in .ck-d{animation-play-state:running}
 }
-@media (prefers-reduced-motion:reduce){.hs-card,.hs-stitch-w,.hs-stitch,.hs-box,.mk-a,.ck-step,.ck-thread{animation:none!important}}
+@media (prefers-reduced-motion:reduce){.hs-card,.hs-stitch-w,.hs-stitch,.hs-box,.mk-a,.ck-step,.ck-thread,.ck-d{animation:none!important}}
 .hs-copy{max-width:40rem;margin:clamp(2rem,5vh,3.5rem) auto 0}
 .hs-kick{font-size:0.9375rem;color:var(--ink-muted)}
 .hs-title{margin-top:0.875rem;font-family:var(--serif);font-weight:400;font-size:clamp(2rem,5.2vw,3.75rem);line-height:1.08;letter-spacing:-0.01em;color:var(--ink)}
@@ -786,11 +762,11 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
         <a class="cta solid" href="#contact">Get a quote <span class="arr">→</span></a>
       </div>
   </div>
-  <div class="hp" aria-label="What we make: golf wear, sewing, a full collection, embroidery and streetwear">
+  <div class="hp" aria-label="What we make: golf wear, sewing, a full rail of tees, embroidery and streetwear">
     <figure class="hp-f" style="--i:2"><img src="images/studio-set/hero-polo-model.webp" width="720" height="960" alt="Model in a navy golf polo with a white tipped collar and cream chinos" decoding="async"></figure>
-    <figure class="hp-f" style="--i:1"><img src="images/studio-set/hero-sewing.webp" width="720" height="960" alt="Hands guiding sage green fabric through a sewing machine" decoding="async"></figure>
-    <figure class="hp-f hp-c" style="--i:0"><img src="images/studio-set/hero-collection.webp" width="880" height="1100" alt="A clothing collection on a rail: hoodie, golf polo, varsity jacket, acid-wash tee and white tee, with folded cargo pants and tees below" decoding="async" fetchpriority="high"></figure>
-    <figure class="hp-f" style="--i:1"><img src="images/studio-set/hero-embroidery.webp" width="720" height="960" alt="A diamond emblem embroidered in green thread on a cream tee in an embroidery hoop" decoding="async"></figure>
+    <figure class="hp-f" style="--i:1"><img src="images/stock/hero-sewing.webp" width="720" height="960" alt="Hands guiding fabric through a sewing machine" decoding="async"></figure>
+    <figure class="hp-f hp-c" style="--i:0"><img src="images/stock/hero-collection.webp" width="880" height="1100" alt="A rail of tees and polos in white, red, black, mustard and brown" decoding="async" fetchpriority="high"></figure>
+    <figure class="hp-f" style="--i:1"><img src="images/stock/hero-embroidery.webp" width="720" height="960" alt="Colourful thread cones on an industrial embroidery machine" decoding="async"></figure>
     <figure class="hp-f" style="--i:2"><img src="images/studio-set/hero-streetwear-model.webp" width="720" height="960" alt="Model in an oversized acid-wash tee and wide khaki cargo pants" decoding="async"></figure>
   </div>
   <div class="h3-stage">
@@ -821,11 +797,11 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
   <div class="hs-vis ck" aria-label="How cut and sew works">
     <div class="ck-row">
       <svg class="ck-thread" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true"><path d="M0 2 H100"/></svg>
-      <figure class="ck-step" style="--i:0"><div class="ck-art"><svg viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-5 58 62)"><rect x="24" y="18" width="70" height="88" rx="5" fill="#fff" stroke="#191917" stroke-width="2.4"/><path transform="translate(22 30) scale(.65)" d="M38 30 l14-7 q8 9 16 0 l14 7 14 15 -11 10 -8-7 v42 h-50 v-42 l-8 7 -11-10z" fill="none" stroke="#191917" stroke-width="2.6" stroke-dasharray="5 4" stroke-linejoin="round"/><path d="M32 30 h14 M32 98 h20" stroke="#191917" stroke-width="1.6" stroke-linecap="round" opacity=".35"/></g><g class="ck-x ck-pen"><g transform="translate(78 78) rotate(40)"><rect x="-4.5" y="-30" width="9" height="26" rx="2" fill="#2f4a3a" stroke="#191917" stroke-width="2"/><path d="M-4.5 -4 L0 6 L4.5 -4 Z" fill="#f2eee6" stroke="#191917" stroke-width="2" stroke-linejoin="round"/><path d="M-1.4 2.6 L0 6 L1.4 2.6Z" fill="#191917"/><rect x="-4.5" y="-34" width="9" height="5" rx="1.5" fill="#eab8a6" stroke="#191917" stroke-width="2"/></g></g></svg></div><figcaption><span class="ck-n">01</span>Your pattern</figcaption></figure>
-      <figure class="ck-step" style="--i:1"><div class="ck-art"><svg viewBox="0 0 120 120" aria-hidden="true"><rect x="22" y="34" width="46" height="56" rx="6" fill="#7d97bd" stroke="#191917" stroke-width="2.4" transform="rotate(-14 45 62)"/><rect x="38" y="30" width="46" height="56" rx="6" fill="#f2eee6" stroke="#191917" stroke-width="2.4" transform="rotate(2 61 58)"/><g class="ck-x ck-sw"><rect x="52" y="34" width="46" height="56" rx="6" fill="#2f4a3a" stroke="#191917" stroke-width="2.4" transform="rotate(14 75 62)"/><path d="M60 52 l30 8 M57 64 l30 8 M54 76 l30 8" stroke="#fff" stroke-width="1.6" stroke-dasharray="3 3" opacity=".55" transform="rotate(14 75 62)"/></g><g class="ck-x ck-ok"><circle cx="94" cy="30" r="11" fill="#fff" stroke="#191917" stroke-width="2.4"/><path d="M89 30.5 l3.6 3.6 l6.4-7" fill="none" stroke="#2f4a3a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></g></svg></div><figcaption><span class="ck-n">02</span>Pick a fabric</figcaption></figure>
-      <figure class="ck-step" style="--i:2"><div class="ck-art"><svg viewBox="0 0 120 120" aria-hidden="true"><path d="M14 40 h92 v52 h-92z" fill="#f2eee6" stroke="#191917" stroke-width="2.4" stroke-linejoin="round"/><path d="M14 66 h92" stroke="#191917" stroke-width="2" stroke-dasharray="5 4"/><g class="ck-x ck-sc"><g transform="translate(22 66)"><g class="ck-x ck-bu"><path d="M0 -1.5 L30 -3 Q33 -2 30 0 L0 2Z" fill="#fff" stroke="#191917" stroke-width="2" stroke-linejoin="round"/></g><g class="ck-x ck-bl"><path d="M0 1.5 L30 3 Q33 2 30 0 L0 -2Z" fill="#fff" stroke="#191917" stroke-width="2" stroke-linejoin="round"/></g><circle cx="-9" cy="-8" r="7" fill="#2f4a3a" stroke="#191917" stroke-width="2.4"/><circle cx="-9" cy="8" r="7" fill="#2f4a3a" stroke="#191917" stroke-width="2.4"/><circle cx="0" cy="0" r="2.2" fill="#191917"/></g></g></svg></div><figcaption><span class="ck-n">03</span>We cut</figcaption></figure>
-      <figure class="ck-step" style="--i:3"><div class="ck-art"><svg viewBox="0 0 120 120" aria-hidden="true"><rect x="10" y="78" width="100" height="10" rx="5" fill="#7d97bd" stroke="#191917" stroke-width="2.2"/><g class="ck-x ck-st"><path d="M-6 83 h136" stroke="#fff" stroke-width="2" stroke-dasharray="5 4"/></g><rect x="16" y="88" width="88" height="10" rx="4" fill="#191917"/><path d="M80 88 V42 a10 10 0 0 0 -10 -10 H34 a10 10 0 0 0 -10 10 v18 h16 v-10 h40" fill="#2f4a3a" stroke="#191917" stroke-width="2.4" stroke-linejoin="round"/><path d="M80 88 V44" stroke="#191917" stroke-width="2.4"/><rect x="70" y="38" width="22" height="50" rx="6" fill="#2f4a3a" stroke="#191917" stroke-width="2.4"/><circle cx="96" cy="50" r="8" fill="#f2eee6" stroke="#191917" stroke-width="2.4"/><circle cx="96" cy="50" r="2" fill="#191917"/><circle cx="48" cy="41" r="2.4" fill="#fff"/><circle cx="60" cy="41" r="2.4" fill="#fff"/><path d="M50 46.5 q4 3.5 8 0" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="44" cy="46" r="2.2" fill="#eab8a6"/><circle cx="64" cy="46" r="2.2" fill="#eab8a6"/><g class="ck-x ck-nd"><path d="M32 60 v14" stroke="#191917" stroke-width="2.4" stroke-linecap="round"/><path d="M28 60 h8" stroke="#191917" stroke-width="2.4" stroke-linecap="round"/></g></svg></div><figcaption><span class="ck-n">04</span>We sew</figcaption></figure>
-      <figure class="ck-step" style="--i:4"><div class="ck-art"><svg viewBox="0 0 120 120" aria-hidden="true"><g class="ck-x ck-tee"><path d="M38 30 l14-7 q8 9 16 0 l14 7 14 15 -11 10 -8-7 v42 h-50 v-42 l-8 7 -11-10z" fill="#f2eee6" stroke="#191917" stroke-width="2.4" stroke-linejoin="round"/><path d="M52 23 q8 9 16 0" fill="none" stroke="#191917" stroke-width="2.4"/><path d="M38 92 h44" stroke="#191917" stroke-width="1.8" stroke-dasharray="3.5 3" opacity=".6"/><g class="ck-x ck-eye"><ellipse cx="53" cy="56" rx="2.6" ry="3.4" fill="#191917"/><ellipse cx="67" cy="56" rx="2.6" ry="3.4" fill="#191917"/></g><path d="M55 64 q5 4.5 10 0" fill="none" stroke="#191917" stroke-width="2.2" stroke-linecap="round"/><circle cx="47" cy="63" r="3" fill="#eab8a6"/><circle cx="73" cy="63" r="3" fill="#eab8a6"/></g><g class="ck-x ck-ht"><path d="M96 34 c-3 -5 -10 -2 -7 4 l7 7 l7 -7 c3 -6 -4 -9 -7 -4z" fill="#2f4a3a" stroke="#191917" stroke-width="2" stroke-linejoin="round"/></g></svg></div><figcaption><span class="ck-n">05</span>Ready to wear</figcaption></figure>
+      <figure class="ck-step" style="--i:0"><div class="ck-art"><svg viewBox="0 0 120 120" aria-hidden="true"><g class="ck-b"><path d="M22 28 L46 20 Q48 34 60 36 L60 100 L26 100 L26 64 Q17 50 22 28 Z" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M70 54 Q87 36 104 54 L100 86 L74 86 Z" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M43 46 V86 M40 50 L43 46 L46 50 M40 82 L43 86 L46 82" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M87 58 V80 M84.5 61 L87 58 L89.5 61 M84.5 77 L87 80 L89.5 77" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M26 76 l-3 2 l3 2 M60 70 l3 2 l-3 2" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="ck-d"><path d="M26 31 L44 25 Q47 37 56 39 L56 96 L30 96 L30 65 Q22 52 26 31 Z" fill="none" stroke="#191917" stroke-width="1" stroke-dasharray="3 2.5" stroke-linecap="round"/><path d="M74 56 Q87 42 100 56 L97 82 L77 82 Z" fill="none" stroke="#191917" stroke-width="1" stroke-dasharray="3 2.5" stroke-linecap="round"/></g></svg></div><figcaption><span class="ck-n">01</span><b>Pattern</b><span class="ck-s">Your own, or drafted with you</span></figcaption></figure>
+      <figure class="ck-step" style="--i:1"><div class="ck-art"><svg viewBox="0 0 120 120" aria-hidden="true"><defs><pattern id="tw" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0 V5" stroke="#191917" stroke-width=".7"/></pattern><pattern id="rb" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M2 0 V4" stroke="#191917" stroke-width=".7"/></pattern><pattern id="pq" width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r=".8" fill="#191917"/></pattern></defs><g class="ck-b"><rect x="16" y="22" width="44" height="56" fill="#fff" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="16" y="22" width="44" height="56" fill="url(#tw)" opacity=".55"/><rect x="40" y="36" width="44" height="56" fill="#fff" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="40" y="36" width="44" height="56" fill="url(#rb)" opacity=".55"/><rect x="64" y="50" width="44" height="56" fill="#fff" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="64" y="50" width="44" height="56" fill="url(#pq)" opacity=".6"/></g><g class="ck-d"><path d="M64 106 l4 -3 l4 3 l4 -3 l4 3 l4 -3 l4 3 l4 -3 l4 3 l4 -3 l4 3" fill="none" stroke="#2f4a3a" stroke-width="1.4" stroke-linejoin="round"/></g></svg></div><figcaption><span class="ck-n">02</span><b>Fabric</b><span class="ck-s">Choose from a wide range</span></figcaption></figure>
+      <figure class="ck-step" style="--i:2"><div class="ck-art"><svg viewBox="0 0 120 120" aria-hidden="true"><g class="ck-b"><rect x="12" y="24" width="96" height="72" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M30 40 L56 34 Q58 46 70 48 L70 84 L36 84 L36 62 Q28 52 30 40 Z" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><g transform="translate(78 58) rotate(-20)"><circle cx="-12" cy="-6" r="5" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="-12" cy="6" r="5" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M-8 -4 L18 3 M-8 4 L18 -3" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="0" cy="0" r="1.2" fill="#191917"/></g></g><g class="ck-d"><path d="M26 37 L58 29 Q61 42 75 44 L75 89 L31 89 L31 63 Q22 52 26 37 Z" fill="none" stroke="#2f4a3a" stroke-width="1.4" stroke-dasharray="3.2 2.4" stroke-linecap="round"/></g></svg></div><figcaption><span class="ck-n">03</span><b>Cut</b><span class="ck-s">Precise, piece by piece</span></figcaption></figure>
+      <figure class="ck-step" style="--i:3"><div class="ck-art"><svg viewBox="0 0 120 120" aria-hidden="true"><g class="ck-b"><path d="M92 74 V42 H56 V58 H38 V38 a10 10 0 0 1 10 -10 H96 a8 8 0 0 1 8 8 V74" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="104" cy="44" r="6" fill="#fff" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M47 58 V68" stroke="#191917" stroke-width="1.6" stroke-linecap="round"/><path d="M41 68 H53" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M8 74 H112 M8 82 H112" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M8 71 H46 M52 71 H86" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="ck-d"><path d="M10 71 H44" fill="none" stroke="#2f4a3a" stroke-width="1.4" stroke-dasharray="3.2 2.4" stroke-linecap="round"/></g></svg></div><figcaption><span class="ck-n">04</span><b>Sew</b><span class="ck-s">Sewn to your spec</span></figcaption></figure>
+      <figure class="ck-step" style="--i:4"><div class="ck-art"><svg viewBox="0 0 120 120" aria-hidden="true"><g class="ck-b"><path d="M38 26 l14 -6 q8 8 16 0 l14 6 l18 18 l-12 11 l-8 -7 v50 h-48 v-50 l-8 7 l-12 -11 z" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M52 20 q8 10 16 0" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><path d="M86 34 q6 2 8 10" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><rect x="88" y="44" width="12" height="17" rx="1.5" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="94" cy="48" r="1.4" fill="none" stroke="#191917" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/></g><g class="ck-d"><path d="M36 94 h48" fill="none" stroke="#191917" stroke-width="1" stroke-dasharray="3 2.5" stroke-linecap="round"/><path d="M26 58 l9 -8 M94 58 l-9 -8" fill="none" stroke="#191917" stroke-width="1" stroke-dasharray="3 2.5" stroke-linecap="round"/><path d="M50 24 q10 11 20 0" fill="none" stroke="#2f4a3a" stroke-width="1.4" stroke-dasharray="3.2 2.4" stroke-linecap="round"/></g></svg></div><figcaption><span class="ck-n">05</span><b>Finish</b><span class="ck-s">Inspected and packed</span></figcaption></figure>
     </div>
   </div>
   <div class="hs-copy" data-anim="fadeUp">
@@ -921,7 +897,7 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
     </dl>
     <div class="ph3" aria-label="Pattern, sewing and fabric">
       <figure data-anim="fadeUp"><img src="images/stock/pattern-cutting.webp" width="720" height="900" loading="lazy" decoding="async" alt="Cutting a paper sewing pattern with scissors"></figure>
-      <figure data-anim="fadeUp" data-delay="90"><img src="images/stock/sewing-machine.webp" width="720" height="900" loading="lazy" decoding="async" alt="Black and white close-up of a sewing machine needle"></figure>
+      <figure data-anim="fadeUp" data-delay="90"><img src="images/stock/sewing-machine.webp" width="720" height="900" loading="lazy" decoding="async" alt="Close-up of a sewing machine needle and presser foot on blue fabric"></figure>
       <figure data-anim="fadeUp" data-delay="180"><img src="images/stock/fabric-rolls.webp" width="720" height="900" loading="lazy" decoding="async" alt="Rolls of undyed cotton fabric"></figure>
     </div>
   </div>
@@ -1368,8 +1344,6 @@ if(grid){
 }
 
 
-/* Cut & sew storyboard: idle loops run only while it is on screen */
-{const ck=document.querySelector(".ck");if(ck&&"IntersectionObserver" in window)new IntersectionObserver(es=>es.forEach(e=>ck.classList.toggle("play",e.isIntersecting))).observe(ck)}
 /* START HERE sections animate in CSS (scroll timelines). Only for browsers without them: play once when a section comes into view */
 if(!(window.CSS&&CSS.supports&&CSS.supports("animation-timeline: view()"))){
   const hs=document.querySelectorAll(".hs");
