@@ -55,7 +55,7 @@ language with short, numbered steps.
 - Mood: hushed, editorial, monochrome, lots of white space. Real product and
   portfolio photos are the only colour on the page.
 - Colours: ink #191917; white #ffffff; light grey sections #f3f3f3; muted
-  text rgba(25,25,23,0.6); faint rgba(25,25,23,0.3); hairlines
+  text rgba(25,25,23,0.74) (owner, Nov 2026: subtexts more visible; was 0.6); faint rgba(25,25,23,0.3); hairlines
   rgba(25,25,23,0.2). Cream #f2eee6 is used for profile and print assets.
 - Type: Playfair Display for headings, prices, numbers, and italic accent
   words (one italic word per heading, e.g. "Choose your *blank*."). Satoshi
@@ -67,7 +67,8 @@ language with short, numbered steps.
   pills, sentence case, "→" arrow. Main buttons (.cta.solid, home .pill) are
   forest green #2f4a3a (hover #263d30), the ONE accent colour on the site;
   outline buttons (.cta.ghost) are white with a 1.5px ink ring; on dark
-  sections a white button / white ring. Sewing animations (shared CSS block
+  sections a white button / white ring. Home .pill now uses the same "stitched on" edge as .cta.solid
+  (owner, Nov 2026: the white 4-hole "sewn button" icon looked off and was removed). Sewing animations (shared CSS block
   "BUTTONS" + small script in each page, plays on first view and on
   hover/tap, no per-scroll work): .cta.solid "stitched on" (white dashed
   stitch sews around the edge), .cta.ghost "needle run" (a needle leaves a
@@ -89,30 +90,13 @@ language with short, numbered steps.
 - index.html: home page, in this order (owner, Nov 2026):
   1. Hero: headline, buttons (outline "Design assistance" -> design.html (top), outline
      "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" -> #contact),
-     then the CLOTHING RAIL (owner, Nov 2026; idea from a "clothing rail" prompt, light and on
-     brand): a chrome rail with 11 cut-out blanks hanging edge-on, in 3D (owner, Nov 2026): one shared
-     perspective (1600px) on .rl, preserve-3d through .rl-scene (rotateX 4deg; drag sideways on
-     iPad/desktop turns the rail up to 18deg, eases back; a drag is not a tap; text/image selection
-     off), each garment = sharp front photo + 2-7 soft darker back layers (images/rail/soft/,
-     pre-blurred and pre-darkened, NO CSS filter) stepped back in Z and tapered, side-light overlay
-     (.rl-lt, masked), soft shadow (.rl-gs), short damped swing (.rl-sw.settle, rlSettle
-     ~1.9 s) once on arrival and whenever a garment slides; NO constant sway (owner: hero "super slow and
-     laggy" on iPad, Nov 2026; constant sway on 11 3D garments ran at 16 fps, now 60 fps idle); touch devices
-     use at most 3 soft back layers per garment, hanging at rotateY -66deg, drawn hanger) that swing round to face you on hover/tap while the others slide apart;
-     caption under it (name, "PHP x · per piece, blank"); a shelf below with Baseball Cap, Washed
-     Cap, Net Cap, Knitted Beanie. Tap the facing piece (or Enter) to lift it into a close-up view
-     (counter, Playfair italic name, price, colours, prev/next with swipe, Close/Esc, green "Get a
-     quote" that opens the cream quick-quote window (#quoteModal/#quickQuote, same as the
-     catalogue's, on top of the close-up; product, chip and colour pre-filled; sends via Web3Forms),
-     "View in catalogue"). One fixed design (1500 wide; 720 wide on phones, where the rail slides to centre
-     the faced piece) scaled to the width, sized on resize only. Data from CATALOGUE (exposed as
-     window.CATALOGUE; go() and lenis exposed as window.go / window.__lenis). Each garment has its
-     own 100px hit strip (.rl-hit) so overlapping boxes don't steal taps. Cut-outs in images/rail/
-     (garments from the studio photos + their masks; caps/beanie by GrabCut; Nov 2026 re-made with
-     soft edges: outline smoothed, edge pulled in 1px, alpha feathered ~1.6px, grey edge colour
-     removed, WebP q90 — owner found the first cut-outs too sharp). This is the ONE place
-     backgrounds are removed; catalogue and studio photos keep their grey backgrounds. Then the three
-     steps (Send your idea, Approve your sample, Wear it) in a row (stacked on phone) and "No
+     then the PHOTO SPREAD (owner, Nov 2026; replaced the clothing rail, which is saved in
+     saved/clothing-rail/ with a README to bring it back): five Unsplash stock photos of trendy pieces
+     being made (denim stack, sewing a jacket, denim under the needle (centre, largest), acid-wash/tie-dye
+     tees, washed denim) in images/stock/, staggered heights, inner dashed "stitch" frame, deal in once on
+     load (transform/opacity); phone shows the middle three. The quick-quote window (#quoteModal) went
+     with the rail. Then the three steps (Send your idea, Approve your sample, Wear it) in a row (stacked
+     on phone) and "No
      minimum order · Design help included". The sewing machine hero was replaced and is saved in
      saved/sewing-machine/. Earlier hero visuals (floating tee, photo collage, hang tag) were removed.
   2. Three "start here" sections (owner's references: the Portrait site),
@@ -121,9 +105,15 @@ language with short, numbered steps.
      Mockup Tool (#start; a design editor: black tee, a tool bar slides in,
      a dashed print area with handles is dragged out, "YOUR DESIGN HERE" sets
      in line by line, a cursor grabs the corner; "Mockup Tool & Custom
-     Mockups" -> design.html#studio), Build
-     Your Brand (Stoicism photos part and a twin-needle seam sews between
-     them, cut & sew, "Start a brand"), Our Blanks (blank cards fan out into a
+     Mockups" -> design.html#studio), Cut & sew (owner, Nov 2026: straight to
+     the point; kicker "Custom apparel", heading "Cut & *sew*.", lead "Bring your own pattern, or
+     we'll draft one with you. Pick from a wide range of fabrics, approve a sample, and we produce it at
+     any quantity." (.hs-lead), pill "Start cut & sew" -> brand.html. Animation (owner asked for
+     something more graphic/3D): .cs3 scene, all CSS, scroll-paced on the --hs view timeline (range
+     entry 5% cover 50%): a denim sheet (images/stock/denim-texture.webp) lies flat with the pattern
+     marked in dashes, scissors cut round the front, the front + two sleeves (clip-path pieces) lift off in
+     3D, stand up and join into a tee, then cream seam stitches appear. Normal styles = finished tee.
+     Fallback plays once (3.6 s) on .hs.in), Our Blanks (blank cards fan out into a
      hand, photos from images/thumbs/, "Browse catalogue" ->
      teams.html#catalogue). Not pinned; the fan is home page only.
   3. "Made by us" (#made, white, wide): animated collage of real client work in
@@ -235,8 +225,12 @@ language with short, numbered steps.
 - Playbook: .claude/skills/web-studio/SKILL.md (stack choice, design, logo,
   speed, SEO, stock photos). Starter prompt for new projects:
   prompts/future-project-prompt.md. Both are kept off the live site.
-- Stock photos: not used on this site on purpose; real product and client
-  photos are the brand. Stock is only for mood/texture (e.g. social posts).
+- Stock photos (owner asked for them, Nov 2026): free Unsplash photos in images/stock/ (credits and
+  source links in saved/stock-photos/CREDITS.md). Used for mood only: home hero spread, Cut & sew
+  section, a 3-photo strip under About (pattern cutting, sewing machine, fabric rolls) and one photo
+  under the Process heading. Never as catalogue products, portfolio or client work. Unsplash blocks
+  direct downloads from the cloud session; use the images.unsplash.com/photo-<id> link instead.
+  Real studio photos of the owner's own floor would be even better later.
 
 ## MOCKUPS & VISUALS WITH HIGGSFIELD
 Use the Higgsfield connector for image generation and editing when it's
