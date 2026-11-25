@@ -15,4 +15,4 @@ images/studio-set/ is not stock: AI-generated with Higgsfield (see CLAUDE.md, ST
 | ck-fabric.webp (step 02) | unsplash.com/photos/memVwP598cA | Victor Volkov |
 | ck-sew.webp (step 04) | unsplash.com/photos/DZfmIIIaFbs | reza erfanian |
 | ck-finish.webp (step 05) | unsplash.com/photos/tWOz2_EK5EQ | (see photo page) |
-| ck-mass.webp (step 05, mass production) | unsplash.com/photos/dh1EDCiQ6lg | (see photo page) |
+| ck-mass.webp (step 05; flag, a pillar sign and a box label removed) | unsplash.com/photos/dh1EDCiQ6lg | (see photo page) |
