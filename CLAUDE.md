@@ -95,18 +95,18 @@ language with short, numbered steps.
 
 ## SITE STRUCTURE (static HTML on Vercel, deployed from GitHub)
 - index.html: home page, in this order (owner, Nov 2026):
-  1. Hero: headline, buttons (outline "Design assistance" -> design.html (top), outline
-     "Our blanks catalogue" -> teams.html#catalogue, green "Get a quote" -> #contact),
-     then the PHOTO SPREAD (owner, Nov 2026; replaced the clothing rail, which is saved in
-     saved/clothing-rail/ with a README to bring it back): five photos showing what we do. Ends: golf-polo
-     model and streetwear model from the AI studio set (images/studio-set/hero-polo-model,
-     hero-streetwear-model; no faces; owner kept these). Middle three: Unsplash STOCK (owner asked):
-     hands sewing, a rail of tees (centre, largest), colourful thread cones on an industrial embroidery machine (owner
-     asked for colour, not B&W; a thread brand on one cap was softened out), with one soft
-     grade (colour 0.82, contrast 0.96); images/stock/hero-sewing, hero-collection, hero-embroidery.
-     Staggered heights, inner dashed stitch frame, deal in once on load. Phone: all five in a swipeable
-     row (scroll-snap). The quick-quote window (#quoteModal) went
-     with the rail. Then the three steps (Send your idea, Approve your sample, Wear it) in a row (stacked
+  1. Hero (owner, Nov 2026; inspired by a sage/off-white restaurant site): a rounded SAGE panel (#d8dfd1)
+     with the eyebrow "Apparel design & manufacturing studio", h1 "Your idea, *simply* made.", lead "No more
+     juggling a designer, a tailor and a factory. We design, sample and produce your apparel with local
+     factories in Metro Manila. No minimum order, from one piece to 10,000 a month.", buttons green "Get a
+     quote" (#contact) + cream "Our blanks catalogue" (teams.html#catalogue), and a text link "Need design
+     help? Design assistance" (design.html). Right: one large stock photo (images/stock/hero-panel.webp,
+     sewing) with a floating cream "Your order" card: 2–3 days (1–5 pcs), 2–3 wks (bulk), None (minimum),
+     10k/mo (capacity, green), "Lead times count from sample approval." Under the panel: "What we make /
+     Uniforms, merch and full *collections*." + three photo tiles with tags (Golf & corporate, Teams &
+     events, Streetwear brands) + "10,000 pieces a month". No star ratings or reviews (none exist). Phone:
+     stacked, card under the photo, tiles in a row of three. The earlier 5-photo spread and the clothing
+     rail (saved/clothing-rail/) were replaced. Then the three steps (Send your idea, Approve your sample, Wear it) in a row (stacked
      on phone) and "No
      minimum order · Design help included". The sewing machine hero was replaced and is saved in
      saved/sewing-machine/. Earlier hero visuals (floating tee, photo collage, hang tag) were removed.
