@@ -104,7 +104,9 @@ language with short, numbered steps.
      on phone) and "No
      minimum order · Design help included". The sewing machine hero was replaced and is saved in
      saved/sewing-machine/. Earlier hero visuals (floating tee, photo collage, hang tag) were removed.
-  2. Three "start here" sections (owner's references: the Portrait site),
+  2. Three "start here" sections (owner's references: the Portrait site), in this order since
+     Nov 2026 (owner moved the Mockup Tool below the catalogue): Cut & sew (grey), Our Blanks (white),
+     Mockup Tool (#start, grey);
      each centred with its own scroll animation, a kicker, a big headline with
      one italic word, ONE dark rounded "pill" button and a small caption:
      Mockup Tool (#start; a design editor: black tee, a tool bar slides in,
@@ -321,7 +323,8 @@ Adding images to the site:
   on ancestors (hidden creates a scroll container and breaks the timeline).
 - Animate only transform and opacity. No layout reads (getBoundingClientRect,
   offsetWidth) inside scroll handlers.
-- Header is a plain white bar (no mix-blend-mode).
+- Header is a plain SOLID white bar (#fff; no transparency, no mix-blend-mode). It was 94% white and
+  page text showed through it while scrolling (owner's recording, Nov 2026).
 - Lenis smooth scroll only on mouse/trackpad devices; parallax and the hero
   tee tilt are off on touch devices. Hero animations pause off screen.
 - index.html below-the-fold sections use `.cv` (content-visibility:auto).

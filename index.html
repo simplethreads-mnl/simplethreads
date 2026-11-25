@@ -225,7 +225,7 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;text-transform:none;letter-spa
 @media (prefers-reduced-motion:reduce){.cl-in,.cl-f{animation:none}.cl{transition:none}}
 
 /* ===== HEADER ===== */
-.hdr{position:fixed;inset-inline:0;top:0;z-index:50;color:var(--ink);background:rgba(255,255,255,0.94);border-bottom:1px dashed var(--line);padding-top:env(safe-area-inset-top,0px)}
+.hdr{position:fixed;inset-inline:0;top:0;z-index:50;color:var(--ink);background:#fff;border-bottom:1px dashed var(--line);padding-top:env(safe-area-inset-top,0px)}
 .hdr-in{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:1.25rem 1.5rem}
 .hdr-left{display:none}
 .hdr-left p:first-child{font-size:0.875rem;letter-spacing:-0.02em}
@@ -780,19 +780,6 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
 </section>
 
 <!-- ===== START HERE: three separate paths ===== -->
-<section class="hs" id="start">
-  <div class="hs-vis hs-mock">
-    <div class="mk-tools" aria-hidden="true"><span class="mk-t mk-a on">T</span><span class="mk-t mk-a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-5 4 4 3-3 4 4"/></svg></span><span class="mk-t mk-a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 20c3-1 4-3 4-3l9-9a2.1 2.1 0 0 0-3-3l-9 9s-2 1-1 6z"/></svg></span></div>
-    <figure class="hs-card mk-card"><img src="images/thumbs/tshirt-black.webp" width="700" height="933" alt="Plain black tee with a print area that reads Your design here" loading="lazy" decoding="async"><div class="mk-sel mk-a" aria-hidden="true"><i class="mk-h"></i><i class="mk-h"></i><i class="mk-h"></i><i class="mk-h"></i><span class="mk-w mk-w1 mk-a">Your</span><span class="mk-w mk-w2 mk-a">design</span><span class="mk-w mk-w3 mk-a">here</span><svg class="mk-cur mk-a" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3 L19 12 L12.5 13.5 L9.5 20 Z" fill="#fff" stroke="#191917" stroke-width="1.4" stroke-linejoin="round"/></svg></div></figure>
-  </div>
-  <div class="hs-copy" data-anim="fadeUp">
-    <p class="hs-kick">Mockup tool</p>
-    <h2 class="hs-title">See it <span class="accent">before</span> it’s made.</h2>
-    <a class="pill" href="design.html#studio">Mockup Tool &amp; Custom Mockups <span class="arr">→</span></a>
-    <p class="hs-cap">Try your artwork on our blanks, or let us make custom mockups for you.</p>
-  </div>
-</section>
-
 <section class="hs hs-grey">
   <div class="hs-vis ck" aria-label="How cut and sew works">
     <div class="ck-row">
@@ -827,6 +814,19 @@ dt{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.18em;color:var(--
     <h2 class="hs-title">Every piece starts as a <span class="accent">blank</span>.</h2>
     <a class="pill" href="teams.html#catalogue">Browse catalogue <span class="arr">→</span></a>
     <p class="hs-cap">Shirts, polos, jackets, caps, and beanies. No minimum order.</p>
+  </div>
+</section>
+
+<section class="hs hs-grey" id="start">
+  <div class="hs-vis hs-mock">
+    <div class="mk-tools" aria-hidden="true"><span class="mk-t mk-a on">T</span><span class="mk-t mk-a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="5" width="17" height="14" rx="1.5"/><circle cx="9" cy="10" r="1.6"/><path d="M4 17l5-5 4 4 3-3 4 4"/></svg></span><span class="mk-t mk-a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 20c3-1 4-3 4-3l9-9a2.1 2.1 0 0 0-3-3l-9 9s-2 1-1 6z"/></svg></span></div>
+    <figure class="hs-card mk-card"><img src="images/thumbs/tshirt-black.webp" width="700" height="933" alt="Plain black tee with a print area that reads Your design here" loading="lazy" decoding="async"><div class="mk-sel mk-a" aria-hidden="true"><i class="mk-h"></i><i class="mk-h"></i><i class="mk-h"></i><i class="mk-h"></i><span class="mk-w mk-w1 mk-a">Your</span><span class="mk-w mk-w2 mk-a">design</span><span class="mk-w mk-w3 mk-a">here</span><svg class="mk-cur mk-a" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3 L19 12 L12.5 13.5 L9.5 20 Z" fill="#fff" stroke="#191917" stroke-width="1.4" stroke-linejoin="round"/></svg></div></figure>
+  </div>
+  <div class="hs-copy" data-anim="fadeUp">
+    <p class="hs-kick">Mockup tool</p>
+    <h2 class="hs-title">See it <span class="accent">before</span> it’s made.</h2>
+    <a class="pill" href="design.html#studio">Mockup Tool &amp; Custom Mockups <span class="arr">→</span></a>
+    <p class="hs-cap">Try your artwork on our blanks, or let us make custom mockups for you.</p>
   </div>
 </section>
 
