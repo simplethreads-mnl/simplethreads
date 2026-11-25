@@ -23,6 +23,8 @@ language with short, numbered steps.
 - Services: design assistance, sampling, production, custom cut & sew.
   Decoration: DTF, DTG, silk screen, sublimation, embroidery.
 - No minimum order. Price per piece goes down in bulk.
+- Capacity (owner, Nov 2026): ready for mass production, from a single piece up to 10,000 pieces
+  per month. Cut & sew is done with the factories Simple Threads works with.
 - Turnaround: 1–5 pieces ready 2–3 days after sample approval; bigger orders
   2–3 weeks after sample approval.
 - Past clients: Grit, Reverend, Stoicism, Tensei Threads. At the owner's
@@ -117,9 +119,10 @@ language with short, numbered steps.
      we'll draft one with you. Pick from a wide range of fabrics, approve a sample, and we produce it at
      any quantity." (.hs-lead), pill "Start cut & sew" -> brand.html. Visual (owner, Nov 2026, replaced the tech-pack line drawings
      and before them a 3D denim and a cute storyboard): .ck row of five square Unsplash STOCK photos
-     (images/stock/ck-pattern, ck-fabric, ck-cut, ck-sew, ck-finish; 600x600, soft grade, inner dashed
-     stitch frame) on a dashed thread, each with 01-05 number, uppercase label (Pattern, Fabric, Cut, Sew,
-     Finish) and short subtext. Scroll-paced fade-up per card; phone: 3 + 2 grid), Our Blanks (blank cards fan out into a
+     (images/stock/ck-pattern, ck-fabric, ck-sew, ck-finish, ck-mass; 600x600, soft grade, inner dashed
+     stitch frame) on a dashed thread, each with 01-05 number, uppercase label (Pattern, Fabric, Cut & sew
+     "Cut and sewn with the factories we work with", Finish, Mass production "Ready for mass production,
+     from a single piece up to 10,000 pieces a month") and short subtext. Scroll-paced fade-up per card; phone: 3 + 2 grid), Our Blanks (blank cards fan out into a
      hand, photos from images/thumbs/, "Browse catalogue" ->
      teams.html#catalogue). Not pinned; the fan is home page only.
   3. "Made by us" (#made, white, wide): animated collage of real client work in
