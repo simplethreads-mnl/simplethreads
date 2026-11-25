@@ -14,7 +14,8 @@ language with short, numbered steps.
 
 ## BUSINESS FACTS (use exactly; never invent new facts, prices, or claims)
 - Name: Simple Threads. Website: simplethreadsmnl.com
-- Moniker: "Apparel Design & Manufacturing" with "Design · Print · Produce"
+- Moniker: "Apparel Design & Manufacturing Studio" (owner added "Studio", Nov 2026; header left text,
+  home eyebrow, page titles, cover/og image) with "Design · Print · Produce"
 - Motto: "Simply made." (homepage headline: "Your idea, simply made.")
 - Address: 3F, 30 Jade St., Tandang Sora, Quezon City
 - Mobile / Viber / WhatsApp / Telegram: 0961 382 6973 (links: viber://chat?number=%2B639613826973,
