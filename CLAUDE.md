@@ -23,6 +23,9 @@ language with short, numbered steps.
 - Services: design assistance, sampling, production, custom cut & sew.
   Decoration: DTF, DTG, silk screen, sublimation, embroidery.
 - No minimum order. Price per piece goes down in bulk.
+- Positioning (owner, Nov 2026): "an apparel design and manufacturing studio in Metro Manila" that works
+  with local manufacturers and factories. Say "Metro Manila" in descriptions, not "Quezon City" (the
+  street address stays as is). Used in meta descriptions, JSON-LD and the home About section.
 - Capacity (owner, Nov 2026): ready for mass production, from a single piece up to 10,000 pieces
   per month. Cut & sew is done with the factories Simple Threads works with.
 - Turnaround: 1–5 pieces ready 2–3 days after sample approval; bigger orders
