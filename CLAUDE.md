@@ -223,6 +223,8 @@ language with short, numbered steps.
   Google can't use the old data: URI icon, which is why search showed a grey globe).
 - vercel.json redirects www.simplethreadsmnl.com to simplethreadsmnl.com. Never set the opposite
   redirect (apex to www) in Vercel Domains, or the two would loop.
+- google79e2aaacfbde2bc0.html in the root verifies Google Search Console (URL-prefix property,
+  https://simplethreadsmnl.com/). Never delete or rename it, or the site loses verification.
 - robots.txt and sitemap.xml are in the root. Add new pages to sitemap.xml.
 - vercel.json: images cached 1 day + stale-while-revalidate 7 days (so a
   replaced photo shows within a day), plus two safety headers.
