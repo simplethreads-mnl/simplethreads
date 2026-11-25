@@ -115,11 +115,11 @@ language with short, numbered steps.
      Mockups" -> design.html#studio), Cut & sew (owner, Nov 2026: straight to
      the point; kicker "Custom apparel", heading "Cut & *sew*.", lead "Bring your own pattern, or
      we'll draft one with you. Pick from a wide range of fabrics, approve a sample, and we produce it at
-     any quantity." (.hs-lead), pill "Start cut & sew" -> brand.html. Animation (owner: "more serious"; the 3D denim and the cute
-     storyboard were both rejected): .ck row of five technical line drawings in tech-pack style (01 Pattern,
-     02 Fabric, 03 Cut, 04 Sew, 05 Finish) with uppercase labels and short subtexts, hairline-bordered white
-     cards on a dashed thread, ink lines with one forest-green stitch accent each. Scroll-paced only (card
-     fades up, then its .ck-d stitch details appear); no idle loops; phone: 3 + 2 grid), Our Blanks (blank cards fan out into a
+     any quantity." (.hs-lead), pill "Start cut & sew" -> brand.html. Visual (owner, Nov 2026, replaced the tech-pack line drawings
+     and before them a 3D denim and a cute storyboard): .ck row of five square Unsplash STOCK photos
+     (images/stock/ck-pattern, ck-fabric, ck-cut, ck-sew, ck-finish; 600x600, soft grade, inner dashed
+     stitch frame) on a dashed thread, each with 01-05 number, uppercase label (Pattern, Fabric, Cut, Sew,
+     Finish) and short subtext. Scroll-paced fade-up per card; phone: 3 + 2 grid), Our Blanks (blank cards fan out into a
      hand, photos from images/thumbs/, "Browse catalogue" ->
      teams.html#catalogue). Not pinned; the fan is home page only.
   3. "Made by us" (#made, white, wide): animated collage of real client work in
