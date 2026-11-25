@@ -11,3 +11,8 @@ images/studio-set/ is not stock: AI-generated with Higgsfield (see CLAUDE.md, ST
 | hero-sewing.webp | unsplash.com/photos/ALpGe_m9eXE | Vitaly Gariev |
 | hero-collection.webp | unsplash.com/photos/tvG4WvjgsEY | (see photo page) |
 | hero-embroidery.webp (thread brand on one cone cap softened out) | unsplash.com/photos/KAMaLRggG9g | PJ Wallace |
+| ck-pattern.webp (Cut & sew step 01) | unsplash.com/photos/SjnR2gN5lwU | Metin Ozer |
+| ck-fabric.webp (step 02) | unsplash.com/photos/memVwP598cA | Victor Volkov |
+| ck-sew.webp (step 04) | unsplash.com/photos/DZfmIIIaFbs | reza erfanian |
+| ck-finish.webp (step 05) | unsplash.com/photos/tWOz2_EK5EQ | (see photo page) |
+| ck-mass.webp (step 05, mass production) | unsplash.com/photos/dh1EDCiQ6lg | (see photo page) |
